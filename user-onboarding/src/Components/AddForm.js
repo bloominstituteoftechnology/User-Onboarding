@@ -36,10 +36,32 @@ function AddForm ({ values, errors, touched, isSubmitting }) {
             tos: tos || false,
             };
         },
-        handleSubmit: (values, formikBag) => {
-
+        validationSchema: Yup.object().shape({
+            email: Yup.string()
+                .email("Email not valid")
+                .required("Email is required"),
+            password: Yup.string()
+                .min(8, "Password must be 8 character or longer")
+                .required("password is required")
+        }),
+        handleSubmit: (values, {resetForm, setErrors, setSubmitting}) => {
+            if (values.email === "alreadytaken@atb.dev") {
+                setErrors({ email: "That email is already taken"});
+            }else {
+                axios
+                    .post('https://reqres.in/api/users', values)
+                    .then(res => {
+                        console.log(res);
+                        resetForm();
+                        setSubmitting(false);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        setSubmitting(false);
+                    });
+            }
         }
-    })
+    })(AddForm);
 
 
 export default AddForm;
