@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Form from './Components/Form';
+import AddForm from './Components/AddForm';
 
 function App() {
   return (
     <div className="App">
-      <h1>Green is my fav color</h1>
+      <AddForm />
     </div>
   );
 }
