@@ -8,20 +8,20 @@ function AddForm ({ values, errors, touched, isSubmitting }) {
     return(
         <Form>
            <div> 
-            <Field type='text' name='name' placeholder = 'Name' />
+            <Field type='text' name ='name' placeholder = 'Name' />
            </div>
            <div>
              {touched.email && errors.email && <p>{errors.email}</p>}  
-            <Field type='email' name='email' placeholder = 'Email' />
+            <Field type='email' name ='email' placeholder = "Email" />
            </div>
            <div>
             {touched.password && errors.password && <p>{errors.password}</p>}    
-            <Field type='password' name='password' placeholder = 'Password'/>
+            <Field type='password' name ='password' placeholder = 'Password'/>
            </div>
            <label>
             <Field type = 'checkbox' name ='tos' checked = {values.tos}/>
            </label>
-            <button>Submit!</button>
+           <button disabled = {isSubmitting} >Submit!</button>
         </Form>
         
     );
@@ -64,4 +64,4 @@ function AddForm ({ values, errors, touched, isSubmitting }) {
     })(AddForm);
 
 
-export default AddForm;
+export default FormikForm;
