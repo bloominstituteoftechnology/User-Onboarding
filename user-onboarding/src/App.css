@@ -31,3 +31,13 @@
     transform: rotate(360deg);
   }
 }
+
+.error {
+  color: red;
+  font-size: 0.5rem;
+}
+
+.inputField {
+  width: 100%;
+  margin: 0.5rem;
+}
