@@ -4,11 +4,11 @@ class App extends Component {
 
   render() { 
     return ( 
+     
       <Form/>
+     
      );
   }
 }
  
-export default App;
-
 export default App;
