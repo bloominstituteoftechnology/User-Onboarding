@@ -2,9 +2,8 @@ import React from 'react';
 //like importing a ui library components
 import { withFormik, Form, Field} from 'formik';
 // //Material UI for for-mik
-import { TextField } from 'formik-material-ui';
+import { TextField, Select } from 'formik-material-ui';
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
@@ -28,7 +27,7 @@ const Login = ({ errors, touched, values }) => {
       <h2>School District Login</h2>
     {/* <h2> Please Login below</h2> */}
     <Form className='container'>
-      {touched.name && errors.name && <h3>{errors.name}</h3> }
+      {touched.name && errors.name && <p>{errors.name}</p> }
       <Field
         className='field'
         type='name'
@@ -68,10 +67,8 @@ const Login = ({ errors, touched, values }) => {
             <IconButton
               edge="end"
               aria-label="toggle password visibility"
-
-
             >
-              {values.showPassword ? <VisibilityOff /> : <Visibility />}
+              {/* {values.showPassword ? <VisibilityOff /> : <Visibility />} */}
             </IconButton>
           </InputAdornment>
         ),
@@ -95,20 +92,19 @@ const Login = ({ errors, touched, values }) => {
     
     <br />
     {/* adding dropdown field-was so easy!  */}
-    <Field component='select' name='user' fullWidth >
-      <option value='Admin'>Admin</option>
-      <option value='Student'>Student</option>
-      <option value='Teacher'>Teacher</option>
+    <Field component='select' name='user' className='select' >
+      <option value='Admin'>Select: Admin</option>
+      <option value='Student'>Select: Student</option>
+      <option value='Teacher'>Select: Teacher</option>
     </Field>
     <label>
       {/* wrapping label tag around eveything makes the text clickable too */}
-      <Field type='checkbox' name='tos' checked={values.tos}     />
-      Accept Terms of Service
+      <Field type='checkbox' name='tos' checked={values.tos} className='checkbox'  />
+      Please Accept Terms of Service
     </label>
     <br />
-    <Button type='submit'  margin='normal'  >
-    Press Me!
-    <Icon>send</Icon>
+    <Button type='submit'  margin='normal' fontSize='small' fullWidth>
+    Press Me
     </Button>
     </Form>
   </div>
