@@ -103,7 +103,7 @@ const Login = ({ errors, touched, values }) => {
       Please Accept Terms of Service
     </label>
     <br />
-    <Button type='submit'  margin='normal' fontSize='small' fullWidth>
+    <Button type='submit'  margin='normal' fontSize='small' fullWidth color='primary'>
     Press Me
     </Button>
     </Form>
@@ -134,11 +134,11 @@ const FormikLogin = withFormik({
   //can create custom errors,
   validationSchema: Yup.object().shape({
     name: Yup.string()
-      .max(10, 'Name exceeds character limit')
+      .max(10, 'Name exceeds character limit') 
       .uppercase('name is case sensitive'), //not working
     email: Yup.string()
       .email()
-      .required('Please enter your email address'),
+      .required('Did you ignore the first email warning?'),
     password: Yup.number()
       .min(4, "Please enter a password that is 4 characters or longer")
       .required(),
