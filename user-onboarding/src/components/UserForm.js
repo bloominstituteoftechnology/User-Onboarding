@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import axios from "axios";
 import { Form, Field, withFormik } from "formik";
-// import * as Yup from 'yup';
+import * as Yup from "yup";
 
 const UserForm = ({ errors, touched, values }) => {
   return (
@@ -40,7 +40,13 @@ const FormikForm = withFormik({
       password: password || "",
       terms: terms || false
     };
-  }
+  },
+
+  validationSchema: Yup.object().shape({
+    name: Yup.string().required("Please enter your name!"),
+    email: Yup.string().required("Pleae enter your email!"),
+    password: Yup.string().required("Please enter a password!")
+  })
 })(UserForm);
 
 export default FormikForm;
