@@ -29,6 +29,10 @@ const UserForm = ({ values, handleChange, errors, touched, status }) => {
           <Field type='email' name='email' placeholder='Email' />
           </div>
           <div>
+            {touched.role && errors.role && <p>{errors.role}</p>}
+          <Field type='role' name='role' placeholder='Role' />
+          </div>
+          <div>
             {touched.password && errors.password && <p>{errors.password}</p>}
           <Field type='password' name='password' placeholder='Password' />
           </div>
@@ -43,29 +47,36 @@ const UserForm = ({ values, handleChange, errors, touched, status }) => {
         </Form>
         <h2>Registered Users</h2>
         {users.map((user, i) => (
-        <p key={i}>{user.name} UserID: {i}</p>
+        <p key={i}>{user.name}: {user.role}</p>
       ))}
     </div>
     )
 }
 
 const FormikUserForm = withFormik({
-  mapPropsToValues({ name, email, password, tos, hearaboutus }) {
+  mapPropsToValues({ name, email, password, role, tos, hearaboutus }) {
     return {
       name: name || '',
       email: email || '',
       password: password || '',
+      role: role || '',
       tos: tos || false,
     }
   },
   validationSchema: Yup.object().shape({
     name: Yup.string().required('Please enter a name'),
     email: Yup.string().email('Email not valid').required('Valid email required'),
+    role: Yup.string().required('Please enter your role for this project'),
     password: Yup.string().min(6, 'Password must be at least 6 characters').required('Please enter a valid password'),
     tos: Yup.bool().oneOf([true],('You must agree to the terms of service'))
   }),
-  handleSubmit(values, { setStatus }) {
+  handleSubmit(values, { setStatus, resetForm, setErrors, setSubmitting }) {
     console.log(values);
+    if(values.email === 'waffle@syrup.com') {
+      setErrors({ email: 'That email is already taken.'})
+    } else {
+      resetForm()
+    }
     axios
       .post('https://reqres.in/api/users/', values)
       .then(res => {
