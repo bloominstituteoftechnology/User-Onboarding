@@ -48,10 +48,10 @@ import { Form, Field, withFormik } from "formik";
      
     </Form> 
         {users.map(user => (
-            <div>
+            <div key={user}>
                 <p>
-                { user.name }
-                { user.email }
+               Name: { user.name }
+                Email: { user.email }
                 </p>
             </div>
         ))}

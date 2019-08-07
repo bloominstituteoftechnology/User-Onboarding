@@ -6,14 +6,6 @@ import UserForm from './components/UserForm';
 
 function App() {
 
-  
-
-  useEffect(() => {
-      
-        console.log("Hello World");          
-           
-  });
-
   return (
     <div>
       <UserForm />
