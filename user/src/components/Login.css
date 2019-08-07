@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 45%;
+    height: 500px;
+    border: 1px solid red;
+    box-shadow: 20px 20px 10px lightgray;
+    border-radius: 10px;
+    padding: 5%;
+}
