@@ -4,9 +4,7 @@ class App extends Component {
 
   render() { 
     return ( 
-     
-      <Form/>
-     
+      <Form/>   
      );
   }
 }
