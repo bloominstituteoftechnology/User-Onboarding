@@ -17,15 +17,15 @@ return (
     <div className="App-Form"> 
         <h1> Testing </h1>
             <Form> 
-                <Field type='text' Name='Name' placeholder='Name' />
+                <Field type='text' name='Name' placeholder='Name' />
                  {touched.Name && errors.Name && (
                 <p className="error">{errors.Name}</p>
                 )}
-                  <Field type='text' Name='Email' placeholder='Email' />
+                  <Field type='text' name='Email' placeholder='Email' />
                  {touched.Email && errors.Email && (
                 <p className="error">{errors.Email}</p>
                 )}
-                  <Field type='text' Name='Password' placeholder='Password' />
+                  <Field type='text' name='Password' placeholder='Password' />
                  {touched.Password && errors.Password && (
                 <p className="error">{errors.Password}</p>
                 )}
@@ -43,7 +43,7 @@ return (
                 <button type="submit">Submit</button>
 
                  {forms.map(form => (
-                 <p key={form.id}>{form.name}</p>
+                 <p key={form.id}>{form.Name}<br/>{form.Email}<br/>{form.Password}</p>
                  ))}
                 
             </Form>
