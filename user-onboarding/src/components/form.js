@@ -1,6 +1,7 @@
 import React from 'react';
-import {withFormik, Form, Field, yupToFormErrors} from 'formik';
+import {withFormik, Form, Field, } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 
 function UserForm () {
@@ -39,13 +40,13 @@ const FormikForm = withFormik({
        
       }),    
     
-    handleSubmit (values) {
-        
-        console.log('submitting submitie values: ', values);
-    }
+      handleSubmit(values) {
+        axios
+        .post(" https://reqres.in/api/users", values )
+        .then(res => console.log(res))
+        .catch(error => console.log("ERROR", error))
+    }    
     
-  })(UserForm );
-
-
-  
-  export default FormikForm;
+    })(UserForm);
+    
+    export default FormikForm;
