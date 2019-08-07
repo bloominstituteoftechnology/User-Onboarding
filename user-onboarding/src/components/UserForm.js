@@ -32,9 +32,9 @@ const FormStyle = styled.div`
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
+  
+  
+  
     flex-direction: column;
     align-items: center;
     align-content: center;
