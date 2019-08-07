@@ -62,9 +62,10 @@ const FormikAppForm = withFormik({
     },
 
     validationSchema: Yup.object().shape({
-    Name: Yup.string().required("You silly!!!"),
+    Name: Yup.string().required(),
     Email: Yup.string().required(),
-    Password: Yup.string().required()
+    Password: Yup.string().required(),
+    TOS: Yup.bool().oneOf([true], 'Field must be checked')
   }),
 
     handleSubmit(values, { setStatus }) {
@@ -75,6 +76,6 @@ const FormikAppForm = withFormik({
         })
         .catch(err => console.log(err.response));
     }
-})
+})(AppForm);
 
 export default FormikAppForm
