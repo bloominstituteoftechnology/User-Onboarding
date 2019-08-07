@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
+import UserCard from "./UserCard";
 import styled from "styled-components";
-
-import { Card } from "semantic-ui-react";
 
 const FormStyle = styled.div`
   body {
@@ -142,22 +141,11 @@ const UserForm = ({ errors, touched, values, handleChange, status }) => {
         </Form>
       </FormStyle>
 
-      {users.map(user => (
-        <Card>
-          <div className="ui cards">
-            <div class="card">
-              <div class="content">
-                <div class="header" key={user.id}>
-                  {user.name}
-                </div>
-                <div class="meta" key={user.id}>
-                  {user.email}
-                </div>
-              </div>
-            </div>
-          </div>
-        </Card>
-      ))}
+      <div>
+        {users.map(user => (
+          <UserCard user={user} />
+        ))}
+      </div>
     </div>
   );
 };
