@@ -36,8 +36,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  width: 300px;
+  width: 500px;
   align-items: center;
 }
 
