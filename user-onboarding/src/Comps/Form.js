@@ -43,7 +43,13 @@ return (
                 <button type="submit">Submit</button>
 
                  {forms.map(form => (
-                 <p key={form.id}>{form.Name}<br/>{form.Email}<br/>{form.Password}</p>
+                 <p key={form.id}>
+                 {form.Name}
+                 <br/>
+                 {form.Email}
+                 <br/>
+                 {form.Password}
+                 </p>
                  ))}
                 
             </Form>
