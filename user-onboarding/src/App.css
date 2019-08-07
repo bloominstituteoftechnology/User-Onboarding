@@ -31,3 +31,21 @@
     transform: rotate(360deg);
   }
 }
+
+.form-wrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 300px;
+  align-items: center;
+}
+
+.form-wrapper input {
+  padding: 10px;
+}
+
+.form-wrapper button {
+  padding: 10px;
+  width: 193px;
+}
