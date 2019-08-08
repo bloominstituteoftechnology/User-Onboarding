@@ -40,6 +40,9 @@ const UserForm = ({ errors, touched, values, status }) => {
                 
                 <button type="submit">Submit!</button>
             </Form>
+            {users.map(user => {
+                return <p>{user.email}</p>
+            })}
         </div>
     )
 }
@@ -59,7 +62,7 @@ const FormikUserForm = withFormik({
         password: Yup.string().required('Please enter a password'),
         tos: Yup.string().required('Please accept our Terms of Service')
       }),
-      
+
       handleSubmit(values, { setStatus }) {
         axios
           .post('https://reqres.in/api/users/', values)
