@@ -2,6 +2,24 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import * as Yup from 'yup';
 import { Form, Field, withFormik } from "formik"; 
+import Styled from "styled-components"; 
+
+const Edit = Styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;  
+`
+const Margin = Styled.div`
+margin: 10px; 
+`
+
+const Shadow =  Styled.div`
+width: 284px;
+padding: 10px 10px 20px 10px;
+border: 1px solid #BFBFBF;
+background-color: white;
+box-shadow: 10px 10px 5px #aaaaaa;   
+`
 
  const UserForm = ({ errors, touched, values, status }) => {
 
@@ -17,23 +35,31 @@ import { Form, Field, withFormik } from "formik";
     
  return(
     <div className='user-form'> 
+    <Shadow> 
     <h1>User</h1>
     <Form>
+    <Edit> 
     <Field type="text" name="name" placeholder="Name" />
+    </Edit>
     {touched.name && errors.name && (
         <p className="error">{errors.name}</p>
     )}
-
+    <Margin> </Margin>
+    <Edit> 
     <Field type="email" name="email" placeholder="Email" />
+    </Edit>
     {touched.email && errors.email && (
           <p className="error">{errors.email}</p>
         )}
-
+        <Margin> </Margin>
+    <Edit> 
     <Field type="password" name="password" placeholder="Password" />
+    </Edit>
     {touched.password && errors.password && (
           <p className="error">{errors.password}</p>
         )}
-
+        <Margin> </Margin>
+    <Edit> 
     <label className="checkbox-container">
           Accept Terms of Service
           <Field
@@ -43,8 +69,11 @@ import { Form, Field, withFormik } from "formik";
           />
           <span className="checkmark" />
         </label>
-
+    </Edit>
+    <Margin> </Margin>
+    <Edit> 
     <button type='submit'>Submit</button>
+    </Edit>
      
     </Form> 
         {users.map(user => (
@@ -55,7 +84,7 @@ import { Form, Field, withFormik } from "formik";
                 </p>
             </div>
         ))}
-
+    </Shadow>
     </div>
  )   
 }
