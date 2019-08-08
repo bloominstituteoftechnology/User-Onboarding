@@ -16,9 +16,10 @@ const UserForm = ({errors, touched, values, status}) => {
 
         return(
             <div className= 'onboardin-form'>
-                <h1>Onboarding</h1>
+                <h1 className= 'onboarding-title'>Onboarding</h1>
                 <Form>
-                    <Field  type= 'text' 
+                    <Field  className= 'nameField'
+                            type= 'text' 
                             name= 'name'
                             placeholder= 'Name'
                     />
@@ -26,14 +27,16 @@ const UserForm = ({errors, touched, values, status}) => {
                         <p className='error'>{errors.name}</p>
                     )}
                     
-                    <Field  type= 'text' 
+                    <Field  className= 'emailField'
+                            type= 'text' 
                             name= 'email'
                             placeholder = 'Email'
                     />
                     {touched.email && errors.email && (
                         <p className='error'>{errors.email}</p>
                     )}
-                    <Field  type= 'password' 
+                    <Field  className= 'passwordField'
+                            type= 'password' 
                             name= 'password'
                             placeholder = 'Password'
                     />
@@ -41,7 +44,7 @@ const UserForm = ({errors, touched, values, status}) => {
                         <p className='error'>{errors.password}</p>
                     )}
                     
-                    <label className='checkbox-container'>
+                    <label className='conditions-container'>
                         Terms and Conditions
                         <Field  type= 'checkbox' 
                                 name= 'conditions'
@@ -51,7 +54,7 @@ const UserForm = ({errors, touched, values, status}) => {
                     <span className='checkmark'/>
                     </label>
 
-                    <button type='submit'>Submit</button>
+                    <button className= 'submitButton'type='submit'>Submit</button>
                 </Form>
 
                 {users.map(user => (
