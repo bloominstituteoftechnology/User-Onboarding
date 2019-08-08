@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 //like importing a ui library components
-import { withFormik, Form, Field} from 'formik';
+import {  withFormik, Form, Field} from 'formik';
 // //Material UI for for-mik
 import { TextField, Select } from 'formik-material-ui';
 import Button from '@material-ui/core/Button';
@@ -21,7 +21,18 @@ import './Login.css';
 //connect input validation by adding deconstructed props that are available within the withFormik component 
 //touched props keeps error message from oappearing when you type for the first time 
 //values another prop so formik can keep track of what is checked and not checked 
-const Login = ({ errors, touched, values }) => {
+const Login = ({ errors, touched, values, status }) => {
+      // need
+      const [signin, setSignin] = useState([]);
+      // console.log(signin)
+
+      useEffect(() => {
+        if(status) {
+          setSignin([...signin, status])
+        }
+      }, [status])
+
+
   return(
     <div>
       <h2>School District Login</h2>
@@ -99,6 +110,8 @@ const Login = ({ errors, touched, values }) => {
     </Field>
     <label>
       {/* wrapping label tag around eveything makes the text clickable too */}
+
+      {touched.tos && errors.tos && <p>{errors.tos}</p>}
       <Field type='checkbox' name='tos' checked={values.tos} className='checkbox'  />
       Please Accept Terms of Service
     </label>
@@ -107,6 +120,11 @@ const Login = ({ errors, touched, values }) => {
     Press Me
     </Button>
     </Form>
+
+    {signin.map(sign => (
+        <h3 key={sign.id}>You are logged in under the name: {sign.name}</h3>
+      ))}
+
   </div>
   )
 }
@@ -121,7 +139,7 @@ const FormikLogin = withFormik({
       name: name || '',
       email: email || '',
       password: password || '',
-      tos: tos || false,
+      tos: '',
       user: user || '', //changes default value 
       address: address || ''
     }
@@ -144,19 +162,24 @@ const FormikLogin = withFormik({
       .required(),
     address: Yup.string()
     .notRequired()
-    .max(200, 'Address had exceeded character limit')
+    .max(200, 'Address had exceeded character limit'),
+    tos: Yup.boolean()
+    .required('Check the box!')
   }),
 
-
-  handleSubmit(values, {resetForm, setErrors, setSubmitting}) {
-    // console.log(values)
+  // Set a top-level status to anything you want imperatively.
+  //  Useful for controlling arbitrary top-level state related to your form. 
+  //  For example, you can use it to pass API responses back into your component in handleSubmit.
+  handleSubmit(values, {resetForm, setErrors, setSubmitting, setStatus}) {
+    // console.log(values
   if (values.email === 'waffle@syrup.com') {
     setErrors({ email: 'Email was already registered, please try another'})
   } else {
     axios
       .post('https://reqres.in/api/users', values)
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
+        setStatus(res.data)
         resetForm();
         setSubmitting(false)
       })
