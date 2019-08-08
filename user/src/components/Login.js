@@ -139,7 +139,7 @@ const FormikLogin = withFormik({
       name: name || '',
       email: email || '',
       password: password || '',
-      tos: '',
+      tos: tos || 'false',
       user: user || '', //changes default value 
       address: address || ''
     }
@@ -164,7 +164,8 @@ const FormikLogin = withFormik({
     .notRequired()
     .max(200, 'Address had exceeded character limit'),
     tos: Yup.boolean()
-    .required('Check the box!')
+    .required()
+    .oneOf([true],'Select Terms of Service to continue' )
   }),
 
   // Set a top-level status to anything you want imperatively.
