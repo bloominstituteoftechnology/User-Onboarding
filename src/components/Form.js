@@ -19,26 +19,24 @@ const UserForm = ({ errors, touched, values, status }) => {
             <Form>
                 <Field type="text" name="username" placeholder="Enter Username"/>
                 {touched.username && errors.username && (
-                    <p classname="error">{errors.username}</p>
+                    <p className="error">{errors.username}</p>
                 )}
 
                 <Field type="text" name="email" placeholder="Enter Email"/>
                 {touched.email && errors.email && (
-                    <p classname="error">{errors.email}</p>
+                    <p className="error">{errors.email}</p>
                 )}
                 <Field type="password" name="password" placeholder="Enter Secure Password"/>
                 {touched.password && errors.password && (
-                    <p classname="error">{errors.password}</p>
+                    <p className="error">{errors.password}</p>
                 )}
 
+                <label className="checkboxContainer">
+                    Accept Terms of Service
+                    <Field type="checkbox" name="tos" />
+                    <span className="checkmark" />
+                </label>
 
-                <Field type="checkbox" name="tos" />
-
-
-                <Field type="text" name="tos" />
-                {touched.email && errors.email && (
-                    <p classname="error">{errors.email}</p>
-                )}
                 
                 <button type="submit">Submit!</button>
             </Form>
@@ -47,13 +45,29 @@ const UserForm = ({ errors, touched, values, status }) => {
 }
 
 const FormikUserForm = withFormik({
-    mapPropsToValues({ username, email }) {
+    mapPropsToValues({ username, email, password, tos }) {
         return {
             username: username || '',
-            email: email || ''
+            email: email || '',
+            password: password || '',
+            tos: tos || false
         };
       },
-
+      validationSchema: Yup.object().shape({
+        username: Yup.string().required('Please enter a username'),
+        email: Yup.string().required('Please enter an email'),
+        password: Yup.string().required('Please enter a password'),
+        tos: Yup.string().required('Please accept our Terms of Service')
+      }),
+      
+      handleSubmit(values, { setStatus }) {
+        axios
+          .post('https://reqres.in/api/users/', values)
+          .then(res => {
+            setStatus(res.data);
+          })
+          .catch(err => console.log(err.response));
+      }
 
 
 })(UserForm);
