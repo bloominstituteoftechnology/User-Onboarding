@@ -44,11 +44,11 @@ return (
 
                  {forms.map(form => (
                  <p key={form.id}>
-                 {form.Name}
+                 Name: {form.Name}
                  <br/>
-                 {form.Email}
+                 Email: {form.Email}
                  <br/>
-                 {form.Password}
+                 Password: {form.Password}
                  </p>
                  ))}
                 
