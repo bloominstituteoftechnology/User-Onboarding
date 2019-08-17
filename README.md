@@ -39,17 +39,22 @@ Being able to `POST` data is a key skill of any developer, no matter your skill 
 
 ## STEP 4 - Display Returned Data to Screen
 
-When you write your `POST` requests in the coming months, you will be manipulating your data in all sorts of cool ways. Today, we will just verify that the information is coming in correctly by using a simple pop-up alert with your returned user data:
+When you get your data back, you will want to do something with it, right? Let's display a list of users in our app.
+
 
 [x] Create an alert with the user information using the following syntax: `window.alert(<SERVER RESPONSE GOES HERE>)`
 
 More information about alerts in JavaScript can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert).
+=======
+- Set up a state property called `users` that is initialized with an empty array
+- Every time you make a `POST` request, and get that new user data back, update your `users` state with the new user added to the array
+- Render `users` in your app. This can be done in the `Form` component, or you can pass the array down to another component and render the `users` there
 
 ## Stretch Goals
 
 The following are stretch goals that you should attempt _after_ you meet MVP for your project:
 
 - Add basic styling to your form in your app. Make it look pretty with any styling method you choose.
-- Implement a dropdown menu in your Formik form.
+- Implement a dropdown menu in your Formik form. Add a `role` value to your Formik HOC and add a dropdown with different roles for your users.
 - Create 3 new inputs inside your Formik form of your choice along with corresponding validation and error messaging
 [x] Add to your existing handling so that, if a user inputs their email as `waffle@syrup.com`, they receive an error message in their form that says _"That email is already taken."_
