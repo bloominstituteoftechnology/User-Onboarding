@@ -1,7 +1,6 @@
 {
     "routes": [
       {
-        "version": 2,
         "src": "/user",
         "dest": "/404.html",
         "status": 404
