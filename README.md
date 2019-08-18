@@ -5,7 +5,7 @@ We've seen many different styles of form management by now -- simple to complex.
 
 ## Set Up The Project
 
-- [ ] Start off by installing a blank React app by using Create React App.
+- [X] Start off by installing a blank React app by using Create React App.
 - [ ] Add the following as dependencies inside your React app:
   - `formik`
   - `yup`
