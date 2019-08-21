@@ -1,8 +1,8 @@
 {
   "version": 2,
   "name": "User-Onboarding",
-  "builds": [{ "src": "User-Onboarding/package.json", "use": "@now/static-build", "config": {"distDir": "build"} }],
+  "builds": [{ "src": "User_Onboarding/package.json", "use": "@now/static-build", "config": {"distDir": "build"} }],
   "routes": [
-      { "src": "/(.*)", "dest": "User-Onboarding/$1" }
+      { "src": "/(.*)", "dest": "User_Onboarding/$1" }
   ]
 }
