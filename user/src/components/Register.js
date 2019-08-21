@@ -57,7 +57,7 @@ const Register = ({ errors, touched, values, }) => {
       return {
         password: password || '',
         user: user || '', //changes default value 
-        email: email || 'false'
+        email: email || ''
       }
     },
 

@@ -10,6 +10,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 //import yup//
 import * as Yup from 'yup';
+import { axiosWithAuth } from './auth/AxiosAuth';
 import axios from 'axios';
 import './Login.css';
 
@@ -142,7 +143,7 @@ const FormikLogin = withFormik({
       name: name || '',
       email: email || '',
       password: password || '',
-      tos: tos || 'false',
+      tos: tos || '',
       user: user || '', //changes default value 
       address: address || ''
     }
