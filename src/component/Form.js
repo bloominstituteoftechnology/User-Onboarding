@@ -1,81 +1,132 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Form, Field, Formmik } from 'formik';
+import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 
-const UserForm  = ({ errors, touched, values, handleSubmit, status}) => {
-    const [user, setUser] = useState([]);
-    console.log(user);
+const UserForm = ({ errors, touched, values, handleSubmit, status }) => {
+        const [users, setUsers] = useState([]);
+        console.log(users);
 
-    useEffect(() => {
+     useEffect(() => {
         if (status) {
-            setUser([...user, status]);
+            setUsers([...users, status]);
 
-        }
-    }, [status]);
-    console.log(status);
+}
+}, [status]);
+console.log(status);
 
-return (
-    <div className='container'>
-        <h1>New User</h1>
-        <Form className="form">
-        <Field className='field'
-         type="text"
-         name="name"
-        placeholder = "Name"/>
+        return (
+            <div className="ui container">
+            <h1>New Users</h1>
+                <Form className="ui form">
+                <Field className="field"
+                type="text"
+                name="name"
+                placeholder="Name"/>
 
-        {touched.name && errors.name && (
-          <p className="error">{errors.name}</p>
+                {touched.name && errors.name && (
+                <p className="error">{errors.name}</p>
+                    )}
+
+             <Field className="field"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    />
+
+                {touched.email && errors.email && (
+                <p className="error">{errors.email}</p>
+
         )}
 
-        <Field className="field"
-        type = "email"
-        name="email"
-        placeholder="Email"/>
+               <Field 
+                className="ui selection dropdown"
+                component="select"
+                name="role">
 
-        {touched.email && errors.email && (
-        <p className="error">{errors.email}</p>
-       )}
-
-        <Field className= "dropdown"
-        component="select"
-        name='role'>
-             <option>Please Choose an Option</option>
-          <option value="captain">Captain</option>
-          <option value="First">First</option>
-          <option value="passenger">Passenger</option>
+               <option>Please Select Your Role</option>
+               <option value="captain">Captain</option>
+               <option value="firstmate">First Mate</option>
+               <option value="navigator">Navigator</option>
+               <option value="passenger">Passenger</option>
 
         </Field>
 
-        <Field className="field"
-         type="password"
-         name="password"
-         placeholder="Password"/>
+           <Field className="field"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                    />
 
-         {touched.password && errors.password && (
-            <p className="error">{errors.password}</p>
-           )}
+                {touched.password && errors.password && (
+                <p className="error">{errors.password}</p>
+                )}
 
-  <label className="checkbox-container">
-      Accept terms of Service
-      <Field
-      className='field'
-      type="checkbox"
-      name="services"
-      checked={values.service}
-      />
-      <span className= "checkbox" />
-  </label>
+                <label className="checkbox-container">
+                 Accept Terms of Service
+                <Field
+                 className="field"
+                type="checkbox"
+                name="serviceterms"
+                checked={values.serviceterms}
+                    />
 
+             <span className="ui checkbox" />
+             </label>
+             <button className="ui button" type="submit">Submit</button>
+            </Form>
+            {users.map(user => (
+            <div>
+            <h1>{user.name}</h1>
+            <h2>{user.role}</h2>
+            <p>{user.email}</p>
+            </div>
 
-        <button className="button" type="submit">Submit</button>
-        </Form>
-        <div className="list">
-            {user.map(user => (
-                <p key={user.id}>{user.name}</p>
-            ))}
-    </div>
-    </div>
+ ))}
+         
+</div>
+ )};
+
+const FormUser = withFormik({
+    mapPropsToValues({ name, email, role, password, serviceterms }) {
+     return {
+
+            name: name || '',
+            email: email || '',
+            role: role || '',
+            password: password || '',
+            serviceterms: serviceterms || false
+
+        };
+
+    },
+
+validationSchema: Yup.object().shape({
+
+        name: Yup.string().required('Please enter your full name.'),
+        email: Yup.string().email('This email is not valid.').required('Please enter your email address.'),
+        password: Yup.string().min(8, 'Your password must be at least 8 characters long.')
+        .required('Please enter a password.'),
+        serviceterms: Yup.boolean().test(
+         'is-true',
+        'Please agree to the terms of service to continue.',
+        value => value === true
+
 )
 
+}),
+
+        handleSubmit(values, { setStatus }) {
+        axios
+        .post('https://reqres.in/api/users/', values)
+        .then(res => {
+        setStatus(res.data);
+
+    })
+        .catch(error => console.log(error.response));
 }
+
+})(UserForm);
+
+export default FormUser;
+

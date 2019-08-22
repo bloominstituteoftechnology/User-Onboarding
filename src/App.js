@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
-import form from './component/Form.js';
+import FormsUser from './component/Form';
 
 function App() {
   return (
     <div className="App">
-       <form />
+       <FormsUser />
     </div>
   );
 }
