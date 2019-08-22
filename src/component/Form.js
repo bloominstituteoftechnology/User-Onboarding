@@ -17,7 +17,7 @@ console.log(status);
 
         return (
             <div className="ui container">
-            <h1>New Users</h1>
+            <h1>New User</h1>
                 <Form className="ui form">
                 <Field className="field"
                 type="text"
@@ -45,10 +45,10 @@ console.log(status);
                 name="role">
 
                <option>Please Select Your Role</option>
-               <option value="captain">Captain</option>
-               <option value="firstmate">First Mate</option>
-               <option value="navigator">Navigator</option>
-               <option value="passenger">Passenger</option>
+               <option value="Captain">Captain</option>
+               <option value="Firstmate">First Mate</option>
+               <option value="Navigator">Navigator</option>
+               <option value="Passenger">Passenger</option>
 
         </Field>
 

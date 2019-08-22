@@ -1,5 +1,33 @@
 .App {
   text-align: center;
+  background: url("air.jpg");
+  /* height: -webkit-fill-available; */
+}
+
+select.ui.selection.dropdown {
+  margin: 5px;
+}
+
+.ui.container {
+  height: -webkit-fill-available;
+}
+
+input.field {
+  margin:5px;
+}
+
+h1 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 2rem;
+  line-height: 1.5;
+  color: #004e4a;
+}
+
+form.ui.form {
+  display: flex;
+  flex-direction: column;
+  margin: 5%;
+  padding: 0%;
 }
 
 .App-logo {
