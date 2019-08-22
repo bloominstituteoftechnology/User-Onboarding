@@ -18,6 +18,7 @@ const UserForm  = ({ errors, touched, values, handleSubmit, status}) => {
 return (
     <div className='container'>
         <h1>New User</h1>
+        <Form className="form">
         <Field className='field'
          type="text"
          name="name"
@@ -46,8 +47,34 @@ return (
 
         </Field>
 
+        <Field className="field"
+         type="password"
+         name="password"
+         placeholder="Password"/>
+
+         {touched.password && errors.password && (
+            <p className="error">{errors.password}</p>
+           )}
+
+  <label className="checkbox-container">
+      Accept terms of Service
+      <Field
+      className='field'
+      type="checkbox"
+      name="services"
+      checked={values.service}
+      />
+      <span className= "checkbox" />
+  </label>
 
 
+        <button className="button" type="submit">Submit</button>
+        </Form>
+        <div className="list">
+            {user.map(user => (
+                <p key={user.id}>{user.name}</p>
+            ))}
+    </div>
     </div>
 )
 
