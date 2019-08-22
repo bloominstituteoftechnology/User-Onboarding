@@ -18,13 +18,35 @@ const UserForm  = ({ errors, touched, values, handleSubmit, status}) => {
 return (
     <div className='container'>
         <h1>New User</h1>
-        <Form className='field'
+        <Field className='field'
          type="text"
          name="name"
         placeholder = "Name"/>
-        {touched.species && errors.species && (
-          <p className="error">{errors.species}</p>
+
+        {touched.name && errors.name && (
+          <p className="error">{errors.name}</p>
         )}
+
+        <Field className="field"
+        type = "email"
+        name="email"
+        placeholder="Email"/>
+
+        {touched.email && errors.email && (
+        <p className="error">{errors.email}</p>
+       )}
+
+        <Field className= "dropdown"
+        component="select"
+        name='role'>
+             <option>Please Choose an Option</option>
+          <option value="captain">Captain</option>
+          <option value="First">First</option>
+          <option value="passenger">Passenger</option>
+
+        </Field>
+
+
 
     </div>
 )
