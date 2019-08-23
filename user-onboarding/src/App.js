@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './components/Form'
 import 'semantic-ui-css/semantic.min.css'
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
@@ -11,4 +11,4 @@ function App() {
   );
 }
 
-export default App;
+ export default App;
