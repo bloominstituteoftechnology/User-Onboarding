@@ -1,11 +1,12 @@
 
 import React from 'react';
 import UserForm from './components/Form';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>Onboarding Form</h1>
+      <h1>User Onboarding Form</h1>
       <UserForm />
     </div>
   );
