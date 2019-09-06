@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form as FormikForm, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import User from './user'
+import User from './User'
 
 
 const UserForm = ({ values, touched, errors, status }) => {
