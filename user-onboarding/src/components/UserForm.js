@@ -11,6 +11,7 @@ function UserForm({ status, errors, touched }) {
             setUsers([...users, status])
         }
     }, [status])
+    
     return (
         <Form>
             {touched.name && errors.name && <p>{errors.name}</p>}
