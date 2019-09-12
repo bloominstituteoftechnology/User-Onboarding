@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
 function NewUser({ values, errors, touched}) {
+
+    const[users, setUsers] = useState([]);
+
+    useEffect(() => {
+        if(values) {
+            setUsers(users => [...users, values]);
+        }
+    }, [values])
+
     return (
         <Form>
+            <div>
+                {touched.name && errors.name && <p>{errors.name}</p>} 
             <Field type="text" name="name" placeholder="Name" />
+            </div>
             <div>
                 {touched.email && errors.email && <p>{errors.email}</p>} 
             <Field type="email" name="email" placeholder="Email" />
@@ -35,6 +47,8 @@ const FormikNewUser = withFormik({
     },
 
       validationSchema: Yup.object().shape({
+        name: Yup.string()
+            .required("Name Required"),
         email: Yup.string()
             .email("Email not valid")
             .required("Email required"),
