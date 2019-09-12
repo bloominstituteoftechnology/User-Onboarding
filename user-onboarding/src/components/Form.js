@@ -13,7 +13,7 @@ function NewUser({ values, errors, touched}) {
             </div>
             <div>
                 {touched.password && errors.password && <p>{errors.password}</p>}
-                <Field type="password" name="password" placeholder="Password" />
+            <Field type="password" name="password" placeholder="Password" />
             </div>
             <label>
             <Field type="checkbox" name="check" checked={values.check} placeholder="Terms of Service" />
@@ -30,7 +30,7 @@ const FormikNewUser = withFormik({
             name: name || "",
             email: email || "",
             password: password || "",
-            checkbox: checkbox || ""
+            checkbox: checkbox || false
         };
     },
 
@@ -62,6 +62,7 @@ const FormikNewUser = withFormik({
     }
 })
 
-export default NewUser;
+export default FormikNewUser;
+// export FormikNewUser, not NewUser, because Formik is a higher order function. Got it!
 
     // Always console log the servers response!!
