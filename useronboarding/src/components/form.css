@@ -11,6 +11,10 @@ button{
     justify-content: center;
     align-items: center;
 }
-.marginField{
-    margin-top: 2%;
+
+.error{
+    background-color: red;
+    color: white;
+    border-radius:5px;
+    margin-top: 3%;
 }
