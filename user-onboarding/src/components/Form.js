@@ -31,7 +31,7 @@ function NewUser({ values, errors, touched}) {
             <Field type="checkbox" name="check" checked={values.check} placeholder="Terms of Service" />
             </label>
            
-            <button>Submit!</button>
+            <button>Submit</button>
         </Form>
     );
 }
@@ -74,9 +74,10 @@ const FormikNewUser = withFormik({
                 });
         }
     }
-})
+})(NewUser);
 
 export default FormikNewUser;
 // export FormikNewUser, not NewUser, because Formik is a higher order function. Got it!
 
     // Always console log the servers response!!
+
