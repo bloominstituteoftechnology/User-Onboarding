@@ -9,10 +9,9 @@ function App() {
     <div className="App">
       <header className="App-header">
        <NewUser />
-      
       </header>
     </div>
-  );
+      );
 }
 
 export default App;

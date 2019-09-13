@@ -3,17 +3,18 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-function NewUser({ values, errors, touched}) {
+function NewUser({ values, errors, touched, status }) {
 
     const[users, setUsers] = useState([]);
 
     useEffect(() => {
-        if(values) {
-            setUsers(users => [...users, values]);
+        if(status) {
+            setUsers(users => [...users, status]);
         }
-    }, [values])
+    }, [status])
 
     return (
+        <div>
         <Form>
             <div>
                 {touched.name && errors.name && <p>{errors.name}</p>} 
@@ -33,6 +34,15 @@ function NewUser({ values, errors, touched}) {
            
             <button>Submit</button>
         </Form>
+            {users.map((items, index) => {
+                return (
+                    <div key={index}>
+                    <h2>{items.name}</h2>
+                    <p>{items.email}</p>
+                    </div>
+                )
+          })}
+        </div>
     );
 }
 
@@ -57,14 +67,14 @@ const FormikNewUser = withFormik({
             .required("Password required")
     }),
  
-    handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+    handleSubmit(values, { resetForm, setErrors, setSubmitting, setStatus }) {
         if (values.email === "") {
             setErrors({ email: "That email is already taken" });
         } else {
             axios
-                .post("https://reqres.in/api/users_", values)
+                .post("https://reqres.in/api/users", values)
                 .then(response => {
-                    console.log(response); 
+                    setStatus(response.data); 
                     resetForm();
                     setSubmitting(false);
                 })
