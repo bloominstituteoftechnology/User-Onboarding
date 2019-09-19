@@ -13,6 +13,7 @@ function OnBoardForm({ values, errors, touched, status }) {
   }, [status]);
 
   return (
+      <div>
     <Form>
       <Field type="text" name="name" placeholder="name" />
       {touched.name && errors.name && <p className="error">{errors.name}</p>}
@@ -23,10 +24,21 @@ function OnBoardForm({ values, errors, touched, status }) {
         <p className="error">{errors.password}</p>
       )}
       <Field type="checkbox" name="checkbox" checked={values.checkbox} />
-      <button>Submit!</button>
+      <button type="submit">Submit!</button>
     </Form>
+    {users.map(user => (
+        <ul key={user.id}>
+          <li>name: {user.name}</li>
+          <li>email: {user.email}</li>
+          <li>password: {user.password}</li>
+          
+        </ul>
+      ))}
+
+    </div>
   );
 }
+
 
 const FormikOnBoardForm = withFormik({
   mapPropsToValues({ name, email, password, checkbox }) {
@@ -44,12 +56,10 @@ const FormikOnBoardForm = withFormik({
   }),
   
 
-  handleSubmit(values, setStatus) {
-    console.log(values);
+  handleSubmit(values,  { setStatus }) {
     axios
     .post(" https://reqres.in/api/users", values)
     .then(res => {
-        console.log(res)
       setStatus(res.data);
     })
     .catch(err => console.log(err.res));
