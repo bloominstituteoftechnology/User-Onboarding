@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import FormByFormik from './Component/Form';
 import axios from "axios";
+import Users from './Component/Users';
 
 const initialUser = {
   name: '',
@@ -19,15 +20,17 @@ function App() {
   const addUser = (formValues, actions) => {
     const userToPost = {
       name: formValues.name,
-      age: formValues.age,
+      email: formValues.email,
       password: formValues.password,
+      checkbox: formValues.checkbox,
     };
     setUser(userToPost);
-    console.log("button was clicked")
+    console.log("button was clicked",userToPost)
     axios.post(usersApi, userToPost)
       .then(res => {
         // res.data contains the newly created friend
         const newUser = res.data;
+        console.log("new userList",newUser)
         setUserList(userList.concat(newUser));
         actions.resetForm();
       })
@@ -38,6 +41,7 @@ function App() {
   return (
     <div className="App">
       <FormByFormik initialUser={initialUser} onSubmit={addUser}/>
+      <Users userList={userList}/> 
     </div>
   );
 }
