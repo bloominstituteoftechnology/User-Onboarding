@@ -16,17 +16,19 @@ const PeopleForm = ({ errors, touched, values, status }) => {
       <h1>Sign Up</h1>
       <Form>
         <Field type="text" name="person" placeholder="Username" />
-        {errors.person && <p>{errors.person}</p>}
+        {touched.person && errors.person && <p>{errors.person}</p>}
 
 
         <Field type="text" name="email" placeholder="Email@site.com" />
-        {errors.email && <p>{errors.email}</p>}
+        {touched.email && errors.email && <p>{errors.email}</p>}
 
         <Field type="text" name="password" placeholder="Password" />
-        {errors.password && <p>{errors.password}</p>}
+        {touched.password && errors.password && <p>{errors.password}</p>}
+
+        <button type="submit">Submit!</button>
 
         <label className="checkbox-container">
-          Read 'Terms of Service'
+          Agree with 'Terms of Service'
           <Field
             type="checkbox"
             name="tos"
@@ -34,9 +36,7 @@ const PeopleForm = ({ errors, touched, values, status }) => {
           />
           <span className="checkmark" />
         </label>
-        {errors.tos && <p className="error">{errors.tos}</p>}
-
-        <button type="submit">Submit!</button>
+        {touched.tos && errors.tos && <p className="error">{errors.tos}</p>}
       </Form>
 
       {people.map(human => (
@@ -72,8 +72,6 @@ const FormikForm = withFormik({
     .required()
 
   }),
-
-
 
   handleSubmit(values, { setStatus }) {
     axios
