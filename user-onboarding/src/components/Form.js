@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { withFormik, Form, Field, Formik } from "formik";
+import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
 
-const UserForm = ({values }) => {
-
+const UserForm = ({ values, errors, touched, status }) => {
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        if (status){
+            setUsers([...users,status])
+        }
+    })
     return ( 
         <Form>
             {touched.name && errors.name && (
@@ -50,6 +55,6 @@ const FormikUserForm = withFormik ({
     }
 
 
-})(userForm);
+})(UserForm);
 
 export default FormikUserForm;
