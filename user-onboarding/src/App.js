@@ -1,7 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Button } from 'reactstrap';
 import Form from './Form.js';
 
 

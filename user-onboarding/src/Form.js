@@ -15,7 +15,9 @@ const PeopleForm = ({ errors, touched, values, status }) => {
     <div className="people-form">
       <h1>Sign Up</h1>
       <Form>
-        <Field type="text" name="person" placeholder="Full Name" />
+        <Field type="text" name="person" placeholder="Username" />
+        {errors.person && <p>{errors.person}</p>}
+
 
         <Field type="text" name="email" placeholder="Email@site.com" />
         {errors.email && <p>{errors.email}</p>}
@@ -50,7 +52,6 @@ const PeopleForm = ({ errors, touched, values, status }) => {
 const FormikForm = withFormik({
   mapPropsToValues({ person, email, tos, password }) {
     return {
-      tos: tos || false,
       email: email || "",
       person: person || "",
       password: password || "",
@@ -58,9 +59,9 @@ const FormikForm = withFormik({
   },
 
   validationSchema: Yup.object().shape({
-    person: Yup.string().required("You silly!!!"),
-    email: Yup.string().email().required(),
-    password: Yup.string().min(6).required(),
+    person: Yup.string().min(6).required("Username must be six characters long."),
+    email: Yup.string().email().required("Please input your valid email address."),
+    password: Yup.string().min(6).required("Password must be six characters long."),
 
   }),
 
