@@ -30,6 +30,14 @@ const FormyForm = ({ touched, status, errors, values }) => {
           className="formy-input"
         />
         {touched.name && errors.name && <p className="error">{errors.name}</p>}
+        Age:
+        <Field
+          type="text"
+          name="age"
+          placeHolder="Age"
+          className="formy-input"
+        />
+        {touched.age && errors.age && <p className="error">{errors.age}</p>}
         Password:
         <Field
           type="password"
@@ -66,6 +74,7 @@ const FormyForm = ({ touched, status, errors, values }) => {
             <CardHeader tag="h3">Name: {user.name}</CardHeader>
             <CardBody>
               <CardTitle>E-Mail: {user.email}</CardTitle>
+              <CardText>Password: {user.age}</CardText>
               <CardText>Password: {user.password}</CardText>
             </CardBody>
           </Card>
@@ -76,18 +85,20 @@ const FormyForm = ({ touched, status, errors, values }) => {
 };
 
 const FormikFormyForm = withFormik({
-  mapPropsToValues({ name, password, email, tos, waffles }) {
+  mapPropsToValues({ name, password, email, tos, waffles, age }) {
     return {
       name: name || "",
       password: password || "",
       email: email || "",
       tos: tos || "",
-      waffles: waffles || ""
+      waffles: waffles || "",
+      age: age || ""
     };
   },
   validationSchema: Yup.object().shape({
     name: Yup.string().required("Name is a Required Field !"),
-    password: Yup.string().required("Password is a Required Field !")
+    password: Yup.string().required("Password is a Required Field !"),
+    age: Yup.string().required("Age is a Required Field !")
   }),
   handleSubmit(values, { setStatus }) {
     axios
