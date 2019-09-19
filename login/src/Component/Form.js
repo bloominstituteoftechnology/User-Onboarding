@@ -6,7 +6,7 @@ import Styled from "styled-components";
 import "./Form.css";
 
 const Div = Styled.div`
-background-color: #095ba7;
+background-color: #14A39A;
 height: 700px;
 width: 700px;
 margin-left: 250px;
@@ -23,9 +23,10 @@ const Button = Styled.button`
 margin-top:20px;
 height: 40px;
 width: 150px;
-border-radius: 30%;
-background-color:#34495e;
+border-radius: 20%;
+background-color:#008000;
 color:white;
+border: 3px solid #34495e;
 `
 
 const H1 = Styled.h1`
@@ -76,7 +77,16 @@ function OnBoardForm({ values, errors, touched, status }) {
           )}
         </Item>
         <Item>
-        <Field type="checkbox" name="checkbox" checked={values.checkbox} />
+        <Field component="select" className="subjectSelect" name="subjectSelect">
+          <option>Please Choose an Option</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Optional Math">Optional Math</option>
+          <option value="English">English</option>
+        </Field>
+        {touched.food && errors.food && <p className="error">{errors.food}</p>}
+        </Item>
+        <Item>
+        <Field  className="checkbox" type="checkbox" name="checkbox" checked={values.checkbox} />
         </Item>
         <Button type="submit">Submit!</Button>
       </Form>
@@ -92,11 +102,12 @@ function OnBoardForm({ values, errors, touched, status }) {
 }
 
 const FormikOnBoardForm = withFormik({
-  mapPropsToValues({ name, email, password, checkbox }) {
+  mapPropsToValues({ name, email, password,subjectSelect, checkbox }) {
     return {
       name: name || "",
       email: email || "",
       password: password || "",
+      subjectSelect:subjectSelect||"",
       checkbox: checkbox || ""
     };
   },
