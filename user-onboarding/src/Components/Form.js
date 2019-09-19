@@ -3,7 +3,7 @@ import { Formik } from "formik";
 
 const Form = () => (
   <div>
-    <h1 className="form-title">My Form</h1>
+    <h1 className="form-title">My Formik Form, Yup!</h1>
 
     <Formik
       initialValues={{ name: "" }}
@@ -17,6 +17,7 @@ const Form = () => (
         <form className="form-main" onSubmit={props.handleSubmit}>
           <label>📋 Name: </label>
           <input
+            className="input-input"
             type="text"
             onChange={props.handleChange}
             onBlur={props.handleBlur}
@@ -27,6 +28,7 @@ const Form = () => (
 
           <label>🔑 Password: </label>
           <input
+            className="input-input"
             type="password"
             onChange={props.handleChange}
             onBlur={props.handleBlur}
@@ -37,6 +39,7 @@ const Form = () => (
 
           <label>📧 E-Mail: </label>
           <input
+            className="input-input"
             type="email"
             onChange={props.handleChange}
             onBlur={props.handleBlur}
@@ -47,7 +50,9 @@ const Form = () => (
 
           <label>🎫 TOS: </label>
           <input name="check" type="checkbox" />
+
           {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+
           <button type="submit">✔️</button>
         </form>
       )}

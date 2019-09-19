@@ -34,7 +34,21 @@
 
 .form-title {
   background: beige;
+  height: 5rem;
+  padding-top: 2rem;
+  font-size: 2rem;
 }
 .form-main {
   background: beige;
+  padding: 1.5%;
+  display: flex;
+  justify-content: space-around;
+  width: 75%;
+  margin-left: 10%;
+}
+
+.input-input {
+  border: 2px solid tan;
+  padding: 0.5%;
+  margin-bottom: 0.5%;
 }
