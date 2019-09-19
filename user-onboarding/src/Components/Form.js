@@ -49,11 +49,13 @@ const Form = () => (
           />
 
           <label>🎫 TOS: </label>
-          <input name="check" type="checkbox" />
+          <input className="check-box" name="check" type="checkbox" />
 
           {props.errors.name && <div id="feedback">{props.errors.name}</div>}
 
-          <button type="submit">✔️</button>
+          <button className="btn" type="submit">
+            ✔️
+          </button>
         </form>
       )}
     />
