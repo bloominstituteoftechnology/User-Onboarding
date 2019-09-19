@@ -9,90 +9,107 @@ import {
   CardFooter,
   CardBody,
   CardTitle,
-  CardText
+  CardText,
+  CardImg
 } from "reactstrap";
 
 const FormyForm = ({ touched, status, errors, values }) => {
   const [users, setUsers] = useState([]);
+  const [number, setNumber] = useState(1);
   useEffect(() => {
     if (status) {
       setUsers([...users, status]);
+      setNumber(number + 1);
     }
   }, [status]);
   return (
-    <div className="formy-mainDiv">
-      <Form className="formy-subForm">
-        Name:
-        <Field
-          type="text"
-          name="name"
-          placeHolder="Name"
-          className="formy-input"
-        />
-        {touched.name && errors.name && <p className="error">{errors.name}</p>}
-        Age:
-        <Field
-          type="text"
-          name="age"
-          placeHolder="Age"
-          className="formy-input"
-        />
-        {touched.age && errors.age && <p className="error">{errors.age}</p>}
-        Password:
-        <Field
-          type="password"
-          name="password"
-          placeHolder="Password"
-          className="formy-input"
-        />
-        {touched.password && errors.password && (
-          <p className="error">{errors.password}</p>
-        )}
-        E-Mail:
-        <Field
-          type="email"
-          name="email"
-          placeHolder="E-Mail"
-          className="formy-input"
-        />
-        TOS:
-        <label className="checkbox-container">
-          <Field type="checkbox" name="tos" checked={values.tos} />
-          <span className="checkmark" />
-        </label>
-        <Field name="waffles" className="food-select" component="select">
-          <option>What's Your Favourite Waffle?</option>
-          <option value="herbivore">Strawberry!</option>
-          <option value="carnivore">Blueberry!</option>
-          <option value="omnivore">Plain w/ Syrup!</option>
-        </Field>
-        <button className="btn">Submit!</button>
-      </Form>
-      {users.map(user => (
-        <div className="cardy-card">
-          <Card key={user.id}>
-            <CardHeader tag="h3">Name: {user.name}</CardHeader>
-            <CardBody>
-              <CardTitle>E-Mail: {user.email}</CardTitle>
-              <CardText>Password: {user.age}</CardText>
-              <CardText>Password: {user.password}</CardText>
-            </CardBody>
-          </Card>
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="formy-mainDiv">
+        <Form className="formy-subForm">
+          Name:
+          <Field
+            type="text"
+            name="name"
+            placeHolder="Name"
+            className="formy-input"
+          />
+          {touched.name && errors.name && (
+            <p className="error">{errors.name}</p>
+          )}
+          Age:
+          <Field
+            type="text"
+            name="age"
+            placeHolder="Age"
+            className="formy-input"
+          />
+          {touched.age && errors.age && <p className="error">{errors.age}</p>}
+          Password:
+          <Field
+            type="password"
+            name="password"
+            placeHolder="Password"
+            className="formy-input"
+          />
+          {touched.password && errors.password && (
+            <p className="error">{errors.password}</p>
+          )}
+          E-Mail:
+          <Field
+            type="email"
+            name="email"
+            placeHolder="E-Mail"
+            className="formy-input"
+          />
+          TOS:
+          <label className="checkbox-container">
+            <Field type="checkbox" name="tos" checked={values.tos} />
+            <span className="checkmark" />
+          </label>
+          <Field name="waffles" className="food-select" component="select">
+            <option>What's Your Favourite Waffle?</option>
+            <option value="herbivore">Strawberry!</option>
+            <option value="carnivore">Blueberry!</option>
+            <option value="omnivore">Plain w/ Syrup!</option>
+          </Field>
+          <button className="btn">Submit!</button>
+        </Form>
+      </div>
+      <div className="gridCardyCards">
+        {users.map(user => (
+          <div className="cardy-card">
+            <Card key={user.id}>
+              <CardHeader tag="h3">Name: {user.name}</CardHeader>
+              <CardBody>
+                <CardImg
+                  name="img"
+                  className="card-img"
+                  top
+                  src={`https://api.adorable.io/avatars/${number}`}
+                  alt="Adorable Avatar's API"
+                />
+                <CardTitle>E-Mail: {user.email}</CardTitle>
+                <CardText>Password: {user.age}</CardText>
+                <CardText>Password: {user.password}</CardText>
+              </CardBody>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
 const FormikFormyForm = withFormik({
-  mapPropsToValues({ name, password, email, tos, waffles, age }) {
+  mapPropsToValues({ name, password, email, tos, waffles, age, img }) {
     return {
       name: name || "",
       password: password || "",
       email: email || "",
       tos: tos || "",
       waffles: waffles || "",
-      age: age || ""
+      age: age || "",
+      img: img || ""
     };
   },
   validationSchema: Yup.object().shape({
