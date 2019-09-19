@@ -6,15 +6,19 @@ const newUserForm = {
     name: '',
     email: '',
     password: '',
-    checkbox: '',
+    checkbox: false,
 };
 
 
 
 
-function UserForm() {
+function UserForm(props) {
 
-    const onSubmit = () => { }
+    const onSubmit = (formValues) => { 
+
+        props.submit(formValues)
+    
+    }
 
     const ValidationSchema = Yup.object().shape({
         name: Yup.string()
@@ -24,10 +28,8 @@ function UserForm() {
         email: Yup.string()
             .email('Invalid email')
             .required('Required'),
-        password: Yup.string()
-            .min(5, 'Common Add More')
-            .max(10, 'Ten Is The Maximum')
-            .required('Required'),
+            password:Yup.string().
+            required("Required"),
         termsAndCondition: Yup.boolean()
             .required('Required')
 
@@ -72,7 +74,7 @@ function UserForm() {
                         <div>
                             <label>
                                 Password
-                  <Field name='paswword' type='password' placeholder='Password' />
+                  <Field name='password' type='password' placeholder='Password' />
                                 <ErrorMessage name='password' component='div' />
                             </label>
                         </div>
