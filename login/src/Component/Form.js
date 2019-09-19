@@ -3,16 +3,36 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import Styled from "styled-components";
-import './Form.css';
+import "./Form.css";
 
 const Div = Styled.div`
 background-color: #095ba7;
-height: 400px;
+height: 700px;
 width: 700px;
 margin-left: 250px;
 border: 3px solid #34495e;
 border-radius: 5%;
+margin-top:30px;
 `;
+
+const Item = Styled.div`
+
+`
+const Button = Styled.button`
+
+margin-top:20px;
+height: 40px;
+width: 150px;
+border-radius: 30%;
+background-color:#34495e;
+color:white;
+`
+
+const H1 = Styled.h1`
+
+color:white;
+`
+
 
 function OnBoardForm({ values, errors, touched, status }) {
   const [users, setUsers] = useState([]);
@@ -25,24 +45,40 @@ function OnBoardForm({ values, errors, touched, status }) {
 
   return (
     <Div>
+        <H1>StudentForm</H1>
       <Form>
-        
-          <Field  className = "form" type="text" name="name" placeholder="name" />
+        <Item>
+          <Field className="form" type="text" name="name" placeholder="name" />
           {touched.name && errors.name && (
             <p className="error">{errors.name}</p>
           )}
-          <Field  className = "form"  type="Email" name="email" placeholder="email" />
+        </Item>
+        <Item>
+          <Field
+            className="form"
+            type="Email"
+            name="email"
+            placeholder="email"
+          />
           {touched.email && errors.email && (
             <p className="error">{errors.email}</p>
           )}
-          <Field   className = "form"  type="password" name="password" placeholder="password" />
+        </Item>
+        <Item>
+          <Field
+            className="form"
+            type="password"
+            name="password"
+            placeholder="password"
+          />
           {touched.password && errors.password && (
             <p className="error">{errors.password}</p>
           )}
-
-          <Field type="checkbox" name="checkbox" checked={values.checkbox} />
-        
-        <button type="submit">Submit!</button>
+        </Item>
+        <Item>
+        <Field type="checkbox" name="checkbox" checked={values.checkbox} />
+        </Item>
+        <Button type="submit">Submit!</Button>
       </Form>
       {users.map(user => (
         <ul key={user.id}>
@@ -65,9 +101,9 @@ const FormikOnBoardForm = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    name: Yup.string().required("You must put a name"),
-    email: Yup.string().required("You must put a email"),
-    password: Yup.string().required("You must enter password")
+    name: Yup.string().required("Required!"),
+    email: Yup.string().required("Required!"),
+    password: Yup.string().required("Required!")
   }),
 
   handleSubmit(values, { setStatus }) {
