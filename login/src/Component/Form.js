@@ -42,9 +42,18 @@ const FormikOnBoardForm = withFormik({
     email: Yup.string().required("You must put a email"),
     password: Yup.string().required("You must enter password")
   }),
+  
 
-  handleSubmit(values) {
+  handleSubmit(values, setStatus) {
     console.log(values);
+    axios
+    .post(" https://reqres.in/api/users", values)
+    .then(res => {
+        console.log(res)
+      setStatus(res.data);
+    })
+    .catch(err => console.log(err.res));
+
   }
 })(OnBoardForm);
 
