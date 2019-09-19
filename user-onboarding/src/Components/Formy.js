@@ -2,6 +2,15 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import {
+  Card,
+  Button,
+  CardHeader,
+  CardFooter,
+  CardBody,
+  CardTitle,
+  CardText
+} from "reactstrap";
 
 const FormyForm = ({ touched, status, errors, values }) => {
   const [users, setUsers] = useState([]);
@@ -14,15 +23,30 @@ const FormyForm = ({ touched, status, errors, values }) => {
     <div className="formy-mainDiv">
       <Form className="formy-subForm">
         Name:
-        <Field type="text" name="name" placeHolder="Name" />
+        <Field
+          type="text"
+          name="name"
+          placeHolder="Name"
+          className="formy-input"
+        />
         {touched.name && errors.name && <p className="error">{errors.name}</p>}
         Password:
-        <Field type="password" name="password" placeHolder="Password" />
+        <Field
+          type="password"
+          name="password"
+          placeHolder="Password"
+          className="formy-input"
+        />
         {touched.password && errors.password && (
           <p className="error">{errors.password}</p>
         )}
         E-Mail:
-        <Field type="email" name="email" placeHolder="E-Mail" />
+        <Field
+          type="email"
+          name="email"
+          placeHolder="E-Mail"
+          className="formy-input"
+        />
         TOS:
         <label className="checkbox-container">
           <Field type="checkbox" name="tos" checked={values.tos} />
@@ -37,11 +61,15 @@ const FormyForm = ({ touched, status, errors, values }) => {
         <button className="btn">Submit!</button>
       </Form>
       {users.map(user => (
-        <ul key={user.id}>
-          <li> Name: {user.name}</li>
-          <li> Password: {user.password}</li>
-          <li> E-Mail: {user.email}</li>
-        </ul>
+        <div className="cardy-card">
+          <Card key={user.id}>
+            <CardHeader tag="h3">Name: {user.name}</CardHeader>
+            <CardBody>
+              <CardTitle>E-Mail: {user.email}</CardTitle>
+              <CardText>Password: {user.password}</CardText>
+            </CardBody>
+          </Card>
+        </div>
       ))}
     </div>
   );
