@@ -16,6 +16,23 @@ function UserForm() {
 
     const onSubmit = () => { }
 
+    const ValidationSchema = Yup.object().shape({
+        name: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        email: Yup.string()
+            .email('Invalid email')
+            .required('Required'),
+        password: Yup.string()
+            .min(5, 'Common Add More')
+            .max(10, 'Ten Is The Maximum')
+            .required('Required'),
+        termsAndCondition: Yup.boolean()
+            .required('Required')
+
+    });
+
     const validate = (formValues) => {
         const errors = {};
         // take a look inside those forms values
@@ -26,7 +43,7 @@ function UserForm() {
 
     return (
         <Formik
-            validate={validate}
+            validationSchema={ValidationSchema}
             initialValues={newUserForm}
             onSubmit={onSubmit}
             render={props => {
@@ -63,8 +80,8 @@ function UserForm() {
                         <div>
                             <label>
                                 Terms and Condition
-                  <Field name='terms-and-condition' type='checkbox' placeholder='Terms and Condition' />
-                                <ErrorMessage name='terms-and-condition' component='div' />
+                  <Field name='termsAndCondition' type='checkbox' placeholder='Terms and Condition' />
+                                <ErrorMessage name='termsAndCondition' component='div' />
                             </label>
                         </div>
 
