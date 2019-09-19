@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -30,4 +31,40 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+align-items: center;
+justify-content: space-between;
+  background-color: #7B920A;
+  width: 60%;
+  margin: 1em;
+  margin-left: 20%;
+  border-radius: 0.8em;
+}
+
+.input {
+  width: 60%;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 0.8em;
+
+}
+
+.button{
+  width: 30%;
+  margin: 1em;
+  padding: 1em;
+  color: #7B920A;
+  background-color: white;
+  border: none;
+  border-radius: 0.8em;
+}
+
+.title{
+  color: #7B920A;
+  margin: 1em;
+  font-size: 1em;
 }

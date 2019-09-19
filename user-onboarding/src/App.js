@@ -4,8 +4,11 @@ import './App.css';
 import FormByFormik from './Component/Form';
 import axios from "axios";
 import Users from './Component/Users';
+import uuid from "uuid";
+
 
 const initialUser = {
+  uuid: uuid(),
   name: '',
   email: '',
   password: '',
@@ -40,6 +43,7 @@ function App() {
   }
   return (
     <div className="App">
+      <h1 className="title">Please Type Your Information to Sign Up</h1>
       <FormByFormik initialUser={initialUser} onSubmit={addUser}/>
       <Users userList={userList}/> 
     </div>
