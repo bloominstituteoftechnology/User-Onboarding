@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Form from './Component/Form'
+import OnBoardForm from './Component/Form'
 import './App.css';
 
 class App extends Component {
@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="App">
       <h1>Hello</h1>
-      <Form/>
+      <OnBoardForm/>
       </div>
     );
   }

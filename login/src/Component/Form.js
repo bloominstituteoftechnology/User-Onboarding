@@ -1,6 +1,7 @@
 import React from "react";
+import { withFormik, Form, Field} from "formik";
 
-function Form() {
+function OnBoardForm() {
   return (
     <form>
       <input id="name" type="text" name="name" placeholder="name" />
@@ -11,4 +12,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default OnBoardForm;
