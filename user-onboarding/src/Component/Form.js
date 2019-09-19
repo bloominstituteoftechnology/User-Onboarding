@@ -2,31 +2,35 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 
-const FormByFormik = () => {
-    const validationSchema = yup.object().shape({
-        name: yup.string().required(),
-        email: yup.string().email().required(),
-        password: yup.string().required(),
-    })
+const validationSchema = yup.object().shape({
+    name: yup.string().required(),
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+})
 
-    
-
+const FormByFormik = (props) => {
+  const {onSubmit, initialUser} = props;
+   
   return (
-    <Formik validationSchema={validationSchema} render={(props) =>{
+    <Formik onSubmit={onSubmit} initialValues={initialUser} validationSchema={validationSchema} render={(props) =>{
         return (
             <Form>
         <label>
           Name
           <Field name="name" placeholder="name"></Field>
+          <ErrorMessage name='name' component='div' />
         </label>
         <label>
           Email<Field name="email" placeholder="email"></Field>
+          <ErrorMessage name='email' component='div' />
         </label>
         <label>
           Password<Field name="password" placeholder="password"></Field>
+          <ErrorMessage name='password' component='div' />
         </label>
         <Field name="checkbox" type="checkbox"></Field>
-        <button type="button">Submit</button>
+        <ErrorMessage name='checkbox' component='div' />
+        <button type="submit">Submit</button>
       </Form>
         )
     }}>
