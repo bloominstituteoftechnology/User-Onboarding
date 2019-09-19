@@ -4,28 +4,45 @@ import * as Yup from "yup";
 import axios from "axios";
 
 
+
 const UserForm = ({ values, errors, touched, status }) => {
     const [users, setUsers] = useState([]);
     useEffect(() => {
         if (status){
-            setUsers([...users,status])
+            setUsers([...users,status]);
         }
-    })
+    }, [status])
     return ( 
-        <Form>
-            {touched.name && errors.name && (
-                <p className="error">{errors.name}</p>
-            )}
-            <Field type="text" name="name" placeholder="Enter your Name"/>
+        <div>
+            <Form>
+                {touched.name && errors.name && (
+                    <p className="error">{errors.name}</p>
+                )}
+                <Field type="text" name="name" placeholder="Enter your Name"/>
 
-            {touched.email && errors.email && (
-                <p className="error">{errors.email}</p>
-            )}
-            <Field type="email" name="email" placeholder="What is your email?"/>
-            <Field type="password" name="password" placeholder="Create a password"/>
-            <Field component="checkbox" name="terms" />
-            <button>Create Account</button>
-        </Form>
+                {touched.email && errors.email && (
+                    <p className="error">{errors.email}</p>
+                )}
+                <Field type="email" name="email" placeholder="What is your email?"/>
+
+                {touched.password && errors.password && (
+                    <p className="error">{errors.password}</p>
+                )}
+                <Field type="password" name="password" placeholder="Create a password"/>
+                <label>
+                    Agree to our Terms of Service
+                    <Field type="checkbox" name="terms" checked="values.terms"  />
+                </label>
+                <button>Create Account</button>
+            </Form>
+            {users.map(user => (
+                <div key={user.id}>
+                    <h1>Name: {user.name}</h1>
+                    <p>Email: {user.email}</p>
+                    <p>Password: {user.password}</p>
+                </div>
+            ))}
+        </div>
     )
 }
 
