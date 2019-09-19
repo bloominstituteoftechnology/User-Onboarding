@@ -1,12 +1,11 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import Form from "./Components/Form";
+import Formy from "./Components/Formy";
 
 function App() {
   return (
     <div className="App">
-      <Form />
+      <Formy />
     </div>
   );
 }
