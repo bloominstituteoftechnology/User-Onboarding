@@ -7,15 +7,17 @@ const UserStyled = styled.div`
   padding: 1em;
 `;
 
+//New users to be displayed when posted to API
 const Users = props => {
   const { userList } = props;
+  //map through the user array
   return userList.map(user => {
     return (
+      // render the new users
       <UserStyled id={user.id}>
         <div>{user.name}</div>
         <div>{user.email}</div>
         <div>{user.password}</div>
-        <div>{user.checkbox}</div>
       </UserStyled>
     );
   });

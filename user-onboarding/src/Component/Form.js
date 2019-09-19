@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 
+//setting  form validation and error handling
 const validationSchema = yup.object().shape({
   name: yup.string().required(),
   email: yup
@@ -19,11 +20,12 @@ const validationSchema = yup.object().shape({
     .required("You have to agree with our Terms and Conditions!")
 });
 
+//Form component receiving props from App
 const FormByFormik = props => {
   const { onSubmit, initialUser } = props;
-
+  //render Formik
   return (
-    <Formik 
+    <Formik
       onSubmit={onSubmit}
       initialValues={initialUser}
       validationSchema={validationSchema}
@@ -46,16 +48,19 @@ const FormByFormik = props => {
             ></Field>
             <ErrorMessage name="password" component="div" />
 
-            <label>Agree to terms and services
-            <Field
-              className="input"
-              name="checkbox"
-              checked={props.values.checkbox}
-              type="checkbox"
-            ></Field>
+            <label>
+              Agree to terms and services
+              <Field
+                className="input"
+                name="checkbox"
+                checked={props.values.checkbox}
+                type="checkbox"
+              ></Field>
             </label>
             <ErrorMessage name="checkbox" component="div" />
-            <button className="button" type="submit">Submit</button>
+            <button className="button" type="submit">
+              Submit
+            </button>
           </Form>
         );
       }}

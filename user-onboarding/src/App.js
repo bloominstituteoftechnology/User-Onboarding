@@ -1,51 +1,55 @@
-import React, {useState} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import FormByFormik from './Component/Form';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import FormByFormik from "./Component/Form";
 import axios from "axios";
-import Users from './Component/Users';
+import Users from "./Component/Users";
 import uuid from "uuid";
 
-
+//initialising form state
 const initialUser = {
   uuid: uuid(),
-  name: '',
-  email: '',
-  password: '',
+  name: "",
+  email: "",
+  password: ""
 };
 
-const usersApi = 'https://reqres.in/api/users_'
+//API used to post new users
+const usersApi = "https://reqres.in/api/users_";
 
 function App() {
   const [user, setUser] = useState(initialUser);
   const [userList, setUserList] = useState([]);
 
   const addUser = (formValues, actions) => {
+    //user values that are received from submitting form
     const userToPost = {
       name: formValues.name,
       email: formValues.email,
       password: formValues.password,
-      checkbox: formValues.checkbox,
+      checkbox: formValues.checkbox
     };
     setUser(userToPost);
-    console.log("button was clicked",userToPost)
-    axios.post(usersApi, userToPost)
+    //post new user to API
+    axios
+      .post(usersApi, userToPost)
       .then(res => {
-        // res.data contains the newly created friend
+        // res.data contains the newly created user
         const newUser = res.data;
-        console.log("new userList",newUser)
+        console.log("new userList", newUser);
         setUserList(userList.concat(newUser));
         actions.resetForm();
       })
       .catch(err => {
         return err.message;
       });
-  }
+  };
+  //render Form and user components to virtual-DOM
   return (
     <div className="App">
       <h1 className="title">Please Type Your Information to Sign Up</h1>
-      <FormByFormik initialUser={initialUser} onSubmit={addUser}/>
-      <Users userList={userList}/> 
+      <FormByFormik initialUser={initialUser} onSubmit={addUser} />
+      <Users userList={userList} />
     </div>
   );
 }
