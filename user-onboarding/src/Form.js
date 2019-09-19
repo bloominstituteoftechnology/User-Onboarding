@@ -34,6 +34,7 @@ const PeopleForm = ({ errors, touched, values, status }) => {
           />
           <span className="checkmark" />
         </label>
+        {errors.tos && <p className="error">{errors.tos}</p>}
 
         <button type="submit">Submit!</button>
       </Form>
@@ -62,8 +63,17 @@ const FormikForm = withFormik({
     person: Yup.string().min(6).required("Username must be six characters long."),
     email: Yup.string().email().required("Please input your valid email address."),
     password: Yup.string().min(6).required("Password must be six characters long."),
+    tos: Yup.bool()
+    .test(
+      "Terms of Services",
+      "You have to agree with our Terms of Services!",
+      value => value === true
+    )
+    .required()
 
   }),
+
+
 
   handleSubmit(values, { setStatus }) {
     axios
