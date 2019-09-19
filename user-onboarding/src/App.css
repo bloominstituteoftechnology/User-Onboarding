@@ -31,3 +31,10 @@
     transform: rotate(360deg);
   }
 }
+
+.form-title {
+  background: beige;
+}
+.form-main {
+  background: beige;
+}

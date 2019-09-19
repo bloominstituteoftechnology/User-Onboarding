@@ -3,7 +3,7 @@ import { Formik } from "formik";
 
 const Form = () => (
   <div>
-    <h1>My Form</h1>
+    <h1 className="form-title">My Form</h1>
 
     <Formik
       initialValues={{ name: "" }}
@@ -14,8 +14,8 @@ const Form = () => (
         }, 1000);
       }}
       render={props => (
-        <form onSubmit={props.handleSubmit}>
-          <label>Name: </label>
+        <form className="form-main" onSubmit={props.handleSubmit}>
+          <label>📋 Name: </label>
           <input
             type="text"
             onChange={props.handleChange}
@@ -24,6 +24,29 @@ const Form = () => (
             name="name"
             placeHolder="Name"
           />
+
+          <label>🔑 Password: </label>
+          <input
+            type="password"
+            onChange={props.handleChange}
+            onBlur={props.handleBlur}
+            value={props.values.password}
+            name="password"
+            placeHolder="Password"
+          />
+
+          <label>📧 E-Mail: </label>
+          <input
+            type="email"
+            onChange={props.handleChange}
+            onBlur={props.handleBlur}
+            value={props.values.email}
+            name="email"
+            placeHolder="E-Mail"
+          />
+
+          <label>🎫 TOS: </label>
+          <input name="check" type="checkbox" />
           {props.errors.name && <div id="feedback">{props.errors.name}</div>}
           <button type="submit">✔️</button>
         </form>
