@@ -1,10 +1,20 @@
 import React from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as yup from "yup";
 
 const FormByFormik = () => {
+    const validationSchema = yup.object().shape({
+        name: yup.string().required(),
+        email: yup.string().email().required(),
+        password: yup.string().required(),
+    })
+
+    
+
   return (
-    <Formik>
-      <Form>
+    <Formik validationSchema={validationSchema} render={(props) =>{
+        return (
+            <Form>
         <label>
           Name
           <Field name="name" placeholder="name"></Field>
@@ -16,8 +26,11 @@ const FormByFormik = () => {
           Password<Field name="password" placeholder="password"></Field>
         </label>
         <Field name="checkbox" type="checkbox"></Field>
-        <button>Submit</button>
+        <button type="button">Submit</button>
       </Form>
+        )
+    }}>
+      
     </Formik>
   );
 };
