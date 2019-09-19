@@ -11,11 +11,17 @@ function OnBoardForm({ values, errors, touched }) {
           <p className="error">{errors.name}</p>
         )}
       <Field  type="Email" name="email" placeholder="email" />
+      {touched.email && errors.email && (
+          <p className="error">{errors.email}</p>
+        )}
       <Field
         type="password"
         name="password"
         placeholder="password"
       />
+       {touched.password && errors.password && (
+          <p className="error">{errors.password}</p>
+        )}
        <Field
             type="checkbox"
             name="checkbox"
@@ -27,16 +33,18 @@ function OnBoardForm({ values, errors, touched }) {
 }
 
 const FormikOnBoardForm = withFormik({
-  mapPropsToValues(name, email, password, checkbox) {
+  mapPropsToValues({ name, email, password, checkbox }) {
     return {
       name: name || "",
       email: email || "",
       password: password || "",
-      checkbox:checkbox || ""
+      checkbox: checkbox || ""
     };
   },
   validationSchema: Yup.object().shape({
     name: Yup.string().required("You must put a name"),
+    email: Yup.string().required("You must put a email"),
+    password: Yup.string().required("You must enter password")
    
   }),
 
