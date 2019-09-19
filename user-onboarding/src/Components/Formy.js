@@ -61,9 +61,15 @@ const FormyForm = ({ touched, status, errors, values }) => {
             placeHolder="E-Mail"
             className="formy-input"
           />
+          {touched.email && errors.email && (
+            <p className="error">{errors.email}</p>
+          )}
           TOS:
           <label className="checkbox-container">
-            <Field type="checkbox" name="tos" checked={values.tos} />
+            <Field type="checkbox" name="checkb" checked={values.tos} />
+            {touched.checkb && errors.checkb && (
+              <p className="error">{errors.checkb}</p>
+            )}
             <span className="checkmark" />
           </label>
           <Field name="waffles" className="food-select" component="select">
@@ -81,6 +87,7 @@ const FormyForm = ({ touched, status, errors, values }) => {
             <Card key={user.id}>
               <CardHeader tag="h3">Name: {user.name}</CardHeader>
               <CardBody>
+                <CardTitle>E-Mail: {user.email}</CardTitle>
                 <CardImg
                   name="img"
                   className="card-img"
@@ -88,8 +95,8 @@ const FormyForm = ({ touched, status, errors, values }) => {
                   src={`https://api.adorable.io/avatars/${number}`}
                   alt="Adorable Avatar's API"
                 />
-                <CardTitle>E-Mail: {user.email}</CardTitle>
-                <CardText>Password: {user.age}</CardText>
+
+                <CardText>Age: {user.age}</CardText>
                 <CardText>Password: {user.password}</CardText>
               </CardBody>
             </Card>
@@ -101,12 +108,12 @@ const FormyForm = ({ touched, status, errors, values }) => {
 };
 
 const FormikFormyForm = withFormik({
-  mapPropsToValues({ name, password, email, tos, waffles, age, img }) {
+  mapPropsToValues({ name, password, email, waffles, age, img, checkb }) {
     return {
       name: name || "",
       password: password || "",
       email: email || "",
-      tos: tos || "",
+      checkb: checkb || "",
       waffles: waffles || "",
       age: age || "",
       img: img || ""
@@ -115,7 +122,9 @@ const FormikFormyForm = withFormik({
   validationSchema: Yup.object().shape({
     name: Yup.string().required("Name is a Required Field !"),
     password: Yup.string().required("Password is a Required Field !"),
-    age: Yup.string().required("Age is a Required Field !")
+    age: Yup.string().required("Age is a Required Field !"),
+    email: Yup.string().required("E-Mail is a Required Field !"),
+    checkb: Yup.string().required("Please Accept the Terms Of Service !")
   }),
   handleSubmit(values, { setStatus }) {
     axios

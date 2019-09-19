@@ -148,8 +148,12 @@
 .card {
   margin: 3%;
   text-align: center;
-  color: rgb(67, 142, 165);
-  border: 1rem solid rgba(138, 237, 255, 0.9);
+  color: rgb(76, 122, 136);
+  border: 0.8rem solid rgba(138, 237, 255, 0.9);
+  border-radius: 5rem;
+  box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .gridCardyCards {
