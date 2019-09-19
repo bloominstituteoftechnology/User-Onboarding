@@ -22,11 +22,9 @@ const UserForm = ({ values, errors, touched, status }) => {
 
                 <label>
                     Terms of Service
-                <Field>
-                        type="checkbox"
-                        name="Terms of Service"
-                    checked={values.termsOfService}
-                    </Field>
+                <Field type="checkbox" name="Terms of Service" checked={values.termsOfService} />
+
+
                 </label>
                 <button>Submit!</button>
             </Form>
