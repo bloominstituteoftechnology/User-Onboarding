@@ -63,7 +63,7 @@ function UserForm() {
                         <div>
                             <label>
                                 Terms and Condition
-                  <Field name='terms-and-condition' type='text' placeholder='Terms and Condition' />
+                  <Field name='terms-and-condition' type='checkbox' placeholder='Terms and Condition' />
                                 <ErrorMessage name='terms-and-condition' component='div' />
                             </label>
                         </div>
