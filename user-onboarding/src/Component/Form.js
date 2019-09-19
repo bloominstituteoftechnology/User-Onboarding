@@ -6,6 +6,15 @@ const validationSchema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().email().required(),
     password: yup.string().required(),
+    checkbox: yup.bool()
+    .test(
+      'consent',
+      'You have to agree with our Terms and Conditions!',
+      value => value === true
+    )
+    .required(
+      'You have to agree with our Terms and Conditions!'
+    ),
 })
 
 const FormByFormik = (props) => {
