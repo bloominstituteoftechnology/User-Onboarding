@@ -8,6 +8,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "0.9.x",
+    "styled-components": "^4.3.2",
     "yup": "^0.27.0"
   },
   "devDependencies": {},
