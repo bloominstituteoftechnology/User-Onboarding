@@ -1,20 +1,25 @@
 import React from "react";
-import {Formik, Form, Field} from "formik";
+import { Formik, Form, Field } from "formik";
 
 const FormByFormik = () => {
-
-    return (
-        <Formik>
-            <Form>
-                <Field name="name" placeholder="name"></Field>
-                <Field name="email" placeholder="email"></Field>
-                <Field name="password" placeholder="password"></Field>
-            <Field name="checkbox" type="checkbox" ></Field>
-            </Form>
-        </Formik>
-        
-
-    )
-}
+  return (
+    <Formik>
+      <Form>
+        <label>
+          Name
+          <Field name="name" placeholder="name"></Field>
+        </label>
+        <label>
+          Email<Field name="email" placeholder="email"></Field>
+        </label>
+        <label>
+          Password<Field name="password" placeholder="password"></Field>
+        </label>
+        <Field name="checkbox" type="checkbox"></Field>
+        <button>Submit</button>
+      </Form>
+    </Formik>
+  );
+};
 
 export default FormByFormik;
