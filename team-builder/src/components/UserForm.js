@@ -12,13 +12,17 @@ const UserForm = ({ values, errors, touched, status }) => {
     return (
         <div className="user-form">
             <Form>
-                <Field type="text" name="name" placeholder="name" />
+                <Field type="text" name="Name" placeholder="Name" />
                 {touched.name && errors.name && (
                     <p className="error">{errors.name}</p>
                 )}
 
-                <Field type="text" name="email" placeholder="Email" />
+                <Field type="text" name="Email" placeholder="Email" />
                 {touched.email && errors.email && <p className="errors">{errors.email}</p>}
+
+                <Field type="password" name="Password" placeholder="PassWord">
+
+                </Field>
 
                 <label>
                     Terms of Service
@@ -32,6 +36,9 @@ const UserForm = ({ values, errors, touched, status }) => {
                 <ul key={user.id}>
                     <li>Name:{user.name}</li>
                     <li>Email:{user.email}</li>
+                    <li>Password:{user.password}</li>
+
+
                 </ul>
             ))}
         </div>
@@ -44,18 +51,24 @@ const FormikUserForm = withFormik({
         return {
             name: name || "",
             email: email || "",
+            password: password || ""
 
         };
     },
 
     validationSchema: Yup.object().shape({
-        name: Yup.string().required,
-        email: Yup.string().required()
+        name: Yup.string().required(),
+        email: Yup.string().required(),
+        password: Yup.string().required()
     }),
 
     handleSubmit(values, { setStatus }) {
         axios
             .post("https://reqres.in/api/users", values)
+            .then(res => {
+                setStatus(res.data);
+            })
+            .catch(err => console.log(err.res))
     }
 })(UserForm);
 
