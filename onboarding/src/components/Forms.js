@@ -16,29 +16,29 @@ const Forms = ({values, errors, touched, status}) => {
     return(
 
         <div className='new-user'>
-            <Form>
-                name:
+            <Form className="entered">
+                <p className='idText'>name:</p>
                 <Field type='text' name='name' placeholder='John Doe...' />
                 {touched.name && errors.name && (<p className='error'>{errors.name}</p>)}
 
-                email:
+                <p className='idText'>email:</p>
                 <Field type='text' name='email' placeholder='johndoe@johndoe.com' />
                 {touched.email && errors.email && (<p className='error'>{errors.email}</p>)}
 
-                password:
+                <p className='idText'>password:</p>
                 <Field type='text' name='password' placeholder='123abc...' />
                 {touched.password && errors.password && (<p className='error'>{errors.password}</p>)}
 
-                role:
+                <p className='idText'>role:</p>
                 <Field className='role-select' name='role' component='select'>
                 <option>choose your role</option>
-                <option value='frontendengineer'>front end engineer</option>
-                <option value='backendengineer'>back end engineer</option>
+                <option value='front end engineer'>front end engineer</option>
+                <option value='back end engineer'>back end engineer</option>
                 <option value='marketing'>marketing</option>
                 <option value='administrative'>administrative</option>
                 </Field>
                 
-                <label className='checkbox'>
+                <label className='checkbox-container'>
                     Terms and Conditions
                     <Field type='checkbox' name='terms' checked={values.terms} />
                     <span className='checkmark' />
@@ -46,17 +46,19 @@ const Forms = ({values, errors, touched, status}) => {
 
                 <button>Add Me</button>
             </Form>
-
+            <div className='item-list'>
             {onboard.map((item, index) => (
-                <ul key ={index}> 
+                
+                <span key ={index}> 
                     
-                    <li>{item.name}</li>
-                    <li>{item.email}</li>    
-                    <li>{item.password}</li>
-                    <li>{item.role}</li>
-                </ul>
+                    <p>name: {item.name}</p>
+                    <p>email: {item.email}</p>    
+                    <p>role: {item.role}</p>
+                </span>
+                
 
             ))}
+            </div>
         </div>
     )
 
