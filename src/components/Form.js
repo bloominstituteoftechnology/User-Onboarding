@@ -35,7 +35,7 @@ const UserForm = ({ values, touched, errors, status }) => {
             </label>
             {touched.tos && errors.tos && <p className="error">{errors.tos}</p>}
       
-            <button type="submit">Submit!</button>
+            <button type="submit">Submit</button>
           </FormikForm>
           {users.map((user)=><User user_name={user.name}/>)}
   
