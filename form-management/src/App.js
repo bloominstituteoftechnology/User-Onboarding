@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Form from './components/Form.js';
+import FormikForm from './components/Form.js';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-       <Form/>
+       <FormikForm/>
       </header>
     </div>
   );

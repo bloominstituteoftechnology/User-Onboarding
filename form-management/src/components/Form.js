@@ -1,43 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import { withFormik, Form, Field } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+function Form1() {
+    // const [user, setUser] = useState({ username: "", password: "" });
 
-function Form() {
-    const [user, setUser] = useState({ username: "", password: "" });
+    // const handleChange = event => {
+    //     setUser({ ...user, [event.target.name]: event.target.value });
+    // };
 
-    const handleChange = event => {
-        setUser({ ...user, [event.target.name]: event.target.value });
-    };
-
-    const handleSubmit = event => {
-        event.preventDefault();
-        console.log(user.username);
-        console.log(user.password);
-    };
+    // const handleSubmit = event => {
+    //     event.preventDefault();
+    //     console.log(user.username);
+    //     console.log(user.password);
+    // };
 
     return (
-        <form onSubmit={event => handleSubmit(event)}>
-            <label> User Name:
-                <input
-                    type='text'
-                    name='username'
-                    onChange={event => handleChange(event)}
-                />
-            </label>
+        <Form >
+            <Field type="text" name="username" placeholder="Username" />
             <br />
-            <label> Email:
-                <input
-                    type='text'
-                    name='email'
-                    onChange={event => handleChange(event)}
-                />
-            </label>
+            <Field type="password" name="password" placeholder="Password" />
             <br />
-            <label> Password:
-                <input
-                    type='text'
-                    name='password'
-                    onChange={event => handleChange(event)}
-                />
-            </label>
+            <Field type="email" name="email" placeholder="Email"/>    
             <br />
 
             <label> Accept
@@ -51,7 +35,23 @@ function Form() {
             <br />
             <button>SignUp</button>
 
-        </form>
+        </Form>
     )
 };
-export default Form;
+   
+const FormikForm = withFormik({
+    mapPropsToValues({ user, password, email }) {
+      return {
+        user: user || "",
+        password: password || "",
+        email:email || ""
+      };
+    },
+  
+    handleSubmit(values) {
+      console.log(values);
+      //THIS IS WHERE YOU DO YOUR FORM SUBMISSION CODE... HTTP REQUESTS, ETC.
+    }
+  })(Form1);
+  
+  export default FormikForm;
