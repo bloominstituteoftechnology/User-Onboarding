@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-function Form1() {
+function Form1({errors, touched }) {
     // const [user, setUser] = useState({ username: "", password: "" });
 
     // const handleChange = event => {
@@ -17,11 +17,20 @@ function Form1() {
 
     return (
         <Form >
-            <Field type="text" name="username" placeholder="Username" />
+            <div>
+            {touched.username && errors.username && <p>{errors.username}</p>}
+                <Field type="text" name="username" placeholder="Username" />
+            </div>
             <br />
-            <Field type="password" name="password" placeholder="Password" />
+            <div>
+            {touched.password && errors.password && <p>{errors.password}</p>}
+                <Field type="password" name="password" placeholder="Password" />
+            </div>
             <br />
-            <Field type="email" name="email" placeholder="Email"/>    
+            <div>
+            {touched.email && errors.email && <p>{errors.email}</p>}
+                <Field type="email" name="email" placeholder="Email" />
+            </div>
             <br />
 
             <label> Accept
@@ -38,20 +47,33 @@ function Form1() {
         </Form>
     )
 };
-   
+
 const FormikForm = withFormik({
-    mapPropsToValues({ user, password, email }) {
-      return {
-        user: user || "",
-        password: password || "",
-        email:email || ""
-      };
+    mapPropsToValues({ username, password, email }) {
+        return {
+            username: username || "",
+            password: password || "",
+            email: email || ""
+        };
     },
-  
+    //======VALIDATION SCHEMA==========
+    validationSchema: Yup.object().shape({
+        username: Yup.string()
+            .min(4, "user name must be 4 characters minimum")
+            .required("User Name is required"),
+        email: Yup.string()
+            .email("Email not valid")
+            .required("Email is required"),
+        password: Yup.string()
+            .min(6, "password must be 6 characters minimum")
+            .required("Password is required")
+    }),
+    //======END VALIDATION SCHEMA==========
+
     handleSubmit(values) {
-      console.log(values);
-      //THIS IS WHERE YOU DO YOUR FORM SUBMISSION CODE... HTTP REQUESTS, ETC.
+        console.log(values);
+        //THIS IS WHERE YOU DO YOUR FORM SUBMISSION CODE... HTTP REQUESTS, ETC.
     }
-  })(Form1);
-  
-  export default FormikForm;
+})(Form1);
+
+export default FormikForm;
