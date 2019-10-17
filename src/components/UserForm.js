@@ -16,6 +16,14 @@ function UserForm({values, touched, errors, status}) {
                 <Field type="text" name="email" placeholder="email"/>
                 <Field type="text" name="password" placeholder="password"/>
                 {touched.password && errors.password && <p className="error">{errors.password}</p>}
+                <Field component="select" name="role" >
+                    <option>Choose Ya Role</option>
+                    <option value="Driver">Driver</option>
+                    <option value="Designer">Designer</option>
+                    <option value="LunchBox">LunchBox</option>
+                    <option value="PicklePerson">PicklePerson</option>
+                    <option value="FastMouth">FastMouth</option>
+                </Field>
                 <Field
                     component="textarea"
                     type="text"
@@ -36,7 +44,8 @@ function UserForm({values, touched, errors, status}) {
         <ul key={individ.id}>
           <li>Name:  {individ.name}</li>
           <li>email:  {individ.email}</li>
-          <li>Quote:  {individ.quote}</li>
+          <li>role:  {individ.role}</li>
+          <li>wisdom:  {individ.quote}</li>
         </ul>
         ))}
         </div>
