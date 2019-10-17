@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+}
+
+Form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+}
+
+input {
+  margin: 20px 0;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  width: 200px;
+  margin: 0 auto;
+}
