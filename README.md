@@ -45,6 +45,8 @@ When you get your data back, you will want to do something with it, right? Let's
 - Every time you make a `POST` request, and get that new user data back, update your `users` state with the new user added to the array
 - Render `users` in your app. This can be done in the `Form` component, or you can pass the array down to another component and render the `users` there
 
+//
+
 ## Stretch Goals
 
 The following are stretch goals that you should attempt _after_ you meet MVP for your project:
