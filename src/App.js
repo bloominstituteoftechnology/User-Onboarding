@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import OnboardingForm from "./components/Form"
+import OnboardingForm from "./components/Form";
+
 
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <OnboardingForm />
+        <OnboardingForm />     
         
       </div>
 
