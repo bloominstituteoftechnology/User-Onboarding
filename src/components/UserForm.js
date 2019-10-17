@@ -29,7 +29,7 @@ function UserForm({values, touched, errors, status}) {
                     type="text"
                     name="quote"
                     placeholder="quote"
-                    />
+                    />p
                 <label>
                     Terms of Service
                     <Field type="checkbox" 
