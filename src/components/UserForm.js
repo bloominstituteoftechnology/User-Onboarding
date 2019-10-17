@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-// import axios from "axios";
+import axios from "axios";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
@@ -19,6 +19,7 @@ function UserForm({values, touched, errors}) {
                     name="termsOfService" 
                     checked={values.termsOfService} 
                     />
+                    {touched.termsOfService && errors.termsOfService && <p className="error">{errors.termsOfService}</p>}
                 </label>
                 <button type="submit">Submit!</button>
             </Form>
@@ -38,6 +39,15 @@ const FormikUserForm = withFormik ({
     validationSchema: Yup.object().shape({
         name: Yup.string().required("Please enter name"),
         password: Yup.string().required("No Open Sesame, No pass Go, Please Enter your password!"),
+        termsOfService: Yup.boolean().oneOf([true], 'Agree...to move to the next step'),
     }),
+    handleSubmit(values, {setStatus}) { 
+        axios.post('https://reqres.in/api/users', values) 
+              .then(response => { 
+                  console.log(response)
+                //   setStatus(res.data); 
+                }) 
+              .catch(err => console.log(err.response));
+        }
 })(UserForm);
 export default FormikUserForm;
