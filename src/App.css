@@ -1,4 +1,40 @@
-.App {
-  text-align: center;
-  
+.onboarding-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input{
+  margin: 1%;
+  margin-left: 3%;  
+}
+
+label{
+  font-size: 1.2rem;
+  width: 50%;
+}
+
+Form{ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 2%;
+  border-top: 50px solid black;  
+  border-bottom: 50px solid black;
+}
+
+button{
+  width: 20%;
+  border-radius: 20px;
+  margin-right: 20%;
+  margin-top:3%;
+  margin-bottom: 3%;
+}
+
+.userInfo{
+  border: 3px solid black;
+  padding: 2%;
+  box-shadow: 10px 5px 5px gray;
+  border-radius: 30px;
 }
