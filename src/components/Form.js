@@ -1,8 +1,60 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import {withFormik, Field, Form} from "formik";
+import * as Yup from "yup"; 
+import axios from "axios";
 
-const Form = () => {
-
+const OnboardingForm = ({values, touched, errors, status}) => {
+    const[user, setUser] = useState([]);
+    useEffect(() =>{
+        status && setUser(user => [...user, status])
+    }, [status])
+    console.log(user);
     return(
-            null
+        <>
+         <div className="onboarding-form">
+             <Form>
+                <Field type="text" name="name" placeholder="Name"/>
+                {touched.name && errors.name && (
+                    <p className="error">{errors.name}</p>
+                )}
+                <Field type='email' name='email' placeholder='Email'/>
+                <Field type='password' name='password' placeholder="Password"/>
+
+                <Field type='checkbox' name='terms' checked={values.terms}/>
+                {errors.terms && <p className='error'>{errors.terms}</p>}
+                <button type="submit">Submit</button>
+
+                <div className="response">
+             
+         </div>
+             </Form>
+         </div>   
+         
+         </>
+
     );
-}
+};
+
+const FormikOnboardingForm = withFormik({
+    mapPropsToValues({name, email, password, terms}){
+        return{
+            name: name || '',
+            email: email || '',
+            password: password || '',
+            terms: terms || false
+        };
+    },
+    validationSchema:Yup.object().shape({
+        name: Yup.string().required(),
+        // password: Yup.string().min(8),
+        // terms: Yup.boolean()
+    }),
+    handleSubmit(values, {setStatus}){
+        axios.post('https://reqres.in/api/users', values)
+            .then(response => {setStatus(response.data);} )
+            .catch(err => console.log (err.response));
+    }
+    
+})(OnboardingForm);
+
+export default FormikOnboardingForm;
