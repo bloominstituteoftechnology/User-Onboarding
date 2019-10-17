@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
-function UserForm({values, touched, errors}) {
-    // const [user, setUser] = useState([])
+function UserForm({values, touched, errors, status}) {
+    const [user, setUser] = useState([])
+    useEffect(() => {
+        status && setUser(user => [...user, status])
+      },[status])
     return (
         <div>
             <Form>
@@ -13,6 +16,12 @@ function UserForm({values, touched, errors}) {
                 <Field type="text" name="email" placeholder="email"/>
                 <Field type="text" name="password" placeholder="password"/>
                 {touched.password && errors.password && <p className="error">{errors.password}</p>}
+                <Field
+                    component="textarea"
+                    type="text"
+                    name="quote"
+                    placeholder="quote"
+                    />
                 <label>
                     Terms of Service
                     <Field type="checkbox" 
@@ -23,16 +32,24 @@ function UserForm({values, touched, errors}) {
                 </label>
                 <button type="submit">Submit!</button>
             </Form>
+            {user.map(individ => (
+        <ul key={individ.id}>
+          <li>Name:  {individ.name}</li>
+          <li>email:  {individ.email}</li>
+          <li>Quote:  {individ.quote}</li>
+        </ul>
+        ))}
         </div>
     )
 }
 
 const FormikUserForm = withFormik ({
-    mapPropsToValues({name, email, password, termsOfService }){
+    mapPropsToValues({name, email, password, quote, termsOfService }){
         return{
             name: name || "",
             email: email || "",
             password: password || "",
+            quote: quote || "",
             termsOfService: termsOfService || false
         };
     },
@@ -41,11 +58,12 @@ const FormikUserForm = withFormik ({
         password: Yup.string().required("No Open Sesame, No pass Go, Please Enter your password!"),
         termsOfService: Yup.boolean().oneOf([true], 'Agree...to move to the next step'),
     }),
-    handleSubmit(values, {setStatus}) { 
+    handleSubmit(values, {setStatus, resetForm}) { 
         axios.post('https://reqres.in/api/users', values) 
               .then(response => { 
                   console.log(response)
-                //   setStatus(res.data); 
+                  setStatus(response.data); 
+                  resetForm()
                 }) 
               .catch(err => console.log(err.response));
         }
