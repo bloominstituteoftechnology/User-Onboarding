@@ -12,10 +12,12 @@ function UserForm({values}) {
                 <Field type="text" name="email" placeholder="email"/>
                 <Field type="text" name="password" placeholder="password"/>
                 <label>
-                    
                     Terms of Service
-                    <Field type="checkbox" name="termsOfService" checked="{values.termsOfService}" />
-
+                    <Field type="checkbox" 
+                    name="termsOfService" 
+                    checked={values.termsOfService} 
+                    />
+                    
                 </label>
             </Form>
         </div>
@@ -28,7 +30,7 @@ const FormikUserForm = withFormik ({
             name: name || "",
             email: email || "",
             password: password || "",
-            termsOfService: termsOfService || false,
+            termsOfService: termsOfService || false
         };
     }
 })(UserForm);
