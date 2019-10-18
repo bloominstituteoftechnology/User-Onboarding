@@ -6,14 +6,15 @@ import styled from "styled-components";
 import bgrnd from "../img/scar.jpg";
 
 const Container = styled.div`
-background-image: url(${bgrnd});
+  background-image: url(${bgrnd});
   background-size: cover;
   height: 100vh;
   background-position: center;
   font-size: 3rem;
   color: white;
-  border: 10px dashed white;
+  border: 10px solid white;
   padding: 2%;
+
     input {
         font-size: 2rem;
         background-color: yellow;
@@ -64,18 +65,29 @@ background-image: url(${bgrnd});
         border: 1px solid #00fd9a;
         border-radius: 6px;
     }
+    .outCont {
+     width: 100%;
+     display: flex;
+     justify-content: space-evenly;
+     flex-wrap: wrap;
+
+
+        .output {
+            background: red;
+            color: black;
+            opacity: .9;
+            font-size:6rem;
+            width: 35%;
+            margin: 1%;
+            border-radius:8px;
+        }
+    }
+    
 `;
 
-const Output = styled.div`
-background: red;
-color: black;
-opacity: .9;
-font-size:6rem;
-width: 35%;
-display: flex;
-margin: 1%;
-border-radius:8px;
-`;
+
+
+
 
 
 function UserForm({values, touched, errors, status}) {
@@ -117,18 +129,18 @@ function UserForm({values, touched, errors, status}) {
                 </label>
                 <button type="submit">Submit!</button>
             </Form>
-           
+            <div className="outCont">
                 {user.map(individ => (
-                <Output>
+                <div className="output">
                     <ul key={individ.id}>
                         <li>Name:  {individ.name}</li>
                         <li>email:  {individ.email}</li>
                         <li>role:  {individ.role}</li>
                         <li>wisdom:  {individ.quote}</li>
                     </ul>
-                </Output>
+                </div>
                 ))}
-            
+            </div>
         </Container>
     )
 }
