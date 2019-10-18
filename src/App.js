@@ -1,14 +1,25 @@
 import React from 'react';
 import UserForm from './components/UserForm';
-
+import styled from "styled-components";
 import './App.css';
+
+const Output = styled.div`
+
+/* display: flex; */
+h1 {
+  font-size: 5rem;
+}
+
+`;
 
 function App() {
   return (
     <div className="App">
-      <h1>Fast & the Formikrs</h1>
-     <UserForm />
+      <Output>
       
+      
+        <UserForm />
+      </Output>
     </div>
   );
 }
