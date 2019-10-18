@@ -13,80 +13,105 @@ const UserForm = ({errors, touched, values, status}) => {
 
 
     return (
-        <div>
-            <h1> User Onboarding </h1>
-           <Form>
-               <Field type="text"name="user" placeholder="Username"/>
-               {touched.user && errors.user && (
-                <p className="error">{errors.user}</p>
-                )}
+    <div>
+        <h1> User Onboarding </h1>
+        
+        <Form>
+        <p>Username </p>
+            <Field type="text"name="user" placeholder="Username"/>
+            {touched.user && errors.user && (
+            <p className="error">{errors.user}</p>
+            )}
+            
+        
+        <p>Email </p>
+            <Field type="text"name="email" placeholder="Enter Email"/>
+            {touched.email && errors.email && (
+            <p className="error">{errors.email}</p>
+            )}
 
+        <p>Password </p>
+            <Field type="password"name="password" placeholder="Enter Password"/>
+            {touched.password && errors.password && (
+            <p className="error">{errors.password}</p>
+            )}
 
-               <Field type="text"name="email" placeholder="Enter Email"/>
-               {touched.email && errors.email && (
-                <p className="error">{errors.email}</p>
-                )}
+            <Field className="dropdown" component="select" name="options">
+                <option>Please Choose an Option</option>
+                <option value="UI-Developer">UI Developer</option>
+                <option value="Front-End">Front End Developer</option>
+                <option value="Back-End">Back End Developer</option>
+            </Field>
+            {touched.options && errors.options && <p className="error">{errors.options}</p>}
 
+        
+            <label>
+                {" "}
+                <p>Terms and Conditions </p>
+            <Field
+            type="checkbox"
+            name="terms"
+            checked={values.terms}
+            />
+            <span/>
+            </label> 
+            {touched.terms && errors.terms && (
+            <p className="error">{errors.terms}</p>
+            )}
 
-               <Field type="text"name="password" placeholder="Enter Password"/>
-               {touched.password && errors.password && (
-                <p className="error">{errors.password}</p>
-                )}
-
-
-               <label>
-                   {" "}
-                <Field
-                type="checkbox"
-                name="terms"
-                checked={values.terms}
-                />
-                <span/>
-                </label> 
-
-                <button type="submit">Submit</button>
-
-           </Form>
-
-
-
-        {userName.map(memberId =>(
-            <div key= {userName.Id}>
-                <p> Username: {memberId.user}</p>
-                <p> Username: {memberId.email}</p> 
-            </div>
-
-        ))}
         
             
+        <button type="submit">Submit</button>
+
+        </Form>
+
+     
+
+    {userName.map(memberId =>(
+        <div key= {userName.Id}>
+            <p> Username: {memberId.user}</p>
+            <p> Email: {memberId.email}</p> 
         </div>
-    );
+
+    ))}
+    
+        
+    </div>
+);
 }
+
+
 
 const FormikUserForm = withFormik({
  
-    mapPropsToValues({user, email, password, terms}) {
+    mapPropsToValues({user, email, password, terms, options}) {
       return {
         user: user || "",
         email: email || "",
         password: password || "",
         terms: terms || false,
+        options: options || ""
       };
     },
   
+ 
+
     validationSchema: Yup.object().shape({
       user: Yup.string().required(),
       email: Yup.string().required(),
       password: Yup.string(),
-      terms: Yup.string().required(),
-     options: Yup.string().notOneOf(["Choose an option"]).required("Please select one")
+      terms: Yup.boolean().required().oneOf([true], "Must agree to terms and conditions"), 
+     options: Yup.string().notOneOf(["Please Choose an Option"]).required("Please select one")
     }),
+
   
-    handleSubmit(values, { setStatus }) {
+  
+    handleSubmit(values, { setStatus, resetForm }) {
       axios
         .post("https://reqres.in/api/users/", values)
         .then(response => {
           setStatus(response.data);
+          resetForm();
           console.log(response);
         })
         .catch(error => console.log(error.response));
