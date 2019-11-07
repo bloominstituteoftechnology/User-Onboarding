@@ -1,0 +1,15 @@
+.user-form {
+    display: flex;
+    justify-content: center;
+    color: black;
+    background-color: lightgrey;
+    border: 1px solid black;
+    margin-top: 50px; 
+    padding: 20px;
+} 
+
+Form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
