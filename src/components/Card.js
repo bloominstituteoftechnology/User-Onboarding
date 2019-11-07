@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import './Card.css';
 
 const Card = props => {
-    const [users, setUsers] = useState([])
     return (
       <div className="card-container">
         {props.users.map(card => (
