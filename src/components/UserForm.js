@@ -83,7 +83,7 @@ const FormikUserForm = withFormik({
 
     handleSubmit(values, { setStatus }) {
       axios
-        .post("https://reqres.in/api/users/", values)
+        .post("https://reqres.in/api/users", values)
         .then(response => {
           setStatus(response.data);
           console.log(response);
