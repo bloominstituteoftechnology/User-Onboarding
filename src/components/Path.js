@@ -6,11 +6,12 @@ const Button = styled.button`
     padding: .5%;
     margin: .5%;
     border-radius: 8px;
-   
+    background-color: yellow;
+    color: green;
 
     &:hover{
-        background: white;
-        color: green;
+        /* background: yellow;
+        color: green; */
         border: 1px solid green;
     }
 `;
@@ -21,10 +22,6 @@ const Path = () => {
             <a href="https://github.com/J2Macwilliams/User-Onboarding">
                 <Button>Code</Button>
             </a>
-            <a href="https://j2macwilliams.github.io/My-Portfolio/">
-                <Button>Portfolio</Button>
-            </a>
-            
         </div>
     )
 }

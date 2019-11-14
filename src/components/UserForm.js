@@ -64,7 +64,7 @@ const Container = styled.div`
            width: 3%;
         }
     }
-    button {
+    .form {
         background-color:green;
         color: #00fd9a;
         margin: 2%;
@@ -113,7 +113,7 @@ function UserForm({values, touched, errors, status}) {
         <Container>
             <h1>Fast & the Formikrs</h1>
             <Path />
-            <button onClick={() => toggleModal(!isModalOpen)}>Sign Up</button>
+            <button className="form" onClick={() => toggleModal(!isModalOpen)}>Sign Up</button>
 
             <Modal isOpen={isModalOpen} toggle={toggleModal}>
                 <Form>
@@ -142,7 +142,7 @@ function UserForm({values, touched, errors, status}) {
                         {touched.termsOfService && errors.termsOfService && <p className="error">{errors.termsOfService}</p>}
                     </label>
 
-                    <button type="submit" >Submit!</button>
+                    <button className="form" type="submit" >Submit!</button>
                 </Form>
                 <button className="toggle" onClick={() => toggleModal(false)}>toggle</button>
             </Modal>
