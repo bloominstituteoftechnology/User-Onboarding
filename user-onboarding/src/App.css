@@ -20,3 +20,21 @@
 .App-link {
   color: #09d3ac;
 }
+
+.user-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 600px;
+  text-align: center;
+  border: 5px solid sienna;
+  background-color: antiquewhite;
+}
+
+.form-cont{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
