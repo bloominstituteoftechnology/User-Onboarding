@@ -5,7 +5,9 @@ import axios from "axios";
 
 import { TextField } from "formik-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
-import { borderRadius, flexbox } from "@material-ui/system";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 //What has been removed since we are utilizing Formik:
 //state
@@ -13,44 +15,36 @@ import { borderRadius, flexbox } from "@material-ui/system";
 //onChange
 
 const useStyles = makeStyles({
-    name:{
+    input:{
         border: 1,
         borderRadius: 3,
-        boxShadow: '0 3px 5px 2px darksalmon',
-        color: 'saddlebrown',
-        backgroundColor: 'tan',
+        boxShadow: '0 3px 5px 2px #5F685C',
+        color: '#461111',
+        backgroundColor: '#CBC2C2',
         height: 20,
         width: 200,
         padding: '5px 5px',
-        margin: 10,
-        fontFamily: 'Playfair Display, serif'
+        margin: 30,
+        fontFamily: 'Inconsolata, monospace'
     },
-    email:{
-        border: 1,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px darksalmon',
-        color: 'saddlebrown',
-        backgroundColor: 'tan',
-        height: 20,
-        width: 200,
-        padding: '5px 5px',
-        margin: 10,
-        fontFamily: 'Playfair Display, serif'
+    sel:{
+        fontFamily: 'Inconsolata, monospace',
+        fontSize: 15,
+        margin: 20
     },
-    password:{
-        border: 1,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px darksalmon',
-        color: 'saddlebrown',
-        backgroundColor: 'tan',
-        height: 20,
-        width: 200,
-        padding: '5px 5px',
-        margin: 10,
-        fontFamily: 'Playfair Display, serif'
+    serviceterms:{
+        fontFamily: 'Inconsolata, monospace'
     },
-    age:{
-        width: 250
+    notes:{
+        fontFamily: 'Inconsolata, monospace',
+        margin: 20
+    },
+    card:{
+        minWidth: 400,
+        maxWidth: 400,
+        fontFamily: 'Inconsolata, monospace',
+        backgroundColor: "ghostwhite",
+        boxShadow: '0 3px 5px 2px #5F685C'
     }
 })
 
@@ -65,83 +59,104 @@ const UserForm = ({ values, errors, touched, status }) => {
   }, [status]);
 
   return (
-    <div className="user-form">
-      <Form className="form-cont">
-        <Field 
-            className={classes.name}
-            type="text" 
-            name="name" 
-            placeholder="Your full name." 
-            component={TextField}
-        />
-        <Field 
-            className={classes.email}
-            type="text" 
-            name="email" 
-            placeholder="Your email." 
-            component={TextField}
-        />
-        <Field 
-            className={classes.password}
-            type="password" 
-            name="password" 
-            placeholder="Password." 
-            component={TextField}
-        />
-        <Field className={classes.age} as="select" className="age-range" name="age">
-          <option>Please choose an option in the following age ranges.</option>
-          <option value="youngin">18 and Below (I am jealous of your youth.)</option>
-          <option value="youngadult">19-29</option>
-          <option value="adult">30-40</option>
-          <option value="mid-life-crisis">40-55</option>
-          <option value="oldie-but-goodie">56-666</option>
-        </Field>
-        {touched.age && errors.age && (
-          <p className="errors">{errors.age}</p>
-        )}
-        <Field className={classes.role} as="select" className="role" name="role">
-            <option>Choose your role, minion.</option>
-            <option value="peasant">Peasant Toiler of the Fields</option>
-            <option value="taxpayer">Taxpayer in a Fiefdom</option>
-            <option value="small-lord">Small Lord with a microscopic amount of wealth</option>
-            <option value="slave">Slave to all desires</option>
-            <option value="really-evil-lord">KING TYRANT</option>
-        </Field>
-        {touched.role && errors.role && (
-          <p className="errors">{errors.role}</p>
-        )}
-        <label className="checkbox-container">
-          Terms of Service:
-          <Field
-            className={classes.serviceterms}
-            type="checkbox"
-            name="serviceterms"
-            checked={values.serviceterms}
-            component={TextField}
-          />
-          <span className="checkmark" />
-        </label>
-        <Field
-            className={classes.notes} 
-            as="textarea" 
-            type="type" 
-            name="notes" 
-            placeholder="Special Notes." 
-            component={TextField} 
-        />
-        <button>Submit!</button>
-      </Form>
-      {users.map(user => (
-        <ul key={user.id}>
-          <li>Name: {user.name}</li>
-          <li>Email: {user.email}</li>
-          <li>Password: {user.password}</li>
-          <li>Age Group: {user.age}</li>
-          <li>Read Terms of Service: {user.serviceterms}</li>
-          <li>Special Notes: {user.notes}</li>
-        </ul>
+   <div className="bigboy"> 
+        <div className="user-form">
+            <h1>Welcome to the Dark Side, my lost soul. Will you join our cause?</h1>
+            <Form className="form-cont">
+                <div>
+                    <Field 
+                        className={classes.input}
+                        type="text" 
+                        name="name" 
+                        placeholder="Your full name." 
+                        component={TextField}
+                    />
+                </div>
+                <div>
+                    <Field 
+                        className={classes.input}
+                        type="text" 
+                        name="email" 
+                        placeholder="Your email." 
+                        component={TextField}
+                    />
+                </div>  
+                <div>
+                    <Field 
+                        className={classes.input}
+                        type="password" 
+                        name="password" 
+                        placeholder="Password." 
+                        component={TextField}
+                    />
+                </div>
+                <div>
+                    <Field className={classes.sel} as="select" name="age">
+                    <option>Please choose an option in the following age ranges.</option>
+                    <option value="youngin">18 and Below (I am jealous of your youth.)</option>
+                    <option value="youngadult">19-29</option>
+                    <option value="adult">30-40</option>
+                    <option value="mid-life-crisis">40-55</option>
+                    <option value="oldie-but-goodie">56-666</option>
+                    </Field>
+                    {touched.age && errors.age && (
+                    <p className="errors">{errors.age}</p>
+                    )}
+                </div>
+                <div>
+                    <Field className={classes.sel} as="select" name="role">
+                        <option>Choose your role, minion.</option>
+                        <option value="peasant">Peasant Toiler of the Fields</option>
+                        <option value="taxpayer">Taxpayer in a Fiefdom</option>
+                        <option value="small-lord">Small Lord with a microscopic amount of wealth</option>
+                        <option value="slave">Slave to all desires</option>
+                        <option value="really-evil-lord">KING TYRANT</option>
+                    </Field>
+                    {touched.role && errors.role && (
+                    <p className="errors">{errors.role}</p>
+                    )}
+                </div>
+                <label className="checkbox-container">
+                <span className="term">Terms of Service:</span>
+                <Field
+                    className={classes.serviceterms}
+                    type="checkbox"
+                    name="serviceterms"
+                    checked={values.serviceterms}
+                    component={TextField}
+                />
+                <span className="checkmark" />
+                </label>
+                <div>
+                    <Field
+                        className={classes.notes} 
+                        as="textarea" 
+                        type="type" 
+                        name="notes" 
+                        placeholder="Special Notes." 
+                        component={TextField} 
+                    />
+                </div>
+                <div className="butt-cont">
+                    <button>Submit!</button>
+                </div>
+            </Form>
+        </div>
+        {users.map(user => (
+        <Card className={classes.card}>
+            <CardContent>
+                <div key={user.id}>
+                <Typography variant="subtitle" component="h2">Name: {user.name}</Typography>
+                <Typography variant="subtitle" component="h3">Email: {user.email}</Typography>
+                <Typography variant="subtitle" component="h3">Password: {user.password}</Typography>
+                <Typography variant="subtitle" component="h4">Age Group: {user.age}</Typography>
+                <Typography variant="subtitle" component="h4">Read Terms of Service: {user.serviceterms ? 'yes' : 'no'}</Typography>
+                <Typography variant="subtitle" component="h4">Special Notes: {user.notes}</Typography>
+                </div>
+            </CardContent>
+        </Card>
       ))}
-    </div>
+    </div>  
   );
 };
 
@@ -172,13 +187,14 @@ const FormikForm = withFormik({
     role: Yup.string().required("Choose your role or I will have to throw you into purgatory."),
     serviceterms: Yup.bool().oneOf([true], "Error. PLEASE ACCEPT OUR TERMS OF SERVICE AND READ ALL THE TINY PRINT. Who knows? You might be signing over your first-born child and your soul.")
   }),
-  handleSubmit(values, { setStatus }) {
+  handleSubmit(values, { setStatus, resetForm }) {
     //values is our object with all our data on it
     axios
       .post("https://reqres.in/api/users/", values)
       .then(res => {
         setStatus(res.data);
         console.log(res);
+        resetForm();
       })
       .catch(error => console.log(error.response));
   }

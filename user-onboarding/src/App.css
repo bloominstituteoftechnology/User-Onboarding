@@ -1,35 +1,13 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+.App{
+  width: 800px;
+  margin: 0 auto;
 }
 
 .user-form{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  width: 600px;
   text-align: center;
-  border: 5px solid sienna;
-  background-color: antiquewhite;
+  border: 5px solid black;
+  background-color: gainsboro;
+  margin-top: 5%;
 }
 
 .form-cont{
@@ -37,4 +15,29 @@
   flex-direction: column;
   justify-content: center;
   align-content: center;
+}
+
+.checkbox-container{
+  font-family: 'Inconsolata', monospace;
+}
+
+h1{
+  font-family: 'Inconsolata', monospace;
+  font-size: 1.8rem;
+  margin: 5%;
+}
+
+button{
+  font-family: 'Inconsolata', monospace;
+  width: 150px;
+  height: 35px;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  box-shadow: 0 3px 5px 2px slategrey;
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
+.term{
+  margin-top: 5%;
 }
