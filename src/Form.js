@@ -5,14 +5,19 @@ import React, { useEffect, useState } from "react";
 
 import axios from "axios";
 
-const userForm = ({ values, errors, touched, status, validation })=>{
-   
+const UserForm = ({ values, errors, touched, status, validation })=>{
+    if (!values.email) {
+        errors.email = 'Email is required!!';
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address';
+      }
+      
+const [users, setUsers] = useState([]);
+  useEffect(() => {
+    status && setUsers(users => [...users, status]);
+  }, [status]);
 
-  if (!values.email) {
-    errors.email = 'Email is required!!';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
+ 
 
 return(
     <div className="user-form">
@@ -24,29 +29,42 @@ return(
     <Field type="text" name="email" placeholder="What is your email?"/><br></br>
     {touched.email && errors.email && (<p className="errors">{errors.email}</p>)}
     <br></br>
-    <Field type="password" name="password" placeholder="What is your password?"/><br></br>
+    <Field type="text" name="password" placeholder="What is your password?"/><br></br>
     {touched.password && errors.password && (<p className="errors">{errors.password}</p>)}
     <br></br>
     <label className="checkbox-container">Terms Of Service
-    <Field type="checkbox" name="tos" value="check" checked={values.tos}/>
-    {touched.tos && errors.tos && (<p className="errors">{errors.tos}</p>)}
+    <Field 
+    type="checkbox" 
+    name="terms" 
+    checked={values.terms}
+    />
+    {touched.terms && errors.terms && (<p className="errors">{errors.terms}</p>)}
+    <span className="checkmark"/>
     </label>
-    
     <button>Submit!</button>
+
     </Form>
-    
+    {users.map( (user, index) => (
+        <ul key={index}>
+            <li>{user.name}</li>
+            <li>{user.email}</li>
+        </ul>
+    ))}
+
     </div>
-)
-}
+);
+};
+
+
 
 const FormikUserForm = withFormik({
-    mapPropsToValues({name, email, password, tos}){
+    mapPropsToValues({name, email, password, terms}){
         return{
             name: name || "",
             email: email || "",
             password: password || "",
-            tos: tos || true,
-        }
+            terms: terms || false,
+        };
 
     },
     validationSchema: Yup.object().shape({
@@ -67,5 +85,8 @@ const FormikUserForm = withFormik({
           .catch(err => console.log(err.response));
       }
       
-})(userForm);
+})(UserForm);
+
 export default FormikUserForm;
+
+console.log("This is the HOC", FormikUserForm)
