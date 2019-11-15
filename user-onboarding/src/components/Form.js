@@ -16,11 +16,11 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     input:{
-        border: 1,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px #5F685C',
-        color: '#461111',
-        backgroundColor: '#CBC2C2',
+        border: 5,
+        borderRadius: 5,
+        boxShadow: '0 3px 5px 2px #5E5987',
+        color: 'black',
+        backgroundColor: '#D2D1DF',
         height: 20,
         width: 200,
         padding: '5px 5px',
@@ -44,7 +44,8 @@ const useStyles = makeStyles({
         maxWidth: 400,
         fontFamily: 'Inconsolata, monospace',
         backgroundColor: "ghostwhite",
-        boxShadow: '0 3px 5px 2px #5F685C'
+        boxShadow: '0 3px 5px 2px #5F685C',
+        marginTop: 10
     }
 })
 
@@ -61,7 +62,7 @@ const UserForm = ({ values, errors, touched, status }) => {
   return (
    <div className="bigboy"> 
         <div className="user-form">
-            <h1>Welcome to the Dark Side, my lost soul. Will you join our cause?</h1>
+            <h1>Welcome to the Dark Side, my lost soul. Will you dedicate your life to our cause?</h1>
             <Form className="form-cont">
                 <div>
                     <Field 
@@ -138,7 +139,7 @@ const UserForm = ({ values, errors, touched, status }) => {
                     />
                 </div>
                 <div className="butt-cont">
-                    <button>Submit!</button>
+                    <button>Submit to your FATE!</button>
                 </div>
             </Form>
         </div>
