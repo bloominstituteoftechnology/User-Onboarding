@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+h4{
+  font-size: 18px;
+}
+p{
+  font-size: 18px;
+}
+.user-form {
+  width: 460px;
+  margin: auto 100px;
+  padding: 32px;
+  font-weight: bold;
+  background-color: rgba(245, 197, 216, 0.9);
+  box-shadow: 2px 2px 10px 10px rgba(232, 103, 182, 0.1);
+}
+.error {
+  margin: 0;
+  position: absolute;
+  color: red;
+}
