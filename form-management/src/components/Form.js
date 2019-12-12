@@ -4,9 +4,9 @@ import * as Yup from "yup";
 import axios from "axios";
 
 function Form1({ values, errors, touched,  status }) {
-console.log("values", values);
-  console.log("errors", errors);
-  console.log("touched", touched);
+// console.log("values", values);
+//   console.log("errors", errors);
+//   console.log("touched", touched);
 
     const [users, setUsers] = useState([]);
 
@@ -17,25 +17,34 @@ console.log("values", values);
     return (
         <div className="user-form">
             <Form >
-                <div>
+               
                    <Field type="text" name="username" placeholder="Username" />
                    {touched.username && errors.username && <p className="errors"> {errors.username}</p>}
-                </div>
-                <br />
-                <div>
+                   
                     <Field type="password" name="password" placeholder="Password" />
                     {touched.password && errors.password && <p className="errors">{errors.password}</p>}
-                </div>
-                <br />
-                <div>
+                    
                     <Field type="email" name="email" placeholder="Email" />
                     {touched.email && errors.email && <p className="errors">{errors.email}</p>}
-                </div>
-                <br />
+                   
+                    <Field type="number" name="phoneNr" placeholder="Phone Number" />
+                    {touched.phoneNr && errors.phoneNr && <p className="errors">{errors.phoneNr}</p>}
 
-                <label>
+                    <Field type="text" name="profession" placeholder="Profession" />
+                    {touched.profession && errors.profession && <p className="errors">{errors.profession}</p>}
+
+                    <Field component="select" name="gender" className="user-select">
+                            <option value="" label="Select a gender" />
+                            <option value="male" label="male" />
+                            <option value="female" label="female" />
+                            <option value="neither" label="neither" />
+                    </Field>
+
+                <label className="checkbox-container">
                     <Field type="checkbox" name="tos" checked={values.tos} />
                     Accept Terms
+                    {touched.tos && errors.tos && <p className="errors">{errors.tos}</p>}
+                    <span className="checkmark" />
                 </label>
                 <br />
                 <button type="submit"> SignUp </button>
@@ -47,6 +56,8 @@ console.log("values", values);
                     <div key={user.id}>
                         <h4>User Name: {user.username}</h4>
                         <h4>Email: {user.email}</h4>
+                        <h4>Phone number: {user.phoneNr}</h4>
+                        <h4>Profession: {user.profession}</h4>
                     </div>
                 )
            })}
@@ -60,23 +71,37 @@ const FormikForm = withFormik({
             password: props.password || "",
             email: props.email || "",
             tos: props.tos || false,
+            phoneNr:props.phoneNr || "",
+            profession: props.profession ||"",
         };
     },
     //======VALIDATION SCHEMA==========
     validationSchema: Yup.object().shape({
         username: Yup.string()
             .min(4, "Username must be 4 characters minimum")
+            .max(15, 'Too Long!')
             .required("User Name is required"),
         email: Yup.string()
             .email("Email not valid")
             .required("Email is required"),
         password: Yup.string()
             .min(6, "Password must be 6 characters minimum")
-            .required("Password is required")
+            .max(10, 'Too Long!')
+            .required("Password is required"),
+        phoneNr: Yup.number() 
+        .min(10, "")
+        .max(11, "too long")
+        .required("Enter your phone number"),
+        profession:Yup.string()
+        .min(1, "Profession is too short")
+        .max(20, "Profession is too long")
+        .required("Password is required"),
+        tos: Yup.boolean()
+        .oneOf([true], 'Must Accept Terms and Conditions')
     }),
     //======END VALIDATION SCHEMA==========
 
-    handleSubmit(values, { resetForm, setErrors, setSubmitting ,setStatus}) {
+    handleSubmit(values, { resetForm ,setStatus}) {
             axios
                 .post("https://reqres.in/api/users", values)
                 .then(res => {
