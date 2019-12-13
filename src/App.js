@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import UserForm from './comps/UserForm';
+import UserList from './comps/UserList';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -10,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <UserForm addUser={addUser}/>
-      <span/>
+      <UserList users={users}/>
     </div>
   );
 }
