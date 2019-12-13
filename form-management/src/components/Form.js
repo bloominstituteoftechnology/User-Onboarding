@@ -16,8 +16,8 @@ function Form1({ values, errors, touched,  status }) {
 
     return (
         <div className="user-form">
+            <div className="div1">
             <Form >
-               
                    <Field type="text" name="username" placeholder="Username" />
                    {touched.username && errors.username && <p className="errors"> {errors.username}</p>}
                    
@@ -32,6 +32,9 @@ function Form1({ values, errors, touched,  status }) {
 
                     <Field type="text" name="profession" placeholder="Profession" />
                     {touched.profession && errors.profession && <p className="errors">{errors.profession}</p>}
+
+                    <Field type="text" name="city" placeholder="City" />
+                   {touched.city && errors.city && <p className="errors"> {errors.city}</p>}
 
                     <Field component="select" name="gender" className="user-select">
                             <option value="" label="Select a gender" />
@@ -49,18 +52,21 @@ function Form1({ values, errors, touched,  status }) {
                 <br />
                 <button type="submit"> SignUp </button>
             </Form>
+            </div>
 
-
+            <div className="div2">
             {users.map(user =>  { 
                 return(
-                    <div key={user.id}>
+                    <div className ="user-card" key={user.id}>
                         <h4>User Name: {user.username}</h4>
                         <h4>Email: {user.email}</h4>
                         <h4>Phone number: {user.phoneNr}</h4>
                         <h4>Profession: {user.profession}</h4>
+                        <h4>City: {user.city}</h4>
                     </div>
                 )
            })}
+           </div>
         </div>
     );
 };
@@ -73,8 +79,10 @@ const FormikForm = withFormik({
             tos: props.tos || false,
             phoneNr:props.phoneNr || "",
             profession: props.profession ||"",
+            city: props.city ||""
         };
     },
+    
     //======VALIDATION SCHEMA==========
     validationSchema: Yup.object().shape({
         username: Yup.string()
@@ -88,14 +96,16 @@ const FormikForm = withFormik({
             .min(6, "Password must be 6 characters minimum")
             .max(10, 'Too Long!')
             .required("Password is required"),
-        phoneNr: Yup.number() 
-        .min(10, "")
-        .max(11, "too long")
+        phoneNr: Yup.number()
+        .min(1000000000, "too short")
+        .max(10000000000,"too long")
         .required("Enter your phone number"),
         profession:Yup.string()
         .min(1, "Profession is too short")
         .max(20, "Profession is too long")
         .required("Password is required"),
+        city: Yup.string()
+        .required(""),
         tos: Yup.boolean()
         .oneOf([true], 'Must Accept Terms and Conditions')
     }),

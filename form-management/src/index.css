@@ -5,7 +5,7 @@
 #root,
 html,
 body {
-  height: 100%;
+  height: auto;
   margin: 0;
   padding: 0;
 } 
@@ -36,12 +36,22 @@ p{
   font-size: 18px;
 }
 .user-form {
-  width:500px;
+  display: flex;
+  flex-direction: row;
+  width: 800px;
   margin: auto 100px;
-  padding: 32px;
+  padding: 50px;
   font-weight: bold;
   background-color: rgba(245, 197, 216, 0.9);
   box-shadow: 2px 2px 10px 10px rgba(232, 103, 182, 0.1);
+}
+.div1 {
+  width: 60%;
+  margin-right: 35px;
+}
+.div2{
+  width: 40%;
+  margin-top: 30px;
 }
 .error {
   margin: 0;
@@ -167,4 +177,37 @@ input.error {
 }
 .user-select option {
   font-weight: normal;
+}
+button {
+  max-width: 150px;
+  margin: 32px 0;
+  padding: 12px 20px;
+  border-style: none;
+  background-color: #d579a1;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+button + button {
+  margin-left: 0.5rem;
+}
+
+button.outline {
+  background-color: #eee;
+  border: 1px solid #aaa;
+  color: #555;
+}
+.user-card{
+  border: 1px solid black;
+
 }
