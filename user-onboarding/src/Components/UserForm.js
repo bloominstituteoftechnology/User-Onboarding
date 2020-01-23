@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from 'axios';
 
 const UserForm = ({ errors, touched, values, status }) => {
-    
-    // const handleSubmit = e => {
-    //     event.preventDefault();
-        
-    // }
+    const [user, setUser] = useState([])
+   
+    useEffect(() => {
+        status && 
+        setUser(users => [
+            ...users, 
+            status
+        ])
+    }, [status])
     
     return (
         <div>
@@ -17,12 +21,19 @@ const UserForm = ({ errors, touched, values, status }) => {
                 <Field type="text" name="email" placeholder="email" value={values.email} />
                 <Field type="text" name="password" placeholder="Password"  value={values.password}/>
 
-                <label>
+                <label htmlFor="checkbox">Agree to Terms </label>
                     <Field type="checkbox" name="terms"/>
-                </label>
+                
 
                 <button type="submit">Submit</button>
             </Form>
+            {
+                user.map(user => (
+                    <ul>
+                        <li>Name: {user.name}</li>
+                    </ul>
+                ))
+            }
         </div>
     )
 }
@@ -41,7 +52,7 @@ const FormikUserForm = withFormik({
         name: Yup.string().required('Name Required'),
         email: Yup.string().required('Valid Email Required'),
         password: Yup.string().required('Password Required'),
-        // terms: Yup.boolean.required()
+        terms: Yup.bool('true').required('Must Agree to Terms')
 
     }),
 
