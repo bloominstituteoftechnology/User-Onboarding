@@ -2,6 +2,13 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import * as Yup from "yup";
 import {withFormik, Form, Field} from "formik";
+import styled from "styled-components";
+
+const StyleEntry = styled.div`
+padding: 0;
+display: block;
+margin: 10px 0 0 0;`;
+
 
 const NewUser = ({values, errors, touched, status}) => {
     const [user,setUser] = useState([]);
@@ -15,35 +22,41 @@ const NewUser = ({values, errors, touched, status}) => {
     return(
         <div>
             <Form className="FormMASTER">
-                <div>
+                <h1>User Login</h1>
+                    <StyleEntry>
                     Enter Name
                     <Field type="text" name="name" placeholder="Name" />
                     {touched.name && errors.name && (
                         <p className="error">{errors.name}</p>
                     )}
-                </div>
-                <div>
+                    </StyleEntry>
+                    <StyleEntry>
                     Enter Email
                     <Field type="email" name="email" placeholder="Email" />
                     {touched.email && errors.email && (
                         <p className="error">{errors.email}</p>
                     )}
-                </div>
-                <div>
+                    </StyleEntry>
+                
+                <StyleEntry>
                     Enter Password
                     <Field type="password" name="password" placeholder="*******" />
                     {touched.password && errors.password && (
                         <p className="error">{errors.password}</p>
                     )}
-                </div>
-                <div>
+                </StyleEntry>
+                <StyleEntry>
                     Agree to Terms of Services:{""}
                     <Field type="checkbox" name="terms" checked={values.terms} />
                     {touched.terms && errors.terms && (
                         <p className="error">{errors.terms}</p>
                     )}
+                    <br />
+                    </StyleEntry>
+                    <StyleEntry>
                     <button>Submit</button>
-                </div>
+                </StyleEntry>
+                
             </Form>
             {user.map(person =>(
                 <ul key={person.id}>
