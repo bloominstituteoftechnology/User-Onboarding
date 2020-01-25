@@ -18,18 +18,31 @@ const NewUser = ({values, errors, touched, status}) => {
                 <div>
                     Enter Name
                     <Field type="text" name="name" placeholder="Name" />
+                    {touched.name && errors.name && (
+                        <p className="error">{errors.name}</p>
+                    )}
                 </div>
                 <div>
                     Enter Email
                     <Field type="email" name="email" placeholder="Email" />
+                    {touched.email && errors.email && (
+                        <p className="error">{errors.email}</p>
+                    )}
                 </div>
                 <div>
                     Enter Password
                     <Field type="password" name="password" placeholder="*******" />
+                    {touched.password && errors.password && (
+                        <p className="error">{errors.password}</p>
+                    )}
                 </div>
                 <div>
                     Agree to Terms of Services:{""}
                     <Field type="checkbox" name="terms" checked={values.terms} />
+                    {touched.terms && errors.terms && (
+                        <p className="error">{errors.terms}</p>
+                    )}
+                    <button>Submit</button>
                 </div>
             </Form>
             {user.map(person =>(
@@ -53,7 +66,7 @@ const FormikNewUser = withFormik({
         };
     },
 
-    validationSchema: Yup.object().shape([
+    validationSchema: Yup.object().shape({
         name: Yup.string()
         .min(3, "Must have at least three characters.")
         .required("Required field"),
@@ -66,7 +79,7 @@ const FormikNewUser = withFormik({
         terms: Yup.boolean()
         .oneOf([true], "Must accept Terms of Service.")
         .required()
-    ]),
+    }),
     handleSubmit(values, { setStatus}) {
         axios
         .post("https://reqres.in/api/users/", values)
@@ -78,4 +91,4 @@ const FormikNewUser = withFormik({
     }
 })(NewUser);
 
-export default Form;
+export default FormikNewUser;
