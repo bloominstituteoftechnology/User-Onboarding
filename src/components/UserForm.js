@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from "axios";
 
 import Modal from './Modal';
-import Path from './Path';
+
 
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -112,7 +112,7 @@ function UserForm({values, touched, errors, status}) {
     return (
         <Container>
             <h1>Fast & the Formikrs</h1>
-            <Path />
+            
             <button className="form" onClick={() => toggleModal(!isModalOpen)}>Sign Up</button>
 
             <Modal isOpen={isModalOpen} toggle={toggleModal}>
