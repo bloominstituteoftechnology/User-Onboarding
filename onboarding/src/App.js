@@ -10,7 +10,9 @@ function App() {
   return (
     <div className="App">
       <UserOnboardingForm userList={userList} />
-      <UserList userList={userList} setUserList={setUserList}/>
+      <UserList 
+      userList={userList} 
+      setUserList={setUserList}/>
     </div>
   );
 }
