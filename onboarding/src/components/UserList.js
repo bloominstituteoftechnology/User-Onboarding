@@ -5,17 +5,17 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import UserOnboardingForm from "../components/UserOnboardingForm";
 
 export default function UserList(props) {
-  // console.log(props);
+  console.log(props);
 
   return (
     <div>
       <h1>Users:</h1>
-{/* 
+
       <div className="users-added">
-        {props.userList.map(() => {
-          return <p>{actions.props.setUserList}</p>;
+        {props.userList.map((user) => {
+          return <p>{user.name} {user.email}</p>;
         })}
-      </div> */}
+      </div>
     </div>
   );
 }
