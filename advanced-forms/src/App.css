@@ -1,0 +1,80 @@
+.App {
+  text-align: center;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.team-form{
+  width: 460px;
+  margin: auto 100px;
+  padding: 32px;
+  font-weight: bold;
+  background-color: rgba(34, 96, 121, 0.9);
+  box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+button {
+  max-width: 150px;
+  margin: 32px 0;
+  padding: 12px 20px;
+  border-style: none;
+  background-color: #14586b;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  font-size: 17px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 20px;
+}
+
+
+.team-member{
+  text-align: left;
+  background-color: aqua;
+  margin-top:1%
+}
