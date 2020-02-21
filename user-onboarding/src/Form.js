@@ -13,14 +13,15 @@ function OnBoardForm({ values, touched, errors, status }) {
     return (
         <div className='loginForm'>
             <h1>Team OnBoarding</h1>
-            <Form>
+            <Form className='main-form'>
                 <Field type='text' name='username' placeholder='username' />
                 {touched.username && errors.username && (
                     <p className='errors'>{errors.username}</p>
                 )}
-                <span />
+
                 <Field type='text' name='email' placeholder='email' />
                 <Field type='text' name='password' placeholder='password' />
+
                 <label className='terms'>
                     By checking you are agreeing to the terms of service
                     <Field
@@ -61,6 +62,7 @@ const FormikOnBoardForm = withFormik({
             .min(6)
             .required(),
     }),
+
     handleSubmit(values, { setStatus }) {
         // values is our object with all our data on it
         axios
