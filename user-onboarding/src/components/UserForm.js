@@ -66,11 +66,23 @@ const Container = styled.div`
 `
 
 const UserCard = styled.div`
+
+    height: 100px;
     background: ${props => props.color};
     div {
         background: white;
-        width: 70%;
+        width: 60%;
         margin: 0 auto;
+        border-radius: 10px;
+        padding: 0 10px;
+        h3 {
+            margin-bottom: 0;
+            padding-top: 10px;
+        }       
+        p {
+            margin: 0;
+            padding-bottom: 10px;
+        }
     }
 `
 
@@ -153,11 +165,10 @@ const UserForm = (props) => {
             {
                 users.map(user =>
                     <UserCard color={user.color} key={user.id}>
-                    <div>
-                        <h3>Name: {user.name}</h3>
-                        <p>Email: {user.email}</p>
-                    </div>
-                        
+                        <div>
+                            <h3>Name: {user.name}</h3>
+                            <p>Email: {user.email}</p>
+                        </div>
                     </UserCard>
                 )
             }
