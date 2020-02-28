@@ -1,0 +1,21 @@
+form {
+    display: flex;
+    flex-direction: column;
+    border: solid 5px #61dafb;
+    padding: 3rem 8rem;
+    *background-image: url('/my-app/Img/City.jpg');
+  }
+input, select{
+    margin:4%;
+    height: 3vh;
+}
+
+form button {
+    height: 5vh;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+p{
+ color:red;
+}
