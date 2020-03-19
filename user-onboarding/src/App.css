@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+.dropdown{
+  margin: 5%;
+}
 
 
 @media (prefers-reduced-motion: no-preference) {
