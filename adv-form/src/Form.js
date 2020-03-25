@@ -11,6 +11,26 @@ const inputDiv = Styled.div`
 margin:15%;
 `
 
+const formSchema = yup.object().shape({
+    name: 
+    yup
+    .string()
+    .required("Please enter your name"),
+    email: yup
+      .string()
+      .email("Please enter your email")
+      .required("Must include an email"),
+    password: 
+    yup
+    .string()
+    .required("Please enter your password"),
+    terms: 
+    yup.
+    boolean().
+    oneOf([true], 
+    "Please Read and Agree to our Terms of Use"),
+     });
+
 const Form = () => {
 
 
@@ -44,7 +64,7 @@ const Form = () => {
                     id="name" 
                     type="text" 
                     name="name"
-                    //value=""
+                    value={formState.name}
                     //onChange= 
                     placeholder="Please Enter your Name" />
                     </label>
@@ -57,7 +77,7 @@ const Form = () => {
                     id="email" 
                     type="email" 
                     name="email"
-                    //value=""
+                    value={formState.email}
                     //onChange= 
                     placeholder="Please Enter your Email Address" />
                     </label>
@@ -70,7 +90,7 @@ const Form = () => {
                     id="password" 
                     type="password" 
                     name="password"
-                    //value=""
+                    value={formState.password}
                     //onChange= 
                     placeholder="Please Enter your Password" />
                     </label>
@@ -84,7 +104,7 @@ const Form = () => {
                     <input
                     type="checkbox"
                     name="terms"
-                    // checked=
+                    checked={formState.terms}
                     // onChange=
                     />
                     Terms and Conditions
@@ -93,7 +113,7 @@ const Form = () => {
                 </inputDiv>
 
                 <inputDiv>
-                <button>
+                <button disabled={buttonDisabled}>
                     Submit
                 </button>
                 </inputDiv>
