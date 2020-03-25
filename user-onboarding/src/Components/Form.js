@@ -5,6 +5,7 @@ import axios from "axios";
 const formSchema = yup.object().shape({
     name: yup.string().required("Name is a required field"),
     email: yup.string().email().required("Must include email"),
+    role: yup.string().required("Must Select a role"),
     password: yup.string().required("Must enter a pasword"),
     terms: yup.boolean().oneOf([true], "please agree to Terms of Use")
 });
@@ -15,6 +16,7 @@ function Form(props) {
     const [formState, setFormState] = useState({
         name: "",
         email: "",
+        role:"",
         password: "",
         terms: ""
     })
@@ -22,6 +24,7 @@ function Form(props) {
     const [errors, setErrors] = useState({
         name: "",
         email: "",
+        role:"",
         password: "",
         terms: ""
     })
@@ -75,6 +78,7 @@ function Form(props) {
                 setFormState({
                     name: "",
                     email: "",
+                    role:"",
                     password: "",
                     terms: ""
                 });
@@ -100,6 +104,13 @@ function Form(props) {
                 </label>
                 <label htmlFor="role">
                     Role
+                    <select name="role" onChange={inputChange}>
+                        <option value="Front-End Engineer">Front-End Engineer</option>
+                        <option value="Back-End Engineer">Back-End Engineer</option>
+                        <option value="UI Designer">UI Designer</option>
+                        <option value="Mobile Engineer">Mobile Engineer</option>
+                        <option value="Data Scientist">Data Scientist</option>
+                    </select>
                 </label>
                 <label htmlFor="password">
                     Password
@@ -116,7 +127,7 @@ function Form(props) {
                 <h1>Users</h1>
                 {users.map(element => {
                     return (
-                        <div>Name: {element.name} Email: {element.email}</div>
+                        <div>Name: {element.name} Email: {element.email} Role: {element.role}</div>
                     );
                 })}
             </div>
