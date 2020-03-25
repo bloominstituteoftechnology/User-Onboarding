@@ -6,13 +6,14 @@ import UserDisplay from './UserDisplay';
 
 const UserForm = ({touched, errors, status}) => {
    
-    const [user, setUser] = useState({})
     
+    const [users, setUsers] = useState([])
     
     useEffect(()=>{
-        status && setUser(status)
+        status && setUsers([...users,status])
         
     },[status]);
+    console.log(users)
 
     return (
         <div>
@@ -37,7 +38,7 @@ const UserForm = ({touched, errors, status}) => {
                 <button>submit</button>
             </div>
         </Form>
-        <UserDisplay user={user}/>
+        <UserDisplay users={users}/>
         {/* {user.name && (
             <ul key={user.id}>
                 <li>Name: {user.name}</li>
