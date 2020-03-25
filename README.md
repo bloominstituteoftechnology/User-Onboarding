@@ -7,12 +7,11 @@ We've seen many different styles of form management by now -- simple to complex.
 
 - [ ] Start off by installing a blank React app by running `npx create-react-app <app-name> --use-npm`.
 - [ ] Using `npm`, add the following as dependencies inside your React app:
-  - `formik`
   - `yup`
   - `axios`
 - [ ] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
 
-## STEP 1 - Create Your Formik Form
+## STEP 1 - Create Your Advanced Form
 
 We want to create a form to onboard a new user to our system. We need _at least_ the following pieces of information about our new user:
 
@@ -26,7 +25,7 @@ We want to create a form to onboard a new user to our system. We need _at least_
 
 Form validation is one of the facets of an application that makes it feel polished and controlled from a user perspective. With that in mind, implement the following:
 
-- [ ] Using Yup, set up _at least_ two different validations for each field along with custom error codes that will display on screen when validation fails.
+- [ ] Using Yup, set up _at least_ two different validations along with custom error messages that will display on screen when validation fails.
 
 ## STEP 3 - Make a POST Request
 
@@ -43,13 +42,13 @@ When you get your data back, you will want to do something with it, right? Let's
 
 - [ ] Set up a state property called `users` that is initialized with an empty array
 - [ ] Every time you make a `POST` request, and get that new user data back, update your `users` state with the new user added to the array
-- [ ] Render `users` in your app. This can be done in the `Form` component, or you can pass the array down to another component and render the `users` there
+- [ ] Render `users` in your app. You can <pre></pre> and JSON.stringify() method to display your post request.
 
 ## Stretch Goals
 
 The following are stretch goals that you should attempt _after_ you meet MVP for your project:
 
 - [ ] Add basic styling to your form in your app. Make it look pretty with any styling method you choose.
-- [ ] Implement a dropdown menu in your Formik form. Add a `role` value to your Formik HOC and add a dropdown with different roles for your users.
-- [ ] Create 3 new inputs inside your Formik form of your choice along with corresponding validation and error messaging
+- [ ] Implement a dropdown menu in your form. Add a `role` value to your state and add a dropdown with different roles for your users.
+- [ ] Create 3 new inputs inside your form of your choice along with corresponding validation and error messaging
 - [ ] Add to your existing handling so that, if a user inputs their email as `waffle@syrup.com`, they receive an error message in their form that says _"That email is already taken."_
