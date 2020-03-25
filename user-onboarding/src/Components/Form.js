@@ -51,6 +51,7 @@ function Form(props) {
                 });
             })
             .catch(err => {
+                console.log("in errors",err);
                 setErrors({
                     ...errors,
                     [event.target.name]: err.errors[0]
@@ -65,6 +66,7 @@ function Form(props) {
             [event.target.name]:
                 event.target.type === "checkbox" ? event.target.checked : event.target.value
         };
+        validateChange(event);
         setFormState(newFormData);
     };
 
@@ -105,6 +107,7 @@ function Form(props) {
                 <label htmlFor="role">
                     Role
                     <select name="role" onChange={inputChange}>
+                        <option></option>
                         <option value="Front-End Engineer">Front-End Engineer</option>
                         <option value="Back-End Engineer">Back-End Engineer</option>
                         <option value="UI Designer">UI Designer</option>
