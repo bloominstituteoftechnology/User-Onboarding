@@ -34,7 +34,7 @@ function Form (){
     const [buttonDisabled, setButtonDisabled] = useState(true);
 
     //I see you are a being of impecable taste! Here you shall find the finest of states for your post!
-    const [post, setPost] = useState([]);
+    const [users, setUsers] = useState([]);
 
     //the main attraction under the big top! see our freaks! our spectacles! our useEffects!
     useEffect(()=>{
@@ -48,7 +48,7 @@ function Form (){
     const validator = e =>{
         yup
         .reach(formSchema, e.target.name)
-        .validate(e.target.value)
+        .validate(e.target.name === 'terms' ? e.target.checked : e.target.value)
         .then(valid =>{
             setErrors({
                 ...errors, [e.target.name]: ''
@@ -66,8 +66,8 @@ function Form (){
         axios
         .post('https://reqres.in/api/users', formState)
         .then(response =>{
-            setPost(response.data);
-            console.log('success', post);
+            setUsers(response.data);
+            console.log('success', users);
 
             setFormState({
                 name: '',
@@ -138,7 +138,7 @@ function Form (){
                 </input>Terms of Service
                 {errors.terms.length > 0 ? (<p className='error'>{errors.terms}</p>):null}
             </label>
-                <pre>{JSON.stringify(post, null, 2)}</pre>
+                <pre>{JSON.stringify(users, null, 2)}</pre>
                 <button disabled={buttonDisabled}>Submit You Nerd.</button>
 
 
