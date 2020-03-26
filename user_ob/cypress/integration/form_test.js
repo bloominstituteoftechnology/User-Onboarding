@@ -14,7 +14,8 @@ describe("Testing the User_OB form", function() {
       .should("have.value", "password");
     cy.get('[type="checkbox"]')
       .check()
-      .should("be.true");
+      .should("be.checked");
+    cy.get("button").click();
   });
 
 });
