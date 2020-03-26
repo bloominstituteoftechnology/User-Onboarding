@@ -15,8 +15,7 @@ const formSchema = yup.object().shape({
                 .string()
                 .required('password is required'),
    terms: yup
-            .boolean().oneOf([true])
-            .required('must agree to the terms')
+            .boolean().oneOf([true], 'must agree to the terms')
 })
 
 const usersArray = [];
@@ -25,22 +24,22 @@ export default function Form(){
 
     /*----------STATES-----------*/
         //state for users
-        const [users, setUsers] = useState(usersArray);
+        const [users, setUsers] = useState([]);
         //state for form
         const [formState, setFormState] = useState({
-            name: '',
-            email: '',
-            password: '',
-            terms: ''
+            name: "",
+            email: "",
+            password: "",
+            terms: ""
         })
         //state for if the button is disabled
         const [buttonDisabled, setButtonDisabled] = useState(true);
         //state for errors
         const [errors, setErrors] = useState({
-            name: '',
-            email: '',
-            password: '',
-            terms: ''
+            name: "",
+            email: "",
+            password: "",
+            terms: ""
         })
         //state for the post request
         const [post, setPost] = useState([]);
@@ -48,30 +47,29 @@ export default function Form(){
      /*----------UseEffects/EventHandlers-----------*/
         //checks the schema
         //disables the button unless the whole form is valid
-        useEffect(()=>{
-            formSchema
-                .isValid(formState)
-                .then(valid=>{
-                    setButtonDisabled(!valid);
-                })
-        },[formState])
+        useEffect(() => {
+            formSchema.isValid(formState).then(valid => {
+              setButtonDisabled(!valid);
+            });
+          }, [formState]);
+        
         //reaches into the schema
         //checks if individual inputs are valid
         //handles an error if something is invalid
         const validateChange = e=>{
             yup
                 .reach(formSchema, e.target.name)
-                .validate(e.target.value||e.target.checked)
+                .validate(e.target.value)
                 .then(valid=>{
                     setErrors({
                         ...errors,
-                        [e.target.name]: ''
+                        [e.target.name]: ""
                     })
                 })  
                 .catch(error=>{
                     setErrors({
                         ...errors,
-                        [error.target.name]: error.errors[0]
+                        [e.target.name]: error.errors[0]
                     })
                 })
         }
@@ -98,12 +96,21 @@ export default function Form(){
                 .then(response=>{
                     setPost(response.data)
                     console.log(post)
+                    const newUser = {
+                        name: formState.name,
+                        email: formState.email,
+                        password: formState.password,
+                        terms: formState.terms
+                    }
+                    console.log(newUser)
                     setFormState({
-                        name: '',
-                        email: '',
-                        password: '',
-                        terms: ''
+                        name: "",
+                        email: "",
+                        password: "",
+                        terms: ""
                     })
+                    setUsers(users.push(newUser));
+                    console.log(users);
                 })
                 .catch(err=> console.log(err.response))
         }
@@ -162,7 +169,7 @@ export default function Form(){
             {errors.name.length > 0? <p>{errors.name}</p>:null}
             <br/>
             <pre>{JSON.stringify(post, null, 2)}</pre>
-            <button disable={buttonDisabled}>Submit</button>
+            <button disabled={buttonDisabled}>Submit</button>
 
         </form>
 

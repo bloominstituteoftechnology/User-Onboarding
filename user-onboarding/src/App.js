@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {v4 as uuid} from 'uuid';
+
 import './App.css';
 import Form from './components/Form';
 
@@ -20,16 +20,3 @@ import Form from './components/Form';
   }
   
   export default App;
-
-
- /* const newUser = {
-    id: uuid(),
-    fname: formValues.fname,
-    lname: formValues.lname,
-    email: formValues.email,
-    terms: formValues.terms
-  }
-
-  setUsers([...users, newUser]);
-}*/ /*var usersArray = [
-  ];*/
