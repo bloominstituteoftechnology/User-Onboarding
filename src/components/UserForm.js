@@ -20,7 +20,7 @@ const UserForm = ({touched, errors, status}) => {
         <Form>
             <div>
                 <label>Name: <Field name="name" type="text"/>
-                {touched.name && errors.terms && (<p>Errors: {errors.name}</p>)}
+                {touched.name && errors.name && (<p>Errors: {errors.name}</p>)}
                 </label>
                 <br/>
                 <br/>
