@@ -33,9 +33,30 @@ export default function Form() {
 
   useEffect(() => {
     formSchema.isValid(newForm).then(valid => {
+      console.log(valid);
       setButton(!valid);
     });
   }, [newForm]);
+
+  const validateChange = event => {
+    yup
+      .reach(formSchema, event.target.name)
+      .validate(event.target.value)
+      .then(valid => {
+        console.log(valid);
+        setError({
+          ...error,
+          [event.target.name]: " "
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        setError({
+          ...error,
+          [event.target.name]: err.errors[0]
+        });
+      });
+  };
 
   const formSubmit = event => {
     event.preventDefault();
@@ -53,29 +74,11 @@ export default function Form() {
       .catch(err => console.log(err.response));
   };
 
-  const validateChange = event => {
-    yup
-      .reach(formSchema, event.target.Name)
-      .validate(event.target.value)
-      .then(valid => {
-        setError({
-          ...error,
-          [event.target.Name]: ""
-        });
-      })
-      .catch(err => {
-        setError({
-          ...error,
-          [event.target.Name]: err.error
-        });
-      });
-  };
-
   const inputChange = event => {
     event.persist();
     const newFormValue = {
       ...newForm,
-      [event.target.Name]:
+      [event.target.name]:
         event.target.type === "checkbox"
           ? event.target.checked
           : event.target.value
@@ -86,7 +89,6 @@ export default function Form() {
 
   const submitForm = event => {
     event.preventDefault();
-    console.log("Form Submitted!");
   };
 
   return (
@@ -97,10 +99,10 @@ export default function Form() {
           id="Name"
           type="text"
           name="Name"
-          value={newForm.Name}
+          value={newForm.name}
           onChange={inputChange}
         />
-        {error.Name.length > 0 ? <p>{error.Name}</p> : null}
+        {error.Name.length > 0 ? <p>{error.Name} </p> : null}
       </label>
       <br />
       <label htmlFor="Email">
