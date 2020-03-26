@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Form from "../src/Components/Forms";
-import GForm from "../src/Components/GForm";
+// import GForm from "../src/Components/GForm";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Form />
 
       <h1> Gracee's form!!</h1>
-      <GForm />
+      {/* <GForm /> */}
     </div>
   );
 }
