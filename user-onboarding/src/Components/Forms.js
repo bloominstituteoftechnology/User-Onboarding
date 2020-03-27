@@ -9,7 +9,8 @@ const formSchema = yup.object().shape({
     .email("Must be a valid email.")
     .required(),
   Password: yup.string().required("Please enter your password"),
-  Terms: yup.boolean().oneOf([true], "Please agree to terms of use")
+  Terms: yup.boolean(true || false),
+  love: yup.boolean(true || false)
 });
 
 export default function Form() {
@@ -18,15 +19,16 @@ export default function Form() {
   const [newForm, setForm] = useState({
     Name: "",
     Email: "",
-    Password: "",
-    Terms: ""
+    Password: ""
+    // Terms: "",
+    // love: ""
   });
 
   const [error, setError] = useState({
     Name: "",
     Email: "",
-    Password: "",
-    Terms: ""
+    Password: ""
+    // Terms: ""
   });
 
   const [post, setPost] = useState([]);
@@ -87,10 +89,6 @@ export default function Form() {
     setForm(newFormValue);
   };
 
-  const submitForm = event => {
-    event.preventDefault();
-  };
-
   return (
     <form onSubmit={formSubmit}>
       <label htmlFor="Name">
@@ -137,6 +135,16 @@ export default function Form() {
           onChange={inputChange}
         />
         Terms and Conditions
+      </label>
+      <br />
+      <label htmlFor="love">
+        <input
+          type="checkbox"
+          name="love"
+          checked={newForm.love}
+          onChange={inputChange}
+        />
+        LOVE
       </label>
       <br />
       <pre>{JSON.stringify(post, null, 2)}</pre>
