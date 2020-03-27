@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import axios from "axios";
+import "./Form.css"
 
 const formSchema = yup.object().shape({
   name: yup.string().required('Wouldnt it be better if you had a name?'),
@@ -80,6 +81,7 @@ const Form = ({ teamList, setTeamList }) => {
     .catch(error => console.log(error.response))
   };
 
+  
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="name">
