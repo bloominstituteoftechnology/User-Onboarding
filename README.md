@@ -1,4 +1,5 @@
 # Module Project: Advanced Form Management - User Onboarding
+
 ## Project Description
 
 We've seen many different styles of form management by now -- simple to complex. Today we are going to unleash your inner form-wizard! 🧙
@@ -52,3 +53,7 @@ The following are stretch goals that you should attempt _after_ you meet MVP for
 - [ ] Implement a dropdown menu in your form. Add a `role` value to your state and add a dropdown with different roles for your users.
 - [ ] Create 3 new inputs inside your form of your choice along with corresponding validation and error messaging
 - [ ] Add to your existing handling so that, if a user inputs their email as `waffle@syrup.com`, they receive an error message in their form that says _"That email is already taken."_
+
+answers :
+The useRouteMatch hook is useful any time you are using a <Route> just so you can get access to its match data
+End to end testing basically asks “can a user accomplish an action?”.
