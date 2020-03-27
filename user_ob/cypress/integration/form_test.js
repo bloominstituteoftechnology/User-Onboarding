@@ -17,5 +17,17 @@ describe("Testing the User_OB form", function() {
       .should("be.checked");
     cy.get("button").click();
   });
+  it("Checking for Validation", function() {
+    cy.get('input[name="name"]')
+    .type("Lisa")
+    .clear()
+    cy.get('.error')
+    .contains("Please enter your name :)")
+    cy.get('input[name="email"]')
+     .type("email@email.com")
+     .clear()
+    cy.get('.error')
+    .contains("Don't forget to enter your email! How else can we send you tons of junk mail?!")
 
+  })
 });
