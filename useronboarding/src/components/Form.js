@@ -1,54 +1,154 @@
-import {React,useState} from "react";
-import * as Yup from yup
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import * as yup from "yup";
+
+const formSchema = yup.object().shape({
+  name: yup.string().required("Name is a required field."),
+  email: yup
+    .string()
+    .email("Must be a valid email address.")
+    .required("Must include email address."),
+  terms: yup.boolean().oneOf([true], "please agree to terms of use"),
+  positions: yup.string(),
+  motivation: yup.string().required("must include why you'd like to join")
+});
+
+export default function Form() {
+
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
 
-const Form = (props) =>{
-    //create my state for user data intake
-    const[user,setUser] = useState({
-        name:"",
-        email:"",
-        password:"",
-        terms:false,
-
-    })
-    //create a yup schema to validate my information
-    const formSchema = Yup.object().shape({
-        email: Yup
-            .string()
-            .email("this is how we deliva the package")
-            .required("Hey you stool pigeon we need ya address"),
-        password: Yup
-            .string()
-            .min(6,"you put 6 characters in or ya 6 feet under ya hear?"),
-        terms: Yup
-            .boolean()
-            .oneOf([true],"this is an offer you can't refuse")
-
-    })
-    
-    
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    terms: "",
+    positions: "",
+    motivation: ""
+  });
 
 
-    //our actual form
-    return(
-        <form>
-            <label htmlFor="name">
-                Name
-                    <input name="name"/></label>
-            <label htmlFor="email">
-                Email
-                    <input name="email"/></label>
-            <label htmlFor="password">
-                Password
-                <input/></label>
-            <label htmlFor="terms">
-                Terms of Service
-                    <input type="checkbox" name="terms" value={true}/></label>     
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    terms: "",
+    positions: "",
+    motivation: ""
+  });
 
 
-        </form>
-    )
+  const [post, setPost] = useState([]);
 
+  useEffect(() => {
+    formSchema.isValid(formState).then(valid => {
+      setButtonDisabled(!valid);
+    });
+  }, [formState]);
 
+  const formSubmit = e => {
+    e.preventDefault();
+    axios
+      .post("https://reqres.in/api/users", formState)
+      .then(res => {
+        setPost(res.data); 
+        console.log("success", post);
 
+        setFormState({
+          name: "",
+          email: "",
+          terms: "",
+          positions: "",
+          motivation: ""
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+
+  const validateChange = e => {
+    yup
+      .reach(formSchema, e.target.name)
+      .validate(e.target.name === "terms" ? e.target.checked : e.target.value)
+
+      .then(valid => {
+        setErrors({
+          ...errors,
+          [e.target.name]: ""
+        });
+      })
+      .catch(err => {
+        setErrors({
+          ...errors,
+          [e.target.name]: err.errors[0]
+        });
+      });
+  };
+
+  const inputChange = e => {
+    e.persist();
+    const newFormData = {
+      ...formState,
+      [e.target.name]:
+        e.target.type === "checkbox" ? e.target.checked : e.target.value
+    };
+
+    validateChange(e);
+    setFormState(newFormData);
+  };
+
+  return (
+    <form onSubmit={formSubmit}>
+      <label htmlFor="name">
+        Name
+        <input
+          type="text"
+          name="name"
+          value={formState.name}
+          onChange={inputChange}
+        />
+        {errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
+      </label>
+      <label htmlFor="email">
+        Email
+        <input
+          type="text"
+          name="email"
+          value={formState.email}
+          onChange={inputChange}
+        />
+        {errors.email.length > 0 ? (
+          <p className="error">{errors.email}</p>
+        ) : null}
+      </label>
+      <label htmlFor="motivation">
+        Why would you like to help?
+        <textarea
+          name="motivation"
+          value={formState.motivation}
+          onChange={inputChange}
+        />
+        {errors.motivation.length > 0 ? (
+          <p className="error">{errors.motivation}</p>
+        ) : null}
+      </label>
+      <label htmlFor="positions">
+        What would you like to help with?
+        <select id="positions" name="positions" onChange={inputChange}>
+          <option value="Newsletter">Newsletter</option>
+          <option value="Yard Work">Yard Work</option>
+          <option value="Administrative Work">Administrative Work</option>
+          <option value="Tabling">Tabling</option>
+        </select>
+      </label>
+      <label htmlFor="terms" className="terms">
+        <input
+          type="checkbox"
+          name="terms"
+          checked={formState.terms}
+          onChange={inputChange}
+        />
+        Terms & Conditions
+      </label>
+      <pre>{JSON.stringify(post, null, 2)}</pre>
+      <button disabled={buttonDisabled}>Submit</button>
+    </form>
+  );
 }
