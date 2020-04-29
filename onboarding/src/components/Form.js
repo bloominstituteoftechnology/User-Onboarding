@@ -17,7 +17,7 @@ const Form = () => {
   const [formState, setFormState] = useState(initialFormState);
   const [isBtnDisabled, setIsBtnDisabled] = useState();
   const [errors, setErrors] = useState(initialFormState);
-  const [users,setUsers] = useState([{}]);
+  const [users,setUsers] = useState([]);
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Name is a required field"),
@@ -25,7 +25,7 @@ const Form = () => {
     password: yup.string("Must be at least 6 chars long."),
     terms: yup.boolean().oneOf([true], "please aggree with us.")
   })
-
+// valadation
   const validateChange = e => {
     yup
     .reach(formSchema, e.target.name)
@@ -44,7 +44,7 @@ const Form = () => {
       setIsBtnDisabled(!valid);
     })
   }, [formState, formSchema]);
-
+// submit
   const formSubmit = e => {
     e.preventDefault();
     console.log(formState);
@@ -52,13 +52,14 @@ const Form = () => {
       .post("https://reqres.in/api/users", formState)
       .then(res => {
         console.log(res.data)
-        setUsers(...users, res.data)
+        const data = res.data
+        setUsers([...users, data])
         setFormState(initialFormState)
         console.log(users, "in then")
         })
         .catch(err => console.log(err))
   }
-
+//imput
   const inputChange = e => {
     console.log("input Changed", e.target.value);
     e.persist();
@@ -116,10 +117,10 @@ return(
     </label>
     <button disabled={isBtnDisabled} type="submit">Submit</button>
   </form>
-    {/* {users.map(users => {
+    {users.map(users => {
       return(
-      <DisplayNames users={users} />
-    )})} */}
+      <DisplayNames key={users.id} users={users} />
+    )})}
     
   </div>
   )

@@ -6,7 +6,7 @@ const DisplayNames = ({users}) => {
         <h3>{users.name}</h3>
         <h4>{users.email}</h4>
         <p>{users.password}</p>
-        <p>{users.terms}</p>
+        <p>{users.terms === true ? "Accepted Terms" : "Declined Terms"}</p>
       </div>
   )}
 
