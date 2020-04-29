@@ -5,11 +5,11 @@ We've seen many different styles of form management by now -- simple to complex.
 
 ## Set Up The Project
 
-- [ ] Start off by installing a blank React app by running `npx create-react-app <app-name> --use-npm`.
-- [ ] Using `npm`, add the following as dependencies inside your React app:
+- [x] Start off by installing a blank React app by running `npx create-react-app <app-name> --use-npm`.
+- [x] Using `npm`, add the following as dependencies inside your React app:
   - `yup`
   - `axios`
-- [ ] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
+- [x] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
 
 ## STEP 1 - Create Your Advanced Form
 
