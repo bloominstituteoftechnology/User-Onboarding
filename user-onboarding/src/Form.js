@@ -9,7 +9,6 @@ export default function Form(){
         email: "",
         password: "",
         terms: "",
-        remember: "",
     };
     
     const [post, setPost] = useState([]);
@@ -21,6 +20,7 @@ export default function Form(){
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     
     const [errors, setErrors] = useState(initialForm);
+
     
     const formSchema = yup.object().shape({
         name: yup
@@ -63,7 +63,7 @@ export default function Form(){
         e.preventDefault();
     
         axios
-         .post("h", formState)
+         .post("https://reqres.in/api/users", formState)
          .then(response => {
             setPost(response.data);
     
@@ -104,6 +104,7 @@ export default function Form(){
                     name="name"
                     onChange={inputChange}
                     value={formState.name}
+                    data-cy="name"
                 />
                 {errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
             </label>
@@ -111,10 +112,11 @@ export default function Form(){
             <label htmlFor="email">
                 Email
                 <input
-                    type="text"
+                    type="email"
                     name="email"
                     onChange={inputChange}
                     value={formState.email}
+                    data-cy="email"
                 />
                 {errors.name.length > 0 ? <p className="error">{errors.email}</p> : null}
             </label>
@@ -126,6 +128,7 @@ export default function Form(){
                     name="password"
                     onChange={inputChange}
                     value={formState.password}
+                    data-cy="password"
                 />
                 {errors.name.length > 0 ? <p className="error">{errors.email}</p> : null}
             </label>
@@ -141,7 +144,7 @@ export default function Form(){
             </label>
 
             <pre>{JSON.stringify(post, null, 2)}</pre>
-            <button disabled={isButtonDisabled} type="submit">
+            <button data-cy="submit" disabled={isButtonDisabled} type="submit">
                 Login
             </button>
         </form>
