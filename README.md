@@ -25,7 +25,7 @@ We want to create a form to onboard a new user to our system. We need _at least_
 
 Form validation is one of the facets of an application that makes it feel polished and controlled from a user perspective. With that in mind, implement the following:
 
-- [ ] Using Yup, set up _at least_ two different validations along with custom error messages that will display on screen when validation fails.
+- [x] Using Yup, set up _at least_ two different validations along with custom error messages that will display on screen when validation fails.
 
 ## STEP 3 - Make a POST Request
 
