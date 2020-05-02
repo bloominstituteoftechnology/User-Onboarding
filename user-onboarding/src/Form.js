@@ -17,7 +17,7 @@ const Form = (props) => {
     const [inputForm, setInputForm] = useState({name: "", email: "", password: "", terms: ""})
     
     // const handleChange = event => {
-
+        npm install --save-dev cypress
     //     setInputForm({...inputForm, [event.target.name]: event.target.value});
     // }
 
