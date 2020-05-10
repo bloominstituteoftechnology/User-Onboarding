@@ -1,15 +1,29 @@
 import React, { useState } from "react";
+import * as yup from "yup";
 import { css, cx } from "emotion";
 
 const Form = () => {
-  const defaultState = {
+  const initialState = {
     name: "",
     email: "",
     password: "",
-    terms: false,
+    goals: "",
+    role: "",
+    terms: "",
   };
 
-  const [formState, setFormState] = useState(defaultState);
+  const schema = yup.object().shape({
+    name: yup.string().required("Name is a required field!"),
+    email: yup.string().required("Email is a required field!"),
+    password: yup.string().length(6).required("Password is a required field"),
+    terms: yup.bool().oneOf([true], "You must accept terms..."),
+    role: yup.string(),
+    goald: yup.string().required("Have some ambition!"),
+  });
+
+  const [errors, setErrors] = useState();
+
+  const [formState, setFormState] = useState(initialState);
 
   const submitForm = (e) => {
     e.preventDefault();

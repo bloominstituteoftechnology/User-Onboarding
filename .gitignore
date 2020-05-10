@@ -10,3 +10,4 @@
 ./user-onboarding/npm-debug.log*
 ./user-onboarding/yarn-debug.log*
 ./user-onboarding/yarn-error.log*
+node_modules

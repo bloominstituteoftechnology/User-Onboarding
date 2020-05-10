@@ -9,7 +9,8 @@
     "emotion": "^10.0.27",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "yup": "^0.28.5"
   },
   "scripts": {
     "start": "react-scripts start",
