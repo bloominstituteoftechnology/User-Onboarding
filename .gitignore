@@ -1,0 +1,12 @@
+./user-onboarding/node_modules
+
+.DS_Store
+
+./user-user-onboarding/.DS_Store
+./user-user-onboarding/.env.local
+./user-user-onboarding/.env.development.local
+./user-user-onboarding/.env.test.local
+./user-user-onboarding/.env.production.local
+./user-onboarding/npm-debug.log*
+./user-onboarding/yarn-debug.log*
+./user-onboarding/yarn-error.log*
