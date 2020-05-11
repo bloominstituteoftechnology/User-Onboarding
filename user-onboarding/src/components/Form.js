@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import { css, cx } from "emotion";
 
@@ -8,18 +8,9 @@ const Form = () => {
     email: "",
     password: "",
     goals: "",
-    role: "",
+    role: "engineer",
     terms: "",
   };
-
-  const schema = yup.object().shape({
-    name: yup.string().required("Name is a required field!"),
-    email: yup.string().required("Email is a required field!"),
-    password: yup.string().length(6).required("Password is a required field"),
-    terms: yup.bool().oneOf([true], "You must accept terms..."),
-    role: yup.string(),
-    goald: yup.string().required("Have some ambition!"),
-  });
 
   const [errors, setErrors] = useState();
 
@@ -32,8 +23,29 @@ const Form = () => {
 
   const inputChange = (e) => {
     console.log("input changed to: ", e.target.value);
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+    const newFormData = {
+      ...formState,
+      [e.target.name]:
+        e.target.type === "checkbox" ? e.target.checked : e.target.value,
+    };
+
+    setFormState(newFormData);
   };
+
+  const schema = yup.object().shape({
+    name: yup.string().required("Name is a required field!"),
+    email: yup.string().required("Email is a required field!"),
+    password: yup.string().length(6).required("Password is a required field"),
+    terms: yup.bool().oneOf([true], "You must accept terms..."),
+    role: yup.string(),
+    goals: yup.string().required("Have some ambition!"),
+  });
+
+  useEffect(() => {
+    schema.isValid(formState).then((valid) => {
+      console.log("valid? ", valid);
+    });
+  }, [formState]);
 
   return (
     <form
@@ -45,23 +57,23 @@ const Form = () => {
     >
       <label htmlFor="name">
         Name
-        <input type="text" name="name" className={css``} />
+        <input type="text" name="name" onChange={inputChange} />
       </label>
       <label htmlFor="email">
         Email
-        <input type="email" name="email" className={css``} />
+        <input type="email" name="email" onChange={inputChange} />
       </label>
       <label htmlFor="name">
         Password
-        <input type="password" name="password" className={css``} />
+        <input type="password" name="password" onChange={inputChange} />
       </label>
       <label htmlFor="name">
         What are your career goals?
-        <textarea name="motivation" className={css``} />
+        <textarea name="goals" onChange={inputChange} />
       </label>
       <label htmlFor="role">
         What role do you currently have?
-        <select name="roles" className={css``}>
+        <select name="role" onChange={inputChange}>
           <option value="engineer">Engineer</option>
           <option value="manager">Manager</option>
           <option value="operations">Operations</option>
@@ -69,7 +81,12 @@ const Form = () => {
         </select>
       </label>
       <label htmlFor="terms">
-        <input type="checkbox" name="terms" checked={true} />
+        <input
+          type="checkbox"
+          name="terms"
+          checked={formState.checked}
+          onChange={inputChange}
+        />
         Terms & Conditions
       </label>
 
