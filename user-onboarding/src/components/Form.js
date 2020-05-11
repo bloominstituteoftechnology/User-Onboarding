@@ -11,25 +11,9 @@ const Form = () => {
     role: "engineer",
     terms: "",
   };
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState(initialState);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [formState, setFormState] = useState(initialState);
-
-  const submitForm = (e) => {
-    e.preventDefault();
-    console.log("Form submitted");
-  };
-
-  const inputChange = (e) => {
-    console.log("input changed to: ", e.target.value);
-    const newFormData = {
-      ...formState,
-      [e.target.name]:
-        e.target.type === "checkbox" ? e.target.checked : e.target.value,
-    };
-
-    setFormState(newFormData);
-  };
 
   const schema = yup.object().shape({
     name: yup.string().required("Name is a required field!"),
@@ -40,6 +24,19 @@ const Form = () => {
     terms: yup.bool().oneOf([true], "You must accept terms..."),
   });
 
+  const validateInput = (e) => {
+    yup
+      .reach(schema, e.target.name)
+      .validate(e.target.value)
+      .then((valid) => {
+        setErrors({ ...errors, [e.target.name]: "" });
+      })
+      .catch((err) => {
+        console.log("error: ", err);
+        setErrors({ ...errors, [e.target.name]: err.errors[0] });
+      });
+  };
+
   useEffect(() => {
     schema.isValid(formState).then((valid) => {
       console.log(formState);
@@ -47,6 +44,23 @@ const Form = () => {
       setIsButtonDisabled(!valid);
     });
   }, [formState]);
+
+  console.log("error state: ", errors);
+
+  const submitForm = (e) => {
+    e.preventDefault();
+  };
+
+  const inputChange = (e) => {
+    e.persist();
+    const newFormData = {
+      ...formState,
+      [e.target.name]:
+        e.target.type === "checkbox" ? e.target.checked : e.target.value,
+    };
+    validateInput(e);
+    setFormState(newFormData);
+  };
 
   return (
     <form
@@ -64,6 +78,7 @@ const Form = () => {
           value={formState.name}
           onChange={inputChange}
         />
+        {errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
       </label>
       <label htmlFor="email">
         Email
@@ -73,6 +88,9 @@ const Form = () => {
           valeu={formState.email}
           onChange={inputChange}
         />
+        {errors.email.length > 0 ? (
+          <p className="error">{errors.email}</p>
+        ) : null}
       </label>
       <label htmlFor="name">
         Password
@@ -82,10 +100,16 @@ const Form = () => {
           value={formState.password}
           onChange={inputChange}
         />
+        {errors.password.length > 0 ? (
+          <p className="error">{errors.password}</p>
+        ) : null}
       </label>
       <label htmlFor="name">
         What are your career goals?
         <textarea name="goals" value={formState.goals} onChange={inputChange} />
+        {errors.goals.length > 0 ? (
+          <p className="error">{errors.goals}</p>
+        ) : null}
       </label>
       <label htmlFor="role">
         What role do you currently have?
