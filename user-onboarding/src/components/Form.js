@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
+import axios from "axios";
 import { css, cx } from "emotion";
 
 const Form = () => {
+  const [post, setPost] = useState([]);
   const initialState = {
     name: "",
     email: "",
@@ -49,6 +51,13 @@ const Form = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
+    axios
+      .post("https://reqres.in/api/users", formState)
+      .then((response) => {
+        setPost(response.data);
+        setFormState(initialState);
+      })
+      .catch((err) => console.log(err.response));
   };
 
   const inputChange = (e) => {
@@ -130,7 +139,7 @@ const Form = () => {
         />
         Terms & Conditions
       </label>
-
+      <pre>{JSON.stringify(post, null, 2)}</pre>
       <button type="submit" disabled={isButtonDisabled}>
         Submit
       </button>
