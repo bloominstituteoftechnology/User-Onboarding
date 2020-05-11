@@ -11,9 +11,8 @@ const Form = () => {
     role: "engineer",
     terms: "",
   };
-
   const [errors, setErrors] = useState();
-
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [formState, setFormState] = useState(initialState);
 
   const submitForm = (e) => {
@@ -34,16 +33,18 @@ const Form = () => {
 
   const schema = yup.object().shape({
     name: yup.string().required("Name is a required field!"),
-    email: yup.string().required("Email is a required field!"),
-    password: yup.string().length(6).required("Password is a required field"),
-    terms: yup.bool().oneOf([true], "You must accept terms..."),
-    role: yup.string(),
+    email: yup.string().email().required("Email is a required field!"),
+    password: yup.string().required("Password is a required field"),
     goals: yup.string().required("Have some ambition!"),
+    role: yup.string(),
+    terms: yup.bool().oneOf([true], "You must accept terms..."),
   });
 
   useEffect(() => {
     schema.isValid(formState).then((valid) => {
+      console.log(formState);
       console.log("valid? ", valid);
+      setIsButtonDisabled(!valid);
     });
   }, [formState]);
 
@@ -57,23 +58,38 @@ const Form = () => {
     >
       <label htmlFor="name">
         Name
-        <input type="text" name="name" onChange={inputChange} />
+        <input
+          type="text"
+          name="name"
+          value={formState.name}
+          onChange={inputChange}
+        />
       </label>
       <label htmlFor="email">
         Email
-        <input type="email" name="email" onChange={inputChange} />
+        <input
+          type="email"
+          name="email"
+          valeu={formState.email}
+          onChange={inputChange}
+        />
       </label>
       <label htmlFor="name">
         Password
-        <input type="password" name="password" onChange={inputChange} />
+        <input
+          type="password"
+          name="password"
+          value={formState.password}
+          onChange={inputChange}
+        />
       </label>
       <label htmlFor="name">
         What are your career goals?
-        <textarea name="goals" onChange={inputChange} />
+        <textarea name="goals" value={formState.goals} onChange={inputChange} />
       </label>
       <label htmlFor="role">
         What role do you currently have?
-        <select name="role" onChange={inputChange}>
+        <select name="role" value={formState.role} onChange={inputChange}>
           <option value="engineer">Engineer</option>
           <option value="manager">Manager</option>
           <option value="operations">Operations</option>
@@ -82,6 +98,7 @@ const Form = () => {
       </label>
       <label htmlFor="terms">
         <input
+          value={formState.terms}
           type="checkbox"
           name="terms"
           checked={formState.checked}
@@ -90,7 +107,9 @@ const Form = () => {
         Terms & Conditions
       </label>
 
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={isButtonDisabled}>
+        Submit
+      </button>
     </form>
   );
 };
