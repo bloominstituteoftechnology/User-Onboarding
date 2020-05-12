@@ -2,6 +2,13 @@ body {
   background-color: rgb(59, 244, 114);
 }
 
+h1 {
+  width: 33%;
+  margin: 30px auto;
+  text-align: center;
+  color: white;
+}
+
 form {
   padding: 20px;
   border: 1px solid rgb(189, 189, 189);
@@ -22,7 +29,7 @@ input[type="email"],
 textarea,
 select {
   display: block;
-  width: 100%;
+  width: 95%;
   margin: 10px 0;
   outline: none;
   background-color: rgb(245, 243, 243);
@@ -31,9 +38,11 @@ select {
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-  height: 30px;
+  height: 35px;
   border-radius: 5px;
   border: 1px solid rgb(196, 196, 196);
+  padding: 0 10px;
+  font-size: 16px;
 }
 
 select {
@@ -48,6 +57,20 @@ textarea {
   border-radius: 5px;
   border: 1px solid rgb(196, 196, 196);
   height: 50px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 30px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+}
+
+button:disabled {
+  background-color: rgb(82, 82, 225);
 }
 
 .error {
