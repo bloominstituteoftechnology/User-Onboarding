@@ -1,3 +1,16 @@
+body {
+  background-color: rgb(59, 244, 114);
+}
+
+form {
+  padding: 20px;
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 5px;
+  /* box-shadow: 3px 3px 7px #dfdfdf; */
+  color: rgb(79, 79, 79);
+  background-color: white;
+}
+
 label {
   display: block;
 }
@@ -10,4 +23,33 @@ textarea,
 select {
   display: block;
   width: 100%;
+  margin: 10px 0;
+  outline: none;
+  background-color: rgb(245, 243, 243);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid rgb(196, 196, 196);
+}
+
+select {
+  color: rgb(79, 79, 79);
+  background-color: white;
+  height: 25px;
+  font-size: 16px;
+  height: 30px;
+}
+
+textarea {
+  border-radius: 5px;
+  border: 1px solid rgb(196, 196, 196);
+  height: 50px;
+}
+
+.error {
+  color: red;
 }

@@ -94,7 +94,7 @@ const Form = () => {
         <input
           type="email"
           name="email"
-          valeu={formState.email}
+          value={formState.email}
           onChange={inputChange}
         />
         {errors.email.length > 0 ? (
