@@ -137,8 +137,8 @@ html {
   top: 0;
   width: 100%;
   height: 50px;
-  border-bottom-style: solid;
-  background-color: #dad4d4;
+  border-bottom-style: solid ;
+  background-color: #5c3737;
 }
 .header h3 {
   /*text-shadow: 1px 1px grey;*/
