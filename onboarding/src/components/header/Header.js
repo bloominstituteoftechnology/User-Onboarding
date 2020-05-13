@@ -9,7 +9,7 @@ const Header = props => {
     console.log(window.location.pathname);
     return (
 
-        <div className="header" >
+        <header>
             <h3>My Lambda Team (webpt16)</h3>
 
             <Link to="/add">
@@ -20,9 +20,7 @@ const Header = props => {
                 <div className="button">Home</div>
 
             </Link>
-
-
-        </div>
+        </header>
 
     );
 
