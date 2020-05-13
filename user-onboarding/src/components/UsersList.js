@@ -13,16 +13,23 @@ const UsersList = (props) => {
       `}
     >
       <h2>Users List</h2>
-      <ul
+      <div
         className={css`
           list-style: none;
+          justify-content: flex-start;
         `}
       >
         {users.map((user) => {
           return (
-            <li>
-              {user.email}{" "}
-              <span>
+            <div
+              className={css`
+                display: flex;
+                justify-content: flex-end;
+                padding: 10px;
+              `}
+            >
+              <div className={css``}>{user.email} </div>
+              <div>
                 <button
                   className={css`
                     margin-left: 20px;
@@ -33,11 +40,11 @@ const UsersList = (props) => {
                 >
                   Edit
                 </button>
-              </span>
-            </li>
+              </div>
+            </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 };
