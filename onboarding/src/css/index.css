@@ -137,8 +137,9 @@ header {
   top: 0;
   width: 100%;
   height: 50px;
+  border: black;
   border-bottom-style: solid ;
-  background-color: #c9bfd3;
+  background-color: #c0b3ce;
 }
 header h3 {
   /*text-shadow: 1px 1px grey;*/
@@ -149,12 +150,19 @@ header .button {
   justify-content: space-evenly;
   align-items: center;
   border-radius: 10px;
-  background-color: #5a5a66;
+  background-color: #050546;
   padding: 5px;
-  color: white;
+  color: #d8d4d4;
   box-shadow: 1px 1px grey;
+  height: 2rem;
 }
 header a {
   color: unset;
   text-decoration: unset;
+}
+.myBody {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1%;
 }
