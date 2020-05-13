@@ -4,6 +4,7 @@ import axios from "axios";
 import { css, cx } from "emotion";
 import UsersList from "./UsersList";
 import Loader from "react-loader-spinner";
+import UserCard from "./UserCard";
 
 const Form = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -104,6 +105,10 @@ const Form = () => {
     setIsEditing(false);
   };
 
+  const deleteUser = (user) => {
+    return setUsers(users.filter((u) => u.id !== user.id));
+  };
+
   return (
     <div
       className="main"
@@ -195,7 +200,11 @@ const Form = () => {
           {isEditing ? "Update User" : "Submit"}
         </button>
       </form>
-      <UsersList setUserForEditing={setUserForEditing} users={users} />
+      <UsersList
+        deleteUser={deleteUser}
+        setUserForEditing={setUserForEditing}
+        users={users}
+      />
     </div>
   );
 };

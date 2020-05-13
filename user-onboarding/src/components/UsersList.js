@@ -1,8 +1,9 @@
 import React from "react";
 import { css, cx } from "emotion";
+import UserCard from "./UserCard";
 
 const UsersList = (props) => {
-  const { users, setUserForEditing } = props;
+  const { deleteUser, users, setUserForEditing } = props;
   return (
     <div
       className={css`
@@ -21,27 +22,11 @@ const UsersList = (props) => {
       >
         {users.map((user) => {
           return (
-            <div
-              className={css`
-                display: flex;
-                justify-content: flex-end;
-                padding: 10px;
-              `}
-            >
-              <div className={css``}>{user.email} </div>
-              <div>
-                <button
-                  className={css`
-                    margin-left: 20px;
-                    background-color: gold;
-                    align-self: auto;
-                  `}
-                  onClick={() => setUserForEditing(user)}
-                >
-                  Edit
-                </button>
-              </div>
-            </div>
+            <UserCard
+              deleteUser={deleteUser}
+              setUserForEditing={setUserForEditing}
+              user={user}
+            />
           );
         })}
       </div>
