@@ -14,6 +14,7 @@ const UserCard = (props) => {
           margin: 10px 0;
           display: flex;
           justify-content: space-between;
+          box-shadow: 5px 5px 5px lightgray;
         `)
       }
     >
@@ -59,7 +60,13 @@ const UserCard = (props) => {
             `)
           }
         >
-          <img src="https://source.unsplash.com/random/100x100" alt="" />
+          <img
+            src="https://source.unsplash.com/random/100x100"
+            alt=""
+            className={css`
+              border-radius: 50%;
+            `}
+          />
           <button
             className={css`
               margin-left: 20px;

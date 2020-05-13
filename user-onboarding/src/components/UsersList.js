@@ -7,10 +7,12 @@ const UsersList = (props) => {
   return (
     <div
       className={css`
+        border-radius: 5px;
         padding: 30px;
         width: 33%;
         background-color: white;
         margin-right: 30px;
+        color: gray;
       `}
     >
       <h2>Users List</h2>

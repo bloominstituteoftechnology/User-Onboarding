@@ -17,6 +17,7 @@ const Form = () => {
     role: "engineer",
     terms: "",
   };
+
   const [errors, setErrors] = useState(initialState);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [formState, setFormState] = useState(initialState);
@@ -60,10 +61,10 @@ const Form = () => {
 
   console.log("error state: ", errors);
 
-  const submitForm = (e) => {
-    e.preventDefault();
+  const submitForm = async (e) => {
     setIsLoading(true);
-    axios
+    e.preventDefault();
+    await axios
       .post("https://reqres.in/api/users", formState)
       .then((response) => {
         setPost([response.data]);
