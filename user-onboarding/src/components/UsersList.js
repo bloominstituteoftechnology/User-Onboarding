@@ -2,7 +2,7 @@ import React from "react";
 import { css, cx } from "emotion";
 
 const UsersList = (props) => {
-  const { users } = props;
+  const { users, setUserForEditing } = props;
   return (
     <div
       className={css`
@@ -13,9 +13,29 @@ const UsersList = (props) => {
       `}
     >
       <h2>Users List</h2>
-      <ul>
+      <ul
+        className={css`
+          list-style: none;
+        `}
+      >
         {users.map((user) => {
-          return <li>{user.email}</li>;
+          return (
+            <li>
+              {user.email}{" "}
+              <span>
+                <button
+                  className={css`
+                    margin-left: 20px;
+                    background-color: gold;
+                    align-self: auto;
+                  `}
+                  onClick={() => setUserForEditing(user)}
+                >
+                  Edit
+                </button>
+              </span>
+            </li>
+          );
         })}
       </ul>
     </div>

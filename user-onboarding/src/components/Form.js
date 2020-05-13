@@ -3,8 +3,10 @@ import * as yup from "yup";
 import axios from "axios";
 import { css, cx } from "emotion";
 import UsersList from "./UsersList";
+import Loader from "react-loader-spinner";
 
 const Form = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [post, setPost] = useState([]);
   const initialState = {
     name: "",
@@ -18,6 +20,8 @@ const Form = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [formState, setFormState] = useState(initialState);
   const [users, setUsers] = useState([]);
+  const [userToEdit, setUserToEdit] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
 
   const schema = yup.object().shape({
     name: yup.string().required("Name is a required field!"),
@@ -41,6 +45,10 @@ const Form = () => {
       });
   };
 
+  // useEffect(() => {
+  //   setFormState(userToEdit);
+  // }, userToEdit);
+
   useEffect(() => {
     schema.isValid(formState).then((valid) => {
       console.log(formState);
@@ -53,6 +61,7 @@ const Form = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     axios
       .post("https://reqres.in/api/users", formState)
       .then((response) => {
@@ -60,6 +69,7 @@ const Form = () => {
         setUsers([...users, response.data]);
         setFormState(initialState);
       })
+      .then(setIsLoading(false))
       .catch((err) => console.log(err.response));
   };
 
@@ -74,6 +84,26 @@ const Form = () => {
     setFormState(newFormData);
   };
 
+  const setUserForEditing = (user) => {
+    setIsEditing(true);
+    setFormState(user);
+  };
+
+  const editUser = (event) => {
+    event.preventDefault();
+    let newUsers = [...users];
+    if (isEditing) {
+      console.log();
+      const index = users.findIndex((user) => user.id === formState.id);
+      newUsers[index] = formState;
+      setUsers(newUsers);
+      setFormState(initialState);
+      setUserToEdit(initialState);
+      console.log({ newUsers });
+    }
+    setIsEditing(false);
+  };
+
   return (
     <div
       className="main"
@@ -82,7 +112,7 @@ const Form = () => {
       `}
     >
       <form
-        onSubmit={submitForm}
+        onSubmit={isEditing ? editUser : submitForm}
         className={css`
           width: 40%;
           margin: auto;
@@ -156,15 +186,16 @@ const Form = () => {
           />
           Terms & Conditions
         </label>
-        {
-          // console.log("post.length: ", post.length)
-          post.length > 0 ? <pre>{JSON.stringify(post, null, 2)}</pre> : null
-        }
+        {isLoading ? (
+          <Loader />
+        ) : post.length > 0 ? (
+          <pre>{JSON.stringify(post, null, 2)}</pre>
+        ) : null}
         <button type="submit" disabled={isButtonDisabled}>
-          Submit
+          {isEditing ? "Update User" : "Submit"}
         </button>
       </form>
-      <UsersList users={users} />
+      <UsersList setUserForEditing={setUserForEditing} users={users} />
     </div>
   );
 };
