@@ -15,7 +15,7 @@ const Form = () => {
     password: "",
     goals: "",
     role: "engineer",
-    terms: "",
+    // checked: false,
   };
 
   const [errors, setErrors] = useState(initialState);
@@ -42,24 +42,15 @@ const Form = () => {
         setErrors({ ...errors, [e.target.name]: "" });
       })
       .catch((err) => {
-        console.log("error: ", err);
         setErrors({ ...errors, [e.target.name]: err.errors[0] });
       });
   };
 
-  // useEffect(() => {
-  //   setFormState(userToEdit);
-  // }, userToEdit);
-
   useEffect(() => {
     schema.isValid(formState).then((valid) => {
-      console.log(formState);
-      console.log("valid? ", valid);
       setIsButtonDisabled(!valid);
     });
   }, [formState]);
-
-  console.log("error state: ", errors);
 
   const submitForm = async (e) => {
     setIsLoading(true);
@@ -82,6 +73,7 @@ const Form = () => {
       [e.target.name]:
         e.target.type === "checkbox" ? e.target.checked : e.target.value,
     };
+    console.log({ newFormData });
     validateInput(e);
     setFormState(newFormData);
   };
@@ -95,13 +87,12 @@ const Form = () => {
     event.preventDefault();
     let newUsers = [...users];
     if (isEditing) {
-      console.log();
       const index = users.findIndex((user) => user.id === formState.id);
       newUsers[index] = formState;
       setUsers(newUsers);
       setFormState(initialState);
       setUserToEdit(initialState);
-      console.log({ newUsers });
+      // console.log({ newUsers });
     }
     setIsEditing(false);
   };
@@ -184,10 +175,10 @@ const Form = () => {
         </label>
         <label htmlFor="terms">
           <input
-            value={formState.terms}
+            // value={formState.checked}
             type="checkbox"
             name="terms"
-            checked={formState.checked}
+            checked={formState.terms}
             onChange={inputChange}
           />
           Terms & Conditions
