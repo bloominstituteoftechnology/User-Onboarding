@@ -139,7 +139,7 @@ header {
   height: 50px;
   border: black;
   border-bottom-style: solid ;
-  background-color: #c0b3ce;
+  background-color: #7d87a3;
 }
 header h3 {
   /*text-shadow: 1px 1px grey;*/
@@ -153,7 +153,7 @@ header .button {
   background-color: #050546;
   padding: 5px;
   color: #d8d4d4;
-  box-shadow: 1px 1px grey;
+  box-shadow: 1px 1px black;
   height: 2rem;
 }
 header a {
@@ -165,4 +165,43 @@ header a {
   justify-content: center;
   width: 100%;
   margin-top: 1%;
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+  max-width: 300px;
+  margin: 0 auto;
+  background-color: #7d87a3;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 1px 1px black;
+}
+form label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px 0;
+  font-size: 1.4rem;
+}
+form .formTerms {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 1.4rem;
+}
+form .error {
+  color: red;
+  margin: 2px;
+  font-size: 1rem;
+}
+form .role {
+  display: flex;
+  align-items: flex-start;
+}
+form .role select {
+  width: 145px;
 }
