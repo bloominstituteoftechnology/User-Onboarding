@@ -8,11 +8,19 @@ const formSchema = yup.object().shape({
     email: yup
         .string()
         .email("Must be a valid email address")
-        .matches(/^(?!waffle@syrop.com$)/, "Email already in use")
+        .matches(/^(?!waffle@syrup.com$)/, "Email already in use")
         .required("Must include email address"),
     role : yup
         .string(),    
     password: yup.string().required("Password is a rerquired field"),
+    zip: yup
+        .string()
+        .matches(/^\d{5}/, "Zip code is not valid"),
+    git: yup 
+        .string ()  
+        .matches(/github/, "Must ne a valid GitHub address"),
+    experience: yup
+        .string(),    
     terms: yup.boolean().oneOf([true], "Please agree to terms of use")
 });
 
@@ -25,6 +33,9 @@ const NewUserFrom = (props) => {
         email: "",
         role: "",
         password: "",
+        zip: "",
+        git: "",
+        experience: "",
         terms: false
     });
 
@@ -34,6 +45,9 @@ const NewUserFrom = (props) => {
         email: "",
         role: "",
         password: "",
+        zip: "",
+        git: "",
+        experience: "",
         terms: ""
     });
 
@@ -94,6 +108,9 @@ const NewUserFrom = (props) => {
               email: "",
               role: "",
               password: "",
+              zip: "",
+              git: "",
+              experience: "",
               terms: ""
             
             });
@@ -161,6 +178,53 @@ const NewUserFrom = (props) => {
           <p className="error">{errorState.password}</p>
         ) : null}
       </label>
+
+      <label htmlFor="zip">
+        Zip code
+        <input
+          type="text"
+          name="zip"
+          id="zip"
+          value={formState.zip}
+          onChange={inputChange}
+        />
+        {errorState.zip.length > 0 ? (
+          <p className="error">{errorState.zip}</p>
+        ) : null}
+      </label>
+
+      <label htmlFor="git">
+        Git Hub
+        <input
+          type="text"
+          name="git"
+          id="git"
+          value={formState.git}
+          onChange={inputChange}
+        />
+        {errorState.git.length > 0 ? (
+          <p className="error">{errorState.git}</p>
+        ) : null}
+      </label>
+
+      <label className="role" htmlFor="role">
+        Years of Experience?
+        <select
+          value={formState.experience}
+          name="experience"
+          id="experience"
+          onChange={inputChange}
+        >
+          <option value="1 Year">1 Year</option>
+          <option value="2 Yeras">2 Years</option>
+          <option value="3 Yeras">3 Years</option>
+          <option value="4+ Years">4+ Years</option>
+        </select>
+        {errorState.experience.length > 0 ? (
+          <p className="error">{errorState.experience}</p>
+        ) : null}
+      </label>
+
       <label className="formTerms" htmlFor="terms">
         <input
           type="checkbox"
@@ -182,6 +246,3 @@ const NewUserFrom = (props) => {
 }
 
 export default NewUserFrom;
-
-/*/* displaying our post request data 
-<pre>{JSON.stringify(post, null, 2)}</pre>*/
