@@ -12,14 +12,14 @@ const Header = props => {
         <header>
             <h3>User Onboarding</h3>
 
-            {/*<Link to="/add">
+            <Link to="/add">
                 <div className="button">Add Member</div>
 
             </Link>
             <Link to="/" >
                 <div className="button">Home</div>
 
-            </Link>*/}
+            </Link>
         </header>
 
     );
