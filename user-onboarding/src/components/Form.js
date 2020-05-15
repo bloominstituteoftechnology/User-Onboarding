@@ -120,6 +120,7 @@ const Form = () => {
           <input
             type="text"
             name="name"
+            cy-data="name"
             value={formState.name}
             onChange={inputChange}
           />
@@ -130,6 +131,7 @@ const Form = () => {
         <label htmlFor="email">
           Email
           <input
+            cy-data="email"
             type="email"
             name="email"
             value={formState.email}
