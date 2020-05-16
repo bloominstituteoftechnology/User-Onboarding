@@ -2,27 +2,26 @@ import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Form from "./componet/Form";
-// import MemberCard from './componet/MemberCard';
+//import Data from "./componet/Data"
 
 
 
 function App() {
-  const [member, setMember] = useState([])
-  const addnewMember = memb => {
-    const newMember = {
-      id: Date.now(),
-      name: memb.name,
-      email: memb.email,
-      password: memb.password
-    };
-    setMember([...member, newMember]);
-  };
+  // const [userList,setUserList] = useState([])
+  // const addnewUser = user => {
+  //   const newMember = {
+  //     id: Date.now(),
+  //     name: user.name,
+  //     email: user.email,
+  //     password: user.password
+  //   };
+  //   setUserList([...userList, newMember]);
+  // };
   
   
   return (
     <div className="App">
-      <Form addnewMember = {addnewMember}/>
-      
+      <Form/>
     </div>
   );
 }
