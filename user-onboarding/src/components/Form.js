@@ -156,9 +156,9 @@ function Form() {
           <option value="web-developer">Web Developer</option>
           <option value="ios-developer">iOS Developer</option>
           <option value="UX Designer">UX Designer</option>
-          <option value="Intern">Intern</option>
+          {/* <option value="Intern">Intern</option>
           <option value="Product Manager">Product Manager</option>
-          <option value="Jeff Bezos Vest">Jeff Bezos Vest</option>
+          <option value="Jeff Bezos Vest">Jeff Bezos Vest</option> */}
         </select>
       </label>
 
