@@ -14,7 +14,7 @@ const formSchema = yup.object().shape({
 });
 
 function Form() {
-  //managing state for form inputs
+  // Managing state for form inputs
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -128,6 +128,7 @@ function Form() {
         Password
         <input
           id="password"
+          // 'password' to show *****
           type="password"
           name="password"
           value={formState.password}
@@ -157,7 +158,7 @@ function Form() {
           <option value="UX Designer">UX Designer</option>
           <option value="Intern">Intern</option>
           <option value="Product Manager">Product Manager</option>
-          <option value="Jeff Bezos Vest">Jeff Bezos' Vest</option>
+          <option value="Jeff Bezos Vest">Jeff Bezos Vest</option>
         </select>
       </label>
 
