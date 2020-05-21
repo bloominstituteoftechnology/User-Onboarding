@@ -153,8 +153,11 @@ function Form() {
         Roles
         <select id="roles" name="roles" onChange={inputChange}>
           <option value="web-developer">Web Developer</option>
-          <option value="ios-developer">IOS Developer</option>
+          <option value="ios-developer">iOS Developer</option>
           <option value="UX Designer">UX Designer</option>
+          <option value="Intern">Intern</option>
+          <option value="Product Manager">Product Manager</option>
+          <option value="Jeff Bezos Vest">Jeff Bezos' Vest</option>
         </select>
       </label>
 
