@@ -30,6 +30,9 @@ function Form() {
         terms: ''
     });
 
+    const [post, setPost] = useState([]);
+    const [serverError, setServerError] = useState('');
+
     const onInputChange = e => {
         e.persist()
         validateChange(e)
@@ -43,12 +46,12 @@ function Form() {
     const formSchema = yup.object().shape({
         name: yup.string().required('Name is a required field'),
         email: yup.string().required('Must be a valid email address'),
-        password: yup.string().required('please enter your password')
+        password: yup.string().required('Please enter your password')
             .matches(
                 "^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{10,}$",
                 "Must Contain 10 Characters, One Uppercase, One Lowercase, and one special case Character"
             ),
-        terms: yup.boolean().oneOf([true])
+        terms: yup.boolean().oneOf([true]).required('Please agree to our Terms of Service')
     });
 
     const validateChange = e => {
@@ -77,7 +80,21 @@ function Form() {
                 console.log('valid?', valid);
                 setIsButtonDisabled(!valid);
             })
-    }, [formData])
+    }, [formData]);
+
+    useEffect(() => {
+        axios.post('https://reqres.in/api/users', formData)
+            .then(res => {
+                // console.log('from axios', res);
+                setPost(res.data);
+                console.log('API success!');
+                setServerError(null);
+            })
+            .catch(res => {
+                setServerError('Wait, What?!');
+            });
+    }, []);
+
 
 
     return (
@@ -90,6 +107,7 @@ function Form() {
                         name='name'
                         id='name'
                         onChange={onInputChange} />
+                    {errors.name.length > 0 ? <p className='errors'>{errors.name}</p> : null}
                 </label>
             </form>
             <form>
@@ -100,6 +118,7 @@ function Form() {
                         name='email'
                         id='email'
                         onChange={onInputChange} />
+                    {errors.email.length > 0 ? (<p className='error'>{errors.email}</p>) : null}
                 </label>
             </form>
             <form>
@@ -110,6 +129,7 @@ function Form() {
                         name='password'
                         id='password'
                         onChange={onInputChange} />
+                    {errors.password.length > 0 ? (<p className='error'>{errors.password}</p>) : null}
                 </label>
             </form>
             <form>
@@ -120,6 +140,7 @@ function Form() {
                         type='checkbox'
                         checked={formData.checked}
                         onChange={onInputChange} />
+                    {errors.terms.length > 0 ? (<p className='error'>{errors.terms}</p>) : null}
                 </label>
             </form>
             <form>
