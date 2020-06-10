@@ -52,7 +52,7 @@ function Form() {
                 "^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{10,}$",
                 "Must Contain 10 Characters, One Uppercase, One Lowercase, and one special case Character"
             ),
-        terms: yup.boolean().oneOf([true]).required('Please agree to our Terms of Service')
+        terms: yup.boolean().oneOf([true], 'Please agree to our Terms of Service')
     });
 
     const validateChange = e => {
@@ -102,10 +102,16 @@ function Form() {
             });
     }, []);
 
+    // const newUserRender(e => {
+    //             <pre>{JSON.stringify(post, null, 2)}</pre>
+    //         })
+
 
 
     return (
-        <FormDiv onSubmit={event => { event.preventDefault() }}>
+        <FormDiv onSubmit={event => {
+            event.preventDefault();
+        }}>
             <form>
                 <label htmlFor='name'>
                     Name:
