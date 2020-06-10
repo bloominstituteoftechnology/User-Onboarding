@@ -32,6 +32,7 @@ function Form() {
 
     const [post, setPost] = useState([]);
     const [serverError, setServerError] = useState('');
+    const [user, setUser] = useState([]);
 
     const onInputChange = e => {
         e.persist()
@@ -89,6 +90,12 @@ function Form() {
                 setPost(res.data);
                 console.log('API success!');
                 setServerError(null);
+                setFormData({
+                    name: '',
+                    email: '',
+                    password: '',
+                    terms: true
+                });
             })
             .catch(res => {
                 setServerError('Wait, What?!');
@@ -145,6 +152,7 @@ function Form() {
             </form>
             <form>
                 <input disabled={isButtonDisabled} type='submit' />
+                <pre>{JSON.stringify(post, null, 2)}</pre>
             </form>
         </FormDiv >
     )
