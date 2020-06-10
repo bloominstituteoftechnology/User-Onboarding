@@ -16,8 +16,13 @@ const FormDiv = styled.div`
 `;
 
 function Form() {
-    const [formData, setFormData] = useState([]);
-    const [isButtonDisabled, setisButtonDisabled] = useState(true);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        terms: true
+    });
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [errors, setErrors] = useState({
         name: '',
         email: '',
@@ -25,49 +30,86 @@ function Form() {
         terms: ''
     });
 
+    const onInputChange = e => {
+        e.persist()
+        validateChange(e)
+        setFormData({
+            ...formData,
+            [e.target.name]:
+                e.target.name === 'terms' ? e.target.checked : e.target.value
+        })
+    };
+
     const formSchema = yup.object().shape({
         name: yup.string().required('Name is a required field'),
         email: yup.string().required('Must be a valid email address'),
         password: yup.string().required('please enter your password')
             .matches(
-                "^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$",
-                "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+                "^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{10,}$",
+                "Must Contain 10 Characters, One Uppercase, One Lowercase, and one special case Character"
             ),
-        terms: yup.boolean().oneOf([true], 'please, agree to our Terms of Service'),
+        terms: yup.boolean().oneOf([true])
     });
+
+    const validateChange = e => {
+        yup
+            .reach(formSchema, e.target.name)
+            .validate(e.target.name === 'terms' ? e.target.checked : e.target.value)
+            .then(valid => {
+                setErrors({
+                    ...errors,
+                    [e.target.name]: ""
+                });
+            })
+            .catch(err => {
+                console.log('from catch', err)
+                setErrors({
+                    ...errors,
+                    [e.target.name]: err.errors[0]
+
+                });
+            });
+    };
 
     useEffect(() => {
         formSchema.isValid(formData)
             .then(valid => {
                 console.log('valid?', valid);
-                setisButtonDisabled(!valid);
-                setErrors(formData);
+                setIsButtonDisabled(!valid);
             })
     }, [formData])
 
 
     return (
-        <FormDiv>
+        <FormDiv onSubmit={event => { event.preventDefault() }}>
             <form>
                 <label htmlFor='name'>
                     Name:
                     <input
-                        type='text' name='name' id='name' />
+                        type='text'
+                        name='name'
+                        id='name'
+                        onChange={onInputChange} />
                 </label>
             </form>
             <form>
                 <label htmlFor='email'>
                     Email:
                     <input
-                        type='email' name='email' id='email' />
+                        type='email'
+                        name='email'
+                        id='email'
+                        onChange={onInputChange} />
                 </label>
             </form>
             <form>
                 <label htmlFor='password'>
                     Password:
                     <input
-                        type='password' name='password'
-                        id='password' />
+                        type='password'
+                        name='password'
+                        id='password'
+                        onChange={onInputChange} />
                 </label>
             </form>
             <form>
@@ -76,13 +118,14 @@ function Form() {
                     <input
                         name='terms'
                         type='checkbox'
-                        checked={false} />
+                        checked={formData.checked}
+                        onChange={onInputChange} />
                 </label>
             </form>
             <form>
-                <input type='submit' />
+                <input disabled={isButtonDisabled} type='submit' />
             </form>
-        </FormDiv>
+        </FormDiv >
     )
 };
 
