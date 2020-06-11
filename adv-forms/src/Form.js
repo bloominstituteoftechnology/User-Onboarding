@@ -134,6 +134,7 @@ function Form() {
                     <InputStyles
                         type='text'
                         name='name'
+                        data-cy="name"
                         id='name'
                         onChange={onInputChange} />
                     {errors.name.length > 0 ? <ParagStyles className='errors'>{errors.name}</ParagStyles> : null}
@@ -145,6 +146,7 @@ function Form() {
                     <InputStyles
                         type='email'
                         name='email'
+                        data-cy="email"
                         id='email'
                         onChange={onInputChange} />
                     {errors.email.length > 0 ? (<ParagStyles className='error'>{errors.email}</ParagStyles>) : null}
@@ -156,6 +158,7 @@ function Form() {
                     <InputStyles
                         type='password'
                         name='password'
+                        data-cy="password"
                         id='password'
                         onChange={onInputChange} />
                     {errors.password.length > 0 ? (<ParagStyles className='error'>{errors.password}</ParagStyles>) : null}
