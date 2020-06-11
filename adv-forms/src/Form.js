@@ -99,7 +99,8 @@ function Form() {
             })
     }, [formData]);
 
-    useEffect(() => {
+    const submitData = e => {
+        e.preventDefault();
         axios.post('https://reqres.in/api/users', formData)
             .then(res => {
                 // console.log('from axios', res);
@@ -116,7 +117,7 @@ function Form() {
             .catch(res => {
                 setServerError('Wait, What?!');
             });
-    }, []);
+    };
 
     // const newUserRender(e => {
     //             <pre>{JSON.stringify(post, null, 2)}</pre>
@@ -125,9 +126,7 @@ function Form() {
 
 
     return (
-        <FormDiv onSubmit={event => {
-            event.preventDefault();
-        }}>
+        <FormDiv onSubmit={submitData}>
             <form>
                 <ParagStyles>***All fields are required***</ParagStyles>
                 <label htmlFor='name'>
