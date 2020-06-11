@@ -129,6 +129,7 @@ export default function Form() {
           id="name"
           type="text"
           name="name"
+          data-cy="name"
           onChange={inputChange}
           value={formState.name}
         />
@@ -140,6 +141,7 @@ export default function Form() {
           id="email"
           type="text"
           name="email"
+          data-cy="email"
           onChange={inputChange}
           value={formState.email}
         />
@@ -153,6 +155,7 @@ export default function Form() {
         <input
           type="password"
           name="password"
+          data-cy="password"
           id="password"
           placeholder="Please enter your password"
           value={formState.password}
@@ -177,7 +180,7 @@ export default function Form() {
           <p className="error">{errors.terms}</p>
         ) : null}
       </label>
-      <button type="submit" disabled={buttonDisabled}>
+      <button type="submit" data-cy="submit" disabled={buttonDisabled}>
         Submit
       </button>
       <pre>{JSON.stringify(post, null, 2)}</pre>
