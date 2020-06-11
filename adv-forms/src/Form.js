@@ -8,11 +8,10 @@ const FormDiv = styled.div`
     height: 80vh;
     display:flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     font-weight: bold;
     background-color: #acf2ef;
-    margin: 0 auto;
 `;
 
 function Form() {
