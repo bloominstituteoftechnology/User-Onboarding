@@ -12,6 +12,23 @@ const FormDiv = styled.div`
     align-items: center;
     font-weight: bold;
     background-color: #acf2ef;
+    border: 10px ridge darkcyan;
+`;
+
+const InputStyles = styled.input`
+    width: 80%;
+    border:2px ridge darkcyan;
+`;
+
+const ParagStyles = styled.p`
+    margin: 0 auto;
+    color:lightseagreen;
+    text-shadow: 2px 2px grey;
+`;
+
+const PreStyles = styled.pre`
+    background-color: lightgrey;
+    border:3px ridge grey;
 `;
 
 function Form() {
@@ -112,36 +129,37 @@ function Form() {
             event.preventDefault();
         }}>
             <form>
+                <ParagStyles>***All fields are required***</ParagStyles>
                 <label htmlFor='name'>
-                    Name:
-                    <input
+                    Name
+                    <InputStyles
                         type='text'
                         name='name'
                         id='name'
                         onChange={onInputChange} />
-                    {errors.name.length > 0 ? <p className='errors'>{errors.name}</p> : null}
+                    {errors.name.length > 0 ? <ParagStyles className='errors'>{errors.name}</ParagStyles> : null}
                 </label>
             </form>
             <form>
                 <label htmlFor='email'>
-                    Email:
-                    <input
+                    Email
+                    <InputStyles
                         type='email'
                         name='email'
                         id='email'
                         onChange={onInputChange} />
-                    {errors.email.length > 0 ? (<p className='error'>{errors.email}</p>) : null}
+                    {errors.email.length > 0 ? (<ParagStyles className='error'>{errors.email}</ParagStyles>) : null}
                 </label>
             </form>
             <form>
                 <label htmlFor='password'>
-                    Password:
-                    <input
+                    Password
+                    <InputStyles
                         type='password'
                         name='password'
                         id='password'
                         onChange={onInputChange} />
-                    {errors.password.length > 0 ? (<p className='error'>{errors.password}</p>) : null}
+                    {errors.password.length > 0 ? (<ParagStyles className='error'>{errors.password}</ParagStyles>) : null}
                 </label>
             </form>
             <form>
@@ -152,12 +170,12 @@ function Form() {
                         type='checkbox'
                         checked={formData.checked}
                         onChange={onInputChange} />
-                    {errors.terms.length > 0 ? (<p className='error'>{errors.terms}</p>) : null}
+                    {errors.terms.length > 0 ? (<ParagStyles className='error'>{errors.terms}</ParagStyles>) : null}
                 </label>
             </form>
             <form>
                 <input disabled={isButtonDisabled} type='submit' />
-                <pre>{JSON.stringify(post, null, 2)}</pre>
+                <PreStyles>{JSON.stringify(post, null, 2)}</PreStyles>
             </form>
         </FormDiv >
     )
