@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import * as yup from 'yup'
+import axios from 'axios'
 
 const Form = props => {
 
@@ -37,6 +38,9 @@ const Form = props => {
         gender:""
     })
 
+    const[post,setPost] =useState()
+console.log(post,"post")
+
     useEffect(()=>{
         formschema.isValid(member).then(valid=>{
             setButtonDisabled(!valid);
@@ -62,11 +66,17 @@ const Form = props => {
         })
     }
 
+
     return(
         
         <form onSubmit={(event) => {
             event.preventDefault();
             setMember({name:'',email:'',password:'',gender:'',isChecked:'',})
+            axios.post('https://reqres.in/api/users', member)
+                .then( resp =>{let newUser = resp.data
+                    setPost(newUser)
+                })
+                .catch( err => {console.log(err)})
             }
         }>
             <label>Sign In</label><br/>
@@ -88,6 +98,7 @@ const Form = props => {
             {errors.gender.length > 0 ? <p>**{errors.gender}</p>:null}
             <input type="checkbox" name="isChecked" checked={member.isChecked} onChange={eventHandler}></input><label>I agree to the Terms</label> <br/>
             {errors.isChecked.length > 0 ? <p>{errors.isChecked}</p>:null}
+            <pre>{JSON.stringify(post, null, 2)}</pre>
             <button disabled={buttonDisabled}>SubmIt</button>
         </form>)
 }
