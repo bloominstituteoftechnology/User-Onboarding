@@ -76,6 +76,7 @@ return (
             name="name"
             onChange={handleChange}
             value={member.name}
+            data-cy="name"
             />
              {errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
         </label>
@@ -88,6 +89,7 @@ return (
             name="email"
             onChange={handleChange}
             value={member.email}
+            data-cy="email"
             />
              {errors.email.length > 0 ? ( <p className="error">{errors.email}</p> ) : null}
         </label>
@@ -100,6 +102,7 @@ return (
             name="password"
             onChange={handleChange}
             value={member.password}
+            data-cy="password"
             />
             {errors.password.length > 0 ? <p className="error">{errors.password}</p> : null}
           </label>
@@ -111,11 +114,12 @@ return (
             name="terms"
             checked={member.terms}
             onChange={handleChange}
+            data-cy="terms"
             />
             Terms and Conditions
         </label>
         <br /><br />
-        <button type="submit" disabled={buttonDisabled}>
+        <button type="submit" data-cy="submit" disabled={buttonDisabled}>
             Submit
         </button>
         <pre>{JSON.stringify(post, null, 2)}</pre>
