@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
+html,
+body,
+.App,
+#root {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 40px;
+}
+
+
+.App {
+  font-family: 'Anton', sans-serif;;
+  text-align: center;
+  background: url('https://i.postimg.cc/ryCg5z41/lambda-logo.png') ;
+  background-color: slategray;
+  background-repeat: no-repeat;
+
+  padding: 32px;
+  letter-spacing: 2px
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px 0;
+  font-size: 1.4rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  margin: 5px 0 0;
+ 
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+  transition: all 0.3s;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  background-color: whitesmoke;
+}
+select {
+  height: 60px;
+  width: 325px;
+}
+
+select:focus {
+  outline: none;
+  border-color: maroon;
+}
+
+input:focus {
+  outline: none;
+  border-color: maroon;
+}
+
+input:placeholder {
+  color: #a8b2b2;
+}
+
+button {
+  width: 150px;
+  display: inline-block;
+  background: maroon;
+  background-image: linear-gradient(-315deg, maroon 40%, black 100%);
+  border: 1px solid maroon;
+  padding: 8px 11px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  font-size: 16px;
+  color: whitesmoke;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.12), 0 2px 2px 1px rgba(0, 0, 0, 0.24);
+  transition: all 0.2 ease-in;
+   cursor: pointer;
+}
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.12), 0 2px 3px 2px rgba(0, 0, 0, 0.24);
+  background: maroon;
+  background-image: linear-gradient(-315deg, black 40%, maroon 100%);
+}
+
+/* button:active {
+  background:black;
+          box-shadow: inset 0px 0px 5px black;
+   outline: none;
+} */
+
+button:disabled {
+  background-image: none;
+  background-color: whitesmoke;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.1);
+  cursor: not-allowed;
+}
+
+.error {
+  font-size: 1.2rem;
+  color: #8B0000;
+}
+
+.terms {
+  display: inline-block;
+  align-self: self-start;
+}
+
+.terms input {
+  width: 15px;
+  display: inline-block;
+  margin-right: 5px;
+}
