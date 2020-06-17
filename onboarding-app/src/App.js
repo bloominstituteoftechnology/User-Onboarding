@@ -4,6 +4,7 @@ import Form from "./Form";
 import User from "./Users";
 import * as Yup from "yup";
 import formSchema from "./formSchema";
+import axios from "axios";
 
 const initialFormValues = {
   name: "",
@@ -81,7 +82,21 @@ function App() {
 
     setUsers([...userList, newUser]);
 
-    setFormValues(initialFormValues);
+    postNewUser(newUser);
+  };
+
+  const postNewUser = (newUser) => {
+    axios
+      .post("https://reqres.in/api/users", newUser)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log("Post error:", err);
+      })
+      .finally(() => {
+        setFormValues(initialFormValues);
+      });
   };
 
   return (
