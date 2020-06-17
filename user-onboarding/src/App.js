@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 import './App.css';
 import * as Yup from "yup";
-
+import SignupForm from './Form'
 
 // variables
 const defaultValues = {
@@ -10,6 +10,12 @@ const defaultValues = {
   email: '',
   password: '',
   terms: false,
+}
+const defaultErrors = {
+  name: '',
+  email: '',
+  password: '',
+  terms: ''
 }
 const defaultDisable = true
 const firstUsers = []
@@ -46,38 +52,7 @@ function UserCard(props){
   )
 }
 
-// Form Component
-function SignupForm(props) {
-  
-const {
-  values,
-  changeVal,
-  checkChange,
-  disabled,
-  submit
-} = props
-return(
-  <div>
-<form onSubmit={submit}>
-          <label>
-            Name: <input type='text' name='name' onChange={changeVal} value={values.name} />
-          </label>
-          <label>
-            Email: <input type='text' name='email' value={values.email} onChange={changeVal} />
-          </label>
-          <label>
-            Password: <input type='text' name='password' value={values.password} onChange={changeVal} />
-          </label>
-          <label>
-            Terms of Service <input type='checkbox' checked={values.terms} name='terms' onChange={checkChange}  />
-          </label>
-          <button disabled={disabled}>
-            Submit
-          </button>
-        </form>
-  </div>
-)
-}
+
 
 // App Component
 function App() {
@@ -85,6 +60,7 @@ function App() {
   const [users, setUsers] = useState(firstUsers)
   const [formValues, setFormValues] = useState(defaultValues)
   const [disabled, setDisabled] = useState(defaultDisable)
+  const [errors, setErrors] = useState(defaultErrors)
 
 
 // post Req
@@ -134,7 +110,28 @@ const submit = event => {
   const changeVal = event => {
     
     const {name, value} = event.target
-    
+
+    // VALIDATION
+    Yup
+    .reach(formSchema, name)
+    //we can then run validate using the value
+    .validate(value)
+    // if the validation is successful, we can clear the error message
+    .then(() => {
+      setErrors({
+        ...errors,
+        [name]: ""
+      })
+    })
+    /* if the validation is unsuccessful, we can set the error message to the message 
+      returned from yup (that we created in our schema) */
+    .catch(err => {
+      setErrors({
+        ...errors,
+        [name]: err.errors[0] // investigate
+      })
+    })
+
     setFormValues({
       ...formValues,
       [name]:value
@@ -152,7 +149,7 @@ const submit = event => {
 
   return (
     <div className="App">
-      <SignupForm values={formValues} changeVal={changeVal} checkChange={checkChange} disabled={disabled} submit={submit} />
+      <SignupForm values={formValues} changeVal={changeVal} checkChange={checkChange} disabled={disabled} submit={submit} errors={errors} />
         {users.map(user=>{
          return <UserCard details={user} />
         })}
