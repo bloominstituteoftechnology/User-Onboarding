@@ -1,4 +1,5 @@
 # Module Project: Advanced Form Management - User Onboarding
+
 ## Project Description
 
 We've seen many different styles of form management by now -- simple to complex. Today we are going to unleash your inner form-wizard! 🧙
@@ -31,7 +32,7 @@ Form validation is one of the facets of an application that makes it feel polish
 
 Being able to `POST` data is a key skill of any developer, no matter your skill level.
 
-- [ ] Craft a `POST` request using `axios` that sends your form data to the following endpoint: _https://reqres.in/api/users_
+- [ ] Craft a `POST` request using `axios` that sends your form data to the following endpoint: _`https://reqres.in/api/users`_
 - [ ] Verify using a `console.log()` that you are receiving a successful response back
 
 (Note: For those that are curious, we're using [reqres.in](https://reqres.in/) for this assignment's API. It's a free API that allows us to simulate a `POST` request for any data that we send it. Pretty awesome!)
