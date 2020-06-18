@@ -5,7 +5,7 @@ import User from "./Users";
 import * as Yup from "yup";
 import formSchema from "./formSchema";
 import axios from "axios";
-import { Card, Header, BodyContainer, FormContainer } from "./Styles";
+import { Header, BodyContainer, FormContainer } from "./Styles";
 
 const initialFormValues = {
   name: "",
@@ -107,25 +107,27 @@ function App() {
   }, [formValues]);
 
   return (
-    <BodyContainer>
-      <Header>
-        <h1>Sign Up App!</h1>
-      </Header>
-      <FormContainer>
-        <Form
-          values={formValues}
-          onInputChange={onInputChange}
-          onCheckboxChange={onCheckboxChange}
-          onSubmit={onSubmit}
-          errors={formErrors}
-          disabled={disabled}
-        />
-      </FormContainer>
+    <div className="App">
+      <BodyContainer>
+        <Header>
+          <h1>Sign Up App!</h1>
+        </Header>
+        <FormContainer>
+          <Form
+            values={formValues}
+            onInputChange={onInputChange}
+            onCheckboxChange={onCheckboxChange}
+            onSubmit={onSubmit}
+            errors={formErrors}
+            disabled={disabled}
+          />
+        </FormContainer>
 
-      {userList.map((user) => {
-        return <User key={user.id} details={user} />;
-      })}
-    </BodyContainer>
+        {userList.map((user) => {
+          return <User key={user.id} details={user} />;
+        })}
+      </BodyContainer>
+    </div>
   );
 }
 

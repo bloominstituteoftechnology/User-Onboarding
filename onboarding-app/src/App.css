@@ -1,5 +1,15 @@
 .App {
   text-align: center;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  width: 100%;
+  min-height: 1200px;
+  position: fixed;
 }
 
 .App-logo {
@@ -35,4 +45,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.FormDiv {
+  text-align: center;
+}
+
+.userCard {
+  text-align: left;
 }

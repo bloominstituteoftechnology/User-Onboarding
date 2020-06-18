@@ -1,5 +1,5 @@
 import React from "react";
-import { FormSubDiv } from "./Styles";
+import { Errors } from "./Styles";
 
 export default function Form(props) {
   const {
@@ -12,17 +12,19 @@ export default function Form(props) {
   } = props;
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className="FormDiv" onSubmit={onSubmit}>
       <div>
-        <h2>Sign Up!</h2>
+        <h2>Get Started!</h2>
       </div>
 
-      <div className="errors">
-        <div>{errors.name}</div>
-        <div>{errors.email}</div>
-        <div>{errors.password}</div>
-        <div>{errors.terms}</div>
-      </div>
+      <Errors>
+        <div className="errors">
+          <div>{errors.name}</div>
+          <div>{errors.email}</div>
+          <div>{errors.password}</div>
+          <div>{errors.terms}</div>
+        </div>
+      </Errors>
 
       <label>
         Name&nbsp;
