@@ -1,3 +1,4 @@
+// Here goes the schema for the form
 import * as Yup from 'yup'
 
 const formSchema = Yup.object().shape({
@@ -15,9 +16,10 @@ const formSchema = Yup.object().shape({
       .min(6, 'Password is too short - should be 6 chars minimum.')
       .matches(/[a-zA-Z0-9_]/, 'Password can only contain Latin letters, numbers, and underscores.'),
     // This doesn't seem to work?
-        terms: Yup
-      .string()
-      .oneOf(['true'], 'Must Accept Terms and Conditions'),
+    //     terms: Yup
+    //   .boolean()
+    //   .oneOf([true], 'Must Accept Terms and Conditions')
+    //   .required('Please accept the TOS'),
   });
 
   export default formSchema

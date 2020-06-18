@@ -4,6 +4,7 @@ import UserForm from '../src/components/Form'
 import axios from 'axios'
 import formSchema from './validation/formSchema'
 import * as Yup from 'yup'
+import Users from './components/Users.js';
 
 const initialFormValues = {
   fullname: '',
@@ -18,7 +19,8 @@ const initialFormErrors = {
   password: '',
   terms: '',
 }
-const initialUsers = []
+// Assigned initialUsers with an object only as a test
+const initialUsers = [{fullname: "Donald", email: "faulknordonald@gmail.com", password: "Bandit", terms: "Terms"}]
 const initialDisabled = true
 
 function App() {
@@ -80,7 +82,28 @@ function App() {
   }
 
   const onCheckboxChange = evt => {
-    const { name, checked} = evt.target
+    // Couldn't figure out TOS validation
+    const { name, checked } = evt.target
+    // Yup
+    //   .reach(formSchema, name)
+    //   .validate(checked)
+    //   .then(() => {
+    //     setFormErrors({
+    //       ...formErrors,
+    //       [name]: ""
+    //     })
+    //   })
+    //   .catch(err => {
+    //     setFormErrors({
+    //       ...formErrors,
+    //       [name]: err.errors[0]
+    //     })
+    //   })
+    // setFormValues({
+    //   ...formValues,
+    //   [name]: checked,
+    // })
+
     setFormValues({
       ...formValues,
       terms: {
@@ -95,10 +118,10 @@ function App() {
     evt.preventDefault()
 
     const newUser = {
-      fullname: formValues.fullname.trim(),
-      email: formValues.email.trim(),
-      password: formValues.password.trim(),
-      terms: formValues.terms.trim(),
+      fullname: formValues.fullname,
+      email: formValues.email,
+      password: formValues.password,
+      terms: formValues.terms,
     }
     postNewUser(newUser)
   }
@@ -124,6 +147,13 @@ function App() {
           disabled={disabled}
           errors={formErrors}
          />
+         {/* {
+        users.map(user => {
+          return (
+            <Users key={user.password} user={user} />
+          )
+        })
+      } */}
       </header>
     </div>
   );

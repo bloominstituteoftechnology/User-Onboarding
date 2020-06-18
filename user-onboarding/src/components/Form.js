@@ -78,6 +78,7 @@ export default function UserForm(props) {
             onChange={onCheckboxChange}
             name="terms"
             checked={values.terms}
+            value={values.terms}
         />
         <FormFeedback>{errors.terms}</FormFeedback>
     </Form>
