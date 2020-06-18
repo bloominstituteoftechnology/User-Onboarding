@@ -5,21 +5,32 @@ We've seen many different styles of form management by now -- simple to complex.
 
 ## Set Up The Project
 
-- [ ] Start off by installing a blank React app by running `npx create-react-app <app-name> --use-npm`.
-- [ ] Using `npm`, add the following as dependencies inside your React app:
+- [x] Start off by installing a blank React app by running `npx create-react-app <app-name> --use-npm`.
+- [x] Using `npm`, add the following as dependencies inside your React app:
   - `yup`
   - `axios`
-- [ ] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
+- [x] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
 
 ## STEP 1 - Create Your Advanced Form
 
 We want to create a form to onboard a new user to our system. We need _at least_ the following pieces of information about our new user:
 
-- [ ] Name
-- [ ] Email
-- [ ] Password
-- [ ] Terms of Service (checkbox)
-- [ ] A Submit button to send our form data to the server.
+- [x] Name
+- [x] Email
+- [x] Password
+- [x] Terms of Service (checkbox)
+- [x] A Submit button to send our form data to the server.
+
+<!-- 1. First write out hour form, with basic componentes like the funciont MemberFrom, then the return with basic outline of what info you are going to display, no props yet, so <form>,<div>, <inputs>, etc.
+your form will want to have an onsubmit so the whole thing can be used as an onSubmit, but the inputs will have onChange, as well as values, add button as well for login -->
+
+<!--1a. for the checkboxes make sure you have a checked= and an onChange, also the input is within the label. -->
+
+<!-- 1ba set up use state you want one to hold all the values and one to hold all the values of the form thats currently being submitted and another state that holds all the previous states, use state will be empty at first but maybe after you might have to put something in it -->
+
+<!-- 1c need to make the onsubmit function and onchange handler you set formvalues to an object {} and inside that object is a key which is a variable [] and the name of the key is the input field [event.target.name]: , the value is what they type in event.target.value, we want to put what saves in setFormValues into formValues so use spread.  -->
+
+<!-- 1d Onsubmit, this is what is going to put whatever they typed in into the server, using axios which is jumping into step 3 making a post request, this will require two parameters, the url and the data to be sent to the server which is formValues after writing prevent default and the post request we want to do the .then, in which we will create new state for the data being received from the server, data and setData which we want as an array so add [] to the new useState.Dont forget to add a catch -->
 
 ## STEP 2 - Implement Form Validation and Error Messaging
 
