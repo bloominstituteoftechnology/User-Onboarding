@@ -1,37 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Form from "./Form";
 import User from "./Users";
 import * as Yup from "yup";
 import formSchema from "./formSchema";
 import axios from "axios";
+import { Card, Header, BodyContainer, FormContainer } from "./Styles";
 
 const initialFormValues = {
   name: "",
   email: "",
   password: "",
-  terms: "",
+  role: "",
+  terms: false,
 };
 
-const initialUserList = [
-  {
-    name: "Alex Kemper",
-    email: "alex.j.kemper@gmail.com",
-    password: "password",
-    terms: true,
-  },
-];
+const initialUserList = [];
+
 const initialFormErrors = {
   name: "",
   email: "",
   password: "",
+  role: "",
   terms: "",
 };
+
+const initialDisabled = true;
 
 function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [userList, setUsers] = useState(initialUserList);
-  const [formErrors, setFormErrors] = useState("");
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [disabled, setDisabled] = useState(initialDisabled);
 
   const onInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -76,11 +76,10 @@ function App() {
     const newUser = {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
+      role: formValues.role,
       password: formValues.password.trim(),
       terms: formValues.terms,
     };
-
-    setUsers([...userList, newUser]);
 
     postNewUser(newUser);
   };
@@ -89,34 +88,44 @@ function App() {
     axios
       .post("https://reqres.in/api/users", newUser)
       .then((res) => {
+        setUsers([...userList, res.data]);
         console.log(res.data);
       })
       .catch((err) => {
         console.log("Post error:", err);
       })
       .finally(() => {
+        console.log("userList:", userList);
         setFormValues(initialFormValues);
       });
   };
 
+  useEffect(() => {
+    formSchema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
+
   return (
-    <div className="App">
-      <div>
+    <BodyContainer>
+      <Header>
+        <h1>Sign Up App!</h1>
+      </Header>
+      <FormContainer>
         <Form
           values={formValues}
           onInputChange={onInputChange}
           onCheckboxChange={onCheckboxChange}
           onSubmit={onSubmit}
           errors={formErrors}
+          disabled={disabled}
         />
-      </div>
+      </FormContainer>
 
-      <div>
-        {userList.map((user) => {
-          return <User key={user.id} details={user} />;
-        })}
-      </div>
-    </div>
+      {userList.map((user) => {
+        return <User key={user.id} details={user} />;
+      })}
+    </BodyContainer>
   );
 }
 
