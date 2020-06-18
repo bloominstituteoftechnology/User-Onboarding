@@ -14,12 +14,9 @@ export default function UserForm(props) {
         <form className='form container' onSubmit={onSubmit}>
             <div className='form-group submit'>
                 <h2>Add a Friend</h2>
-
-                {/* 🔥 DISABLE THE BUTTON */}
                 <button disabled={disabled}>submit</button>
 
                 <div className='errors'>
-                    {/* 🔥 RENDER THE VALIDATION ERRORS HERE */}
                     <div>{errors.first_name}</div>
                     <div>{errors.last_name}</div>
                     <div>{errors.email}</div>
@@ -31,8 +28,6 @@ export default function UserForm(props) {
             <div className='form-group inputs'>
                 <h4>General information</h4>
 
-                {/* ////////// TEXT INPUTS ////////// */}
-                {/* ////////// TEXT INPUTS ////////// */}
                 {/* ////////// TEXT INPUTS ////////// */}
                 <label>First Name:&nbsp;
             <input
@@ -72,17 +67,14 @@ export default function UserForm(props) {
             </div>
 
             <div className='form-group checkboxes'>
-                {/* <h4>Hobbies</h4> */}
 
-                {/* ////////// CHECKBOXES ////////// */}
-                {/* ////////// CHECKBOXES ////////// */}
                 {/* ////////// CHECKBOXES ////////// */}
                 <label>Terms of Service
             <input
                         name='tos'
                         type="checkbox"
                         onChange={onCheckboxChange}
-                        checked={values.tos.tos}
+                        checked={values.tos}
                     />
                 </label>
             </div>

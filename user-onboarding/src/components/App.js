@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import User from './User'
 import UserForm from './UserForm'
-import FormSchema from './validation/FormSchema'
+import formSchema from './validation/formSchema'
 import axios from 'axios'
 import * as Yup from 'yup'
 import '../App.css'
@@ -12,9 +12,7 @@ const initialFormValues = {
   last_name: '',
   email: '',
   password: '',
-  tos: {
-    tos: false,
-  }
+  tos: false
 }
 
 const initialFormErrors = {
@@ -22,9 +20,7 @@ const initialFormErrors = {
   last_name: '',
   email: '',
   password: '',
-  tos: {
-    tos: false,
-  }
+  tos: ''
 }
 
 const initialUsers = []
@@ -52,14 +48,16 @@ function App() {
   const postNewUser = newUser => {
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
-        setUsers([...users.data, res.data.data])
+        setUsers([...users, res.data])
       })
-      .cath(err => {
+      .catch(err => {
         debugger
       })
       .finally(() => {
+        debugger
         setFormValues(initialFormValues)
       })
+    console.log(initialFormValues)
   }
 
   //////////////// EVENT HANDLERS ////////////////
@@ -67,7 +65,7 @@ function App() {
     const name = evt.target.name
     const value = evt.target.value
     Yup
-      .reach(FormSchema, name)
+      .reach(formSchema, name)
       .validate(value)
       .then(valid => {
         setFormErrors({
@@ -89,13 +87,14 @@ function App() {
   }
 
   const onCheckboxChange = evt => {
-    const name = evt.target.name
-    const checked = evt.target.checked
+    // const name = evt.target.name
+    // const checked = evt.target.checked
+    const { name, checked } = evt.target
     console.log()
     Yup
-      .reach(FormSchema, name)
-      .validate()
-      .then(valid => {
+      .reach(formSchema, name)
+      .validate(checked)
+      .then(() => {
         setFormErrors({
           ...formErrors,
           [name]: ''
@@ -109,10 +108,7 @@ function App() {
       });
     setFormValues({
       ...formValues,
-      tos: {
-        ...formValues.tos.tos,
-        [name]: checked,
-      }
+      [name]: checked,
     })
   }
 
@@ -134,7 +130,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    FormSchema.isValid(formValues).then(valid => {
+    formSchema.isValid(formValues).then(valid => {
       setDisabled(!valid);
     })
   }, [formValues])
