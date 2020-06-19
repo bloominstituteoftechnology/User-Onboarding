@@ -1,33 +1,26 @@
 import React, { useState } from "react";
 import * as yup from 'yup';
 
-export default function Form() {
+export default function Form(props) {
 
 
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    password: "",
-    terms: "",
-  });
+
 
  let formSchema = yup.object().shape({
      name: yup.string().required('Name is required'),
      email: yup.string().email('email is required'),
-     password: yup.password().required('password is required'),
+     password: yup.string().required('password is required'),
+     terms: yup.boolean().oneOf([true], "please agree to terms of use")
 
  })
 
 
-
-
-
   return (
     <form className="form">
-      <label htmlFor="name">Name</label> <input id="name" type="text" value={formState.name}/>
-      <label htmlFor="email">Email</label><input id="email" type="text" value={formState.email} />
-      <label htmlFor="password">Password</label><input id="password" type="password" value={formState.password} />
-      <div className="alignTerms"><input id="terms" type="checkbox" className="checkBox" checked={formState.terms}  />
+      <label htmlFor="name">Name</label> <input id="name" type="text" value={props.formState.name}/>
+      <label htmlFor="email">Email</label><input id="email" type="text" value={props.formState.email} />
+      <label htmlFor="password">Password</label><input id="password" type="password" value={props.formState.password} />
+      <div className="alignTerms"><input id="terms" type="checkbox" className="checkBox" checked={props.formState.terms}  />
      <label htmlFor="terms">Terms of Service</label></div>
       <button type="submit" className="btn">Submit</button>
     </form>

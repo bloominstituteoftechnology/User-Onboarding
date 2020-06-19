@@ -1,9 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Form from "./components/Form.js";
 
 function App() {
+
+
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    password: "",
+    terms: "",
+  });
+
+
+
+
+
+
   return (
     <div className="App">
       <h1>
@@ -11,7 +25,7 @@ function App() {
         <span>💜 </span>Welcome To Onboading. <br />
         Please fill out this form! <span>👾 </span>
       </h1>
-      <Form />
+      <Form formState={formState} setFormState={setFormState}/>
     </div>
   );
 }
