@@ -51,3 +51,9 @@ input {
   font-size: 1.6rem;
   width: 350px;
 }
+
+.error{
+  color: red;
+  background-color: white;
+  font-size: 25px;
+}

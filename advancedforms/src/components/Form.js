@@ -1,68 +1,82 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import * as yup from 'yup'
 
+
+
+let formSchema = yup.object().shape({
+    name: yup.string().required('Name is required!'),
+    email: yup.string().email().required('Email is required!'),
+    password: yup.string().required('Password is required!'),
+    terms: yup.boolean().oneOf([true], "Must check terms and conditions! ")
+    })
+    
+
 export default function Form() {
-
-
   
     const [formState, setFormState] = useState({
         name: "",
         email: "",
         password: "",
-        terms: "",
+        terms: ""
       });
     
-      const [errors, setErrors] = useState({
+
+const [errorState, setErrorState] = useState({
         name: "",
         email: "",
         password: "",
         terms: ""
-    
-      })
-    
-
- let formSchema = yup.object().shape({
-  name: yup.string().required('name is required'),
-  email: yup.string().email('email is required'),
-  password: yup.string().required('password is required'),
-  terms: yup.boolean().oneOf([true], 'please agree to terms of use')
- })
+})
 
 
-const formSubmitHandler = (event)=>{
+const formSubmit = (event)=>{
     event.preventDefault()
 }
 
-const inputHandler = (event) =>{
-  setFormState({name: event.target.value})
-  console.log(event.target.value)
+const validate = (event) =>{
+    yup.reach(formSchema, event.target.name).validate(event.target.value)
+    .then(valid =>{
+        setErrorState({
+            ...errorState,
+            [event.target.name]: ""
+        })
+    })
+    .catch(err =>{
+        console.log(err.errors)
+        setErrorState({
+            ...errorState,
+            [event.target.name] : err.errors[0]
+        })
+    })
 }
 
 
-const [buttonDisabled, setButtonDisabled]= useState(true);
 
-useEffect(()=>{
-formSchema.isValid(formState).then(valid =>{
-    setButtonDisabled(!valid)
-})
-}, [formState])
+const inputChange = (event) =>{
+    event.persist()
+  validate(event)
+  let value = event.target.type === "checkbox" ? event.target.checked : event.target.value
+  setFormState({...formState, [event.target.name]: value})
+}
+
+
 
 
 
 
   return (
-<form className="form" onSubmit={formSubmitHandler}>
+<form className="form" onSubmit={formSubmit}>
 
 <label htmlFor="name">Name</label> 
-<input id="name" name="name" type="text" value={formState.name} onChange={inputHandler}/>
-<label htmlFor="email">Email</label>
-<input id="email"  name="email" type="text" value={formState.email} onChange={inputHandler}/>
+<input id="name" name="name" type="text" value={formState.name} onChange={inputChange}/>
+<label htmlFor="email">Email {errorState.email.length > 0 ? <p className="error">{errorState.email}</p> : null}</label>
+<input id="email"  name="email" type="email" value={formState.email} onChange={inputChange}/>
 <label htmlFor="password">Password</label>
-<input id="password"  name="password" type="password" value={formState.password} onChange={inputHandler}/>
+<input id="password"  name="password" type="password" value={formState.password} onChange={inputChange}/>
 <label htmlFor="terms">Terms of Service</label>
-<div className="alignTerms"><input id="terms" type="checkbox"  name="terms" className="checkBox" checked={formState.terms} onChange={inputHandler} /></div>
+<div className="alignTerms"><input id="terms" type="checkbox" checked={formState.terms}  name="terms" className="checkBox" checked={formState.terms} onChange={inputChange} /></div>
 
-<button type="submit" className="btn" disabled={buttonDisabled}>Submit</button>
+<button type="submit" className="btn">Submit</button>
 </form>
   );
 }
