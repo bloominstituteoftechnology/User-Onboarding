@@ -5,17 +5,7 @@ import Form from "./components/Form.js";
 
 function App() {
 
-
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    password: "",
-    terms: "",
-  });
-
-
-
-
+  
 
 
   return (
@@ -25,7 +15,7 @@ function App() {
         <span>💜 </span>Welcome To Onboading. <br />
         Please fill out this form! <span>👾 </span>
       </h1>
-      <Form formState={formState} setFormState={setFormState}/>
+      <Form/>
     </div>
   );
 }
