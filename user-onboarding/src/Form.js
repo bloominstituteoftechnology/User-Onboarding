@@ -16,11 +16,11 @@ const Form = (props => {
                 <button disabled = {disabled} className = 'submit'>Submit</button>
             </div>
 
-            <div className ='error'>
-                <div>{error.first_name}</div>
-                <div>{error.last_name}</div>
-                <div>{error.password}</div>
-                <div>{error.email}</div>
+            <div className ='errors'>
+                <div>{errors.first_name}</div>
+                <div>{errors.last_name}</div>
+                <div>{errors.password}</div>
+                <div>{errors.email}</div>
                 <div>{errors.termsOfService}</div>
             </div>
             <div className = 'form inputs'>
@@ -31,10 +31,10 @@ const Form = (props => {
                         placeholder = 'Type Name Here'
                         maxLength = '30'
                         name = 'first_name'
-                        value = {values.first_name}
+                        values = {values.first_name}
                         onChange = {onInputChange}
                         />
-
+                        
                 </label>
                 <label>Last Name : 
                     <input
@@ -42,7 +42,7 @@ const Form = (props => {
                         placeholder = 'Type Name Here'
                         maxLength = '30'
                         name = 'last_name'
-                        value = {values.last_name}
+                        values = {values.last_name}
                         onChange = {onInputChange}
                         />
                     
@@ -54,7 +54,7 @@ const Form = (props => {
                         maxLength = '30'
                         minLength = '5'
                         placeholder = 'Type Password Here'
-                        value = {value.password}
+                        values = {values.password}
                         onChange = {onInputChange}
                         />
                 </label>
@@ -64,7 +64,7 @@ const Form = (props => {
                         placeholder = 'Type Email Here'
                         maxLength = '30'
                         name = 'email'
-                        value = {value.email}
+                        values = {values.email}
                         onChange = {onInputChange}
                         />
 
@@ -73,7 +73,7 @@ const Form = (props => {
                     <input
                         type = 'checkbox'
                         name = 'termsOfService'
-                        checked = {value.termsOfService}
+                        checked = {values.termsOfService}
                         onChange = {onCheckboxChange}
                         />
 
