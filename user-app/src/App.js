@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Form from './Form';
-import Users from './Users'
 import {BrowserRouter as Router} from 'react-router-dom'
+import "./App.css"
 
 function App() {
-  const [user,setUser] = useState([]);
 
   return (
     <div className="App">
       <Router>
           <Form  />
-          <Users  />
       </Router>
     </div>
   );
