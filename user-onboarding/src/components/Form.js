@@ -128,7 +128,7 @@ export default function Form(props) {
       />
       <label htmlFor="role">
         Choose an interest:
-        <select name="role" onChange={inputChange}>
+        <select id='positions' name="role" onChange={inputChange}>
           <option value="Front-end">Front-end</option>
           <option value="Back-end">Back-end</option>
           <option value="Full-stack">Full-stack</option>
@@ -136,10 +136,10 @@ export default function Form(props) {
         </select>
       </label>
       <label className="terms" htmlFor="terms">
-        <input name="terms" type="checkbox" onChange={inputChange} />
+        <input data-cy='terms' name="terms" type="checkbox" onChange={inputChange} />
         Terms & Conditions
       </label>
-      <button disabled={buttonDisabled}>Next</button>
+      <button id='next' disabled={buttonDisabled}>Next</button>
     </form>
   );
 
