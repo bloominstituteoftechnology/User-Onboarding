@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Onboarding from './Component/Form'
 
 function App() {
+
+  const [employeeData, setEmployeeData] = useState([]);
+      
+        const addNewMember = (data) => {
+          const newMember = {
+            id: Date.now(),
+            Name: data.Name,
+            Email: data.Email,
+            Password: data.Password,
+            Textarea: data.Textarea
+          }
+          setEmployeeData([...employeeData, newMember]);
+          
+        };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      hi
+            <Onboarding employeeData={employeeData} addNewMember={addNewMember}/>
     </div>
   );
 }
