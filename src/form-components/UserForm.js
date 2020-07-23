@@ -21,7 +21,7 @@ const onCheckboxChange = e => {
 }
 
 const onInputChange = e => {
-    const { name, value }
+    const { name, value } = e.target
     inputChange(name, value)
 }
 
@@ -61,6 +61,33 @@ return (
                 type='text'
                 />
             </label>
+            <h3>Legal Requirements:</h3>
+            <label>Do you agree to the terms of service?
+          <input
+            type="checkbox"
+            name='termsOfService'
+            checked={values.terms.termsOfService === true}
+            onChange={onCheckboxChange}
+          />
+        </label>
+
+        <label>Are you at least 18 years of age?
+          <input
+            type="checkbox"
+            name='ofAge'
+            checked={values.terms.ofAge === true}
+            onChange={onCheckboxChange}
+          />
+        </label>
+
+        <label>Are you a U.S. Citizen?
+          <input
+            type="checkbox"
+            name='usCitizen'
+            checked={values.terms.usCitizen === true}
+            onChange={onCheckboxChange}
+          />
+        </label>
         </div>
     </form>
 )
