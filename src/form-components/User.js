@@ -11,14 +11,12 @@ export default function User({info}) {
             <h3>Email: {info.email}</h3>
             <h3>Password: {info.password}</h3>
             {
-            !!info.terms && !!info.terms.length &&
-            <div>
-                <h2>Legal Requirements:</h2>
+            !!info.terms && info.terms.length &&
           <ul>
-            {info.terms.map((like, idx) => 
-            <li key={idx}> {like}</li>)}
+              {info.terms.includes("termsOfService") ? <li>User has agreed to the terms of service.</li> : <li>User has NOT agreed to the terms of service!</li>}
+              {info.terms.includes("ofAge") ? <li>User is a legal adult.</li> : <li>User is a minor!</li>}
+              {info.terms.includes("usCitizen") ? <li>User is a US Citizen.</li> : <li>User is not a US citizen.</li>}
           </ul>
-        </div>
       }
         </div>
     )
