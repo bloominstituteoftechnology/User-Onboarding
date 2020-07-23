@@ -29,9 +29,9 @@ return (
     <form className='form-container' onSubmit={onSubmit}>
 {/*div below holds the error messages from Yup, lack of this caused a crash in version 1*/}
         <div className='errors'>
-            <p>{errors.username}</p>
-            <p>{errors.email}</p>
-            <p>{errors.password}</p>
+            <p id="para-one">{errors.username}</p>
+            <p id="para-two">{errors.email}</p>
+            <p id="para-three">{errors.password}</p>
         </div>
         <div className='form-input'>
             <h2>Fill Out Team Member Form</h2>
@@ -89,7 +89,7 @@ return (
             onChange={onCheckboxChange}
           />
         </label>
-        <button disabled={disabled}>Submit!</button>
+        <button id="submitButton" disabled={disabled}>Submit!</button>
         </div>
     </form>
 )
