@@ -5,6 +5,7 @@ import formSchema from './validation/formSchema'
 import axios from 'axios'
 import * as yup from 'yup'
 import './App.css';
+import AppStyles from './style-components/GeneralStyle'
 
 //initial state
 const initialFormValues = {
@@ -35,15 +36,15 @@ const [formErrors, setFormErrors] = useState(initialFormErrors)
 const [disabled, setDisabled] = useState(initialDisabled)
 
 //axios calls
-const getUsers = () => { 
-axios.get('https://reqres.in/api/users')
-.then(res => {
-  setUsers(res.data.data)
-  })
-.catch(err => {
-  console.log("Sorry New Orleans its all dark!")
-  })
-}
+// const getUsers = () => { 
+// axios.get('https://reqres.in/api/users')
+// .then(res => {
+//   setUsers(res.data.data)
+//   })
+// .catch(err => {
+//   console.log("Sorry New Orleans its all dark!")
+//   })
+// }
 
 
 const postNewUser = newUser => {
@@ -77,7 +78,7 @@ const inputChange = (name, value) => {
 
   setFormValues({
     ...formValues,
-    [name]: value // NOT AN ARRAY
+    [name]: value 
   })
 }
 
@@ -102,9 +103,9 @@ const checkboxChange = (name, isChecked) => {
   }
 
   //side effects
-  useEffect(() => {
-    getUsers()
-  }, [])
+  // useEffect(() => {
+  //   getUsers()
+  // }, [])
 
   useEffect(() => {
     formSchema.isValid(formValues).then(valid => {
@@ -112,9 +113,10 @@ const checkboxChange = (name, isChecked) => {
     });
   }, [formValues]);
 
+  // the return statement
   return (
-    <div className="App">
-      <h1>Testing Header</h1>
+    <AppStyles className="App">
+      <h1>Team Tracker App</h1>
 
       <UserForm
       values={formValues}
@@ -131,6 +133,6 @@ const checkboxChange = (name, isChecked) => {
           )
         })
       }
-    </div>
+    </AppStyles>
   )
 }

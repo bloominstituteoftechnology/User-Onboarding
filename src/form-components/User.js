@@ -7,7 +7,7 @@ export default function User({info}) {
 
     return (
         <div className='user-container'>
-            <h2>{info.username}</h2>
+            <h2>Name: {info.username}</h2>
             <h3>Email: {info.email}</h3>
             <h3>Password: {info.password}</h3>
             {
