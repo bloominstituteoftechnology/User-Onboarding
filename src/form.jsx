@@ -65,7 +65,7 @@ const Form = props => {
         //the validate method is asynchrounous and thus requires a "then/catch" block to resolve correctly 
         //formValues is passed in as the data to be evaluated the schema has keys which corresponds to the keys contained in "formVales"
         //The second arguement configures yup to return all errors instead of the first one it comes across 
-        registerSchema.validate(formValues, { abortEarly: false})
+        registerSchema.validate(formValues, { abortEarly: false })
         .then( _ => {
             //POST request first arg is URL second arg is the formValues object we wish to send to the server 
             axios.post('https://reqres.in/api/users', formValues)
@@ -107,31 +107,36 @@ const Form = props => {
             <input
                 name="name"
                 type="text"
+                data-cy="input-name"
                 onChange={handleChange}
                 value={formValues.name}
                 />
             <input
                 name="email"
                 type="email"
+                data-cy="input-email"
                 onChange={handleChange}
                 value={formValues.email}
                 />
             <input
                 name="password"
                 type="password"
+                data-cy="input-password"
                 onChange={handleChange}
                 value={formValues.password}
                 />
             <input
                 name="TOS"
                 type="checkbox"
+                data-cy="input-TOS"
                 onChange={handleChange}
+                checked={formValues.TOS}
                 defaultChecked={formValues.TOS}
                 />
             {/* button has the handleSubmit function tied to its onClick attribute it is fired on clicking it */}
-            <button onClick={handleSubmit}>Submit</button>
+            <button data-cy="submit-button" onClick={handleSubmit}>Submit</button>
             {/* this chuck of JSX maps over the errors if present and accesses their "message" to display a message for each error message*/}
-            <div>
+            <div data-cy="error-output">
                 {errors.map( err => (  
                     <p style={{color: "red"}}>{err.message}</p>
                 ))}

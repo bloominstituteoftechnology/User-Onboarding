@@ -8,7 +8,7 @@ import * as yup from 'yup';
 //each key -> value here is a bunch of method chains on the yup library which assert certain rules for each input
 //ie. is require, data type, max length, min length, expected value, expect pattern (e.g. email)
 export const registerSchema = yup.object().shape({
-    username: yup
+    name: yup
               .string()
               .required()
               .min(3)

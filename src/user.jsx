@@ -5,7 +5,7 @@ const User = props => {
 
 
     return(
-        <div>
+        <div data-cy={`user-component-${props.user.id}`}>
             <p>{props.user.name}</p>
             <p>{props.user.email}</p>
         </div>
