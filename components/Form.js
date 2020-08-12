@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
 import Axios from 'axios'
+import { Input, Form, FormGroup } from "reactstrap"
 
 
-export defualt function Form(){
+
+export defualt function signUpForm(){
+
     //Form data initial state
     const [formData, setFormData] = useState({
         name: "",
@@ -21,9 +24,9 @@ export defualt function Form(){
     })
 
     //Setting state of button so its disabled until yup rules are valid, validated and enabled in use effect
-    const [buttonDisable, setButtonDisable] = useState(true)
+    const [buttonDisable, setButtonDisable] = useState(true) //useState is set to true meaning the state is true
 
-    //Setting state of post request to, setting to empty array so we can post new users into it
+    //Setting state of post request, setting to empty array so we can post new users into it, state displayed in JSON.stringify
     const [post, setPost] = useState([])
     
     const Submit = (e) => {
@@ -32,7 +35,7 @@ export defualt function Form(){
         console.log('submitted')
     //Making axios post request
         Axios
-    .post("https://reqres.in/api/users", formData)
+    .post("https://reqres.in/api/users", formData) // why is formData after the url?
     .then((res) => {
         setPost(res.data)
         console.log("success", res.data)
@@ -45,6 +48,7 @@ export defualt function Form(){
         })
     })
 }
+
     //Change handler for inputting fields
     const handleChanges = (e) => { 
         e.persist() // ????
@@ -101,13 +105,14 @@ export defualt function Form(){
 
     return (
         //Creating form
-        <form onSubmit={Submit}>
-            <label htmlFor="name">
+        <Form onSubmit={Submit}>
+            <FormGroup htmlFor="name">
                 Name
-                <input
+                <Input
                 id="name"
                 type="text"
                 name="name"
+                placeholder="Enter your first name..."
                 value={formData.name}
                 onChange={handleChanges}
                 />
@@ -116,35 +121,37 @@ export defualt function Form(){
                     <p className="nameErr">{errors.name}</p>
                     // Null is used when there is no errors
                 ) : null}
-            </label>
-            <label htmlFor="email">
+            </FormGroup>
+            <FormGroup htmlFor="email">
                 Email
-                <input
+                <Input
                 id="email"
-                type="text"
+                type="email"
                 name="email"
+                placeholder="Please enter your email..."
                 value={formData.email}
                 onChange={handleChanges}
                 />
                 {errors.email.length > 0 ? (
                     <p className="emailErr">{errors.email}</p>                   
                 ) : null} 
-            </label>
-            <label htmlFor="password">
+            </FormGroup>
+            <FormGroup htmlFor="password">
                 Password
-                <input
+                <Input
                 id="password"
-                type="text"
+                type="password"
                 name="password"
+                placeholder="Please create a password..."
                 value={formData.password}
                 onChange={handleChanges}
                 />
                 {errors.password.length > 0 ? (
                     <p className="passwordErr">{errors.password}</p>
                 ) : null}
-            </label>
-            <label htmlFor="terms">
-                <input
+            </FormGroup>
+            <FormGroup htmlFor="terms">
+                <Input
                 id="terms"
                 type="checkbox"
                 name="terms"
@@ -155,11 +162,11 @@ export defualt function Form(){
                 {errors.terms.length > 0 ? (
                     <p className="termsErr">{errors.terms}</p>
                 ): null}
-            </label>
+            </FormGroup>
             <button disabled={buttonDisable} type="submit" >
                 Submit
             </button>
             <pre>{JSON.stringify(post, null, 2)}</pre>
-        </form>
+        </Form>
     )
 }
