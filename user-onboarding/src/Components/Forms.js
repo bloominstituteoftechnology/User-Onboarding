@@ -117,7 +117,7 @@ export default function Form() {
      .string()
      .oneOf([yup.ref('password'), null], 'Passwords must match'),
      
-    terms: yup.boolean().oneOf([true], "Please agree to T&Cs")
+    terms: yup.boolean().oneOf([true], "Please agree to Terms and Conditions")
   });
 
  
