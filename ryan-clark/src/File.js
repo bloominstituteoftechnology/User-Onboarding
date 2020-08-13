@@ -3,7 +3,7 @@ import axios from "axios";
 import * as yup from "yup";
 
 const formSchema = yup.object().shape({
-  name: yup.string().required("Name is a required field"),
+  name: yup.string().required("Name is a required field."),
   email: yup
     .string()
     .email("Must be a valid email address.")
@@ -29,18 +29,22 @@ export default function File() {
   });
   const [users, setUsers] = useState([]);
 
+  //   const [serverError, setServerError] = useState("");
+
   useEffect(() => {
     formSchema.isValid(formState).then((valid) => {
+      console.log(valid);
       setButtonDisabled(!valid);
     });
   }, [formState]);
 
+  //   should this have a dependency array?
   const formSubmit = (e) => {
     e.preventDefault();
     axios
       .post("https://reqres.in/api/users", formState)
       .then((res) => {
-        console.log(res.response);
+        console.log(res.data);
         setUsers(res.data);
         setFormState({
           name: "",
@@ -48,9 +52,9 @@ export default function File() {
           password: "",
           terms: "",
         });
-        setErrors(null);
+        // setErrors(null);
       })
-      .catch((err) => console.log(err.response));
+      .catch((err) => console.log(err));
   };
 
   const validateChange = (e) => {
@@ -78,72 +82,69 @@ export default function File() {
       [e.target.name]:
         e.target.type === "checkbox" ? e.target.checked : e.target.value,
     };
+    validateChange(e);
     setFormState(newFormData);
   };
   return (
-    <div>
-      <form onSubmit={formSubmit}>
-        {/* {Errors ? <p className="error">{Errors}</p> : null} */}
-        <label htmlFor="name">
-          Name
-          <input
-            id="name"
-            type="text"
-            name="name"
-            value={formState.name}
-            onChange={inputChange}
-          />
-          {errors.name.length > 0 ? (
-            <p className="error">{errors.name}</p>
-          ) : null}
-        </label>
-        <label htmlFor="email">
-          Email
-          <input
-            id="email"
-            type="email"
-            name="email"
-            value={formState.email}
-            onChange={inputChange}
-          />
-          {errors.email.length > 0 ? (
-            <p className="error">{errors.email}</p>
-          ) : null}
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            id="password"
-            type="text"
-            name="password"
-            value={formState.password}
-            onChange={inputChange}
-          />
-          {errors.password.length > 0 ? (
-            <p className="error">{errors.password}</p>
-          ) : null}
-        </label>
-        <label htmlFor="terms" className="terms">
-          Terms and Condition
-          <input
-            id="terms"
-            type="checkbox"
-            name="terms"
-            checked={true}
-            onChange={inputChange}
-          />
-          {errors.terms.length > 0 ? (
-            <p className="error">{errors.terms}</p>
-          ) : null}
-        </label>
-        <pre>{JSON.stringify(users, null, 2)}</pre>
-        <button
-          //  disabled={buttonDisabled}
-          type="submit"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+    <form onSubmit={formSubmit}>
+      {/* {Errors ? <p className="error">{Errors}</p> : null} */}
+      <label htmlFor="name">
+        Name
+        <input
+          id="name"
+          type="text"
+          name="name"
+          value={formState.name}
+          onChange={inputChange}
+        />
+        {errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
+      </label>
+      <label htmlFor="email">
+        Email
+        <input
+          id="email"
+          type="text"
+          name="email"
+          value={formState.email}
+          onChange={inputChange}
+        />
+        {errors.email.length > 0 ? (
+          <p className="error">{errors.email}</p>
+        ) : null}
+      </label>
+      <label htmlFor="password">
+        Password
+        <input
+          id="password"
+          type="text"
+          name="password"
+          value={formState.password}
+          onChange={inputChange}
+        />
+        {errors.password.length > 0 ? (
+          <p className="error">{errors.password}</p>
+        ) : null}
+      </label>
+      <label htmlFor="terms" className="terms">
+        Terms and Condition
+        <input
+          id="terms"
+          type="checkbox"
+          name="terms"
+          checked={true}
+          onChange={inputChange}
+        />
+        {errors.terms.length > 0 ? (
+          <p className="error">{errors.terms}</p>
+        ) : null}
+      </label>
+      <pre>{JSON.stringify(users, null, 2)}</pre>
+      <button
+        //  disabled={buttonDisabled}
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
   );
 }
