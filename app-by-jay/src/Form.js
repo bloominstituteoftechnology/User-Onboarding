@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import Axios from 'axios';
 
+
+export default function Form (){
+
 const formSchema = yup.object().shape({
     name: yup.string().required('Name is required'),
     email: yup.string().email().required('email is required'),
@@ -23,7 +26,11 @@ const [error, setError] = useState({
     terms: ""
 })
 
-const submitForm = (event) =>{
+const formSubmit = (event) => {
+    event.preventDefault()
+}
+
+const validate = (event) =>{
     yup.reach(formSchema, event.target.name).validate(event.target.value)
     .then(valid =>{
         setError({
@@ -60,6 +67,7 @@ return (
         <div className="alignTerms">
             <input id="terms" type="checkbox" checked={form.terms} name="terms" className="checkbox" onChange={change}/>
         </div>
-
+        <button type="submit" className="btn">Submit</button>
     </form>
-)
+    );
+}
