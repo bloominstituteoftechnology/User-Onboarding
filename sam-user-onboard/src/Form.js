@@ -9,18 +9,19 @@ const blankForm = {
     }
 
 export default function () {
+//form state
     const [formState, setFormState] = useState({...blankForm})
-/*     console.log('formState val', formState) */
+//submit button
+    const [btnDisabled, setBtnDisabled] = useState(true);
 
-//change handler
+//change handler and validater
     const handleChanges = (event) => {
+        event.persist()
         //if/then if type is checkbox
+        validateChange(event)
         setFormState({...formState, [event.target.name]:event.target.type === 'checkbox' ? event.target.checked : event.target.value})
         //console.log(formState)
     }
-
-//submit button
-    const [btnDisabled, setBtnDisabled] = useState(true);
 
 //YUP validation
     const formSchema = yup.object().shape({
@@ -30,8 +31,26 @@ export default function () {
         tos: yup.boolean().oneOf([true], '⚠ You must agree to the TOS to register.')
     })
 
+    const validateChange = (event) => {
+        yup
+            .reach(formSchema, event.target.name)
+            .validate(event.target.value)
+            .then(validity => {
+                console.log('validity val', validity)
+            })
+            .catch(error => {
+                console.log('error val', error.errors)
+            })
+    }
+
+    useEffect(() => {
+        formSchema.isValid(formState)
+        .then(validity => setBtnDisabled(!validity))
+    }, [formState])
+
 //onSubmit function
     const submitForm = (event) => {
+        
         event.preventDefault();
         console.log('form submitted with this data', formState)
     }
