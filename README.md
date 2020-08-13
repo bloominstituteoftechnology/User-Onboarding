@@ -1,70 +1,68 @@
-# Module Project: Advanced Form Management - User Onboarding
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Project Description
+## Available Scripts
 
-We've seen many different styles of form management by now -- simple to complex. Today we are going to unleash your inner form-wizard! 🧙
+In the project directory, you can run:
 
-## Instructions
+### `npm start`
 
-### Task 1: Set Up The Project
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-- [ ] Start off by installing a blank React app by running `npx create-react-app <app-name> --use-npm`.
-- [ ] Using `npm`, add the following as dependencies inside your React app:
-  - `yup`
-  - `axios`
-- [ ] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-### Task 2a: MVP
+### `npm test`
 
-#### Create Your Advanced Form
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-We want to create a form to onboard a new user to our system. We need _at least_ the following pieces of information about our new user:
+### `npm run build`
 
-- [ ] Name
-- [ ] Email
-- [ ] Password
-- [ ] Terms of Service (checkbox)
-- [ ] A Submit button to send our form data to the server.
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-#### Implement Form Validation and Error Messaging
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-Form validation is one of the facets of an application that makes it feel polished and controlled from a user perspective. With that in mind, implement the following:
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-- [ ] Using Yup, set up _at least_ two different validations along with custom error messages that will display on screen when validation fails.
+### `npm run eject`
 
-#### Make a POST Request
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-Being able to `POST` data is a key skill of any developer, no matter your skill level.
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-- [ ] Craft a `POST` request using `axios` that sends your form data to the following endpoint: _`https://reqres.in/api/users`_
-- [ ] Verify using a `console.log()` that you are receiving a successful response back
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-(Note: For those that are curious, we're using [reqres.in](https://reqres.in/) for this assignment's API. It's a free API that allows us to simulate a `POST` request for any data that we send it. Pretty awesome!)
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-#### Display Returned Data to Screen
+## Learn More
 
-When you get your data back, you will want to do something with it, right? Let's display a list of users in our app.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-- [ ] Set up a state property called `users` that is initialized with an empty array
-- [ ] Every time you make a `POST` request, and get that new user data back, update your `users` state with the new user added to the array
-- [ ] Render `users` in your app. You can use the html pre tag and JSON.stringify() method to display your post request.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Task 2b: Exit Ticket
+### Code Splitting
 
-Once you begin, you will have 15 minutes to answer the questions [here](https://app.codesignal.com/public-test/QmsQp5mvdbus5ruJr/cdTTkLGQ7XaZGH).
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-The completion of these questions is mandatory for MVP. However, passing the quiz doesn't affect your standing as a Lambda School student whatsoever. This is Lambda School testing itself! Please answer honestly and to the best of your ability without using external references.
+### Analyzing the Bundle Size
 
-### Task 3: Stretch Goals
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-The following are stretch goals that you should attempt _after_ you meet MVP for your project:
+### Making a Progressive Web App
 
-- [ ] Add basic styling to your form in your app. Make it look pretty with any styling method you choose.
-- [ ] Implement a dropdown menu in your form. Add a `role` value to your state and add a dropdown with different roles for your users.
-- [ ] Create 3 new inputs inside your form of your choice along with corresponding validation and error messaging
-- [ ] Add to your existing handling so that, if a user inputs their email as `waffle@syrup.com`, they receive an error message in their form that says _"That email is already taken."_
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-## Submission Format
+### Advanced Configuration
 
-* [ ] Submit a Pull-Request to merge `<firstName-lastName>` Branch into `main` (student's  Repo). **Please don't merge your own pull request**
-* [ ] Fill out your module retrospective form [here](https://forms.lambdaschool.com/module-retrospective) with a link to your PR
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
