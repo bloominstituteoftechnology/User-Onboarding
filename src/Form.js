@@ -6,8 +6,8 @@ import axios from 'axios';
 
 const formSchema = yup.object().shape({
     name: yup.string().required("Name is a required field"),
-    email: yup.string().email("Must include a valid email").required("Please enter a valid email address"),
-    password: yup.string().required("Please enter password"),
+    email: yup.string().email("Please enter a valid email").required("Please enter a valid email address"),
+    password: yup.string().required("Please enter your password"),
     terms: yup.boolean().oneOf([true], "Please agree to Terms and Conditions")
 })
 
@@ -40,9 +40,10 @@ function Form() {
         e.preventDefault();
         console.log("form submitted!");
         axios.post('https://reqres.in/api/users', formState)
-        .then(response => console.log(response),"success!!!")
+        .then((res) => console.log(res.data),"success!!!")
         .catch(err => console.log(err),"Failed :(");
     };
+
 
     // validating form
 
@@ -69,9 +70,12 @@ function Form() {
 
     const inputChange = e => {
         e.persist()
+        console.log("input changed", e.target.value);
+        const newFormData = {
+            ...formState, [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value
+        };
         validate(e)
-        let value = e.target.type === "checkbox" ? e.target.checked : e.target.value
-        setFormState({...formState, [e.target.name]: value });
+        setFormState(newFormData)
     };
 
     useEffect(() => {
@@ -86,7 +90,7 @@ function Form() {
             <label htmlFor="name">
                 Name    
                 <input type="text" name="name" id="name" placeholder="Please Enter Name" value={formState.name} onChange={inputChange} />
-                {errorState.name.length > 0 ? <p classname="error">{errorState.email}</p> : null}
+                {errorState.name.length > 0 ? <p classname="error">{errorState.name}</p> : null}
             </label>
             <br></br>
             <label htmlFor="email">
@@ -98,7 +102,7 @@ function Form() {
             <label htmlFor="password">
                 Password
                 <input type="password" name="password" id="password" placeholder="Please Enter password" value={formState.password} onChange={inputChange} />
-                {errorState.email.length > 0 ? <p className="error">{errorState.password}</p> : null}            
+                {errorState.password.length > 0 ? <p className="error">{errorState.password}</p> : null}            
             </label>
             <br></br>
             <label htmlFor="Terms of Service">
