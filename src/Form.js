@@ -89,29 +89,29 @@ function Form() {
         <form onSubmit ={formSubmit}>
             <label htmlFor="name">
                 Name    
-                <input type="text" name="name" id="name" placeholder="Please Enter Name" value={formState.name} onChange={inputChange} />
+                <input type="text" name="name" id="name" data-cy="name" placeholder="Please Enter Name" value={formState.name} onChange={inputChange} />
                 {errorState.name.length > 0 ? <p classname="error">{errorState.name}</p> : null}
             </label>
             <br></br>
             <label htmlFor="email">
                 Email
-                <input type="email" name="email" id="email" placeholder="Please Enter Email" value={formState.email} onChange={inputChange} />
+                <input type="email" name="email" id="email" data-cy="email" placeholder="Please Enter Email" value={formState.email} onChange={inputChange} />
                 {errorState.email.length > 0 ? <p className="error">{errorState.email}</p> : null} 
             </label>
             <br></br>
             <label htmlFor="password">
                 Password
-                <input type="password" name="password" id="password" placeholder="Please Enter password" value={formState.password} onChange={inputChange} />
+                <input type="password" name="password" id="password" data-cy="password" placeholder="Please Enter password" value={formState.password} onChange={inputChange} />
                 {errorState.password.length > 0 ? <p className="error">{errorState.password}</p> : null}            
             </label>
             <br></br>
             <label htmlFor="Terms of Service">
                 Do you agree to the Terms of Service?
-                <input type="checkbox" name="terms" id="terms" checked={formState.terms} onChange={inputChange} />
+                <input type="checkbox" name="terms" id="terms" data-cy="terms" checked={formState.terms} onChange={inputChange} />
             {errorState.terms.length > 0 ? <p className="error">{errorState.terms}</p> : null}    
             </label>
             <br></br>
-            <button disabled={buttonDisabled} type="submit">
+            <button data-cy="submit" disabled={buttonDisabled} type="submit">
                 Submit
             </button>
         </form>
