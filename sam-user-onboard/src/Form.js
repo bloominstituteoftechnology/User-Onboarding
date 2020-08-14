@@ -13,6 +13,8 @@ export default function () {
     const [formState, setFormState] = useState({...blankForm})
 //submit button
     const [btnDisabled, setBtnDisabled] = useState(true);
+//errors state
+    const [errorState, setErrorState] = useState({...blankForm, tos: ''})
 
 //change handler and validater
     const handleChanges = (event) => {
@@ -35,14 +37,16 @@ export default function () {
         yup
             .reach(formSchema, event.target.name)
             .validate(event.target.value)
-            .then(validity => {
-                console.log('validity val', validity)
+            .then(valid => {
+                setErrorState({...errorState, [event.target.name]: " "})
             })
             .catch(error => {
-                console.log('error val', error.errors)
+                console.log('👓 Please review the following errors:', errorState)
+                setErrorState({...errorState, [event.target.name]: error.errors[0]})
             })
     }
 
+//check for entire form validity then enable submit button
     useEffect(() => {
         formSchema.isValid(formState)
         .then(validity => setBtnDisabled(!validity))
@@ -64,18 +68,22 @@ export default function () {
                 <label htmlFor='name'>
                     Name:
                     <input type='text' id='name' name='name' placeholder='Phoenix Wright' onChange={handleChanges} value={formState.name}/>
+                    {errorState.name.length > 0 ? <p>{errorState.name}</p> : null}
                 </label>
                 <label htmlFor='email'>
                     Email:
                     <input type='text' id='email' name='email' placeholder='pwright@aceattorney.com' onChange={handleChanges} value={formState.email}/>
+                    {errorState.email.length > 0 ? <p>{errorState.email}</p> : null}
                 </label>
                 <label htmlFor='password'>
                     Password:
                     <input type='text' id='password' name='password' placeholder='**********' onChange={handleChanges} value={formState.password}/>
+                    {errorState.password.length > 0 ? <p>{errorState.password}</p> : null}
                 </label>
                 <label htmlFor='tos'>
                     <input type='checkbox' checked={formState.tos} id='tos' name='tos' onChange={handleChanges}/>
                     I have read and agree to the <a href='http://google.com' target='_blank'>Terms of Service</a>.
+                    {errorState.tos.length > 0 ? <p>{errorState.tos}</p> : null}
                 </label>
                 <button disabled={ btnDisabled } type='submit'> Register </button>
             </form>
