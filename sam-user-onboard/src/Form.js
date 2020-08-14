@@ -16,6 +16,8 @@ export default function () {
     const [btnDisabled, setBtnDisabled] = useState(true);
 //error state
     const [errorState, setErrorState] = useState({...blankForm, tos: ''})
+//users state
+    const [usersState, setUsersState] = useState([])
 
 //change handler and validater
     const handleChanges = (event) => {
@@ -58,10 +60,20 @@ export default function () {
         event.preventDefault();
         console.log('form submitted with this data', formState)
         axios.post('https://reqres.in/api/users', formState)
-            .then(sucess => console.log('🌟 Posted new user data!', sucess))
+            .then(success => {
+                console.log('🌟 Posted new user data!', success.data)
+                {/* add users to array */}
+                const newUser = success.data
+                setUsersState([...usersState, {...newUser}])
+                setFormState(blankForm)
+                
+            })
             .catch(failure => console.log('⛔ Failed to post new user data...', failure))
     }
 
+    useEffect(() => {
+        console.log('🆕 Users list updated!', usersState)
+    }, [usersState])
 
     return (
         <section>
@@ -91,6 +103,7 @@ export default function () {
                     {errorState.tos.length > 0 ? <p>{errorState.tos}</p> : null}
                 </label>
                 <button disabled={ btnDisabled } type='submit'> Register </button>
+                <pre></pre>
             </form>
         </section>
     )
