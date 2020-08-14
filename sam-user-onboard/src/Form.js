@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
+import axios from 'axios';
 
 const blankForm = {
         name: '',
@@ -11,9 +12,9 @@ const blankForm = {
 export default function () {
 //form state
     const [formState, setFormState] = useState({...blankForm})
-//submit button
+//submit button state
     const [btnDisabled, setBtnDisabled] = useState(true);
-//errors state
+//error state
     const [errorState, setErrorState] = useState({...blankForm, tos: ''})
 
 //change handler and validater
@@ -53,10 +54,12 @@ export default function () {
     }, [formState])
 
 //onSubmit function
-    const submitForm = (event) => {
-        
+    const submitForm = (event) => {    
         event.preventDefault();
         console.log('form submitted with this data', formState)
+        axios.post('https://reqres.in/api/users', formState)
+            .then(sucess => console.log('🌟 Posted new user data!', sucess))
+            .catch(failure => console.log('⛔ Failed to post new user data...', failure))
     }
 
 
@@ -64,7 +67,9 @@ export default function () {
         <section>
             <p>Sign up is quick and simple. Please fill out the following information.</p>
             <form onSubmit={ submitForm }>
-{/* Form startes here! Needs: name, email, pw, tos, submit */}
+{/* Form startes here! Needs: name, email, pw, tos, submit 
+    Also, there are validation error message that will display if they exist
+*/}
                 <label htmlFor='name'>
                     Name:
                     <input type='text' id='name' name='name' placeholder='Phoenix Wright' onChange={handleChanges} value={formState.name}/>
