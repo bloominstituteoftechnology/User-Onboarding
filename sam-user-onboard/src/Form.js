@@ -103,7 +103,8 @@ export default function () {
                     {errorState.tos.length > 0 ? <p>{errorState.tos}</p> : null}
                 </label>
                 <button disabled={ btnDisabled } type='submit'> Register </button>
-                <pre></pre>
+{/* Show users array here */}
+                <pre>{JSON.stringify(usersState)}</pre>
             </form>
         </section>
     )
