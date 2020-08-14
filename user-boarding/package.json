@@ -10,8 +10,6 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "server": "^1.0.29",
-    "uuid": "^8.1.0",
     "yup": "^0.29.3"
   },
   "scripts": {
