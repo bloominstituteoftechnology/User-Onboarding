@@ -24,7 +24,7 @@ export default function () {
         event.persist()
         //if/then if type is checkbox
         validateChange(event)
-        setFormState({...formState, [event.target.name]:event.target.type === 'checkbox' ? event.target.checked : event.target.value})
+        setFormState({...formState, [event.target.name]:event.target.name === 'tos' ? event.target.checked : event.target.value})
         //console.log(formState)
     }
 
@@ -39,7 +39,7 @@ export default function () {
     const validateChange = (event) => {
         yup
             .reach(formSchema, event.target.name)
-            .validate(event.target.value)
+            .validate(event.target.name === 'tos' ? event.target.checked : event.target.value)
             .then(valid => {
                 setErrorState({...errorState, [event.target.name]: " "})
             })
@@ -58,7 +58,6 @@ export default function () {
 //onSubmit function
     const submitForm = (event) => {    
         event.preventDefault();
-        console.log('form submitted with this data', formState)
         axios.post('https://reqres.in/api/users', formState)
             .then(success => {
                 console.log('🌟 Posted new user data!', success.data)
@@ -84,28 +83,33 @@ export default function () {
 */}
                 <label htmlFor='name'>
                     Name:
-                    <input type='text' id='name' name='name' placeholder='Phoenix Wright' onChange={handleChanges} value={formState.name}/>
+                    <input type='text' id='name' name='name' placeholder='Phoenix Wright' onChange={handleChanges} value={formState.name} data-cy='name'/>
                     {errorState.name.length > 0 ? <p>{errorState.name}</p> : null}
                 </label>
                 <label htmlFor='email'>
                     Email:
-                    <input type='text' id='email' name='email' placeholder='pwright@aceattorney.com' onChange={handleChanges} value={formState.email}/>
+                    <input type='text' id='email' name='email' placeholder='pwright@aceattorney.com' onChange={handleChanges} value={formState.email} data-cy='email'/>
                     {errorState.email.length > 0 ? <p>{errorState.email}</p> : null}
                 </label>
                 <label htmlFor='password'>
                     Password:
-                    <input type='text' id='password' name='password' placeholder='**********' onChange={handleChanges} value={formState.password}/>
+                    <input type='password' id='password' name='password' placeholder='**********' onChange={handleChanges} value={formState.password} data-cy='password'/>
                     {errorState.password.length > 0 ? <p>{errorState.password}</p> : null}
                 </label>
                 <label htmlFor='tos'>
-                    <input type='checkbox' checked={formState.tos} id='tos' name='tos' onChange={handleChanges}/>
+                    <input type='checkbox' checked={formState.tos} id='tos' name='tos' onChange={handleChanges} data-cy='tos'/>
                     I have read and agree to the <a href='http://google.com' target='_blank'>Terms of Service</a>.
                     {errorState.tos.length > 0 ? <p>{errorState.tos}</p> : null}
                 </label>
                 <button disabled={ btnDisabled } type='submit'> Register </button>
 {/* Show users array here */}
-                <pre>{JSON.stringify(usersState)}</pre>
+                
             </form>
+            <h4>New Members!</h4>
+{/* <pre>{JSON.stringify(usersState)}</pre> */}
+            <ol>
+                {Array.from(usersState).map(item => <li>{item.name} [{item.email}]</li>)}
+            </ol>
         </section>
     )
 }
