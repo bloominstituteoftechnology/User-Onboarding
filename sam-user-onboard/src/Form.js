@@ -77,7 +77,7 @@ export default function () {
     return (
         <section>
             <p>Sign up is quick and simple. Please fill out the following information.</p>
-            <form onSubmit={ submitForm }>
+            <form onSubmit={ submitForm } data-cy='form'>
 {/* Form startes here! Needs: name, email, pw, tos, submit 
     Also, there are validation error message that will display if they exist
 */}
@@ -101,7 +101,7 @@ export default function () {
                     I have read and agree to the <a href='http://google.com' target='_blank'>Terms of Service</a>.
                     {errorState.tos.length > 0 ? <p>{errorState.tos}</p> : null}
                 </label>
-                <button disabled={ btnDisabled } type='submit'> Register </button>
+                <button disabled={ btnDisabled } type='submit' data-cy='btn'> Register </button>
 {/* Show users array here */}
                 
             </form>
