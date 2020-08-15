@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
-import Axios from 'axios';
+import axios from 'axios';
 
 
 export default function Form (){
