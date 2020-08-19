@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Form() {
+function Form(props) {
+const {data,submit,dataCheck,dataInput} = props
 
 
-    
     return (
       <div className="Form">
         <h1>Hello There</h1>
@@ -20,6 +20,7 @@ function Form() {
             <label className='tos'>Terms Of Service:
                 <input type='checkbox' />
             </label>
+            <button>Submit</button>
         </form>
       </div>
     );
