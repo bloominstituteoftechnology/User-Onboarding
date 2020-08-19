@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import User from "./UserCard";
+import formSchema from './formSchema'
 import axios from "axios";
 import * as yup from 'yup';
 import "./App.css";
@@ -11,19 +12,24 @@ const initialFormData = {
   first_name: "",
   last_name: "",
   email: "",
-  // password: "",
+  password: "",
   tos: false,
 };
 const initialFormError = {
-  username: "",
+  first_name: "",
+  last_name: "",
   email: "",
-  // password: "",
+  password: "",
+  tos: false,
 };
+const initialDisabled = true
+
 
 function App() {
   const [user, setUser] = useState(initialUser);
   const [formData, setFormData] = useState(initialFormData);
   const [formError, setFormError] = useState(initialFormError);
+  const [disable, setDisable] = useState(initialDisabled)
 
   const getUser = () => {
     axios
@@ -60,12 +66,33 @@ function App() {
       first_name: formData.first_name.trim(),
       last_name: formData.last_name.trim(),
       email: formData.email.trim(),
-      // password: formData.password.trim(),
+      password: formData.password.trim(),
     };
     postNewUser(newUser);
   };
 
   const dataInput = (name, data) => {
+
+    yup
+    .reach(formSchema, name)
+    //we can then run validate using the value
+    .validate(data)
+    // if the validation is successful, we can clear the error message
+    .then(valid => {
+      setFormError({
+        ...formError,
+        [name]: ""
+      });
+    })
+    /* if the validation is unsuccessful, we can set the error message to the message 
+      returned from yup (that we created in our schema) */
+    .catch(err => {
+      setFormError({
+        ...formError,
+        [name]: err.errors[0]
+      });
+    });
+
     setFormData({
       ...formData,
       [name]: data,
@@ -79,6 +106,12 @@ function App() {
     });
   };
 
+useEffect(()=>{
+  formSchema.isValid(formData).then(valid => {
+    setDisable(!valid);
+  });
+},[formData])
+
   return (
     <div className="App">
       <Form
@@ -86,6 +119,8 @@ function App() {
         submit={submit}
         dataCheckBox={dataCheckBox}
         dataInput={dataInput}
+        errors={formError}
+        disable={disable}
       />
       {user.map((eachUser) => {
         return <User key={eachUser.id} details={eachUser} />;

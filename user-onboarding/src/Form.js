@@ -1,7 +1,14 @@
 import React from "react";
 
 function Form(props) {
-  const { data, submit, dataCheckBox, dataInput } = props;
+  const { 
+    data, 
+    submit, 
+    dataCheckBox, 
+    dataInput, 
+    errors, 
+    disable 
+    } = props;
 
   const onSubmit = (evt) => {
     evt.preventDefault();
@@ -22,6 +29,13 @@ function Form(props) {
     <div className="Form">
       <h1>Hello There</h1>
       <form onSubmit={onSubmit}>
+
+      <div className='errors'>
+          <div>{errors.first_name}</div>
+          <div>{errors.last_name}</div>
+          <div>{errors.email}</div>
+        </div>
+
         <label>
           First Name:
           <input
@@ -52,7 +66,7 @@ function Form(props) {
             onChange={onInputChange}
           />
         </label>
-        {/* <label>
+        <label>
           Password:
           <input
             type="text"
@@ -61,7 +75,7 @@ function Form(props) {
             value={data.password}
             onChange={onInputChange}
           />
-        </label> */}
+        </label>
         <label className="tos">
           Terms Of Service:
           <input
@@ -71,7 +85,7 @@ function Form(props) {
             onChange={onCheckBox}
           />
         </label>
-        <button>Submit</button>
+        <button disabled={disable}>Submit</button>
       </form>
     </div>
   );

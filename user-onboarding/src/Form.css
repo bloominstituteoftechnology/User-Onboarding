@@ -16,3 +16,6 @@ label{
 .tos{
     justify-content: space-evenly;
 }
+.errors{
+    color: red;
+}
