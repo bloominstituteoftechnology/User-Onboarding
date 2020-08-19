@@ -52,7 +52,7 @@ function Form(props) {
             onChange={onInputChange}
           />
         </label>
-        <label>
+        {/* <label>
           Password:
           <input
             type="text"
@@ -61,7 +61,7 @@ function Form(props) {
             value={data.password}
             onChange={onInputChange}
           />
-        </label>
+        </label> */}
         <label className="tos">
           Terms Of Service:
           <input

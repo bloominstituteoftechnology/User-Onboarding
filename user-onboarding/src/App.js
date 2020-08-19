@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import User from "./UserCard";
 import axios from "axios";
+import * as yup from 'yup';
 import "./App.css";
 import "./Form.css";
 
@@ -10,13 +11,13 @@ const initialFormData = {
   first_name: "",
   last_name: "",
   email: "",
-  password: "",
+  // password: "",
   tos: false,
 };
 const initialFormError = {
   username: "",
   email: "",
-  password: "",
+  // password: "",
 };
 
 function App() {
@@ -59,7 +60,7 @@ function App() {
       first_name: formData.first_name.trim(),
       last_name: formData.last_name.trim(),
       email: formData.email.trim(),
-      password: formData.password.trim(),
+      // password: formData.password.trim(),
     };
     postNewUser(newUser);
   };
