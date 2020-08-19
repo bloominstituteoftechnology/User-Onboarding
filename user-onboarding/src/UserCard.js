@@ -7,11 +7,13 @@ function User(props) {
     return <h3>Fetching User Data...</h3>;
   }
   return (
-    <div>
-      <h3>
-        User: {details.first_name} {details.last_name}
-      </h3>
-      <p>Email: {details.email}</p>
+    <div className="cardContainer">
+      <div className="userCard">
+        <h3>
+          User: {details.first_name} {details.last_name}
+        </h3>
+        <p>Email: {details.email}</p>
+      </div>
     </div>
   );
 }

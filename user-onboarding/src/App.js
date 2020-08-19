@@ -6,7 +6,7 @@ import axios from "axios";
 import * as yup from "yup";
 import "./App.css";
 import "./Form.css";
-import logo from './Logo/Logo.png'
+import logo from "./Logo/Logo.png";
 
 const initialUser = [];
 const initialFormData = {

@@ -1,5 +1,5 @@
 import React from "react";
-import logoImg from './Logo/Logo-Img.png'
+import logoImg from "./Logo/Logo-Img.png";
 
 function Form(props) {
   const { data, submit, dataCheckBox, dataInput, errors, disable } = props;
@@ -21,10 +21,12 @@ function Form(props) {
 
   return (
     <div className="Form">
-        <div className='title-Container'>
-            <h1>Welcome To The User Keeper <img className='Logo' src={logoImg}/></h1>
-        </div>
-            <div className="formContainer">
+      <div className="title-Container">
+        <h1>
+          Welcome To The User Keeper <img className="Logo" src={logoImg} />
+        </h1>
+      </div>
+      <div className="formContainer">
         <form onSubmit={onSubmit}>
           <div className="errors">
             <div>{errors.first_name}</div>
