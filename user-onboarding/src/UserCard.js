@@ -1,12 +1,19 @@
-import React from 'react';
+import React from "react";
 
+function User(props) {
+  const { details } = props;
 
-export default function User(props) {
-    const {details} = props
-    return(
-        <div>
-            <h3>Username: {details.first_name} {details.last_name}</h3>
-            <p>Email: {details.email}</p>
-        </div>
-    );
+  if (!details) {
+    return <h3>Fetching User Data...</h3>;
+  }
+  return (
+    <div>
+      <h3>
+        Username: {details.first_name} {details.last_name}
+      </h3>
+      <p>Email: {details.email}</p>
+    </div>
+  );
 }
+
+export default User;
