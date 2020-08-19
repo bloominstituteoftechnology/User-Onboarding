@@ -9,7 +9,7 @@ function User(props) {
   return (
     <div>
       <h3>
-        Username: {details.first_name} {details.last_name}
+        User: {details.first_name} {details.last_name}
       </h3>
       <p>Email: {details.email}</p>
     </div>
