@@ -1,7 +1,7 @@
 import React from "react";
 
 function User(props) {
-  const { details,deleteUser,editUser } = props;
+  const { details, deleteUser, editUser } = props;
 
   if (!details) {
     return <h3>Fetching User Data...</h3>;
@@ -13,8 +13,12 @@ function User(props) {
           User: {details.first_name} {details.last_name}
         </h3>
         <p>Email: {details.email}</p>
-        <button className={`editBtn${details.id}`} onClick={() => deleteUser(details.id)}>Delete</button>
-        <button className={`deleteBtn${details.id}`} onClick={() => editUser(details.id)}>Edit</button>
+        <button className="deleteBtn" onClick={() => editUser(details.id)}>
+          Edit
+        </button>
+        <button className="editBtn" onClick={() => deleteUser(details.id)}>
+          Delete
+        </button>
       </div>
     </div>
   );

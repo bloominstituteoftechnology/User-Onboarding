@@ -112,23 +112,24 @@ function App() {
     });
   }, [formData]);
 
-
   const deleteUser = (id) => {
-    axios.delete(`https://reqres.in/api/users${id}`)
-      .then(res => { // eslint-disable-line
-        setUser(user.filter(user => user.id !== id))
+    axios
+      .delete(`https://reqres.in/api/users${id}`)
+      .then((res) => {
+        // eslint-disable-line
+        setUser(user.filter((user) => user.id !== id));
       })
-      .catch(error =>{
-        console.log(error)
+      .catch((error) => {
+        console.log(error);
       })
-      .finally(resetForm)
-  }
-  const resetForm = () => setFormData(initialFormData)
+      .finally(resetForm);
+  };
+  const resetForm = () => setFormData(initialFormData);
 
   const editUser = (id) => {
-    const users = user.find(user => user.id === id)
-    setFormData({ ...users })
-  }
+    const users = user.find((user) => user.id === id);
+    setFormData({ ...users });
+  };
 
   return (
     <div className="App">
@@ -143,7 +144,14 @@ function App() {
       />
       <div className="userCardContainer">
         {user.map((eachUser) => {
-          return <User key={eachUser.id} details={eachUser} editUser={editUser} deleteUser={deleteUser}/>;
+          return (
+            <User
+              key={eachUser.id}
+              details={eachUser}
+              editUser={editUser}
+              deleteUser={deleteUser}
+            />
+          );
         })}
       </div>
       <footer>
