@@ -2,7 +2,7 @@ import React from "react";
 import logoImg from "./Logo/Logo-Img.png";
 
 function Form(props) {
-  const { data, submit, dataCheckBox, dataInput, errors, disable } = props;
+  const { data, submit, dataCheckBox, dataInput, errors, disable,resetForm } = props;
 
   const onSubmit = (evt) => {
     evt.preventDefault();
@@ -18,7 +18,10 @@ function Form(props) {
     const { name, value } = evt.target;
     dataInput(name, value);
   };
-
+  const onCancel = evt => {
+    evt.preventDefault()
+    resetForm()
+  }
   return (
     <div className="Form">
       <div className="title-Container">
@@ -85,6 +88,7 @@ function Form(props) {
           </label>
           <div className="button-Box">
             <button disabled={disable}>Submit</button>
+            <button onClick={onCancel}>Clear</button>
           </div>
         </form>
       </div>

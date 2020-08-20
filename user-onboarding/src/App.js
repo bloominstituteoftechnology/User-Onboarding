@@ -42,6 +42,7 @@ function App() {
         console.log(error);
       });
   };
+
   useEffect(() => {
     getUser();
   }, []);
@@ -111,6 +112,24 @@ function App() {
     });
   }, [formData]);
 
+
+  const deleteUser = (id) => {
+    axios.delete(`https://reqres.in/api/users${id}`)
+      .then(res => { // eslint-disable-line
+        setUser(user.filter(user => user.id !== id))
+      })
+      .catch(error =>{
+        console.log(error)
+      })
+      .finally(resetForm)
+  }
+  const resetForm = () => setFormData(initialFormData)
+
+  const editUser = (id) => {
+    const users = user.find(user => user.id === id)
+    setFormData({ ...users })
+  }
+
   return (
     <div className="App">
       <Form
@@ -120,10 +139,11 @@ function App() {
         dataInput={dataInput}
         errors={formError}
         disable={disable}
+        resetForm={resetForm}
       />
       <div className="userCardContainer">
         {user.map((eachUser) => {
-          return <User key={eachUser.id} details={eachUser} />;
+          return <User key={eachUser.id} details={eachUser} editUser={editUser} deleteUser={deleteUser}/>;
         })}
       </div>
       <footer>
