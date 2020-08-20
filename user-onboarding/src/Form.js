@@ -40,9 +40,9 @@ function Form(props) {
       <div className="formContainer">
         <form onSubmit={onSubmit}>
           <div className="errors">
-            <div>{errors.first_name}</div>
-            <div>{errors.last_name}</div>
-            <div>{errors.email}</div>
+            <div className="errorFirstName">{errors.first_name}</div>
+            <div className="errorLastName">{errors.last_name}</div>
+            <div className="email">{errors.email}</div>
           </div>
 
           <label>
@@ -95,8 +95,8 @@ function Form(props) {
             />
           </label>
           <div className="button-Box">
-            <button disabled={disable}>Submit</button>
-            <button onClick={onCancel}>Clear</button>
+            <button className='submit' disabled={disable}>Submit</button>
+            <button className='clear' onClick={onCancel}>Clear</button>
           </div>
         </form>
       </div>
