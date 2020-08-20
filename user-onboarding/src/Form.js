@@ -10,6 +10,7 @@ function Form(props) {
     errors,
     disable,
     resetForm,
+    editUser,
   } = props;
 
   const onSubmit = (evt) => {
