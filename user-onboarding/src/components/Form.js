@@ -43,7 +43,7 @@ const handleChange = event => {
       />
       <input
         onChange={handleChange}
-        type="text"
+        type="password"
         name="password"
         value={newForm.role}
         placeholder="Password"

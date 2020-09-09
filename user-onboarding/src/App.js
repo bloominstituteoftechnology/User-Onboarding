@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import Form from './components/Form'
 import './App.css';
 
@@ -11,6 +10,9 @@ function App() {
   return (
       <div className="App">
         <Form users={users} setUsers={setUsers}/>
+        <div>
+          {users.map((user, index) => (<p>Name: {user.name} Email: {user.email}</p>))}
+        </div>
       </div>
     );
   }
