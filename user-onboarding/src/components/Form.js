@@ -6,6 +6,7 @@ import axios from "axios";
 const formSchema = yup.object().shape({
     name: yup.string().required("Name is a required field."),
     email: yup.string().email("Must be a valid email address").required("Must include email address."),
+    password: yup.string().required("Must create a password"),
     terms: yup.boolean().oneOf([true], "Please agree to the terms of use"),
 });
 
@@ -39,17 +40,30 @@ useEffect(() => {
   }, [formState]);
 
 const handleChange = event => {
-    console.log(event.target.value);
-    setNewForm({
-      ...newForm,
+    event.persist();
+    const newFormData = {
+      ...formState,
       [event.target.name]:
         event.target.type === "checkbox" ? event.target.checked : event.target.value
-    });
+    };
+    validateChange(event);
+    setFormState(newFormData);
   };
 
   const handleSubmit = event => {
       event.preventDefault();
       axios.post("https://reqres.in/api/users", formState)
+      .then(res => {
+          setNewForm(res.data);
+          console.log("It works!", newForm)
+          setFormState({
+              name: "",
+              email: "",
+              password: "",
+              terms: "",
+          });   
+      })
+      .catch(err => console.log(err.response));
   }
 
  const validateChange = event => {
@@ -72,38 +86,55 @@ const handleChange = event => {
 
   return (
     <form onSubmit={handleSubmit}>
+    <label htmlFor='name'>
       <input
         onChange={handleChange}
         type="text"
         name="name"
-        value={newForm.name}
+        value={formState.name}
         placeholder="Name"
       />
+      {errors.name.length > 0 ? <p className='error'>{errors.name}</p> : null}
+      </label>
+      <label htmlFor='email'>
       <input
         onChange={handleChange}
         type="text"
         name="email"
-        value={newForm.email}
+        value={formState.email}
         placeholder="Email"
       />
+              {errors.email.length > 0 ? (
+          <p data-cy="email-error-msg" className='error'>{errors.email}</p>
+        ) : null}
+
+      </label>
+
+      <label htmlFor='password'>
       <input
         onChange={handleChange}
         type="password"
         name="password"
-        value={newForm.role}
+        value={formState.role}
         placeholder="Password"
       />
+
+{errors.password.length > 0 ? (
+          <p className='error'>{errors.password}</p>
+        ) : null}
+        </label>
+
 
 <label htmlFor='terms' className='terms'>
         <input
           type='checkbox'
           name='terms'
-          checked={newForm.terms}
+          checked={formState.terms}
           onChange={handleChange}
         />
         Terms & Conditions
       </label>
-      <button type="submit">Add User</button>
+      <button type="submit" disabled={buttonDisabled}>Add User</button>
     </form>
 );
   }
