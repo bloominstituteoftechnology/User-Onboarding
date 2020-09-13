@@ -53,9 +53,9 @@ const handleChange = event => {
   const handleSubmit = event => {
       event.preventDefault();
       axios.post("https://reqres.in/api/users", formState)
-      .then(res => {
+      .then(res => {console.log("1 It works!", newForm)
           setNewForm(res.data);
-          console.log("It works!", newForm)
+          console.log("2 It works!", newForm)
           setFormState({
               name: "",
               email: "",
@@ -115,7 +115,7 @@ const handleChange = event => {
         onChange={handleChange}
         type="password"
         name="password"
-        value={formState.role}
+        value={formState.password}
         placeholder="Password"
       />
 
@@ -134,6 +134,7 @@ const handleChange = event => {
         />
         Terms & Conditions
       </label>
+      <pre>{JSON.stringify(newForm, null, 2)}</pre>
       <button type="submit" disabled={buttonDisabled}>Add User</button>
     </form>
 );
