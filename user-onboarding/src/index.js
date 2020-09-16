@@ -4,6 +4,8 @@ import './index.css';
 import App from '..components/App';
 import * as serviceWorker from './serviceWorker';
 
+<pre>{JSON.stringify(post, null, 2)}</pre>
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
