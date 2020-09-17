@@ -110,6 +110,7 @@ const formSchema = yup.object().shape({
         id='name'
         type='text'
         name='name'
+        data-cy='name'
         value={formState.name}
         onChange={changeHandler}
         />
@@ -125,6 +126,7 @@ const formSchema = yup.object().shape({
         id='email'
         type='text'
         name='email'
+        data-cy='email'
         value={formState.email}
         onChange={changeHandler}
         />
@@ -140,6 +142,7 @@ const formSchema = yup.object().shape({
         id='password'
         type='password'
         name='password'
+        data-cy='password'
         value={formState.password}
         onChange={changeHandler}
         />
@@ -154,6 +157,7 @@ const formSchema = yup.object().shape({
         id='terms'
         type='checkbox'
         name='terms'
+        data-cy='terms'
         value={formState.terms}
         onChange={changeHandler}
         />
@@ -163,9 +167,9 @@ const formSchema = yup.object().shape({
 
       </label>
 
-      <button disabled={buttonDisabled} type='submit'>Submit</button>
+      <button data-cy= 'submit' disabled={buttonDisabled} type='submit'>Submit</button>
 
-      <pre>{JSON.stringify(users, null, 2)}</pre>
+      <pre>{JSON.stringify(users, null, 1)}</pre>
 
     </form>
   )
