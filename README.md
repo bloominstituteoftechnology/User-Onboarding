@@ -14,7 +14,7 @@ We've seen many different styles of form management by now -- simple to complex.
   - `axios`
 - [ ] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
 
-### Task 2a: MVP
+### Task 2: MVP
 
 #### Create Your Advanced Form
 
@@ -49,12 +49,6 @@ When you get your data back, you will want to do something with it, right? Let's
 - [ ] Every time you make a `POST` request, and get that new user data back, update your `users` state with the new user added to the array
 - [ ] Render `users` in your app. You can use the html pre tag and JSON.stringify() method to display your post request.
 
-### Task 2b: Exit Ticket
-
-Once you begin, you will have 15 minutes to answer the questions [here](https://app.codesignal.com/public-test/QmsQp5mvdbus5ruJr/cdTTkLGQ7XaZGH).
-
-The completion of these questions is mandatory for MVP. However, passing the quiz doesn't affect your standing as a Lambda School student whatsoever. This is Lambda School testing itself! Please answer honestly and to the best of your ability without using external references.
-
 ### Task 3: Stretch Goals
 
 The following are stretch goals that you should attempt _after_ you meet MVP for your project:
@@ -67,4 +61,3 @@ The following are stretch goals that you should attempt _after_ you meet MVP for
 ## Submission Format
 
 * [ ] Submit a Pull-Request to merge `<firstName-lastName>` Branch into `main` (student's  Repo). **Please don't merge your own pull request**
-* [ ] Fill out your module retrospective form [here](https://forms.lambdaschool.com/module-retrospective) with a link to your PR
