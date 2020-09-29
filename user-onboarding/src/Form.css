@@ -1,0 +1,88 @@
+body {
+  background-color: #c6dec6;
+}
+form {
+  display: flex;
+  width: 40%;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: space-evenly;
+  padding: 2%;
+  border: 1px lightblue;
+}
+label {
+  width: 100%;
+  display: flex;
+  padding: 1%;
+  justify-content: space-between;
+}
+.tos {
+  justify-content: space-evenly;
+}
+.errors {
+  color: red;
+}
+.button-Box {
+  width: 50%;
+  padding: 1% 0%;
+  margin: 1%;
+}
+button {
+  width: 50%;
+  padding: 5%;
+  color: #020402;
+  border: none;
+  background-color: #a9c5a0;
+  border-radius: 15px;
+  box-shadow: 1px 2px 3px #91a18eb6;
+  font-weight: bolder;
+  margin: 1%;
+}
+button:disabled {
+  color: grey;
+  background-color: #788872b2;
+}
+.formContainer {
+  box-shadow: 0px 2px 2px #7581733d;
+}
+.Logo {
+  max-width: 10%;
+}
+.title-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+h1 {
+  font-size: 2.3rem;
+  display: flex;
+  width: 90%;
+  align-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding-top: 2%;
+}
+.userCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  box-shadow: 3px 4px 8px #9daf9d;
+  background-color: #d1ebd1;
+  border-radius: 5px;
+  padding: 0.1% 0%;
+}
+.cardContainer {
+  padding: 2%;
+}
+/* USER CARD STUFF */
+
+.editBtn,
+.deleteBtn {
+  padding: 0%;
+  width: 20%;
+  margin-bottom: 2%;
+}
