@@ -4,26 +4,37 @@ import { Link } from 'react-router-dom'
 
 
 const Form =(params) => {
-    const [changes, setChanges] = useState({name:"",email:"", password: "", evtChk: false})
+    const [changes, setChanges] = useState({name:"",email:"", pass: "", evtChk: false})
+    const [submited,setSubmited] = useState(false);
+    const [res,setRes] = useState({});
     const handleChange = (e) =>{
         const ch= {...changes,[e.target.name]: e.target.value};
             setChanges(ch);
-            console.log(changes);
+            // console.log(changes);
     };
     const handleSubmite = (e) =>{
-        return {...changes};
+        setSubmited(true);
+        // return {...changes};
     };
 
     const handleChkChange = (e)  =>{
 
     }
-    axios.post(`https://reqres.in/api/users`,changes)
+    useEffect( () =>{
+        axios.post(`https://reqres.in/api/users`,changes)
         .then(e =>{
             console.log(e);
+            setRes(e);
+
+
         })
         .catch(er =>{
             console.log(er);
         })
+        .finally(e =>{
+            console.log(res.data);
+        })
+    },[submited]);
 
     return (
        <div className="App">
