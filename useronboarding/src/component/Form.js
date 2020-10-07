@@ -4,7 +4,6 @@ import axios from "axios";
 
 
 export default function Form() {
-//manages state for the form inputs
 const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -12,36 +11,41 @@ const [formState, setFormState] = useState({
     terms: false
 
 })
-const [serverError, setServerError] = useState("");
 
 const [buttonIsDisabled, setButtonIsDisabled] = useState(true);
 
+const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    password: "",
+    terms: ""
+  });
 
-const [post, setPost] = useState([]);
 
-// const validateChange = (e) => {
-//     yup
-//     .reach(formSchema, e.target.name)
-//     .validate(
-//         e.target.type === "checkbox" ? e.target.checked : e.target.value
-//       )
-// };
+const [users, setUsers] = useState([]);
+
+const validateChange = (e) => {
+    yup
+      .reach(formSchema, e.target.name)
+      .validate(
+        e.target.type === "checkbox" ? e.target.checked : e.target.value
+      )
+      .then((valid) => {
+        setErrors({ ...errors, [e.target.name]: "" });
+      })
+      .catch((err) => {
+        console.log("err", err);
+        setErrors({ ...errors, [e.target.name]: err.errors[0] });
+      });
+  };
 
 const formSubmit = (e) => {
-    e.preventDefault(); // <form> onSubmit has default behavior from HTML!
-
-    // send out POST request with obj as second param, for us that is formState.
-    // trigger .catch by changing URL to "https://reqres.in/api/register" -> see step 7 in notion notes
+    e.preventDefault(); 
+    console.log("working")
     axios
       .post("https://reqres.in/api/users", formState)
       .then((resp) => {
-        // update temp state with value from API to display in <pre>
-        setPost(resp.data);
-
-        // if successful request, clear any server errors
-        setServerError(null); // see step 7 in notion notes
-
-        // clear state, could also use a predetermined initial state variable here
+        setUsers(resp.data);
         setFormState({
             name: "",
             email: "",
@@ -49,15 +53,21 @@ const formSubmit = (e) => {
             terms: false
         });
       })
-      .catch((err) => {
-        // this is where we could create a server error in the form! if API request fails, say for authentication (that user doesn't exist in our DB),
-        // set serverError
-        setServerError("oops! something happened!");
-      });
+      .catch((err) => console.log(err));
   };
 
 
-const inputChange = (e) => {};
+  const inputChange = (e) => {
+    e.persist(); 
+    const newFormState = {
+      ...formState,
+      [e.target.name]:
+        e.target.type === "checkbox" ? e.target.checked : e.target.value
+    };
+
+    validateChange(e); 
+    setFormState(newFormState);
+  };
 
 
 
@@ -73,9 +83,7 @@ const formSchema = yup.object().shape({
 
 useEffect(() =>{
     formSchema.isValid(formState).then((valid)=> {
-        console.log("is this working?", valid);
-
-
+        // console.log("is this working?", valid);
         setButtonIsDisabled(!valid)
     })
 }, [formState])
@@ -110,7 +118,6 @@ return (
           type="text"
           name="password"
           value={formState.password}
-          //review this later
           onChange={inputChange}
         />
       </label>
@@ -137,7 +144,7 @@ return (
       <button type="submit" disabled={buttonIsDisabled}>
         Submit
       </button>
-      {/* <pre>{JSON.stringify(post, null, 2)}</pre> */}
+      <pre>{JSON.stringify(users, null, 2)}</pre>
     </form>
   );
 
