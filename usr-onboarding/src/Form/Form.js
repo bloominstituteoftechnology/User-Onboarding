@@ -4,63 +4,80 @@ import { Link } from 'react-router-dom'
 
 
 const Form =(params) => {
-    const [changes, setChanges] = useState({name:"",email:"", pass: "", evtChk: false})
+    const [changes, setChanges] = useState({id:0,name:"",email:"", password: ""})
     const [submited,setSubmited] = useState(false);
-    const [res,setRes] = useState({});
+    const [usrs,setUsrs] = useState({id:0,name:"",email:"",password:""})
+    const [res,setRes] = useState([]);
     const handleChange = (e) =>{
+        e.persist();
         const ch= {...changes,[e.target.name]: e.target.value};
+    
             setChanges(ch);
             // console.log(changes);
     };
     const handleSubmite = (e) =>{
+        e.preventDefault();
+        const ch= {...changes};
+        console.log(e);
+            setUsrs(ch);
+            console.log(usrs)
+            console.log(res);
         setSubmited(true);
-        // return {...changes};
+        //  return {...changes};
+        
+            axios.post(`https://reqres.in/api/users`,changes)
+            .then(evn =>{
+                console.log('ev')
+                console.log(evn);
+                setRes(evn.data);
+                
+    
+            })
+            .catch(er =>{
+                console.log(er);
+            })
+        
     };
 
     const handleChkChange = (e)  =>{
 
     }
-    useEffect( () =>{
-        axios.post(`https://reqres.in/api/users`,changes)
-        .then(e =>{
-            console.log(e);
-            setRes(e);
-
-
-        })
-        .catch(er =>{
-            console.log(er);
-        })
-        .finally(e =>{
-            console.log(res.data);
-        })
-    },[submited]);
+    
 
     return (
        <div className="App">
            <h1>Sign Up, Right-Now!</h1>
-            <form className="App" onSubmit={handleSubmite}>
-                <label>
-                    Name
-                </label>
-                <input type="text" name="name" placeholder="Enter Name" onChange={e =>handleChange(e)} />
-                <label>
-                    Password
-                </label>
-                <input type="text" name="pass" placeholder="Enter Password" onChange={e =>handleChange(e)} />
-                <label>
-                    E-mail
-                </label>
-                <input type="text" name="email" placeholder="Valid E-Mail"  onChange={e =>handleChange(e)} />
-                <Link to="/terms">
+            {
+                submited ? 
+            <div id={res.id}><pre>{JSON.stringify(res,null,2)}</pre> 
+                
+                </div> 
+                
+    
+                : 
+                <form className="App" onSubmit={handleSubmite}>
                     <label>
-                        Terms Of Services
+                        Name
                     </label>
-                </Link>
-                <input type="checkbox" onChange={e =>handleChkChange(e) } />
-                <button onSubmit={e => handleSubmite(e)}>Sign Me Up</button>
-
-        </form>
+                    <input type="text" name="name" placeholder="Enter Name" onChange={e =>handleChange(e)} />
+                    <label>
+                        Password
+                    </label>
+                    <input type="text" name="password" placeholder="Enter Password" onChange={e =>handleChange(e)} />
+                    <label>
+                        E-mail
+                    </label>
+                    <input type="text" name="email" placeholder="Valid E-Mail"  onChange={e =>handleChange(e)} />
+                    <Link to="/terms">
+                        <label>
+                            Terms Of Services
+                        </label>
+                    </Link>
+                    <input type="checkbox" onChange={e =>handleChkChange(e) } />
+                    <button type="submit" >Sign Me Up</button>
+    
+            </form>
+            }
        </div>
     );
 }
