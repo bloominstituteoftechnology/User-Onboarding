@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react"
-
+import React, {useState, useEffect} from "react";
+import * as yup from "yup";
 
 
 export default function Form() {
@@ -24,6 +24,28 @@ const formSubmit = (e) => {};
 
 const inputChange = (e) => {};
 
+
+
+const formSchema = yup.object().shape({
+    name: yup.string().required("Name is required."),
+    email: yup.string().email(),
+    password: yup.string().min(6).required("Password must be 6 characters long"),
+    terms: yup.boolean().oneOf([true])
+
+})
+
+
+
+useEffect(() =>{
+    formSchema.isValid(formState).then((valid)=> {
+        console.log("is this working?", valid);
+
+
+        setButtonIsDisabled(!valid)
+    })
+}, [formState])
+
+
 return (
     <form onSubmit={formSubmit}>
       <label htmlFor="name">
@@ -46,28 +68,27 @@ return (
           onChange={inputChange}
         />
       </label>
-      <label htmlFor="motivation">
-        Why would you like to help?
+      <label htmlFor="password">
+        Password
         <textarea
-          id="motivation"
-          name="motivation"
-          value={formState.motivation}
+          id="password"
+          type="text"
+          name="password"
+          value={formState.password}
+          //review this later
           onChange={inputChange}
         />
       </label>
-      <label htmlFor="positions">
-        Why would you like to help with?
-        {/* multiselect with select HTML Input w/ multiple attributes. 
-        Value of option is what is passed into e.target.value when clicked. 
-        Value of select is the way to keep formState in sync with the select. 
-        We can also use this to preset values as shown with Tabling in formState's initial value. */}
+      {/* <label htmlFor="positions">
+        Drop down menu
+        {}
         <select
           id="positions"
           name="positions"
           value={formState.positions}
           onChange={inputChange}
         ></select>
-      </label>
+      </label> */}
       <label htmlFor="terms" className="terms">
         <input
           type="checkbox"
@@ -76,7 +97,7 @@ return (
           value={formState.terms}
           onChange={inputChange}
         />
-        Terms & Cs
+        Terms & Conditions
       </label>
       <button type="submit" disabled={buttonIsDisabled}>
         Submit
