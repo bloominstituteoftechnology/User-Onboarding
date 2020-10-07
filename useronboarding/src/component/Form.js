@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import * as yup from "yup";
+import axios from "axios";
 
 
 export default function Form() {
@@ -11,15 +12,49 @@ const [formState, setFormState] = useState({
     terms: false
 
 })
+const [serverError, setServerError] = useState("");
 
 const [buttonIsDisabled, setButtonIsDisabled] = useState(true);
 
 
 const [post, setPost] = useState([]);
 
-const validateChange = (e) => {};
+// const validateChange = (e) => {
+//     yup
+//     .reach(formSchema, e.target.name)
+//     .validate(
+//         e.target.type === "checkbox" ? e.target.checked : e.target.value
+//       )
+// };
 
-const formSubmit = (e) => {};
+const formSubmit = (e) => {
+    e.preventDefault(); // <form> onSubmit has default behavior from HTML!
+
+    // send out POST request with obj as second param, for us that is formState.
+    // trigger .catch by changing URL to "https://reqres.in/api/register" -> see step 7 in notion notes
+    axios
+      .post("https://reqres.in/api/users", formState)
+      .then((resp) => {
+        // update temp state with value from API to display in <pre>
+        setPost(resp.data);
+
+        // if successful request, clear any server errors
+        setServerError(null); // see step 7 in notion notes
+
+        // clear state, could also use a predetermined initial state variable here
+        setFormState({
+            name: "",
+            email: "",
+            password: "",
+            terms: false
+        });
+      })
+      .catch((err) => {
+        // this is where we could create a server error in the form! if API request fails, say for authentication (that user doesn't exist in our DB),
+        // set serverError
+        setServerError("oops! something happened!");
+      });
+  };
 
 
 const inputChange = (e) => {};
