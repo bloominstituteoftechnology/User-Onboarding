@@ -9,6 +9,12 @@
   height:100%;
 
 }
+.App > form.App{
+  width:20rem;
+  box-shadow: .1rem .2rem .1rem grey;
+  height:100%;
+  background-color: lightgrey;
+}
 .App > label {
   font-family: 'Ubuntu';
   border-radius:30%;
@@ -17,6 +23,7 @@
   margin:.2rem;
 }
 .App > input{
+  box-shadow: .3rem .2rem .1rem grey;
   padding:.1rem;
   margin:.2rem;
 }
@@ -24,6 +31,7 @@
   height: 40vmin;
   pointer-events: none;
 }
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

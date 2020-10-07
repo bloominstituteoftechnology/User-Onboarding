@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import axios from 'axios';
 import { Link } from 'react-router-dom'
 
 
@@ -8,18 +8,27 @@ const Form =(params) => {
     const handleChange = (e) =>{
         const ch= {...changes,[e.target.name]: e.target.value};
             setChanges(ch);
+            console.log(changes);
     };
     const handleSubmite = (e) =>{
-
+        return {...changes};
     };
 
     const handleChkChange = (e)  =>{
 
     }
+    axios.post(`https://reqres.in/api/users`,changes)
+        .then(e =>{
+            console.log(e);
+        })
+        .catch(er =>{
+            console.log(er);
+        })
 
     return (
        <div className="App">
-            <form className="App">
+           <h1>Sign Up, Right-Now!</h1>
+            <form className="App" onSubmit={handleSubmite}>
                 <label>
                     Name
                 </label>
