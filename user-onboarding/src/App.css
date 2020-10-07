@@ -1,0 +1,38 @@
+body{
+  background: powderblue;
+  text-align: right;
+}
+h1{
+  text-align: center;
+  padding: 10px;
+  font-size: 2.5rem;
+  color: purple;
+  font-weight: bolder;
+  margin: 10px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-items: right;
+  width: 90%;
+  max-width: 300px;
+  margin: 0 auto;
+  
+}
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 2px;
+  font-size: 1.4rem;
+  
+  
+}
+button{
+  padding: 10px;
+  background: peru;
+}
+input{
+  padding: 8px;
+  background: plum;
+}
