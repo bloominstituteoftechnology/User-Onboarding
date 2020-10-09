@@ -100,6 +100,7 @@ return (
           value={formState.name}
           onChange={inputChange}
           data-cy="name"
+          
         />
       </label>
       <label htmlFor="email">
