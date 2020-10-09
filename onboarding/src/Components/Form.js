@@ -113,19 +113,19 @@ function Form( props) {
     <form onSubmit={formSubmit}>
     <label htmlFor="emailInput">
       Name:
-      <input id="nameInput" type="name" name="name" placeholder="Name" onChange={inputChange} value = {formState.name}/>
+      <input id="nameInput" type="name" name="name" placeholder="Name" onLoad={inputChange} onChange={inputChange} value = {formState.name}/>
     </label>
     
     <br/>
     <label htmlFor="emailInput">
       Email:
-      <input id="emailInput" type="email" name="email" placeholder="Email" onChange={inputChange} value = {formState.email}/>
+      <input id="emailInput" type="email" name="email" placeholder="Email" onLoad={inputChange} onChange={inputChange} value = {formState.email}/>
     </label>
        
     <br/>
     <label htmlFor="passwordInput">
       Password:
-      <input id="passwordInput" type="password" name="password" placeholder="Password" onChange={inputChange} value = {formState.password}/>
+      <input id="passwordInput" type="password" name="password" placeholder="Password"  onChange={inputChange} value = {formState.password}/>
     </label>
     
     <br/>
