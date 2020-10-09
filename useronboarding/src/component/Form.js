@@ -99,6 +99,7 @@ return (
           name="name"
           value={formState.name}
           onChange={inputChange}
+          data-cy="name"
         />
       </label>
       <label htmlFor="email">
@@ -109,6 +110,7 @@ return (
           name="email"
           value={formState.email}
           onChange={inputChange}
+          data-cy="email"
         />
       </label>
       <label htmlFor="password">
@@ -119,6 +121,7 @@ return (
           name="password"
           value={formState.password}
           onChange={inputChange}
+          data-cy="password"
         />
       </label>
       {/* <label htmlFor="positions">
@@ -141,7 +144,7 @@ return (
         />
         Terms & Conditions
       </label>
-      <button type="submit" disabled={buttonIsDisabled}>
+      <button type="submit" disabled={buttonIsDisabled} data-cy="submit">
         Submit
       </button>
       <pre>{JSON.stringify(users, null, 2)}</pre>
