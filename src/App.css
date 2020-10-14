@@ -22,3 +22,8 @@
 .inputs label {
   margin-bottom: .5rem;
 }
+
+.errors {
+  color: red;
+  background: rgb(255, 241, 216);
+}

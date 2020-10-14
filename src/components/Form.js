@@ -22,8 +22,12 @@ function Form(props) {
             <h2>User Onboarding Form</h2>
             <button>Submit!</button>
             <div className="errors">
-                {/* Display Errors here */}
+                <div>{errors.name}</div>
+                <div>{errors.email}</div>
+                <div>{errors.password}</div>
+                <div>{errors.tos}</div>
             </div>
+
 
         </div>
 

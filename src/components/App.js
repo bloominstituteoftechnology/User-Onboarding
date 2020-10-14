@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import '../App.css';
 import Form from './Form';
 import axios from 'axios';
+import * as yup from 'yup';
+import schema from '../formSchema';
+
 
 //Define some needed varibles to reset state to baseline
 const initialUsers = [];
@@ -29,6 +32,7 @@ function App() {
   const postNewUser = (newUser) => {
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
+        console.log(res.data);
         setUsers([res.data, ...users]);
         setFormValues(initialFormValues);
       })
@@ -39,6 +43,22 @@ function App() {
 
   //Event Handlers
   const inputChange = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({
+          ...formErrors, 
+          [name]: "",
+        });
+      })
+      .catch((err) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: err.errors[0],
+        })
+      });
+
     setFormValues({
       ...formValues,
       [name]: value,
