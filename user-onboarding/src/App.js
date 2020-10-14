@@ -9,14 +9,16 @@ import schema from "./validation/formSchema";
 
 const initialValues = {
   //Text fields
-  name: "",
+  first_name: "",
+  last_name: "",
   email: "",
   password: "",
   //Checkbox
   terms: false,
 }
 const initialFormErrors = {
-  name: "",
+  first_name: "",
+  last_name: "",
   email: "",
   password: "",
   terms: false,
@@ -34,12 +36,11 @@ export default function App() {
   // Helper functions
   const getUser = () => {
     axios 
-      .get(`https://reqres.in/api/users`)
+      .get("https://reqres.in/api/users")
       .then((response) => {
-        setUsers(response.data);
+        setUsers(response.data.data);
       })
       .catch((error) => {
-        debugger;
         alert(`GET error! `, error)
       })
   };
@@ -48,7 +49,7 @@ export default function App() {
     axios
       .post("https://reqres.in/api/users", newUser)
       .then((response) => {
-        setUsers([response.data, ...users]);
+        setUsers([...users, response.data]);
         setUserValues(initialValues);
       })
       .catch((error) => {
@@ -82,7 +83,8 @@ export default function App() {
 
   const formSubmit = () => {
     const newUser = {
-      name: userValues.name.trim(),
+      first_name: userValues.first_name.trim(),
+      last_name: userValues.last_name.trim(),
       email: userValues.email.trim(),
       password: userValues.password.trim(),
       terms: userValues.terms,

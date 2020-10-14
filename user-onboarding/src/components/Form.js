@@ -26,28 +26,32 @@ export default function Form(props){
     return (
         <form className="formContainer" onSubmit={onSubmit}>
             <div className="formHeading">
-                <h2>User Onboarding Form</h2>
-                {/* errors would go here, I think */}
-                
-                
-                
-                
+                <h2>User Onboarding Form</h2>    
             </div>
 
             <div className="formInputs">
                 <h4>Please Fill Out Form Below:</h4>
                 {/* Text Inputs */}
-                    <label>
-                        Name: <input 
-                        value={values.name}
+                    <label htmlFor="first_name">
+                        First Name: <input 
+                        value={values.first_name}
                         onChange={onChange}
-                        name="name"
+                        name="first_name"
                         type="text"
                         />        
                     </label>
-                    <p>{errors.name}</p>
+                    <p>{errors.first_name}</p>
+                    <label htmlFor="last_name">
+                        Last Name: <input 
+                        value={values.last_name}
+                        onChange={onChange}
+                        name="last_name"
+                        type="text"
+                        />        
+                    </label>
+                    <p>{errors.last_name}</p>
 
-                    <label>
+                    <label htmlFor="email">
                         Email: <input 
                         value={values.email}
                         onChange={onChange}
@@ -57,7 +61,7 @@ export default function Form(props){
                     </label>
                     <p>{errors.email}</p>
 
-                    <label>
+                    <label htmlFor="password">
                         Password: <input 
                         value={values.password}
                         onChange={onChange}
@@ -69,7 +73,7 @@ export default function Form(props){
                 
                 {/* Checkbox */}
                 <h5>Terms and Conditions</h5>
-                    <label>
+                    <label htmlFor="terms">
                         Accept: <input 
                         checked={values.terms}
                         onChange={onChange}
