@@ -50,7 +50,26 @@ export default function Form(props){
                         type="text"
                         />        
                     </label>
+
+                    <label>
+                        Password: <input 
+                        value={values.password}
+                        onChange={onChange}
+                        name="password"
+                        type="text"
+                        />        
+                    </label>
+                
                 {/* Checkbox */}
+                <h5>Terms and Conditions</h5>
+                    <label>
+                        Accept: <input 
+                        checked={values.terms}
+                        onChange={onChange}
+                        name="terms"
+                        type="checkbox"
+                        />        
+                    </label>
             </div>
                 
                 {/* Submit button */}
