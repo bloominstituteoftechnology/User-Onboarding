@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.form-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.inputs {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.inputs label {
+  margin-bottom: .5rem;
+}
