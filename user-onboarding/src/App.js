@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Form from "./components/Form"
 import axios from "axios";
-//you'll probably still have to import *yup*, and maybe the *schema* if you have to create one
+//import yup
+import * as yup from "yup";
+import schema from "./validation/formSchema";
 
 const initialValues = {
   //Text fields
