@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import User from "./components/User"
 import Form from "./components/Form"
 import axios from "axios";
 //import yup
@@ -51,7 +52,7 @@ export default function App() {
         setUserValues(initialValues);
       })
       .catch((error) => {
-        alert(`POST error! `, error);
+        alert(`POST error! `, console.log(error));
       })
   };
 
@@ -110,6 +111,10 @@ export default function App() {
       disabled={disabled}
       errors={formErrors}
      />
+
+     {users.map((user) => {
+       return <User key={user.id} details={user} />;
+     })}
     </div>
   );
 }

@@ -8,7 +8,7 @@ import React from 'react'
 //*Submit button (button)
 
 export default function Form(props){
-    const { values, submit, change, disabled } = props;
+    const { values, submit, change, disabled, errors } = props;
 
     //onSubmit functionality
     const onSubmit = (event) => {
@@ -26,8 +26,12 @@ export default function Form(props){
     return (
         <form className="formContainer" onSubmit={onSubmit}>
             <div className="formHeading">
-                <h2>User Onboarding Form!</h2>
+                <h2>User Onboarding Form</h2>
                 {/* errors would go here, I think */}
+                
+                
+                
+                
             </div>
 
             <div className="formInputs">
@@ -41,6 +45,7 @@ export default function Form(props){
                         type="text"
                         />        
                     </label>
+                    <p>{errors.name}</p>
 
                     <label>
                         Email: <input 
@@ -50,6 +55,7 @@ export default function Form(props){
                         type="text"
                         />        
                     </label>
+                    <p>{errors.email}</p>
 
                     <label>
                         Password: <input 
@@ -59,6 +65,7 @@ export default function Form(props){
                         type="text"
                         />        
                     </label>
+                    <p>{errors.password}</p>
                 
                 {/* Checkbox */}
                 <h5>Terms and Conditions</h5>
@@ -70,6 +77,7 @@ export default function Form(props){
                         type="checkbox"
                         />        
                     </label>
+                    <p>{errors.terms}</p>
             </div>
                 
                 {/* Submit button */}
