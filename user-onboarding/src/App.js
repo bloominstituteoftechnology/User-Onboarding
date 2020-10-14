@@ -14,6 +14,12 @@ const initialValues = {
   //Checkbox
   terms: false,
 }
+const initialFormErrors = {
+  name: "",
+  email: "",
+  password: "",
+  terms: false,
+}
 const initialUsers = [];
 const initialDisabled = true;
 
@@ -22,6 +28,7 @@ export default function App() {
   const [users, setUsers] = useState(initialUsers);
   const [disabled, setDisabled] = useState(initialDisabled);
   const [userValues, setUserValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
 
   // Helper functions
   const getUser = () => {
@@ -36,9 +43,9 @@ export default function App() {
       })
   };
   
-  cosnt postNewUser = (newUser) => {
+  const postNewUser = (newUser) => {
     axios
-      .post(`https://reqres.in/api/users`, newUser)
+      .post("https://reqres.in/api/users", newUser)
       .then((response) => {
         setUsers([response.data, ...users]);
         setUserValues(initialValues);
@@ -50,12 +57,59 @@ export default function App() {
 
   // Event handlers
   const inputChange = (name, value) => {
-    
-  }
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({
+          ...formErrors,
+          [name]: "",
+        });
+      })
+      .catch((error) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: error.errors[0],
+        });
+      });
+
+    setUserValues({
+      ...userValues, 
+      [name]: value,
+    })
+  };
+
+  const formSubmit = () => {
+    const newUser = {
+      name: userValues.name.trim(),
+      email: userValues.email.trim(),
+      password: userValues.password.trim(),
+      terms: userValues.terms,
+    }
+    postNewUser(newUser);
+  };
+
+  // Side Effects
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    schema.isValid(userValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [userValues]);
+
 
   return (
     <div className="App">
-     <Form />
+     <Form 
+      values={userValues}
+      change={inputChange}
+      submit={formSubmit}
+      disabled={disabled}
+      errors={formErrors}
+     />
     </div>
   );
 }
