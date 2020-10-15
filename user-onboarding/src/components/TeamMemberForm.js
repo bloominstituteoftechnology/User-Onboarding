@@ -15,7 +15,7 @@ export default function Form(props) {
 	};
 
 	return (
-		<form submit={onSubmit}>
+		<form onSubmit={onSubmit}>
 			<div className='form-section general-info'>
 				<h2>General Info</h2>
 				{/* Name */}

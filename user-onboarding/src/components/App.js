@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/App.css';
-import Form from '../components/Form';
+import TeamMemberForm from './TeamMemberForm';
 import TeamMember from '../components/TeamMember';
 
 import axios from 'axios';
@@ -22,7 +22,7 @@ const initialFormValues = {
 	//policies
 	terms: false,
 	privacy: false,
-	gum: false
+	gum: false,
 };
 
 const initialFormErrors = {
@@ -56,7 +56,9 @@ export default function App() {
 		axios
 			.get(`https://reqres.in/api/users`)
 			.then((res) => {
-				setTeamMembers(res.data);
+        console.log('res.data', res.data)
+        console.log('res.data.data', res.data.data)
+				setTeamMembers(res.data.data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -67,7 +69,7 @@ export default function App() {
 		axios
 			.post('https://reqres.in/api/users', newTeamMember)
 			.then((res) => {
-				setTeamMembers([res.data, ...teamMembers]);
+				setTeamMembers([res.data.data, ...teamMembers]);
 				setFormValues(initialFormValues);
 			})
 			.catch((err) => {
@@ -113,7 +115,7 @@ export default function App() {
 			//policies
 			terms: formValues.terms,
 			privacy: formValues.privacy,
-			gum: formValues.gum
+			gum: formValues.gum,
 		};
 		postNewTeamMember(newTeamMember);
 	};
@@ -131,14 +133,15 @@ export default function App() {
 
 	return (
 		<div className='App'>
-      <header>
-        <h1>grell.io Onboarding</h1>
-        <p>
-          Welcome. Please fill out the below information to add a new team member.
-        </p>
-      </header>
-			
-			<Form
+			<header>
+				<h1>grell.io Onboarding</h1>
+				<p>
+					Welcome. Please fill out the below information to add a new team
+					member.
+				</p>
+			</header>
+
+			<TeamMemberForm
 				values={formValues}
 				change={inputChange}
 				submit={formSubmit}
@@ -146,8 +149,8 @@ export default function App() {
 				errors={formErrors}
 			/>
 
-      {/* <TeamMember details={teamMembers[0]}/> */}
-      {console.log(teamMembers.data)}
+			{/* <TeamMember details={teamMembers[0]}/> */}
+			{/* {console.log(teamMembers.data)} */}
 
 			{teamMembers.map((member) => {
 				return <TeamMember key={member.id} details={member} />;

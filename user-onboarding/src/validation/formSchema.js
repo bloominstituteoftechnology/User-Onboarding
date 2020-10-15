@@ -14,10 +14,10 @@ export default yup.object().shape({
 	password: yup
 		.string()
 		.min(8, 'Please make sure password is at least eight characters.')
-		.matches(
-			/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]$/,
-			'Please make sure password contains at least one uppercase, one lowercase, one number, and one special character.'
-		)
+		// .matches(
+		// 	/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]$/,
+		// 	'Please make sure password contains at least one uppercase, one lowercase, one number, and one special character.'
+		// )
 		.required('Please add a password.'),
 	// department info
 	department: yup
