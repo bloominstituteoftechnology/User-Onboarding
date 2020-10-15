@@ -69,7 +69,7 @@ export default function App() {
 		axios
 			.post('https://reqres.in/api/users', newTeamMember)
 			.then((res) => {
-				setTeamMembers([res.data.data, ...teamMembers]);
+				setTeamMembers([res.data, ...teamMembers]);
 				setFormValues(initialFormValues);
 			})
 			.catch((err) => {
@@ -115,8 +115,9 @@ export default function App() {
 			//policies
 			terms: formValues.terms,
 			privacy: formValues.privacy,
-			gum: formValues.gum,
+      gum: formValues.gum,
 		};
+    console.log(newTeamMember)
 		postNewTeamMember(newTeamMember);
 	};
 
@@ -153,7 +154,7 @@ export default function App() {
 			{/* {console.log(teamMembers.data)} */}
 
 			{teamMembers.map((member) => {
-				return <TeamMember key={member.id} details={member} />;
+				return <TeamMember details={member} />;
 			})}
 		</div>
 	);
