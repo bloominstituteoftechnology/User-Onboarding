@@ -21,6 +21,7 @@ const initialFormErrors = {
   username: "",
   email: "",
   role: "",
+  password: "",
   // unionStatus: "",
 }
 
@@ -62,6 +63,7 @@ export default function App() {
     const newEmployee = {
       username: formValues.username.trim(),
       email: formValues.email.trim(),
+      password: formValues.password.trim(),
       role: formValues.role.trim(),
       // unionStatus: formValues.unionStatus.trim(),
       termsOfService: ['read', 'agreed'].filter((termsOfService) =>
@@ -75,8 +77,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    schema.isValid(formValues).then
-    (valid => {
+    schema.isValid(formValues).then(valid => {
       setDisabled(!valid)
     })
   }, [formValues])
@@ -96,9 +97,8 @@ export default function App() {
         />
 
         {employees.map((employee) => {
-          return (
-          <Employee key={employee.id} details={employee} />
-        )})}
+          return <Employee key={employee.id} details={employee} />
+        })}
     </div>
   );
 }

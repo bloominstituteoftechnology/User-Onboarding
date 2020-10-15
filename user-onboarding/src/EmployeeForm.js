@@ -2,11 +2,13 @@ import React from 'react'
 
 const EmployeeForm = ( props ) => {
     const { values, update, submit, disabled, errors} = props
-    const onSubmit = evt => {
+
+    const onSubmit = (evt) => {
         evt.preventDefault()
         submit()
     }
-    const onChange = evt => {
+
+    const onChange = (evt) => {
         const { name, value, type, checked } = evt.target
         const valueToUse = type === 'checkbox' ? checked : value
         update(name, valueToUse)
@@ -17,12 +19,16 @@ const EmployeeForm = ( props ) => {
             <div className='form-group-submit'>
                 <h2>Add new employee</h2>
                 <button disabled={disabled} onSubmit={onSubmit}>Submit</button>
+
                 <br/>
+                <br/>
+
                 <div className='errors'>
                     <div>{errors.username}</div>
                     <div>{errors.email}</div>
+                    <div>{errors.password}</div>
                     <div>{errors.role}</div>
-                    <div>{errors.unionStatus}</div>
+                    {/* <div>{errors.unionStatus}</div> */}
                 </div>
             </div>
 
@@ -40,6 +46,8 @@ const EmployeeForm = ( props ) => {
                 </label>
 
                 <br/>
+                <br/>
+
                 <label>
                     Email
                     <input
@@ -51,6 +59,21 @@ const EmployeeForm = ( props ) => {
                 </label>
 
                 <br/>
+                <br/>
+
+                <label>
+                    Password
+                    <input
+                        value={values.password}
+                        onChange={onChange}
+                        name='password'
+                        type='text'
+                    />
+                </label>
+
+                <br/>
+                <br/>
+
                 <label>
                     Role
                     <select onChange={onChange} value={values.role} name='role'>
@@ -63,6 +86,8 @@ const EmployeeForm = ( props ) => {
                 </label>
 
                 <br/>
+                <br/>
+
                 {/* <label>
                     Union member
                     <input
@@ -85,7 +110,7 @@ const EmployeeForm = ( props ) => {
                         onChange={onChange}
                     />
                 </label> */}
-                <br/>
+                {/* <br/> */}
 
                 <label>
                     I have read and understood the terms of agreement.
