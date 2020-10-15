@@ -4,7 +4,9 @@ import '../App.css';
 export default function User(props) {
     return (
         <div className='user'>
-            I'm a User
+            <h4>{props.userOBJ.name}</h4>
+            <p>{props.userOBJ.email}</p>
+            <p>{props.userOBJ.password}</p>
         </div>
     )
 };
