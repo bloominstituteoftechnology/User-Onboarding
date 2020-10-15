@@ -1,0 +1,44 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #c7c7c7;
+}
+
+.errorStyle {
+    color: red;
+}
+
+.formContainer {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    display: flex;
+    border: 1px solid black;
+    flex-direction: column;
+    text-align: center;
+    
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+}
+
+.checkboxLabel {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    text-transform: center;
+}
