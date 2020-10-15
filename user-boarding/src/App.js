@@ -24,7 +24,7 @@ password: '',
 }
 
 
-const [users, setUser] = useState(initialFormValues)
+const [users, setUser] = useState([])
 const [formValues, setFormValues] = useState(initialFormValues)
 const [disabled, setDisabled] = useState(initialDisabled)
 const [formErrors, setFormErrors] = useState(initialFormErrors)
@@ -45,13 +45,15 @@ const postNewUser = (newUser) => {
     .then((res) => {
       setUser([res.data, ...users])
       })
-    .check(err => {
+    .catch(err => {
       console.log('POST ERR -->', err)
     })
     .finally(() => {
       setFormValues(initialFormValues)
     })
 }
+
+
 
 const inputChange = (name, value) => {
  yup
@@ -93,9 +95,9 @@ useEffect(() => {
       change={inputChange}
       submit={formSubmit}
       />
-      {/* {users.map(user => {
+      {users.map(user => {
         return <UserList key={user.id} details={user} />;
-      })} */}
+      })}
     </div>
   );
 }
