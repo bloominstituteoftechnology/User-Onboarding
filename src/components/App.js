@@ -76,6 +76,12 @@ function App() {
     });
   };
 
+  const deleteUser = (id) => {
+    const newUsers = users.filter(user => user.id !== id)
+    setUsers(newUsers)
+  }
+
+
   // Function formSubmit to happen on submission of form 
     // makes a newUser object from validated form values 
     // passes new user into postNewUser (which posts the user to API and State)
@@ -104,7 +110,13 @@ function App() {
       />
       <div className="user-wrapper">
         {users.map((user) => {
-          return <User key={user.id} userOBJ={user}/>
+          return <User 
+                    id={user.id} 
+                    name={user.name}
+                    email={user.email}
+                    password={user.password}
+                    remove={deleteUser}
+                  />
           })}
       </div>
     </div>
