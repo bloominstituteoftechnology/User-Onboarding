@@ -14,19 +14,23 @@ function Form(props) {
         submit(); // == formSubmit passed down from props - makes user and posts to api, sets user to state, and resets fromValues to intial
     };
 
-    // Tack changes listner
+    // Track changes listner
     const onChange = (evt) => {
         const { name, value, type, checked } = evt.target; //Destructure evt object
         const valueToUse = type === "checkbox" ? checked : value; // Determinig the value to use out of the object THIS IS THE CHECKBOX HOLD UP
         change(name, valueToUse); // Validates inputs set to formValue state
     };
 
+    const isDisabled = () => {
+        return !values.name.trim() || !values.email.trim() || !values.password.trim() || !values.tos 
+    }
+
     return (
         // On Submit put on parent container
         <form className="form-container" onSubmit={onSubmit}> 
             <div className="form-group submit">
                 <h2>User Onboarding Form</h2>
-                <button>Submit!</button>
+                <button disabled={isDisabled()}>Submit!</button>
                 <div className="errors">
                     <div>{errors.name}</div>
                     <div>{errors.email}</div>

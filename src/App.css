@@ -27,3 +27,10 @@
   color: red;
   background: rgb(255, 241, 216);
 }
+
+.user {
+  background: rgb(204, 204, 204);
+  border: 2px solid rgb(1, 110, 110);
+  width: 20rem; 
+  margin: 1rem auto;
+}
