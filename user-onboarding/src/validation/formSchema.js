@@ -50,5 +50,5 @@ export default yup.object().shape({
         ),
     terms: yup.boolean().required('Please accept the Terms of Service.'),
     privacy: yup.boolean().required('Please accept the Privacy Policy.'),
-	gum: yup.boolean(),
+	gum: yup.boolean()
 });

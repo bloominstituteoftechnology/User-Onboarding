@@ -15,7 +15,7 @@ export default function Form(props) {
 	};
 
 	return (
-		<form onSubmit={onSubmit}>
+		<form submit={onSubmit}>
 			<div className='form-section general-info'>
 				<h2>General Info</h2>
 				{/* Name */}
@@ -53,7 +53,7 @@ export default function Form(props) {
 
 				{/* Password */}
 				<label>
-					Name:
+					Password:
 					<input
 						value={values.password}
 						onChange={onChange}
@@ -108,7 +108,7 @@ export default function Form(props) {
 
 				{/* Location */}
 				<label>
-					Team:
+					Location:
 					<select onChange={onChange} value={values.location} name='location'>
 						<option value=''>--Select a Location--</option>
 						<option value='los-angeles'>Los Angeles, CA</option>
@@ -154,14 +154,13 @@ export default function Form(props) {
 					Layers as a form of payment.
 				</label>
 
-                {/* validation errors */}
-                <div className="errors">
-                    <div>{errors.name}</div>
-                    <div>{errors.username}</div>
-                    <div>{errors.email}</div>
-                    <div>{errors.password}</div>
-
-                </div>
+				{/* validation errors */}
+				<div className='errors'>
+					<div>{errors.name}</div>
+					<div>{errors.username}</div>
+					<div>{errors.email}</div>
+					<div>{errors.password}</div>
+				</div>
 
 				{/* submit button */}
 				<button disabled={disabled}>Submit</button>

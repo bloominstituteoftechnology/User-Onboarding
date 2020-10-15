@@ -22,7 +22,7 @@ const initialFormValues = {
 	//policies
 	terms: false,
 	privacy: false,
-	gum: false,
+	gum: false
 };
 
 const initialFormErrors = {
@@ -37,14 +37,14 @@ const initialFormErrors = {
 	supervisor: '',
 	location: '',
 	//policies
-	terms: false,
-	privacy: false,
+	// terms: false,
+	// privacy: false
 };
 
 const initialTeamMembers = [];
 const initialDisabled = true;
 
-function App() {
+export default function App() {
 	// states
 	const [teamMembers, setTeamMembers] = useState(initialTeamMembers);
 	const [formValues, setFormValues] = useState(initialFormValues);
@@ -65,7 +65,7 @@ function App() {
 
 	const postNewTeamMember = (newTeamMember) => {
 		axios
-			.post(`https://reqres.in/api/users`, newTeamMember)
+			.post('https://reqres.in/api/users', newTeamMember)
 			.then((res) => {
 				setTeamMembers([res.data, ...teamMembers]);
 				setFormValues(initialFormValues);
@@ -90,12 +90,12 @@ function App() {
 					...formErrors,
 					[name]: err.errors[0],
 				});
-      });
-      
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    })
+			});
+
+		setFormValues({
+			...formValues,
+			[name]: value,
+		});
 	};
 
 	const formSubmit = () => {
@@ -113,7 +113,7 @@ function App() {
 			//policies
 			terms: formValues.terms,
 			privacy: formValues.privacy,
-			gum: formValues.gum,
+			gum: formValues.gum
 		};
 		postNewTeamMember(newTeamMember);
 	};
@@ -125,16 +125,19 @@ function App() {
 
 	useEffect(() => {
 		schema.isValid(formValues).then((valid) => {
-      setDisabled(!valid)
+			setDisabled(!valid);
 		});
 	}, [formValues]);
 
 	return (
 		<div className='App'>
-			<h1>grell.io Onboarding</h1>
-			<p>
-				Welcome. Please fill out the below information to add a new team member.
-			</p>
+      <header>
+        <h1>grell.io Onboarding</h1>
+        <p>
+          Welcome. Please fill out the below information to add a new team member.
+        </p>
+      </header>
+			
 			<Form
 				values={formValues}
 				change={inputChange}
@@ -143,12 +146,12 @@ function App() {
 				errors={formErrors}
 			/>
 
+      {/* <TeamMember details={teamMembers[0]}/> */}
+      {console.log(teamMembers.data)}
 
-			{teamMembers.map((teamMember) => {
-				return <TeamMember key={teamMember.id} details={teamMember} />;
+			{teamMembers.map((member) => {
+				return <TeamMember key={member.id} details={member} />;
 			})}
 		</div>
 	);
 }
-
-export default App;
