@@ -78,6 +78,7 @@ function App() {
 
   const deleteUser = (id) => {
     const newUsers = users.filter(user => user.id !== id)
+
     setUsers(newUsers)
   }
 
@@ -109,15 +110,16 @@ function App() {
         submit={formSubmit}
       />
       <div className="user-wrapper">
-        {users.map((user) => {
-          return <User 
-                    id={user.id} 
-                    name={user.name}
-                    email={user.email}
-                    password={user.password}
-                    remove={deleteUser}
-                  />
-          })}
+        {users.map((user) => (
+            <div>
+              <User 
+                key={user.id} 
+                name={user.name}
+                email={user.email}
+                password={user.password}
+              />
+            </div>
+        ))}
       </div>
     </div>
   );
