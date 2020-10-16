@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.form-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.inputs {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.inputs label {
+  margin-bottom: .5rem;
+}
+
+.errors {
+  color: red;
+  background: rgb(255, 241, 216);
+}
+
+.user {
+  background: rgb(204, 204, 204);
+  border: 2px solid rgb(1, 110, 110);
+  width: 20rem; 
+  margin: 1rem auto;
+}
