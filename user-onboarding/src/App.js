@@ -5,6 +5,7 @@ import axios from 'axios';
 import * as yup from "yup";
 import schema from "./formSchema";
 import User from "./User";
+
 /// Initial State ///
 const initialFormValues = {
   // Text inputs //
@@ -29,8 +30,6 @@ function App() {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
   //// Helper Functions ////
- 
-
   const postNewUser = (newUser) => {
     
     axios
@@ -72,11 +71,11 @@ function App() {
       name: formValues.name,
       email: formValues.email,
       password: formValues.password,
-      terms: formValues.terms,
+      terms: formValues.terms === 'true' ? 'true' : 'false',
     }
     postNewUser(newUser);
   };
-
+  
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
@@ -95,7 +94,7 @@ function App() {
       />
 
       {users.map((user) => {
-        return <User key={user} details={user} />;
+        return <User key={user.id} details={user} />;
       })}
     </div>
   );

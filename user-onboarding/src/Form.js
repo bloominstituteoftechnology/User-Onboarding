@@ -17,7 +17,7 @@ function Form(props) {
     return (
         <form onSubmit={onSubmit}>
             <div>
-                <button disabled={disabled} type="submit">Submit</button>
+                <button disabled={disabled} type="submit" id='submitBtn'>Submit</button>
                 <div>
                     <div>{errors.name}</div>
                     <div>{errors.email}</div>
@@ -32,6 +32,7 @@ function Form(props) {
                         onChange={onChange}
                         name="name"
                         type="text"
+                        className="name-input"
                     />
                 </label>
                 <label>
