@@ -1,0 +1,90 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  background-color: brown;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 222px;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25%;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0 8px 7px 0 rgba(0, 0, 0, 0.3), 0 6px 15px 0 rgba(0, 0, 0, 0.65);
+  background-color: #2955af;
+  color: #eee;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.4rem;
+}
+
+button,
+input {
+  border-radius: 5px;
+  margin: 3px 0;
+  border: 1px solid black;
+  box-shadow: 0 7px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.15);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.25rem;
+}
+
+input {
+  width: 175px;
+  margin: 3px auto;
+}
+
+label {
+  margin: 3px auto;
+}
+
+button {
+  width: 100px;
+  height: 30px;
+  margin: 6px auto;
+  font-size: 1.4rem;
+}
+
+a {
+  color: #eee;
+  margin-top: 3px;
+}
