@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, axios} from "react";
 import {Container, Col,Label,FormGroup, Input, Button} from "reactstrap";
 import * as yup from "yup";
 
 const formSchema = yup.object().shape({
-    name:yup.string().required(),
-    email:yup.string().email.required(),
+    name:yup.string().required("Name is a required field"),
+    email:yup.string().email.required("Must include email address"),
     password:yup.string().password().required(),
-    terms:yup.boolean().oneOf([true])
+    terms:yup.boolean().oneOf([true]," Please agree to terms of use")
 })
 
 export default function Form (){
@@ -18,7 +18,7 @@ export default function Form (){
         terms:false
     });
 
-    const [errors, setErrors] = useState({
+    const [errorState, setErrorState] = useState({
         name:"",
         email:"",
         password:"",
@@ -28,23 +28,35 @@ export default function Form (){
     const formSubmit = e => {
         e.preventDefault();
         console.log("form submitted!");
+        axios.post(`https://reqres.in/api/users`)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
  
     };
     
-    const validate = (err) =>{
-        //needs to have an @ symbol.
-        // one period after the @ symbol. 
-        //at least two valid chars 
+    const validate = (e) =>{
+        
+        yup.reach(formSchema, e.target.name)
+        .validate(e.target.value)
+        .then(valid => {
+            setErrorState({
+                ...errorState,
+                [e.target.name]:""
+            })
 
-
-    }
+        })
+        .catch( err => console.log(err.errorState))
+        setErrorState({
+            ...errorState,
+            [e.target.name]: err.errorState[0]
+        })
+    };
 
     //onChange function 
     const inputChange = e =>{
-        console.log("input changed!", e.target.value, e.target.checked);
-        if(e.target.name === "email"){
-            validateEmail(e.target.value)
-        }
+        e.persist()
+        //console.log("input changed!", e.target.value, e.target.checked);
+        validate(e)
         let value = e.target.type === "checkbox" ? e.target.checked : e.target.value
         setUser({...user, [e.target.name]: value});
     };
@@ -78,6 +90,7 @@ export default function Form (){
                 value={user.email}
                 onChange={inputChange}
                 />
+                {errorState.email.length > 0 ? <p className = "error">{errorState.email}</p> : null }
                 </Label>
                 </Col> 
                  </FormGroup>
