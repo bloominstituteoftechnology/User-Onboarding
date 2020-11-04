@@ -1,0 +1,36 @@
+h1 {
+  text-align: center;
+  color: darkturquoise
+}
+
+section {
+  margin:15px;
+  text-align: center;
+}
+
+form {
+  margin: 0 10%;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 400px;
+  border: 1px dotted silver;
+}
+
+input {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+button {
+  padding: 20px;
+  min-width: 200px;
+  font-size: 20px;
+}
+
+form p {
+  color: white;
+  background-color: darkturquoise;
+}
