@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import * as yup from 'yup';
+import React from 'react';
 import Styled from 'styled-components';
 
 const FormMaker = Styled.form`
@@ -15,44 +13,18 @@ const Set = Styled.div`
     display: flex;
 `;
 
-const formSchema = yup.object().shape({
-
-    email: yup.string()
-        .email("Must use a valid email address."),
-
-    password: yup.string().min(6, 'Passwords must be at least 6 chatracters long.'),
-
-})
-
 const Form = (props) => {
 
-    const [user, setUser] = useState({fullname: '', email: '', password: '', terms: false });
-
-    const handleChanges = (e) => {
-        setUser({ ...user, [e.target.name]: e.target.value });
-    }
-
-    const submitForm = (e) => {
-
-        e.preventDefault();
-        props.addUser(user);
-        setUser({ fullname: '', email: '', password: ''});
-        axios.post('https://reqres.in/api/users', {
-            user
-        })
-        .then(() => {
-            console.log('New user added')
-            alert('Thank you and welcome aboard!')
-        })
-        .catch((err) => {
-            console.log('doh!', err)
-            alert('Please try again.');
-        })
-    }
+    const {values, onInputChange, onCheckboxChange, onSubmit, disabled, errors} = props;
 
     return (
         <div>
-            <FormMaker onSubmit={submitForm}>
+            <FormMaker onSubmit={onSubmit}>
+                <FormMaker>
+                    <div>{errors.fullname}</div>
+                    <div>{errors.email}</div>
+                    <div>{errors.password}</div>
+                </FormMaker>
                 <Set>
                     <label htmlFor='fullname'>Name: </label>
                     <input 
@@ -60,8 +32,8 @@ const Form = (props) => {
                         name='fullname'
                         type='text'
                         placeholder='Please enter your name.'
-                        value={user.fullname}
-                        onChange={handleChanges}
+                        value={values.fullname}
+                        onChange={onInputChange}
                         required
                     />
                 </Set>
@@ -73,8 +45,8 @@ const Form = (props) => {
                         type='email'
                         placeholder='Please enter your e-mail address.'
                         // pattern='user@domain.com if you are requiring an email from a specific domain.  Work, school, etc.
-                        value={user.email}
-                        onChange={handleChanges}
+                        value={values.email}
+                        onChange={onInputChange}
                         required
                     />
                 </Set>
@@ -86,21 +58,23 @@ const Form = (props) => {
                         type='password'
                         placeholder='******'
                         minLength='6'
-                        value={user.password}
-                        onChange={handleChanges}
+                        value={values.password}
+                        onChange={onInputChange}
                         required
                     />
                 </Set>
                 <Set>
-                    <label htmlFor='terms'>Accept the terms of  service</label>
+                    <label htmlFor='terms'>Accept the terms of service</label>
                     <input 
                         id='terms'
                         name='terms'
                         type='checkbox'
+                        value={values.terms}
+                        onChange={onCheckboxChange}
                         required
                     />
                 </Set>
-                <button>Submit</button>                
+                <button disabled={disabled}>Submit</button>                
             </FormMaker>
         </div>
     )

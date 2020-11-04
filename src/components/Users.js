@@ -11,26 +11,28 @@ const Set = Styled.div`
 
 const Users = (props) => {
 
+    const {fullname, email} = props.data;
+
     return (
 
         <div>
-            <FormMaker onSubmit={props.submitForm}>
+            <FormMaker>
                 <Set>
-                    <label htmlFor='fullname'>Name: </label>
+                    <h2>Name: </h2>
                     <p>
-                        Name: {props.fullname}
+                        {fullname}
                     </p>
                 </Set>
                 <Set>
-                    <label htmlFor='email'>E-mail: </label>
+                    <h2>E-mail: </h2>
                     <p>
-                        E-mail: {props.email}
+                        {email}
                     </p>
                 </Set>
                 <Set>
-                    <label >Password: </label>
+                    <h2>Password: </h2>
                     <p>
-                        Password: ********
+                        ********
                     </p>
                 </Set>                
             </FormMaker>
