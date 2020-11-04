@@ -1,5 +1,13 @@
 import React, {useState} from "react";
 import {Container, Col,Label,FormGroup, Input, Button} from "reactstrap";
+import * as yup from "yup";
+
+const formSchema = yup.object().shape({
+    name:yup.string().required(),
+    email:yup.string().email.required(),
+    password:yup.string().password().required(),
+    terms:yup.boolean().oneOf([true])
+})
 
 export default function Form (){
     // managing state for our form inputs
@@ -10,16 +18,33 @@ export default function Form (){
         terms:false
     });
 
+    const [errors, setErrors] = useState({
+        name:"",
+        email:"",
+        password:"",
+        terms:""
+    });
 // onSubmit function
     const formSubmit = e => {
         e.preventDefault();
         console.log("form submitted!");
  
     };
+    
+    const validate = (err) =>{
+        //needs to have an @ symbol.
+        // one period after the @ symbol. 
+        //at least two valid chars 
+
+
+    }
 
     //onChange function 
     const inputChange = e =>{
         console.log("input changed!", e.target.value, e.target.checked);
+        if(e.target.name === "email"){
+            validateEmail(e.target.value)
+        }
         let value = e.target.type === "checkbox" ? e.target.checked : e.target.value
         setUser({...user, [e.target.name]: value});
     };
