@@ -1,11 +1,20 @@
 import React from 'react';
+import Styled from 'styled-components';
+
+const FormMaker = Styled.div`
+    display: flex,
+`;
+
+const Set = Styled.div`
+    display: flex,
+`;
 
 const Users = (props) => {
 
     return (
 
         <div>
-            <FormMaker onSubmit={submitForm}>
+            <FormMaker onSubmit={props.submitForm}>
                 <Set>
                     <label htmlFor='fullname'>Name: </label>
                     <p>
