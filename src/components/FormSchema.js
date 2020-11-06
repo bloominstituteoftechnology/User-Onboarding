@@ -1,7 +1,7 @@
 import React from 'react';
 import * as yup from 'yup';
 
-const FormSchema = yup.object().shape({
+const formSchema = yup.object().shape({
 
     fullname: yup.string().required("A username is required."),
 
@@ -13,4 +13,4 @@ const FormSchema = yup.object().shape({
 
 });
 
-export default FormSchema
+export default formSchema

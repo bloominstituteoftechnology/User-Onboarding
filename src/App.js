@@ -4,7 +4,7 @@ import Users from './components/Users';
 import './App.css';
 import Axios from 'axios';
 import * as yup from 'yup';
-import FormSchema from './components/FormSchema';
+import formSchema from './components/FormSchema';
 
 function App(props) {
 
@@ -56,7 +56,7 @@ function App(props) {
 
       const {name, value} = e.target;
 
-      yup.reach(FormSchema, name)
+      yup.reach(formSchema, name)
       .validate(value)
       .then(() => {
         setErrors({...errors, [name]: ''})
@@ -71,7 +71,7 @@ function App(props) {
       const {name, checked} = e.target;
   
       yup
-        .reach(FormSchema, name)
+        .reach(formSchema, name)
         .validate(checked)
         .then(() => {
           setErrors({...errors,[name]: ''})
@@ -96,7 +96,7 @@ function App(props) {
     }
   
     useEffect(() => {
-      FormSchema.isValid(formValues).then(valid => {
+      formSchema.isValid(formValues).then(valid => {
         setDisabled(!valid);
       })
     }, [formValues])
