@@ -76,7 +76,9 @@ function App() {
                   type="checkbox"
                   label="Agree to the terms?"
                 />
-                <button type="submit">Submit</button>
+                <button name="submit" type="submit">
+                  Submit
+                </button>
               </form>
             );
           }}
