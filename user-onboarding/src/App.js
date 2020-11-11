@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import * as yup from 'yup';
+import axios from 'axios';
+import Form from './Form';
+import {useState} from 'react';
+
+const initialFormValues={
+  name:'',
+  email:'',
+  password:'',
+  termsOfService:false
+}
+
+const initialUsers=[];
 
 function App() {
+  //set a default state
+  const [ formValues, setFormValues]  = useState( initialFormValues );
+
+  //set default users state, its empty but we will add users based on form information
+  const[ users, setUsers ] = useState(initialUsers);
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form
+      values={formValues}
+      ></Form>
+     
     </div>
   );
 }
