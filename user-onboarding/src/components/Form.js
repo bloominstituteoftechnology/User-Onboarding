@@ -197,7 +197,7 @@ const Form = () => {
                         id='terms'
                         type='checkbox'
                         name='terms'
-                        value={formState.terms}
+                        checked={formState.terms}
                         onChange={changeHandler}
                     />
                 </div>
