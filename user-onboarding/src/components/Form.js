@@ -1,6 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+import styled from 'styled-components';
+
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    border: black 3px solid;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 1rem;
+    width: auto;
+
+    .warning {
+        color: red;
+        font-weight: bold;
+    }
+
+    .inputItem {
+        margin: .5rem;
+    }
+
+    .inputTerms {
+        margin: .5rem .5rem 0 0;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .inputItem label {
+        float: left;
+    }
+
+    .inputItem input {
+        width: 100%;
+        margin-top: .5rem;
+        box-sizing: border-box; // needed to make input box fit inside div
+    }
+
+    .inputItem button {
+        float: right;
+        width: 5rem;
+    }
+`
+
+const StyledList = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+`
+
+const StyledCards = styled.div`
+    border: black 3px solid;
+    border-radius: 10px;
+    margin: 2%;
+    padding: 1%;
+    width: auto;
+`
 
 const formSchema = yup.object().shape({
     name: yup
@@ -12,8 +67,8 @@ const formSchema = yup.object().shape({
         .required('Email is required'),
     password: yup
         .string()
-        .min(6, 'Password had 6 character minimum')
-        .required('Password is required'),
+        .required('Password is required')
+        .min(6, 'Password had 6 character minimum'),
     terms: yup
         .boolean()
         .oneOf([true], 'Must accept terms!')
@@ -21,7 +76,7 @@ const formSchema = yup.object().shape({
 
 const Form = () => {
 
-    // state for for form object
+    // state for form
     const [formState, setFormState] = useState({
         name: '',
         email: '',
@@ -29,7 +84,7 @@ const Form = () => {
         terms: false
     });
 
-    // set state for errors
+    // state for errors
     const [errors, setErrors] = useState({
         name: '',
         email: '',
@@ -42,8 +97,6 @@ const Form = () => {
 
     // state for user object
     const [users, setUsers] = useState([]);
-
-
 
     // only enable submit if form is valid !!!
     useEffect(() => {
@@ -71,15 +124,16 @@ const Form = () => {
     const validateChange = event => {
         yup
             .reach(formSchema, event.target.name)
-            .validate(event.target.value)
+            .validate (
+                event.target.name === 'terms'
+                    ? event.target.checked
+                    : event.target.value
+            )
             .then(valid => {
-                setErrors({ ...errors, [event.target.name]: ''
-                });
+                setErrors({ ...errors, [event.target.name]: '' })
             })
             .catch(error => {
-                setErrors({ 
-                    ...errors, [event.target.name]: error.errors[0]
-                });
+                setErrors({ ...errors, [event.target.name]: error.errors[0] });
             });
     };
 
@@ -88,15 +142,13 @@ const Form = () => {
         axios
             .post('https://reqres.in/api/users', formState)
             .then(response => {
-                const newUsers = [...users, response.data];
-                setUsers(newUsers);
-                console.log(users);
+                setUsers([...users, response.data]);
                 setFormState({
                     name: '',
                     email: '',
                     password: '',
-                    terms: false
-                });
+                    terms: false 
+                })
             })
             .catch(error => {
                 console.log(error.response)
@@ -105,11 +157,11 @@ const Form = () => {
 
     return (
         <div>
-            <form onSubmit={ formSubmit }>
-                <div>
+            <StyledForm onSubmit={ formSubmit }>
+                <div className ='warning'>
                     <div>{errors.name}{errors.email}{errors.password}{errors.terms}</div>
                 </div>
-                <div>
+                <div className='inputItem'>
                     <label>Name: </label>
                     <input
                         id='name'
@@ -119,7 +171,7 @@ const Form = () => {
                         onChange={changeHandler}
                     />
                 </div>
-                <div>
+                <div className='inputItem'>
                     <label>Email: </label>
                     <input
                         id='email'
@@ -129,7 +181,7 @@ const Form = () => {
                         onChange={changeHandler}
                     />
                 </div>
-                <div>
+                <div className='inputItem'>
                     <label>Password: </label>
                     <input
                         id='password'
@@ -139,7 +191,8 @@ const Form = () => {
                         onChange={changeHandler}
                     />
                 </div>
-                <div>
+                <div className='inputTerms'>
+                    <label>Agree to Terms and Conditions</label>
                     <input
                         id='terms'
                         type='checkbox'
@@ -147,29 +200,23 @@ const Form = () => {
                         value={formState.terms}
                         onChange={changeHandler}
                     />
-                    <label>Agree to Terms and Conditions</label>
                 </div>
-                <div>
+                <div className='inputItem'>
                     <button disabled={buttonDisabled} type='submit'>Submit</button>
                 </div>
-            </form>
-            <div>
+            </StyledForm>
+            <StyledList>
                 {users.map((user) => (
-                    <div key={user.id}>
+                    <StyledCards key={user.id}>
                         <p>{user.name}</p>
                         <p>{user.email}</p>
                         <p>{user.password}</p>
-                    </div>
+                    </StyledCards>
                 ))}
-            </div>
+            </StyledList>
         </div>
         
     )
-
-
-
-
 }
-
 
 export default Form
