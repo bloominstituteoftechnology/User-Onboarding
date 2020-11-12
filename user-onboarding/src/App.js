@@ -2,7 +2,7 @@ import './App.css';
 import * as yup from 'yup';
 import axios from 'axios';
 import Form from './Form';
-import {useState} from 'react';
+import { useState } from 'react';
 
 const initialFormValues={
   name:'',
@@ -25,6 +25,7 @@ function App() {
     <div className="App">
       <Form
       values={formValues}
+      
       ></Form>
      
     </div>

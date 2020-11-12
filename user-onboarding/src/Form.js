@@ -6,12 +6,13 @@ export default function Form(props){
         <div className = 'form-container'>
             <form>
                 <h2>Add your info here!</h2>
+                
                 <label> Username: 
                     <input
                     values={values.name}
                     name='name'
                     type='text'
-                    
+
                     ></input>
                     </label>
                 <label> Email: 
@@ -37,7 +38,8 @@ export default function Form(props){
                     checked={values.termsOfService}
                     
                     ></input>
-                </label>
+                </label><br></br>
+                <button>Submit user information</button>
             </form>
         </div>
     )
