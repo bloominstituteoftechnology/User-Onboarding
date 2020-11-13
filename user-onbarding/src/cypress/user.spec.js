@@ -25,5 +25,32 @@ describe("User Onboarding App", () =>{
 
     })
 
+    it("able to type name", () =>{
+        nameInput().should("have.value", "");
+        nameInput().type("Personal name");
+        nameInput().should("have.value", "Personal name");
+    });
+
+
+    it("able to type email", () =>{
+        emailInput().should("have.value", "");
+        emailInput().type("random@email.com");
+        emailInput().should("have.value", "random@email.com");
+    });
+
+
+    it("able to type password", () =>{
+        passwordInput().should("have.value", "");
+        passwordInput().type("Password1020");
+        passwordInput().should("have.value", "Password1020");
+    });
+
+    it("able to check the box of terms of service", () =>{
+        termsInput().should("have.value", "on");
+        termsInput().check();
+        termsInput().should("have.value", "on");
+    });
+
+
 
 })
