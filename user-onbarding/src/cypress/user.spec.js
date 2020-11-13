@@ -51,6 +51,22 @@ describe("User Onboarding App", () =>{
         termsInput().should("have.value", "on");
     });
 
+    it("can submit data", () =>{
+        cy.contains("Personal name").should("not.exist");
+        cy.contains("random@email.com").should("not.exist");
+        cy.contains("Password1020").should("not.exist");
+
+        nameInput().type("Personal name");
+        emailInput().type("random@email.com");
+        passwordInput().type("Password1020");
+        termsInput().check();
+        button().click();
+
+        cy.contains("Personal name").should("exist");
+        cy.contains("random@email.com").should("exist");
+        cy.contains("Password1020").should("exist");
+    });
+
 
 
 })
