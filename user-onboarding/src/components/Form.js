@@ -167,6 +167,7 @@ const Form = () => {
                         id='name'
                         type='text'
                         name='name'
+                        data-cy='name'
                         value={formState.name}
                         onChange={changeHandler}
                     />
@@ -177,6 +178,7 @@ const Form = () => {
                         id='email'
                         type='text'
                         name='email'
+                        data-cy='email'
                         value={formState.email}
                         onChange={changeHandler}
                     />
@@ -187,6 +189,7 @@ const Form = () => {
                         id='password'
                         type='password'
                         name='password'
+                        data-cy='password'
                         value={formState.password}
                         onChange={changeHandler}
                     />
@@ -197,12 +200,15 @@ const Form = () => {
                         id='terms'
                         type='checkbox'
                         name='terms'
+                        data-cy='checkbox'
                         checked={formState.terms}
                         onChange={changeHandler}
                     />
                 </div>
                 <div className='inputItem'>
-                    <button disabled={buttonDisabled} type='submit'>Submit</button>
+                    <button disabled={buttonDisabled} type='submit' data-cy='submit'>
+                        Submit
+                    </button>
                 </div>
             </StyledForm>
             <StyledList>
