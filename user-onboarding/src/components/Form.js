@@ -159,7 +159,7 @@ const Form = () => {
         <div>
             <StyledForm onSubmit={ formSubmit }>
                 <div className ='warning'>
-                    <div>{errors.name}{errors.email}{errors.password}{errors.terms}</div>
+                    <div data-cy='warning'>{errors.name}{errors.email}{errors.password}{errors.terms}</div>
                 </div>
                 <div className='inputItem'>
                     <label>Name: </label>
