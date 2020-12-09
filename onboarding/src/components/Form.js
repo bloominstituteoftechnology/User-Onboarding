@@ -43,12 +43,17 @@ const Form = () => {
         formSchema.isValid(userData).then(valid => setDisabled(!valid))
     },[userData])
 
+    const [users , SetUsers] = useState([]);
+
     const submitForm = (event) => {
         event.preventDefault();
         axios.post("https://reqres.in/api/users" , userData)
         .then(res => {
             setPost(res.data);
             console.log("success" , res);
+            SetUsers(...post)
+            JSON.stringify(users, null, 2);
+            setUserData({ name: "", email: "", password: "", terms: false});
         } )
         .catch(err => console.log(err.response));
         console.log(userData)
@@ -58,6 +63,7 @@ const Form = () => {
     
 
     return (
+        
         <div className="errorList">
             <div>{errors.name}</div>
             <div>{errors.email}</div>
@@ -110,8 +116,9 @@ const Form = () => {
         </form>
         </div>
 
-        
+
     )
+    
 }
 
 export default Form;
