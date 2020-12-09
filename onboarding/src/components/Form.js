@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import * as Yup from "yup";
 
 const formSchema = Yup.object().shape({
@@ -37,15 +38,24 @@ const Form = () => {
         setUserData({...userData , [name]: updateInfo});
     };
 
+    const [post , setPost] = useState([]);
+    useEffect( () => {
+        formSchema.isValid(userData).then(valid => setDisabled(!valid))
+    },[userData])
+
     const submitForm = (event) => {
         event.preventDefault();
+        axios.post("https://reqres.in/api/users" , userData)
+        .then(res => {
+            setPost(res.data);
+            console.log("success" , res);
+        } )
+        .catch(err => console.log(err.response));
         console.log(userData)
     
       }
 
-    useEffect( () => {
-        formSchema.isValid(userData).then(valid => setDisabled(!valid))
-    },[userData])
+    
 
     return (
         <div className="errorList">
