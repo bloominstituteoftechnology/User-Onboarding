@@ -142,7 +142,7 @@ const UserForm = (props: { addUser: (input: User) => void }): JSX.Element => {
           onChange={inputChange}
           invalid={isInvalid(errors.email)}
         />
-        <FormFeedback invalid>{errors.email}</FormFeedback>
+        <FormFeedback>{errors.email}</FormFeedback>
       </FormGroup>
       <FormGroup>
         <Label for="password">Password</Label>

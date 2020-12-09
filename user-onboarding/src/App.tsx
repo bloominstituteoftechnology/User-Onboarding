@@ -33,7 +33,7 @@ function App() {
     <Container className="App">
       <h1>USER-ONBOARDING</h1>
       <UserForm addUser={(input: User) => addUser(input)} />
-      <Users user={users[0]} />
+      {users && <Users user={users[0]} />}
     </Container>
   );
 }
