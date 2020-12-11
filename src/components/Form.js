@@ -63,7 +63,7 @@ const Form = () => {
     
 
     return (
-        
+       
         <div className="errorList">
             <div>{errors.name}</div>
             <div>{errors.email}</div>
@@ -76,6 +76,7 @@ const Form = () => {
                 value = {userData.name}
                 type = "text"
                 placeholder = "Enter Name"
+                data-cy = "name-input"
                 onChange = {handleChange}
                 />
             
@@ -114,6 +115,7 @@ const Form = () => {
 
             <button disabled={disabled} type = "submit">Submit</button>
         </form>
+        <pre>{JSON.stringify(post, null, 2)}</pre>
         </div>
 
 
