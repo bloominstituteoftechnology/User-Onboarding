@@ -16,7 +16,6 @@ function App() {
 
   useEffect(() => {
     Axios.get('https://reqres.in/api/users').then((res: AxiosResponse) => {
-      console.log(res.data.data);
       setUsers(res.data.data);
     });
   }, []);
@@ -26,8 +25,6 @@ function App() {
 
     setUsers(ammendedUserArr);
   };
-
-  console.log(users);
 
   return (
     <Container className="App">
