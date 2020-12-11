@@ -45,7 +45,7 @@ function Form() {
     };
     const formSchema = yup.object().shape({
         name: yup.string().required('must provide a name'),
-        email: yup.string().email(),
+        email: yup.string().email().required('must provide an email'),
         password: yup.string().required('must have a password'),
         terms: yup.boolean().oneOf([true])
     });
@@ -116,7 +116,7 @@ function Form() {
                 />
                 {inlineError.terms.length > 0 ? <p className='error'>{inlineError.terms}</p> : null}
             </label>
-            <button type='submit' disabled={disabled}>Submit</button>
+            <button type='submit' data-cy='submit' disabled={disabled}>Submit</button>
             <pre>{JSON.stringify(users, null, 2)}</pre>
         </form>
     )
