@@ -56,7 +56,7 @@ const UserForm = (props: { addUser: (input: User) => void }): JSX.Element => {
       .validate(
         e.target.type === 'checkbox' ? e.target.checked : e.target.value
       )
-      .then((valid: any) => {
+      .then(() => {
         setErrors({ ...errors, [e.target.name]: '' });
       })
       .catch((err: any) => {
