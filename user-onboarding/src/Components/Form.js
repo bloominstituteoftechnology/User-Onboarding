@@ -68,7 +68,7 @@ export default function Form(props) {
                     handleSubmit()
                 }}>Submit</button>
             {formError.map(err => {
-                return <p>{err}</p>
+                return <p className='formError'>{err}</p>
             })}
             
         </form>
