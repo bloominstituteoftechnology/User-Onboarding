@@ -10,7 +10,7 @@ export default function UserForm(props){
 
     const onChange = (evt) =>{
         const { name, value, type, checked } = evt.target;
-        const valueToUse = value === 'checkbox' ? checked : value
+        const valueToUse = type === 'checkbox' ? checked : value
         change( name, valueToUse)
     }
 
