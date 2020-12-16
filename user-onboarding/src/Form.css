@@ -1,0 +1,36 @@
+form {
+    display: flex;
+    flex-direction: column;
+    border-color: rgb(85, 3, 3);
+    border-width: 2px;
+    border-style: solid;
+    width: 25rem;
+    margin: auto;
+  }
+  button {
+    width: 4.5rem;
+    height: 2rem;
+    border-radius: 3px;
+    margin: auto;
+  }
+  
+  label {
+    text-align: left;
+    margin: auto;
+    padding-bottom: 1rem;
+  }
+  
+  input {
+    display: block;
+  }
+  
+  #terms {
+    display: inline;
+  }
+  
+  .error {
+    color: rgb(59, 3, 92);
+    /* sborder-style: solid; */
+    margin: 0px 0px 0px 0px;
+    position: fixed;
+  }
