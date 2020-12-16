@@ -22,7 +22,9 @@ export default function UserForm(props){
         <h2>Enter Your Information</h2>
 
         <div className='errors'>
-        
+            <div>{errors.firstName}</div>
+            <div>{errors.lastName}</div>
+            <div>{errors.password}</div>
         </div>
 
         <div className='form-group inputs'>
