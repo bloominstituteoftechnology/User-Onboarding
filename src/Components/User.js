@@ -6,8 +6,7 @@ export default function User({details}){
       }
       return(
         <div className='user-container'>
-            <span>First Name: {details.firstName} --</span>
-            <span>-- Last Name: {details.lastName}</span>
+            <p>Name: {details.firstName} {details.lastName}</p>
         </div>
       )
 }
