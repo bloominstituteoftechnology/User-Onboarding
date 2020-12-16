@@ -33,7 +33,7 @@ function App() {
     .then(res => {
       setMembers([res.data, ...members])
       setFormValues(initialFormValues);
-      console.log(res)
+      // console.log(res)
     })
     .catch(err => {
       console.log(err)
@@ -78,7 +78,7 @@ function App() {
         {
           members.map(mem => {
             console.log(mem)
-            return <Member key={mem.id} details={members}>New Member</Member>
+            return <Member key={mem.id} details={members} />
           })
         }
       </div>

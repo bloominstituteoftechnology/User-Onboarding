@@ -10,6 +10,6 @@ export default yup.object().shape({
     .string()
     .required('Password must be 8 characters or more')
   terms: yup
-    .string()
-    .oneOf(["single", "married"], "please select your civil status"),
+    .oneOf([true,false], "Please select giving your data away")
+    .required(),
 });
