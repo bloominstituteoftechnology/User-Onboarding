@@ -19,12 +19,7 @@ const initialFormErrors = {
   password:"",
 }
 
-const initialMembers = [{
-  name: "Nate",
-  email: "Nate@Nate.com",
-  password: "asdf",
-  terms: false,
-}];
+const initialMembers = [];
 const initialDisabled = true;
 
 function App() {
@@ -36,13 +31,12 @@ function App() {
   const postNewMember = (newUser) => {
     axios.post("https://reqres.in/api/users", newUser)
     .then(res => {
-      setMembers(res.data, ...members)
+      setMembers([res.data, ...members])
       setFormValues(initialFormValues);
       console.log(res)
     })
     .catch(err => {
       console.log(err)
-      debugger
     });
   };
 
@@ -67,7 +61,7 @@ function App() {
     };
 
     postNewMember(newMember)
-    // setMembers(newMember, ...members)
+    // setMembers([newMember, ...members])
     // setFormValues(initialFormValues)
   };
 
@@ -81,9 +75,13 @@ function App() {
       onSubmit={onSubmit}
       />
       <div>
-      <Member details={members} />
+        {
+          members.map(mem => {
+            console.log(mem)
+            return <Member key={mem.id} details={members}>New Member</Member>
+          })
+        }
       </div>
-      
     </div>
   );
 }
