@@ -13,13 +13,43 @@ const initialFormValues = {
   terms: false,
 } 
 
+const initialFormErrors = {
+  username:"",
+  email:"",
+  password:"",
+}
+
+const initialMembers = [{
+  name: "Nate",
+  email: "Nate@Nate.com",
+  password: "asdf",
+  terms: false,
+}];
+const initialDisabled = true;
+
 function App() {
-  const [ formValues, setFormValues ] = useState(initialFormValues)
-  const [ members, setMembers ] = useState([])
+  const [ formValues, setFormValues ] = useState(initialFormValues);
+  const [ members, setMembers ] = useState(initialMembers);
+  const [ formErrors, setFormErrors ] = useState(initialFormErrors);
+  const [ isDisabled, setIsDisabled ] = useState(initialDisabled);
+
+  const postNewMember = (newUser) => {
+    axios.post("https://reqres.in/api/users", newUser)
+    .then(res => {
+      setMembers(res.data, ...members)
+      setFormValues(initialFormValues);
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+      debugger
+    });
+  };
 
   const onChange = event => {
     const { name, value, type, checked } = event.target;
 
+    // Add yup validation
     const valueToUse = type === 'checkbox' ? checked : value;
     setFormValues({
       ...formValues, [ name ] : valueToUse
@@ -34,27 +64,13 @@ function App() {
       email:formValues.email.trim(),
       password:formValues.password.trim(),
       terms:formValues.terms,
-    }
+    };
 
     postNewMember(newMember)
-    setMembers(newMember, ...members)
-    setFormValues(initialFormValues)
-  }
+    // setMembers(newMember, ...members)
+    // setFormValues(initialFormValues)
+  };
 
-
-    const postNewMember = (newUser) => {
-      axios.post("https://reqres.in/api/users", newUser)
-      .then(res => {
-        setMembers(newUser, ...members)
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    }
-    
-
-  
 
   return (
     <div className="App">
@@ -64,16 +80,10 @@ function App() {
       onChange={onChange}
       onSubmit={onSubmit}
       />
-      {
-        members.map((mem , index ) => (
-          <Member
-          key={index}
-          details={members}
-          >
-          {mem.name}
-          </Member>
-        ))
-      }
+      <div>
+      <Member details={members} />
+      </div>
+      
     </div>
   );
 }
