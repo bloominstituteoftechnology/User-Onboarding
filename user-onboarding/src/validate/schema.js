@@ -8,8 +8,8 @@ export default yup.object().shape({
   email: yup.string().email("must be an email").required("email is required"),
   password: yup
     .string()
-    .required('Password must be 8 characters or more')
-  terms: yup
-    .oneOf([true,false], "Please select giving your data away")
-    .required(),
+    .required('Password must be 8 characters or more'),
+  // terms: yup
+  //   .oneOf([true,false], "Please select giving your data away")
+  //   .required()
 });

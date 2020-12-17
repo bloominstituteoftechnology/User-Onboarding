@@ -4,6 +4,7 @@ import Member from './components/Member'
 import React, { useState } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+import schema from './validate/schema'
 
 
 const initialFormValues = {
@@ -33,7 +34,6 @@ function App() {
     .then(res => {
       setMembers([res.data, ...members])
       setFormValues(initialFormValues);
-      // console.log(res)
     })
     .catch(err => {
       console.log(err)
@@ -43,7 +43,15 @@ function App() {
   const onChange = event => {
     const { name, value, type, checked } = event.target;
 
-    // Add yup validation
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({
+          ...formErrors,
+          [ name ] : "",
+        })
+      })
     const valueToUse = type === 'checkbox' ? checked : value;
     setFormValues({
       ...formValues, [ name ] : valueToUse
@@ -61,8 +69,6 @@ function App() {
     };
 
     postNewMember(newMember)
-    // setMembers([newMember, ...members])
-    // setFormValues(initialFormValues)
   };
 
 
@@ -77,8 +83,7 @@ function App() {
       <div>
         {
           members.map(mem => {
-            console.log(mem)
-            return <Member key={mem.id} details={members} />
+            return <Member key={mem.id} details={mem} />
           })
         }
       </div>

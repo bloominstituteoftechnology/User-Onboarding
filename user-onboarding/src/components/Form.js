@@ -4,6 +4,12 @@ import React from 'react';
 function Form(props) {
   const { onChange, onSubmit, values } = props;
 
+
+  // const change = event => {
+  //   const { name, value, type, checked } = event.target;
+  //   const valueToUse = type 
+  // }
+
   return (
     <div>
       <form onSubmit={onSubmit}>
