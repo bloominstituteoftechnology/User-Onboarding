@@ -24,20 +24,21 @@ const Form = () => {
                     onChange={change}
                     value={form.firstName}
                     name="firstName"
-                    classname="small"
+                    className="first"
                     type="text"
                     placeholder="First Name"
                 ></input>
                 <br />
+                </div>
                 <input
                     onchange={change}
                     value={form.lastName}
                     name="lastName"
-                    className="small"
+                    className="last"
                     type="text"
                     placeholder="Last Name"
                 ></input>
-            </div>
+            
             <br />
             <div className="form">
                 <input 
