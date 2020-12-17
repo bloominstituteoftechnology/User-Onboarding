@@ -51,11 +51,16 @@ function App() {
           [ name ] : "",
         })
       })
-      // lives on form.js now
-    // const valueToUse = type === 'checkbox' ? checked : value;
-    // setFormValues({
-    //   ...formValues, [ name ] : valueToUse
-    // })
+      .catch(err => {
+        setFormErrors({
+          ...formErrors,
+          [name] : err.errors[0],
+        })
+      })
+      setFormValues({
+        ...formValues,
+        [name]:value,
+      })
   }
 
   const onSubmit = () => {
