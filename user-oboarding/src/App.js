@@ -26,49 +26,85 @@ function App() {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 
+  const getUsers = () => {
+    axios.get('https://reqres.in/api/users')
+    .then(res => {
+      setUsers(res.data)
+      debugger
+    })
+    .catch(err => {
+      debugger
+      console.log(err)
+    })
+  }
+  console.log(users);
+
+  const postNewUser = newUser => {
+    axios
+    .post('https://reqres.in/api/users', newUser)
+    .then(res => {
+      setUsers(...users, res.data)
+      setFormValues(initialValues)
+    })
+    .catch(err => {
+      debugger
+      console.log(err)
+    })
+  }
+
 
   const validate = (name, value) => {
     yup
     .reach(schema, name)
     .validate(value)
     .then(valid => {
+      debugger
       setFormErrors({
         ...formErrors, [name]: ''
       })
-      .catch(err => {
-        setFormErrors({
-          ...formErrors, [name]: err.errors[0]
-        })
-      })
     })
+        .catch(err => {
+          debugger
+          setFormErrors({
+            ...formErrors, [name]: err.errors[0]
+          })
+        })
   }
   // inputChange is changing the formValues by spreading to get a new form ?// Values array, then changing whatever was changed [name] to whatever // // value it was changed to value
 
   const inputChange = (name, value) => {
-    // validate(name, value)
+    validate(name, value)
     setFormValues({
       ...formValues, [name]: value
     })
   }
 
-  const onSubmit = evt => {
-    evt.preventDefault()
-}
 const formSubmit = () => {
   const newUser = {
     name: formValues.name.trim(),
     email: formValues.email.trim(),
     password: formValues.password.trim(),
-    serviceTerms: formValues.serviceTerms.trim()
+    serviceTerms: formValues.serviceTerms
   }
   //invoke post function here
+  postNewUser(newUser)
 }
+useEffect(() => {
+  getUsers()
+}, [])
+
+useEffect(() => {
+  schema.isValid(formValues).then(valid => {
+    setDisabled(!valid)
+  })
+}, [formValues])
 
 
   return (
     <div className="App">
-    <Form values={formValues}
-    submit={onSubmit}
+    <Form 
+    values={formValues}
+    submit={formSubmit}
     change={inputChange}
     disabled={disabled}
     errors={formErrors} />

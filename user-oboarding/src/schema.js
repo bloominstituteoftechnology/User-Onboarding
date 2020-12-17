@@ -10,5 +10,5 @@ export default yup.object().shape({
     password: yup.string()
     .required('Password is definitely required')
     .min(6, 'I could hack this password in my sleep'),
-    serviceTerms: yup.boolean([true], 'Dont play')
+    serviceTerms: yup.boolean([true], 'Dont play'),
 })

@@ -11,6 +11,11 @@ export default function Form(props) {
         errors,
     } = props
 
+    const onSubmit = evt => {
+      evt.preventDefault()
+      submit()
+  }
+
     const onChange = evt => {
         const { name, value, type, checked, } = evt.target;
         const valueToUse = type === 'checkbox' ? checked : value;
@@ -19,22 +24,26 @@ export default function Form(props) {
 
     return (
         <>
-        <form onSubmit={submit}>
+        <form onSubmit={onSubmit}>
+        <h1>Create an account please</h1>
+        <div className='errors'>
             <div>{errors.name}</div>
             <div>{errors.email}</div>
             <div>{errors.password}</div>
+        </div>
         <div>
+          <h3>Submit your info here</h3>
         <label>
         Name:
-        <input type='text' value={values.name}name='name' onChange={onChange}  />
+        <input type='text' value={values.name} name='name' onChange={onChange}  />
       </label>
       <label>
         Email:
-        <input type='email' value={values.email}name='email' onChange={onChange} />
+        <input type='email' value={values.email} name='email' onChange={onChange} />
       </label>
       <label>
         Password:
-        <input type='password' value={values.password}name='password' onChange={onChange} />
+        <input type='password' value={values.password} name='password' onChange={onChange} />
       </label>
       <label>
         Terms of Service
