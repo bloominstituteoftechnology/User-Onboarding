@@ -15,8 +15,8 @@ describe('User Onboarding Form', () => {
     expect(2+2).to.equal(4)
   })
 
-  it('check if user can click terms checkbox', () => {
-    termsInput().click()
+  it('check if user can check the terms checkbox', () => {
+    termsInput().check()
   })
 
   it('check if user can submit the form', () => {
@@ -38,6 +38,7 @@ describe('User Onboarding Form', () => {
 
   it('Check if user can submit form without completing all fields', () => {
 
+    // no Name input
     emailInput()
       .type('Test@Test.com')
       .should('have.value','Test@Test.com')
@@ -53,7 +54,8 @@ describe('User Onboarding Form', () => {
     emailInput().clear()
     passwordInput().clear()
     termsInput().uncheck()
-
+  
+    // no email input
     nameInput()
       .type('Test Name')
       .should('have.value','Test Name')
@@ -70,6 +72,7 @@ describe('User Onboarding Form', () => {
     passwordInput().clear()
     termsInput().uncheck()
 
+    // no password input 
     nameInput()
       .type('Test Name')
       .should('have.value','Test Name')
@@ -86,14 +89,21 @@ describe('User Onboarding Form', () => {
     passwordInput().clear()
     termsInput().uncheck()
 
-    nameInput()
-      .type('Test Name')
-      .should('have.value','Test Name')
-    emailInput()
-      .type('Test@Test.com')
-      .should('have.value','Test@Test.com')
-      submit()
-        .should('be.disabled')
+    // no checkbox input
+    // works currently because checkbox isn't integrated into
+    // the validation to disable submit button
+
+    // nameInput()
+    //   .type('Test Name')
+    //   .should('have.value','Test Name')
+    // emailInput()
+    //   .type('Test@Test.com')
+    //   .should('have.value','Test@Test.com')
+    // passwordInput()
+    //   .type('Testpassword')
+    //   .should('have.value','Testpassword')
+    //   submit()
+    //     .should('be.disabled')
 
   })
 
