@@ -11,6 +11,12 @@ export default function Form(props) {
         errors,
     } = props
 
+    const onChange = evt => {
+        const { name, value, type, checked, } = evt.target;
+        const valueToUse = type === 'checkbox' ? checked : value;
+        change(name, valueToUse)
+    }
+
     return (
         <>
         <form onSubmit={submit}>
@@ -20,19 +26,19 @@ export default function Form(props) {
         <div>
         <label>
         Name:
-        <input type='text' value={values.name}name='name' onChange={change}  />
+        <input type='text' value={values.name}name='name' onChange={onChange}  />
       </label>
       <label>
         Email:
-        <input type='email' value={values.email}name='email' onChange={change} />
+        <input type='email' value={values.email}name='email' onChange={onChange} />
       </label>
       <label>
         Password:
-        <input type='password' value={values.password}name='password' onChange={change} />
+        <input type='password' value={values.password}name='password' onChange={onChange} />
       </label>
       <label>
         Terms of Service
-        <input type='radio' value={values.serviceTerms}name='serviceTerms' onChange={change} checked='stateNeeded' />
+        <input type='radio' name='serviceTerms' onChange={onChange} checked={values.serviceTerms} />
       </label>
       <button disabled={disabled}>Submit</button>
         </div>
