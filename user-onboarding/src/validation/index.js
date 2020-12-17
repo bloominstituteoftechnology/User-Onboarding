@@ -1,9 +1,11 @@
 import * as yup from 'yup';
 
+
+// validation using yup to check name,email,password
 export default yup.object().shape({
   name: yup.string().required('Name is required.'),
   email: yup.string().email('Email must be real.').required('Email required.'),
-  pass: yup
+  password: yup
     .string()
     .required('Password required.')
     .min(3, 'Passwords must be longer than 3 characters.')

@@ -8,17 +8,19 @@ import axios from 'axios';
 import schema from './validation';
 import * as yup from 'yup';
 
+// structure of the form
 const initialValues = {
   name: '',
   email: '',
-  pass: '',
+  password: '',
   tos: false,
 };
 
+// possible errors from form setup
 const initialErrors = {
   name: '',
   email: '',
-  pass: '',
+  password: '',
   tos: false,
 };
 
@@ -26,20 +28,14 @@ const initialUsers = [];
 const initialDisabled = true;
 
 function App() {
+
+  // slices of state for users, form values, form errors, disabled
   const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState(initialErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 
-  // const getUsers = () => {
-  //   axios
-  //     .get('https://reqres.in/api/users')
-  //     .then((res) => {
-  //       setUsers(res.data.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
+  // axios post sends newUser and then receives data w/ current users added
   const postNewUser = (newUser) => {
     axios
       .post('https://reqres.in/api/users', newUser)
@@ -50,6 +46,7 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  // use yup to validate values, then set form errors if any
   const inputChange = (name, value) => {
     yup
       .reach(schema, name)
@@ -63,21 +60,19 @@ function App() {
     setFormValues({ ...formValues, [name]: value });
   };
 
+  // trim whitespace from submitted names and emails only, then postNewUser
   const formSubmit = () => {
     const newUser = {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
-      pass: formValues.pass,
+      pass: formValues.password,
       tos: formValues.tos,
     };
     postNewUser(newUser);
     console.log(newUser);
   };
 
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
-
+  // trigger schema check if formValues changes
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
@@ -86,7 +81,8 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>TEST</h1>
+      <h1>USER ONBOARDING</h1>
+      {/* render Form and all props */}
       <Form
         values={formValues}
         change={inputChange}
