@@ -54,6 +54,16 @@ describe('User Onboarding App', () =>{
         terms().check();
         submitBtn().click();
     })
+    it('Check for form validation if an input doesnt meet requirement', () =>{
+        firstName()
+        .type('Diego')
+        lastName()
+        .type('Roman')
+        password()
+        .type('diego12')
+        email()
+        .type('diego@roman@hotmail.com')
+    })
 
 
 
