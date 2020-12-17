@@ -24,6 +24,7 @@ export default function UserForm(props){
         <div className='errors'>
             <div>{errors.firstName}</div>
             <div>{errors.lastName}</div>
+            <div>{errors.email}</div>
             <div>{errors.password}</div>
         </div>
 
@@ -44,6 +45,15 @@ export default function UserForm(props){
                     value={values.lastName}
                     name='lastName'
                     onChange={onChange}
+                />
+            </label>
+
+            <label>Email
+                <input
+                    value={values.email}
+                    onChange={onChange}
+                    name="email"
+                    type="text"
                 />
             </label>
 

@@ -7,6 +7,10 @@ export default yup.object() .shape({
     lastName: yup
     .string()
     .required('Last name is required'),
+    email: yup
+    .string()
+    .email('Must be a valid email')
+    .required('Email is required'),
     password: yup
     .string()
     .required('Password is required')

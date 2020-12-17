@@ -9,6 +9,7 @@ import './App.css';
 const initialFormValues ={
   firstName: '',
   lastName: '',
+  email: '',
   password: '',
   termsOfService: false,
 }
@@ -16,6 +17,7 @@ const initialFormValues ={
 const initialFormErrors ={
   firstName: '',
   lastName: '',
+  email: '',
   password: '',
 }
 
@@ -79,6 +81,7 @@ function App() {
     const newUser ={
       firstName: formValues.firstName.trim(),
       lastName: formValues.lastName.trim(),
+      email: formValues.email.trim(),
       password: formValues.password.trim(),
     }
     postNewUser(newUser);
