@@ -37,18 +37,19 @@
   }
 }
 
-h1 {
-  padding-left: 2rem;
+/* h1 {
+  margin-left: 2rem;
 }
 .container {
+  display: flex;
   border: 1px solid black;
   width: 50%;
   margin: 0 auto;
-  padding-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 label {
-  padding: 3rem;
+  margin: 3rem;
   margin: 0 auto;
   color: red;
 }
@@ -58,4 +59,4 @@ button {
   color: red;
   margin-top: 2rem;
   margin-left: 3rem;
-}
+} */

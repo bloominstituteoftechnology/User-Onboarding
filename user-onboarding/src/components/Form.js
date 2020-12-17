@@ -1,7 +1,6 @@
 //Create a component file called Form.js, import it into your App.js file, and place the component in your JSX there.
 
 import React from "react";
-import "../App.css";
 
 export default function Form(props) {
   const { values, submit, change, disabled, errors } = props;
@@ -55,7 +54,6 @@ export default function Form(props) {
             name="email"
             type="text"
           />
-          <br />
         </label>
 
         <label>
@@ -64,9 +62,8 @@ export default function Form(props) {
             value={values.password}
             onChange={onChange}
             name="password"
-            type="text"
+            type="password"
           />
-          <br />
         </label>
 
         {/* ////////// CHECKBOXES ////////// */}
@@ -78,7 +75,6 @@ export default function Form(props) {
             onChange={onChange}
             checked={values.terms}
           />
-          <br />
         </label>
       </div>
       <button disabled={disabled}>submit</button>

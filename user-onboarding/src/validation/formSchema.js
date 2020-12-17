@@ -6,14 +6,17 @@ export default yup.object().shape({
   name: yup
     .string()
     .required("name is required")
-    .min(20, "name must be 20 chars long"),
+    .min(3, "name must be 3 chars long"),
 
-  email: yup.string().email("must be an email"),
+  email: yup
+    .string()
+    .email("must be an email")
+    .required("must include an email to register"),
 
   password: yup
     .string()
-    .required("must be an email")
+    .required("must have multiple characters")
     .min(8, "password must be min 8 chars long"),
 
-  terms: yup.boolean(),
+  terms: yup.boolean().oneOf([true], "Please accept Terms to continue."),
 });

@@ -5,22 +5,34 @@ import * as yup from "yup";
 import Form from "./components/Form";
 import schema from "./validation/formSchema";
 
-const initialFormValues = { name: "", email: "", password: "", terms: false };
-const initialFormErrors = { name: "", email: "", password: "" };
+const initialFormValues = {
+  name: "",
+  email: "",
+  password: "",
+  terms: false,
+};
+const initialFormErrors = {
+  name: "",
+  email: "",
+  password: "",
+  terms: "",
+};
+const initialUsers = [];
+const initialDisabled = true;
 
 export default function App() {
   //Set up a state property called users that is initialized with an empty array
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(initialDisabled);
 
   const getUsers = () => {
     axios
       .get("https://reqres.in/api/users")
       .then((res) => {
-        console.log(res);
-        setUsers(res.data);
+        console.log(res.data.data);
+        setUsers(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -69,12 +81,16 @@ export default function App() {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      // terms: [''].filter((hobby) => formValues[hobby]
-      //   //we iterate over coding reading hiking, and filter and say "does our form values/properAties have blank (coding, reading, hiking)"
-      //   });
+      terms: formValues.terms,
     };
     postNewUser(newUser);
   };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+  //anytime the page renders, get the users.
+
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
@@ -94,10 +110,18 @@ export default function App() {
         disabled={disabled}
         errors={formErrors}
       />
-
-      {users.map((user) => {
-        return <user key={user.id} details={user} />;
-      })}
+      <div>
+        <h2> Users Already Registered</h2>
+        {users.map((user, index) => {
+          return (
+            <div key={index}>
+              {user.name
+                ? `${user.name}`
+                : `${user.first_name} ${user.last_name}`}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
