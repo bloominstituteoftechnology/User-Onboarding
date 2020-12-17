@@ -1,6 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Background from './components/Stateless/Background'
+//
 function App() {
   return (
     <div className="App">
