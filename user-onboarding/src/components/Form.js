@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-const Input = () => {
+const Form = () => {
     const [form, setForm] = useState({
-        firstName; "",
+        firstName: "",
         lastName: "",
         email: "",
         password: "",
@@ -13,7 +13,7 @@ const Input = () => {
     const change = (e) => {
         const { value, type, checked, name } = e.target
         const usedVal = type === "checkbox" ? checked: value
-        setForm({...form, [name]: valueToUse})
+        setForm({...form, [name]: usedVal})
     }
     
     return (
@@ -82,3 +82,5 @@ const Input = () => {
         </>
     )
 }
+
+export default Form

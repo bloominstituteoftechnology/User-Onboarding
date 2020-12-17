@@ -1,10 +1,10 @@
 import './App.css';
-import Background from './components/Stateless/Background'
-//
+import Form from './components/Form'
+
 function App() {
   return (
     <div className="App">
-      <Background />
+      <Form />
     </div>
   );
 }
