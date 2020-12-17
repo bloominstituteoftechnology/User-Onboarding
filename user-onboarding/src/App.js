@@ -1,7 +1,7 @@
 import './App.css';
 import Form from './components/Form'
 import Member from './components/Member'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
 import schema from './validate/schema'
@@ -40,8 +40,7 @@ function App() {
     });
   };
 
-  const onChange = event => {
-    const { name, value, type, checked } = event.target;
+  const onChange = ( name, value ) => {
 
     yup
       .reach(schema, name)
@@ -52,14 +51,14 @@ function App() {
           [ name ] : "",
         })
       })
-    const valueToUse = type === 'checkbox' ? checked : value;
-    setFormValues({
-      ...formValues, [ name ] : valueToUse
-    })
+      // lives on form.js now
+    // const valueToUse = type === 'checkbox' ? checked : value;
+    // setFormValues({
+    //   ...formValues, [ name ] : valueToUse
+    // })
   }
 
-  const onSubmit = event => {
-    event.preventDefault();
+  const onSubmit = () => {
 
     const newMember = {
       name:formValues.name.trim(),
@@ -71,6 +70,12 @@ function App() {
     postNewMember(newMember)
   };
 
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => {
+      setIsDisabled(!valid)
+    });
+  },[formValues])
+
 
   return (
     <div className="App">
@@ -79,6 +84,8 @@ function App() {
       values={formValues}
       onChange={onChange}
       onSubmit={onSubmit}
+      disabled={isDisabled}
+      errors={formErrors}
       />
       <div>
         {

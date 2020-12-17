@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export default yup.object().shape({
-  username: yup
+  name: yup
     .string()
     .required("username is required")
     .min(3, "username must be 3 chars long"),
@@ -9,7 +9,7 @@ export default yup.object().shape({
   password: yup
     .string()
     .required('Password must be 8 characters or more'),
-  // terms: yup
-  //   .oneOf([true,false], "Please select giving your data away")
-  //   .required()
+  terms: yup
+    .boolean()
+    .required()
 });

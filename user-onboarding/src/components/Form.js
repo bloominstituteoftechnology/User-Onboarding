@@ -2,22 +2,30 @@ import React from 'react';
 
 
 function Form(props) {
-  const { onChange, onSubmit, values } = props;
+  const { onChange, onSubmit, values, errors, disabled } = props;
 
+  const submit = event => {
+    event.preventDefault();
+    onSubmit()
+  }
 
-  // const change = event => {
-  //   const { name, value, type, checked } = event.target;
-  //   const valueToUse = type 
-  // }
+  const change = event => {
+    const { name, value, type, checked } = event.target;
+    const valueToUse = type === 'checkbox' ? checked: value;
+    onChange(name, valueToUse);
+  }
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <div>{errors.name}</div>
+      <div>{errors.email}</div>
+      <div>{errors.password}</div>
+      <form onSubmit={submit}>
         <label>Name
           <input
           type="text"
           name="name"
-          onChange={onChange}
+          onChange={change}
           value={values.name}
           />
         </label>
@@ -26,7 +34,7 @@ function Form(props) {
           <input
           type="email"
           name="email"
-          onChange={onChange}
+          onChange={change}
           value={values.email}
           />
         </label>
@@ -35,7 +43,7 @@ function Form(props) {
           <input
           type="password"
           name="password"
-          onChange={onChange}
+          onChange={change}
           value={values.password}
           />
         </label>
@@ -44,13 +52,13 @@ function Form(props) {
           <input
           type="checkbox"
           name="terms"
-          onChange={onChange}
+          onChange={change}
           checked={values.terms}
           />
         </label>
         <br/>
         <br/>
-        <button>Submit New Member</button>
+        <button disabled={disabled}>Submit New Member</button>
       </form>
     </div>
   )
