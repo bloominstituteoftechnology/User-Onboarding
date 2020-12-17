@@ -8,7 +8,7 @@ describe('User Onboarding Form', () => {
     const nameInput = () => cy.get('input[name="name"]')
     const emailInput = () => cy.get('input[name="email"]')
     const passwordInput = () => cy.get('input[name="password"]')
-    const termsInput = () => cy.get('input[name="terms"]')
+    const termsInput = () => cy.get('input[type="checkbox"]')
     const submit = () => cy.get('button')
 
   it('Sanity Check', () => {
@@ -45,14 +45,14 @@ describe('User Onboarding Form', () => {
       .type('Testpassword')
       .should('have.value','Testpassword')
     termsInput()
-      .click()
+      .check()
       submit()
         .should('be.disabled')
 
     nameInput().clear()
     emailInput().clear()
     passwordInput().clear()
-      
+    termsInput().uncheck()
 
     nameInput()
       .type('Test Name')
@@ -61,13 +61,14 @@ describe('User Onboarding Form', () => {
       .type('Testpassword')
       .should('have.value','Testpassword')
     termsInput()
-      .click()
+      .check()
       submit()
         .should('be.disabled')
 
     nameInput().clear()
     emailInput().clear()
     passwordInput().clear()
+    termsInput().uncheck()
 
     nameInput()
       .type('Test Name')
@@ -76,10 +77,23 @@ describe('User Onboarding Form', () => {
       .type('Test@Test.com')
       .should('have.value','Test@Test.com')
     termsInput()
-      .click()
+      .check()
       submit()
         .should('be.disabled')
 
+    nameInput().clear()
+    emailInput().clear()
+    passwordInput().clear()
+    termsInput().uncheck()
+
+    nameInput()
+      .type('Test Name')
+      .should('have.value','Test Name')
+    emailInput()
+      .type('Test@Test.com')
+      .should('have.value','Test@Test.com')
+      submit()
+        .should('be.disabled')
 
   })
 
