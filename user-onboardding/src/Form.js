@@ -20,8 +20,7 @@ export default function Form(props) {
         <div className="errors">
           <div>{errors.username}</div>
           <div>{errors.email}</div>
-          <div>{errors.role}</div>
-          <div>{errors.civil}</div>
+          <div>{errors.password}</div>
         </div>
       </div>
 
@@ -64,13 +63,13 @@ export default function Form(props) {
           Read and Agree with our terms of service?
           <input
             type="checkbox"
-            name="yes"
+            name="read"
             checked={values.read}
             onChange={onChange}
 
           />
         </label>
-        <button disabled={disabled}>submit</button>
+        <button id="submit"  disabled={disabled}>submit</button>
       </div>
 
   

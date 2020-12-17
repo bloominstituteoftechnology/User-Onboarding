@@ -7,7 +7,7 @@ import * as yup from 'yup'
 import schema from "./validation/formSchema";
 
 const initialFormValues = {
-  name: "",
+  username: "",
   email: "",
   password: "",
   read:false
@@ -69,13 +69,19 @@ function App() {
     const newUser = {
       username: formValues.username.trim(),
       email: formValues.email.trim(),
-      password: formValues.role.trim(),
+      password: formValues.password.trim(),
       Read: formValues.read
     };
 
     postUser(newUser);
   };
 
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => {
+      console.log("valid", valid)
+      setDisabled(!valid);
+    });
+  }, [formValues]);
 
   return (
     <div className="App">

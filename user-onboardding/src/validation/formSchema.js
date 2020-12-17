@@ -8,10 +8,7 @@ export default yup.object().shape({
   email: yup.string().email("must be an email").required("email is required"),
   password: yup
     .string()
-    .oneOf(["tl", "instructor", "student", "alumni"], "role is required"),
-  read: yup
-    .boolean()
-
-  // we're done with checkboxes
-
+    .required("password is required")
+    .min(3, "password must be 3 chars long"),
+  read: yup.boolean(),
 });
