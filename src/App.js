@@ -17,7 +17,21 @@ function App() {
 
 
   const inputChange = (name, value) => {
-    console.log(name, value)
+    setFormValues({
+      ...formValues,
+      [name]: value
+    })
+  }
+
+
+  const formSubmit = (event) => {
+    const newUser = {
+      name: formValues.name.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim(),
+      terms: formValues.terms,
+    }
+    console.log(newUser)
   }
 
 
@@ -26,6 +40,7 @@ function App() {
       <Form
         values={formValues}
         change={inputChange}
+        submit={formSubmit}
       />
     </div>
   );
