@@ -1,0 +1,56 @@
+.App {
+  text-align: center;
+}
+
+h2{
+  padding-top: 3%;
+  margin: 1%;
+}
+
+.genInfoDiv{
+  border: 1px solid rgb(210, 210, 210);
+  border-radius: 6px;
+  box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
+  margin: 16px 8px;
+  padding: 16px;
+  background-color: #b1d5fa;
+  width: 60%;
+  color: Navy;
+  font-size: 1.4rem;
+}
+
+.user-name {
+  color: white;
+  font-size: 2rem;
+}
+
+.user-div {
+  padding: 1%;
+  margin: 2% auto;
+  width: 75%;
+  border: 2px double navy;
+  border-radius: 22px;
+  background-color: #6f4947;
+  color: white;
+}
+
+input {
+  width: 95%;
+  padding: 1%;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #b1d5fa; /* Green */
+  border-radius: 10px;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+}
+
+button:hover{
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
