@@ -11,5 +11,6 @@ export default yup.object() .shape({
     .string()
     .required('Password is required')
     .min(8,'Password must be a minimum of 8 chars'),
-    termsOfService: yup.boolean(),
+    termsOfService: yup.boolean()
+    .oneOf([true],'The terms of service must be accepted'),
 })
