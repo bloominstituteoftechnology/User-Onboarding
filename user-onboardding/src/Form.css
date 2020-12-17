@@ -1,0 +1,19 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 600px;
+    background-color:darkslategrey;
+    padding:1%;
+    box-shadow: black 5px 5px 10px;
+    border-radius: 5%;
+}
+
+label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:1%;
+}
