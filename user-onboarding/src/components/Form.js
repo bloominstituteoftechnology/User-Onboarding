@@ -43,7 +43,6 @@ export default function Form(props) {
             name="name"
             type="text"
           />
-          <br />
         </label>
 
         <label>
