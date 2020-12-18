@@ -19,7 +19,7 @@ const {values, submit, change, disabled, errors} = props;
         <div className="form-group inputs">
             <div className="email">
                 <label>
-                    email:   
+                    email: 
                     <input
                     value={values.email}
                     onChange={onChange}
