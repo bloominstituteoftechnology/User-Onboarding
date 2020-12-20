@@ -18,18 +18,39 @@ const formSchema = yup.object().shape({
 
 export default function Form(){
 
+    // const [userInfo,SetUserInfo] = useState("")
+
+
+
+
+        
+    
+        // axios.get('https://regres.in/api/users')
+        //   .then((res)=> {
+        //     // SetUserInfo(response.data)
+        //     console.log(res)
+        //   })
+        //   .catch((err) =>{
+
+        //     // console.log(err)
+
+        //   } )
+      
+    axios.post
+
    
     const [formState, setFormState] = useState({
         name: "",
         email: "",
         password: "",
-        terms: "",
+        terms: false,
       });
     
       const [errors, setErrors] = useState({
         name: "",
         email: "",
         password: "",
+        terms: ""
       });
     
       const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -59,26 +80,19 @@ export default function Form(){
       const handleChange = (e) => {
         e.persist();
         validateChange(e);
-        if (e.target.name === "terms") {
-          setFormState({ ...formState, terms: e.target.checked });
-        } else {
-          setFormState({ ...formState, [e.target.name]: e.target.value });
-        }
-      };
-    
-      const Submit = (e) => {
+        let value = e.target.type === "checkbox" ? e.target.checked : e.target.value
+        setFormState({...formState, [e.target.name]: value});
+        
+      const formSubmit = (e) => {
         e.preventDefault();
-        const newUser = {user:formState.name, email: formState.email,  password: formState.password, terms:formState.terms}
-        axios.post('https://regres.in/api/users',newUser)
-            .then(res =>{
-                console.log(res.data)
-                setFormState({name:"", email:"", password:"", agree:false})
-
-            })
-      }
+        axios.post('https://reqres.in/api/users', formState)
+          .then(response => console.log(response))
+            .catch(err => console.log(err))
+            }
+      
     
       return (
-        <form onSubmit={Submit}>
+        <form onSubmit={formSubmit}>
           <h1> USER </h1>
           
             <label htmlFor="name">Name</label>
@@ -102,8 +116,8 @@ export default function Form(){
               value={formState.email}
               onChange={handleChange}
             />
-
-              <p>{errors.email}</p>
+                
+              {errors.email.length > 0 ? errors.email : null }>
         
                 
             <label htmlFor="password">Password
@@ -118,7 +132,7 @@ export default function Form(){
             </label>
         
             <label>
-              <input type="checkbox" onChange={handleChange} name="terms" /> I Agree
+              <input type="checkbox" id="terms" name="terms" checked={formState.terms} /> I Agree
               To The Terms Of Service
               </label>
               
