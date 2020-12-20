@@ -18,25 +18,10 @@ const formSchema = yup.object().shape({
 
 export default function Form(){
 
-    // const [userInfo,SetUserInfo] = useState("")
 
 
-
-
-        
-    
-        // axios.get('https://regres.in/api/users')
-        //   .then((res)=> {
-        //     // SetUserInfo(response.data)
-        //     console.log(res)
-        //   })
-        //   .catch((err) =>{
-
-        //     // console.log(err)
-
-        //   } )
       
-    axios.post
+
 
    
     const [formState, setFormState] = useState({
@@ -50,7 +35,7 @@ export default function Form(){
         name: "",
         email: "",
         password: "",
-        terms: ""
+        
       });
     
       const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -68,28 +53,30 @@ export default function Form(){
             setErrors({ ...errors, [e.target.name]: err.errors[0] });
           });
       };
-
-    
-       useEffect(() => {
+      useEffect(() => {
         formSchema.isValid(formState).then((valid) => {
-       //   console.log("valid?", valid);
           setIsButtonDisabled(!valid);
-       });
+        });
       }, [formState]);
     
-      const handleChange = (e) => {
+     
+      const onChange = (e) => {
         e.persist();
         validateChange(e);
-        let value = e.target.type === "checkbox" ? e.target.checked : e.target.value
-        setFormState({...formState, [e.target.name]: value});
-        
+        if (e.target.name === "terms") {
+          setFormState({ ...formState, terms: e.target.checked });
+        } else {
+          setFormState({ ...formState, [e.target.name]: e.target.value });
+      };
+    }   
       const formSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://reqres.in/api/users', formState)
-          .then(response => console.log(response))
-            .catch(err => console.log(err))
-            }
-      
+        console.log("form submited")
+       axios.post(`https://reqres.in/api/users`, formState)
+          .then(res=> console.log(res))
+          .catch(err => console.log(err))
+       
+      }
     
       return (
         <form onSubmit={formSubmit}>
@@ -99,40 +86,39 @@ export default function Form(){
             <input
               type="text"
               name="name"
-              id="name"
               placeholder="Name"
               value={formState.name}
-              onChange={handleChange}
+              onChange={onChange}
             />
-            
+            {errors.name.length > 0 ? (<p>{errors.name} </p>) : null }>
         
         
             <label htmlFor="email">Email</label>
             <input
               type="email"
               name="email"
-              id="email"
               placeholder="Email"
               value={formState.email}
-              onChange={handleChange}
+              onChange={onChange}
             />
                 
-              {errors.email.length > 0 ? errors.email : null }>
+              {errors.email.length > 0 ? (<p>{errors.email} </p>) : null }
         
                 
             <label htmlFor="password">Password
             <input
               type="password"
               name="password"
-              id="password"
               placeholder="Password"
               value={formState.password}
-              onChange={handleChange}
+              onChange={onChange}
             />
+           {errors.password.length > 0 ? (<p>{errors.password} </p>) : null }
+        
             </label>
         
             <label>
-              <input type="checkbox" id="terms" name="terms" checked={formState.terms} /> I Agree
+              <input type="checkbox" name="terms" value={formState.terms} onChange={onChange} /> I Agree
               To The Terms Of Service
               </label>
               
@@ -146,20 +132,5 @@ export default function Form(){
       );
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
