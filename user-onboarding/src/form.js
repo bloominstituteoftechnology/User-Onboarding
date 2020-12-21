@@ -84,17 +84,18 @@ export default function Form(){
           
             <label htmlFor="name">Name</label>
             <input
+              id="name"
               type="text"
               name="name"
               placeholder="Name"
               value={formState.name}
               onChange={onChange}
             />
-            {errors.name.length > 0 ? (<p>{errors.name} </p>) : null }>
+            {errors.name.length > 0 ? (<p>{errors.name} </p>) : null }
         
         
             <label htmlFor="email">Email</label>
-            <input
+            <input id="email"
               type="email"
               name="email"
               placeholder="Email"
@@ -105,7 +106,7 @@ export default function Form(){
               {errors.email.length > 0 ? (<p>{errors.email} </p>) : null }
         
                 
-            <label htmlFor="password">Password
+            <label htmlFor="password"className="password">Password
             <input
               type="password"
               name="password"
@@ -118,7 +119,7 @@ export default function Form(){
             </label>
         
             <label>
-              <input type="checkbox" name="terms" value={formState.terms} onChange={onChange} /> I Agree
+              <input type="checkbox" name="terms" value={formState.terms} onChange={onChange} id="check" /> I Agree
               To The Terms Of Service
               </label>
               
