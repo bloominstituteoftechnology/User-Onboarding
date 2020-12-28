@@ -26,10 +26,10 @@ return (
     {usersData.map((user) =>{
         return (
                 <div>
-                     <h1>{user.first_name}</h1>
-                     <h2>{user.last_name}</h2>
-                     <h2>{user.email}</h2>
-                     <img src={user.url}/>
+                    <h1>{user.first_name}</h1>
+                    <h2>{user.last_name}</h2>
+                    <h2>{user.email}</h2>
+                
 
                  </div>
            
