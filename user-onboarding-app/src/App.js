@@ -1,18 +1,17 @@
 import './App.css';
 import React from 'react'
-import Form from './Form'
+import FormLabels from './FormLabels'
 import axios from 'axios';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
         <h1>
           User Onboarding App
         </h1>
+        <FormLabels />
         
-        
-      </header>
+      
     </div>
   );
 }
