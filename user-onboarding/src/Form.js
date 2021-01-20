@@ -117,7 +117,7 @@ export default function Form() {
   return (
     <div>
       <form onSubmit={submit} className="form">
-        <label htmlFor="fnameInput">First Name (requiredﬁ): </label>
+        <label htmlFor="fnameInput">First Name (required): </label>
         <input
           onChange={change}
           value={formValues.fname}
@@ -160,6 +160,7 @@ export default function Form() {
           style={{ margin: "2rem" }}
           onChange={change}
         >
+          <option value="">--Choose One --</option>
           <option value="">--</option>
           <option value="Technology/ IT">Technology/ IT</option>
           <option value="Frontend Development">Frontend Development</option>
