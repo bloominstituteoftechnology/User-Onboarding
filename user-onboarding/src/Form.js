@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as yup from "yup";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 
@@ -50,11 +51,49 @@ export default function Form() {
   const [editingId, setEditingId] = useState(null);
   const [friends, setFriends] = useState(Friends);
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [errors, setErrors] = useState({
+    ...initialFormValues,
+    termsConditions: "",
+  });
 
-  const change = (e) => {
-    const { name, value } = e.target;
-    setFormValues((prevFormValues) => ({ ...prevFormValues, [name]: value }));
+  //Form Validation Feature
+
+  let schema = yup.object().shape({
+    fname: yup.string().required("Please provide a first name"),
+    lname: yup.string().required("Please provide a last name"),
+    email: yup.string().email("This is not a valid email address"),
+    department: yup.string().required("Please provide a valid home department"),
+    termsConditions: yup.boolean().required("Please ensure materials have been collected first"),
+  });
+
+  console.log(schema);
+
+  //validate whether form matches schema
+  const validateChange = (e) => {
+    e.persist();
+    //reach allows to check a specific value of schema
+    yup
+      .reach(schema, e.target.fname)
+      .validate(e.target.value)
+      .then((valid) =>
+        setErrors({
+          ...errors,
+          [e.target.fname]: "",
+        })
+      )
+      .catch((error) =>
+        setErrors({ ...errors, [e.target.fname]: error.errors[0] })
+      );
   };
+  //change handler
+  const change = (e) => {
+    const { name, value } = e.target; 
+    setFormValues((prevFormValues) => ({ ...prevFormValues, [name]: value }));
+   validateChange(e);
+   console.log(e)
+  };
+
+  const handleDelete = "";
 
   const handleUpdate = (friendId) => {
     const friend = friends.find((f) => f.id === friendId);
@@ -69,10 +108,12 @@ export default function Form() {
   const handleCheckboxChange = (e) => {
     const { checked, name } = e.target;
     setFormValues((prevFormValues) => ({ ...prevFormValues, [name]: checked }));
+    validateChange(e);
   };
 
   const submit = (e) => {
     e.preventDefault();
+    
 
     if (isEditMode) {
       const friend = friends.find((f) => f.id === editingId);
@@ -106,16 +147,25 @@ export default function Form() {
       department: formValues.department,
       termsConditions: formValues.termsConditions,
     };
-    console.log(newFriend);
 
     // use your setFriends helper function
     setFriends(friends.concat(newFriend));
     // reset the formsValue state
     setFormValues(initialFormValues);
+     
   };
 
+  // New Orientation Date Feature
+  const newDate = new Date();
+  const date = newDate.getDate();
+  const month = newDate.getMonth() + 1;
+  const year = newDate.getFullYear();
+
   return (
-    <div>
+    <div className="container">
+      <h2 style={{ color: "white", marginTop: "2rem" }}>
+        New Hire Orientation Signup
+      </h2>
       <form onSubmit={submit} className="form">
         <label htmlFor="fnameInput">First Name (required): </label>
         <input
@@ -139,17 +189,25 @@ export default function Form() {
           type="text"
         />
         <br />
-
-        <label htmlFor="lemailInput">Email: </label>
-        <input
-          onChange={change}
-          value={formValues.email}
-          maxLength="45"
-          placeholder="email"
-          id="lemailinput"
-          name="email"
-          type="text"
-        />
+        <div
+          className="d-flex justify-content-center align-content-center"
+          style={{
+            marginTop: "2rem",
+            paddingTop: "3em",
+            paddingBottom: "1rem",
+          }}
+        >
+          <label htmlFor="emailInput">Company Email Address: </label>
+          <input
+            onChange={change}
+            value={formValues.email}
+            maxLength="45"
+            placeholder="email"
+            id="emailinput"
+            name="email"
+            type="text"
+          />
+        </div>
         <br />
 
         <label htmlFor="departmentSelect">Home Department (required): </label>
@@ -176,8 +234,10 @@ export default function Form() {
         </select>
         <br />
         <label htmlFor="termsInput">
-          Click to agree to{" "}
-          <a href="http://www.google.com">Terms and Conditions</a>{" "}
+          Click if new hire materials collected{" "}
+          <a href="https://assets.adm.com/Our-Company/Code-of-Conduct/CodeOfConduct_en-US.pdf">
+            (new hire materials)
+          </a>{" "}
         </label>
         <input
           type="checkbox"
@@ -192,13 +252,19 @@ export default function Form() {
           {isEditMode ? "Update" : "Submit New Employee"}
         </button>
       </form>
+      <div style={{ marginTop: "3rem", marginBottom: "2rem" }}>
+        <h3 style={{ color: "white" }}>
+          New team members to attend orientation on next scheduled date{" "}
+          {month + 1}/{date + 3}/{year}
+        </h3>
+      </div>
       {friends.map((friend, idx) => (
         <div className="player-trans" key={idx} style={{ border: "2px" }}>
-          <h3>
+          <h3 style={{ marginBottom: "3rem", marginTop: "2rem" }}>
             {friend.fname} {friend.lname}
           </h3>
           <p>
-            <em>email: </em>
+            <em>Assigned Email: </em>
             {friend.email}
           </p>
           <p>
@@ -211,7 +277,8 @@ export default function Form() {
           </p>
           <br />
           <br />
-          <button onClick={() => handleUpdate(friend.id)}>Edit</button>
+          <button onClick={() => handleUpdate(friend.id)}>Edit Employee</button>
+          <button onClick={() => handleDelete(friend.id)}>Delete Employee</button>
         </div>
       ))}
     </div>
