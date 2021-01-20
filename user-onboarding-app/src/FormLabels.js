@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import './App.css';
+import axios from 'axios';
 
 const schema= yup.object().shape({
  name: yup.string().required('name is required!').min(3, 'name needs to be at least 3 letters long'),
@@ -45,6 +46,19 @@ export default function FormLabels (props) {
         setForm({...form, [name]: valueChecked})
     }
 
+    const submit = event => {
+        event.preventDefault()
+        const newUser = { name: form.name.trim(), email: form.email, password: form.password, tos: form.tos } 
+        axios
+        .post('https://reqres.in/api/users', newUser)
+        .then(res => {
+            console.log('success', res)
+        })
+        .catch(err => {
+            console.log('error submitting', err)
+        })
+    }
+
     useEffect( () => {
         schema.isValid(form).then(valid => setDisabled(!valid))
     }, [form])
@@ -59,7 +73,7 @@ export default function FormLabels (props) {
          <div>{errors.password}</div>
          <div>{errors.tos}</div>  
     </div>  
-        <form> 
+        <form onSubmit={submit}> 
         <label>Name
             <input 
             onChange={change}
