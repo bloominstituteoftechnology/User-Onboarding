@@ -16,21 +16,13 @@ const schema= yup.object().shape({
 
 export default function FormLabels (props) {
     
-    const [form, setForm] = useState({
-        name: '',
-        email: '',
-        password: '',
-        tos: false,
-    })
+    const [form, setForm] = useState({name: '',email: '',password: '',tos: false,})
 
-    const [errors, setErrors] = useState({
-        name: '',
-        email: '',
-        password: '',
-        tos: '',
-    })
+    const [errors, setErrors] = useState({name: '',email: '',password: '',tos: '',})
 
     const [disabled, setDisabled] = useState(true)
+
+    const [post, setPost] = useState([]);
 
     const setFormErrors =(name, value) => {
         yup.reach(schema, name).validate(value)
@@ -48,10 +40,11 @@ export default function FormLabels (props) {
 
     const submit = event => {
         event.preventDefault()
-        const newUser = { name: form.name.trim(), email: form.email, password: form.password, tos: form.tos } 
+        //const newUser = { name: form.name.trim(), email: form.email, password: form.password, tos: form.tos } 
         axios
-        .post('https://reqres.in/api/users', newUser)
+        .post('https://reqres.in/api/users', form)
         .then(res => {
+            setPost(res.data)
             console.log('success', res)
         })
         .catch(err => {
@@ -114,10 +107,17 @@ export default function FormLabels (props) {
 
         
             <button disabled={disabled}>Submit</button>
-        
+        <div>
+            <h1>Welcome new users!</h1>
+            <p>{post.name}</p>
+            <p>{post.email}</p>
+            <p>{post.tos}</p>
+            <p>{post.id}</p>
+        </div>
         
         </form>
         </div>
+        
 
 
 )
