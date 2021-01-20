@@ -4,7 +4,8 @@ import './App.css';
 
 const schema= yup.object().shape({
  name: yup.string().required('name is required!').min(3, 'name needs to be at least 3 letters long'),
- password: yup.string().required('password is required'),
+ password: yup.string().required('password is required').min(6, 'password must be at least 6 characters long'),
+ email: yup.string().email('invalid email').required('valid email address required'),
  tos: yup.boolean().oneOf([true], 'you must agree to the terms of service to continue'),
 })
 
