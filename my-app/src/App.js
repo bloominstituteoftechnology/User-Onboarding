@@ -10,36 +10,52 @@ import Form from './components/Form';
 import * as yup from 'yup';
 import axios from 'axios'
 
-
+//Yup Schema - outside the function scope
+const formSchema = yup.object().shape({
+  name: yup
+    .string()
+    .required('Must include name.'),
+  email: yup
+    .string()
+    .email()
+    .required(), 
+  password: yup
+    .string()
+    .required('Must include letters and numbers'),
+  terms: yup
+    .boolean()
+    .oneOf([true])
+});
 
 
 function App() {
-  const [usersState, setUsersState] = useState({
-    name: '',
-    email: '',
-    password: '',
-    terms: false
-});
+//Two slices of state, users & error
+    const [usersState, setUsersState] = useState({
+      name: '',
+      email: '',
+      password: '',
+      terms: false
+  });
 
-const [errorState, setErrorState] = useState({   
-    name: '',
-    email: '',
-    password: '',
-    terms: false
-});
-
-const formSubmit = evt => {
-    evt.preventDefault();
-    console.log('form submitted!');
-    axios.post('http://reqres.in/api/users', usersState) 
-    .then( res => console.log(res))
-    .catch(err => console.log(err))
-}; 
-
+  const [errorState, setErrorState] = useState({   
+      name: '',
+      email: '',
+      password: '',
+      terms: false
+  });
+//formSubmit function, axios post -> getting data & sending our gathered data
+  const formSubmit = evt => {
+      evt.preventDefault();
+      console.log('form submitted!');
+      axios.post('http://reqres.in/api/users', usersState) 
+        .then( res => console.log(res))
+        .catch(err => console.log(err))
+  }; 
+//validate function - validating the form fields with yup
   const validate = (evt) => {
     yup.reach(formSchema.evt.target.name)
-        .validate(evt.target.value) //Pass it individual parts of the Schema is part of a good UX, validate AS they user goes
-        .then(valid => {
+        .validate(evt.target.value) 
+        .then(res => {
             setErrorState({
                 ...errorState,
                 [evt.target.name]: ""
@@ -53,24 +69,15 @@ const formSubmit = evt => {
             })
         })
 
-}; ///what's happening is we ask yup to validate the data we give it versus the schema's requirements
-//event.persist() -->allows us to keep using the event object. put it in your change handler as evt.persist()
+  }; 
 
-
-//onChange function 
-const inputChange = evt => {
-    //console.log('input is changing!', evt.target.value, evt.target.checked);
-    //if(evt.target.name === 'email') {
-        //validateEmail(evt.target.value)
-    //}
-    validate(evt);
-    
-    let value = 
-        evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value; //This is saying, if the target type is a checkbox, then check the checked property, otherwise just check whatever value of whatever other attribute is being passed
-    
-    setFormState({ ...formState, [evt.target.name] : evt.target.value}) //name is a form specific attribute that can be a reliable target
-
-}
+//onChange function - keeps evt variable relevant, runs validate function, checks the validation sets the state
+  const inputChange = evt => {
+      evt.persist();
+      validate(evt);
+      let value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value; 
+      setUsersState({ ...usersState, [evt.target.name] : evt.target.value}) 
+  }
 
  return (
     <div className="App">
