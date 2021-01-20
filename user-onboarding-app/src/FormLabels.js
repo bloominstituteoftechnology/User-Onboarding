@@ -22,7 +22,7 @@ export default function FormLabels (props) {
 
     const [disabled, setDisabled] = useState(true)
 
-    const [post, setPost] = useState([]);
+    const [user, setUser] = useState([]);
 
     const setFormErrors =(name, value) => {
         yup.reach(schema, name).validate(value)
@@ -44,7 +44,7 @@ export default function FormLabels (props) {
         axios
         .post('https://reqres.in/api/users', form)
         .then(res => {
-            setPost(res.data)
+            setUser(res.data)
             console.log('success', res)
         })
         .catch(err => {
@@ -60,13 +60,14 @@ export default function FormLabels (props) {
     
     
     <div className='form-inputs'>
-      <div style={{ color: 'red'}}>
+      <div className='error-msg'style={{ color: 'red'}}>
          <div>{errors.name}</div>
          <div>{errors.email}</div>
          <div>{errors.password}</div>
          <div>{errors.tos}</div>  
     </div>  
-        <form onSubmit={submit}> 
+        <form className='form-container'
+        onSubmit={submit}> 
         <label>Name
             <input 
             onChange={change}
@@ -107,12 +108,12 @@ export default function FormLabels (props) {
 
         
             <button disabled={disabled}>Submit</button>
-        <div>
-            <h1>Welcome new users!</h1>
-            <p>{post.name}</p>
-            <p>{post.email}</p>
-            <p>{post.tos}</p>
-            <p>{post.id}</p>
+        <div className='newUser'>
+            <h2 style={{ color: 'white'}}>Welcome new user!</h2>
+            <p>Name: {user.name}</p>
+            <p>Email: {user.email}</p>
+            <p>Accepted TOS?: Yes</p>
+            <p>Unique ID: {user.id}</p>
         </div>
         
         </form>
