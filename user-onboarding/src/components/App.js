@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import User from './User'
 import Form from './Form'
+import * as yup from 'yup'
+import axios from 'axios'
 
 //initial states
 const initialFormValues = {
@@ -29,16 +31,44 @@ function App() {
 
   //helpers
   const getUsers = () => {
-
+    setUser(users)
   }
 
   const postNewUser = newUser => {
+    axios
+      .post(`https://reqres.in/api/users`)
+      .then(res => {
+        setUser([res.data],...users)
+        setFormValues(initialFormValues)
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
   }
 
   //event handlers
   const inputChange = (name, value) => {
-    setFormValues({[name]:value, ...formValues})
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({
+          [name]: '',
+          ...formErrors,
+      })
+      .catch(err => {
+        setFormErrors({
+          [name]: err.errors[0],
+          ...formErrors
+        })
+      })
+    })
+
+    setFormValues({
+      [name]:value,
+      ...formValues,
+    })
   }
 
   const formSubmit = () => {
