@@ -1,4 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
+import * as yup from 'yup';
+import './App.css';
+
+const schema= yup.object().shape({
+ name: yup.string().required('name is required!').min(3, 'name needs to be at least 3 letters long'),
+ password: yup.string().required('password is required'),
+ tos: yup.boolean().oneOf([true], 'you must agree to the terms of service to continue'),
+})
 
 
 //form requirements⬇⬇⬇⬇⬇
@@ -6,24 +14,51 @@ import React, {useState} from 'react';
 
 export default function FormLabels (props) {
     
-    const [form, setForm]= useState({
+    const [form, setForm] = useState({
         name: '',
         email: '',
         password: '',
         tos: false,
     })
+
+    const [errors, setErrors] = useState({
+        name: '',
+        email: '',
+        password: '',
+        tos: '',
+    })
+
+    const [disabled, setDisabled] = useState(true)
+
+    const setFormErrors =(name, value) => {
+        yup.reach(schema, name).validate(value)
+            .then( () => setErrors({...errors, [name]: ''}))
+            .catch(err => setErrors({...errors, [name]: err.errors[0]}))
+    }
  
 
     const change = event => {
         const { checked, value, name, type } = event.target
         const valueChecked = type === 'checkbox' ? checked : value
+        setFormErrors(name, valueChecked)
         setForm({...form, [name]: valueChecked})
     }
 
+    useEffect( () => {
+        schema.isValid(form).then(valid => setDisabled(!valid))
+    }, [form])
+
     return (
     
-    <form className='container'>
-    <div className='form-inputs'>  
+    
+    <div className='form-inputs'>
+      <div style={{ color: 'red'}}>
+         <div>{errors.name}</div>
+         <div>{errors.email}</div>
+         <div>{errors.password}</div>
+         <div>{errors.tos}</div>  
+    </div>  
+        <form> 
         <label>Name
             <input 
             onChange={change}
@@ -62,12 +97,12 @@ export default function FormLabels (props) {
             placeholder='please read and agree to the following terms of service'/>
         </label>
 
-        <div className='submit'>
-            <button>Submit</button>
-        </div>
-        </div>
+        
+            <button disabled={disabled}>Submit</button>
+        
+        
         </form>
-
+        </div>
 
 
 )
