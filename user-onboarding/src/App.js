@@ -4,7 +4,7 @@ import Form from './Form'
 
 export default function App() {
   return(
-    <div classname='App'>
+    <div className='App'>
       <h1>New User Sign Up</h1>
       <Form />
     </div>
