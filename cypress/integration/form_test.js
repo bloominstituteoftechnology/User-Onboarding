@@ -52,12 +52,15 @@ describe('Form App', () => {
     })
 
 
-    it('allows user to click on submit button', () => {
+    it('allows user to click on submit button, and check if name matches nameInput', () => {
         nameInput().type(personName)
         emailInput().type(personEmail) 
         passwordInput().type(personPassword)
         tosBox().click()
         submitButton().click()
+        cy.contains('Cypress').should('exist')
     })
+
+
 
 })
