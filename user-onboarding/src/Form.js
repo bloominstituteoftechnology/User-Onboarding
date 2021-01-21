@@ -1,58 +1,12 @@
 import React, { useState } from "react";
 import * as yup from "yup";
 import { v4 as uuidv4 } from "uuid";
+import schema from "./formSchema.js";
+import Friends from "./Friends";
+import initialFormValues from "./initialFormValues";
+import initialFormErrors from "./initialFormErrors";
+import axios from 'axios';
 import "./App.css";
-
-const Friends = [
-  {
-    id: 1,
-    fname: "Joseph",
-    lname: "Oshiro",
-    email: "joseph.oshiro@sonvrdesign.com",
-    department: "Technology/ IT",
-    termsConditions: true,
-  },
-  {
-    id: 2,
-    fname: "Gerald",
-    lname: "Evans",
-    email: "gerald.evans@sonvrdesign.com",
-    department: "Frontend Development",
-    termsConditions: true,
-  },
-  {
-    id: 3,
-    fname: "John",
-    lname: "Watson",
-    email: "john.watson@sonvrdesign.com",
-    department: "Backend Development",
-    termsConditions: true,
-  },
-  {
-    id: 4,
-    fname: "May",
-    lname: "Jackson",
-    email: "may.jackson@sonvrdesign.com",
-    department: "Management",
-    termsConditions: true,
-  },
-];
-
-const initialFormValues = {
-  fname: "",
-  lname: "",
-  email: "",
-  department: "",
-  termsConditions: false,
-};
-
-const initialFormErrors = {
-  fname: "",
-  lname: "",
-  email: "",
-  department: "",
-  termsConditions: "",
-};
 
 export default function Form() {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -62,26 +16,24 @@ export default function Form() {
   const [errors, setErrors] = useState({
     initialFormErrors,
   });
-  //slice of state for active / disabled boolean
-  //use hook to run at designated time when specific part of state changes
-  // isValid passing in state. if this succeeds => set the button to disabled or active depending on state of form
+
+  const postnewHire = newHire => {
+    axios.post('http://reqres.in/api/users', newHire)
+    .then(res => {
+      setFriends([res.data, ...friends])
+      console.table("API SUCCESS POST", res.data)
+      setFormValues(initialFormValues);
+    })
+    .catch(err => {
+      console.log("AXIOS FAIL ERROR: ", err)
+    })
+  }
 
 
   //Form Validation Feature
-
-  let schema = yup.object().shape({
-    fname: yup.string().required("Please provide a first name"),
-    lname: yup.string().required("Please provide a last name"),
-    email: yup.string().email("This is not a valid email address").nullable(),
-    department: yup.string().required("Please provide a valid home department"),
-    termsConditions: yup
-      .boolean()
-      .required("Please ensure materials have been collected first"),
-  });
-
   //validate whether form matches schema
   const validateChange = (e) => {
-    //allows react to keep the event object to play nicely with the sync
+    //allows react to keep the event object to play nicely with the async
     e.persist();
     //reach allows to check a specific value of schema
     yup
@@ -110,17 +62,24 @@ export default function Form() {
     setFormValues((prevFormValues) => ({ ...prevFormValues, [name]: value }));
   };
 
+
+  //submit disable feature
   const isDisabled = () => {
-      return !formValues.lname.trim() || !formValues.fname.trim() || !formValues.department.trim() || !formValues.termsConditions
-  }
+    return (
+      !formValues.lname.trim() ||
+      !formValues.fname.trim() ||
+      !formValues.department.trim() ||
+      !formValues.termsConditions
+    );
+  };
+  // to update new hires
+  const handleUpdate = (eId) => {
+    const employee = friends.find((f) => f.id === eId);
 
-  const handleUpdate = (friendId) => {
-    const friend = friends.find((f) => f.id === friendId);
-
-    if (friend) {
+    if (employee) {
       setIsEditMode(true);
-      setFormValues(friend);
-      setEditingId(friendId);
+      setFormValues(employee);
+      setEditingId(eId);
     }
   };
 
@@ -135,7 +94,7 @@ export default function Form() {
 
     if (isEditMode) {
       const friend = friends.find((f) => f.id === editingId);
-
+        
       if (friend) {
         const toBeUpdated = { ...friend };
         toBeUpdated.fname = formValues.fname || toBeUpdated.fname;
@@ -270,9 +229,8 @@ export default function Form() {
         />
         <br />
 
-        <button type="submit"disabled={isDisabled()}>
+        <button type="submit" disabled={isDisabled()}>
           {isEditMode ? "Update" : "Submit New Employee"}
-          
         </button>
       </form>
       <div style={{ marginTop: "3rem", marginBottom: "2rem" }}>
@@ -301,9 +259,7 @@ export default function Form() {
           <br />
           <br />
           <button onClick={() => handleUpdate(friend.id)}>Edit Employee</button>
-          <button >
-            Delete Employee
-          </button>
+          <button>Delete Employee</button>
         </div>
       ))}
     </div>
