@@ -49,24 +49,24 @@ function App() {
   //event handlers
   const inputChange = (name, value) => {
     yup
-      .reach(schema, name)
-      .validate(value)
+    .reach(schema, name)
+    .validate(value)
       .then(() => {
         setFormErrors({
           [name]: '',
           ...formErrors,
         })
-        .catch(err => {
-          console.log(err)
-          // setFormErrors({
-          //   [name]: err.errors[0],
-          //   ...formErrors
+      })
+      .catch(err => {
+        setFormErrors({
+          [name]: err.errors[0],
+          ...formErrors
         })
-        setFormValues({
+      })
+      setFormValues({
           [name]: value,
           ...formValues,
         })
-      })
   }
   
 
@@ -74,7 +74,8 @@ function App() {
     const newUser = {
       username: formValues.username.trim(),
       email: formValues.email.trim(),
-      password: formValues.password.trim()
+      password: formValues.password.trim(),
+      terms: formValues.terms.trim()
     }
 
     postNewUser(newUser)
