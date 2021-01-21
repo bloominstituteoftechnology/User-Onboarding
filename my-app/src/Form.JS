@@ -1,20 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Form(props){
+    const [agree, setAgree] = useState(false)
+
+    const checkboxHandler = () => {
+
+        setAgree(!agree)
+
+    }
+
+    
     const { values, update, submit} = props
 
     const onChange = e =>{
         const name =e.target.name
         const value = e.target.value
 
-
+        update(name, value)
     }
-    updateForm(name, value)
+    
 
     const onsubmit = e =>{
         e.preventDefault()
 
-        submitForm()
+        submit()
     }
 
     return (
@@ -55,9 +64,16 @@ export default function Form(props){
                 onChange={onChange} />
                 </label>
 
+                <input type='checkbox' 
+                id='agree' 
+                onChange={checkboxHandler}/>
+
+                <label hmtlFor='agree'> I agree to <b>terms and contions</b>
+                </label>
+
 
             
-            <button> Add new user</button>
+            <button disabled= {!values.username || !values.email || !values.password}> Add new user</button>
             </div>
 
 
