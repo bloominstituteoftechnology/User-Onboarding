@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import { v4 as uuidv4 } from "uuid";
 import schema from "./formSchema.js";
@@ -9,6 +9,7 @@ import axios from 'axios';
 import "./App.css";
 
 export default function Form() {
+  const [disabled, setDisabled] = useState(true)
   const [isEditMode, setIsEditMode] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [friends, setFriends] = useState(Friends);
@@ -43,6 +44,7 @@ export default function Form() {
         e.target.name === "termsConditions" ? e.target.checked : e.target.value
       )
       .then((valid) => {
+        //logs validation truthiness
         console.log(valid);
         setErrors({
           ...errors,
@@ -64,14 +66,16 @@ export default function Form() {
 
 
   //submit disable feature
-  const isDisabled = () => {
-    return (
-      !formValues.lname.trim() ||
-      !formValues.fname.trim() ||
-      !formValues.department.trim() ||
-      !formValues.termsConditions
-    );
-  };
+useEffect (() => {
+  schema.isValid(formValues).then(valid => setDisabled(!valid))
+}, [formValues])
+
+//form error validation tester
+// useEffect (() => {
+//   console.log("form errors have changed", errors)
+// })
+
+
   // to update new hires
   const handleUpdate = (eId) => {
     const employee = friends.find((f) => f.id === eId);
@@ -115,7 +119,7 @@ export default function Form() {
     }
 
     // const lastUsersId = friends[friends.length - 1].id;
-    const newFriend = {
+    const newHire = {
       // needs identical structure to the other friends
       id: uuidv4(),
       fname: formValues.fname,
@@ -126,7 +130,8 @@ export default function Form() {
     };
 
     // use your setFriends helper function
-    setFriends(friends.concat(newFriend));
+    // setFriends(friends.concat(newFriend));
+    postnewHire(newHire)
     // reset the formsValue state
     setFormValues(initialFormValues);
   };
@@ -229,10 +234,16 @@ export default function Form() {
         />
         <br />
 
-        <button type="submit" disabled={isDisabled()}>
+        <button type="submit" disabled={disabled}>
           {isEditMode ? "Update" : "Submit New Employee"}
         </button>
+        <div><em>{initialFormErrors.fname}</em></div>
+        <div><em>{initialFormErrors.lname}</em></div>
+        <div><em>{initialFormErrors.department}</em></div>
+        <div><em>{initialFormErrors.termsConditions}</em></div>
       </form>
+
+
       <div style={{ marginTop: "3rem", marginBottom: "2rem" }}>
         <h3 style={{ color: "white" }}>
           New team members to attend orientation on next scheduled date{" "}
