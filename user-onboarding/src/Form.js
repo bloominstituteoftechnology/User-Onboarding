@@ -46,54 +46,73 @@ const initialFormValues = {
   termsConditions: false,
 };
 
+const initialFormErrors = {
+  fname: "",
+  lname: "",
+  email: "",
+  department: "",
+  termsConditions: "",
+};
+
 export default function Form() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [friends, setFriends] = useState(Friends);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [errors, setErrors] = useState({
-    ...initialFormValues,
-    termsConditions: "",
+    initialFormErrors,
   });
+  //slice of state for active / disabled boolean
+  //use hook to run at designated time when specific part of state changes
+  // isValid passing in state. if this succeeds => set the button to disabled or active depending on state of form
+
 
   //Form Validation Feature
 
   let schema = yup.object().shape({
     fname: yup.string().required("Please provide a first name"),
     lname: yup.string().required("Please provide a last name"),
-    email: yup.string().email("This is not a valid email address"),
+    email: yup.string().email("This is not a valid email address").nullable(),
     department: yup.string().required("Please provide a valid home department"),
-    termsConditions: yup.boolean().required("Please ensure materials have been collected first"),
+    termsConditions: yup
+      .boolean()
+      .required("Please ensure materials have been collected first"),
   });
-
-  console.log(schema);
 
   //validate whether form matches schema
   const validateChange = (e) => {
+    //allows react to keep the event object to play nicely with the sync
     e.persist();
     //reach allows to check a specific value of schema
     yup
-      .reach(schema, e.target.fname)
-      .validate(e.target.value)
-      .then((valid) =>
+      .reach(schema, e.target.name)
+
+      .validate(
+        e.target.name === "termsConditions" ? e.target.checked : e.target.value
+      )
+      .then((valid) => {
+        console.log(valid);
         setErrors({
           ...errors,
-          [e.target.fname]: "",
-        })
-      )
-      .catch((error) =>
-        setErrors({ ...errors, [e.target.fname]: error.errors[0] })
-      );
-  };
-  //change handler
-  const change = (e) => {
-    const { name, value } = e.target; 
-    setFormValues((prevFormValues) => ({ ...prevFormValues, [name]: value }));
-   validateChange(e);
-   console.log(e)
+          [e.target.name]: "",
+        });
+      })
+      .catch((error) => {
+        setErrors({ ...errors, [e.target.name]: error.errors[0] });
+        console.log(error);
+      });
   };
 
-  const handleDelete = "";
+  //change handler
+  const change = (e) => {
+    const { name, value } = e.target;
+    validateChange(e);
+    setFormValues((prevFormValues) => ({ ...prevFormValues, [name]: value }));
+  };
+
+  const isDisabled = () => {
+      return !formValues.lname.trim() || !formValues.fname.trim() || !formValues.department.trim() || !formValues.termsConditions
+  }
 
   const handleUpdate = (friendId) => {
     const friend = friends.find((f) => f.id === friendId);
@@ -113,7 +132,6 @@ export default function Form() {
 
   const submit = (e) => {
     e.preventDefault();
-    
 
     if (isEditMode) {
       const friend = friends.find((f) => f.id === editingId);
@@ -152,7 +170,6 @@ export default function Form() {
     setFriends(friends.concat(newFriend));
     // reset the formsValue state
     setFormValues(initialFormValues);
-     
   };
 
   // New Orientation Date Feature
@@ -176,7 +193,9 @@ export default function Form() {
           id="fnameinput"
           name="fname"
           type="text"
+          errors={errors}
         />
+        <p>{errors["name"]}</p>
         <br />
         <label htmlFor="lnameInput">Last Name (required): </label>
         <input
@@ -187,6 +206,7 @@ export default function Form() {
           id="lnameinput"
           name="lname"
           type="text"
+          errors={errors}
         />
         <br />
         <div
@@ -217,6 +237,7 @@ export default function Form() {
           value={formValues.department}
           style={{ margin: "2rem" }}
           onChange={change}
+          errors={errors}
         >
           <option value="">--Choose One --</option>
           <option value="">--</option>
@@ -245,11 +266,13 @@ export default function Form() {
           name="termsConditions"
           checked={formValues.termsConditions}
           onChange={handleCheckboxChange}
+          errors={errors}
         />
         <br />
 
-        <button type="submit">
+        <button type="submit"disabled={isDisabled()}>
           {isEditMode ? "Update" : "Submit New Employee"}
+          
         </button>
       </form>
       <div style={{ marginTop: "3rem", marginBottom: "2rem" }}>
@@ -278,7 +301,9 @@ export default function Form() {
           <br />
           <br />
           <button onClick={() => handleUpdate(friend.id)}>Edit Employee</button>
-          <button onClick={() => handleDelete(friend.id)}>Delete Employee</button>
+          <button >
+            Delete Employee
+          </button>
         </div>
       ))}
     </div>
