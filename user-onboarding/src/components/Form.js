@@ -95,8 +95,8 @@ export default function Form (){
             <label htmlFor='password'>Password
                 <input name='password' id='password' type='text' onChange={handleChanges} value={formState.password}/>
             </label>
-            <label htmlFor='terms'>
-                <input name='terms' id='terms' type='checkbox' checked={formState.terms} onChange={handleChanges}/>Terms of Service
+            <label htmlFor='terms'>Terms of Service
+                <input name='terms' id='terms' type='checkbox' checked={formState.terms} onChange={handleChanges}/>
             </label>
                 <button type='submit'>
                     SUBMIT
