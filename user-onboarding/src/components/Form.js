@@ -21,6 +21,7 @@ export default function Form (){
     
 
     const formSchema = Yup.object().shape({
+    
         email: Yup
           .string()
           .email("Enter valid email address.")
@@ -89,6 +90,7 @@ export default function Form (){
             <label htmlFor='name'>Name
                 <input name='name' id='name' type='text' onChange={handleChanges} value={formState.name}/>
             </label>
+          
             <label htmlFor='email'>Email
                 <input name='email' id='email' type='text' onChange={handleChanges} value={formState.email}/>
             </label>
@@ -98,7 +100,7 @@ export default function Form (){
             <label htmlFor='terms'>Terms of Service
                 <input name='terms' id='terms' type='checkbox' checked={formState.terms} onChange={handleChanges}/>
             </label>
-                <button type='submit'>
+                <button type='submit' disabled={buttonDisabled}>
                     SUBMIT
                 </button> 
                 <pre>{JSON.stringify(users, null, 2)}</pre>

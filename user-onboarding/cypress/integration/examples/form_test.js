@@ -3,19 +3,35 @@ describe('Forms App', () => {
     beforeEach(() => {
         cy.visit('/')
     })
-    it('show text entered by user', () => {
-        cy.get('#name').type('Rodolfo').should('have.value', 'Rodolfo')
-        cy.get('#email').type('rodolfojaspe21@gmail.com').should('have.value', 'rodolfojaspe21@gmail.com')
-        cy.get('#password').type('password').should('have.value', 'password')
-    })
-    it('checkbox can be checked', () => {
-        cy.get('#terms').click().should('be.checked')
-        
-    })
-    it('submit button works', () => {
-        cy.get('button').click();
 
+    const nameText = () => cy.get('#name');
+    const emailText = () => cy.get('#email');
+    const passwordText = () => cy.get('#password');
+    const termsBox = () => cy.get('#terms');
+    describe('Input text', () => {
+        it('Can enter name', () => {
+            nameText().type('Rodolfo').should('have.value', 'Rodolfo')  
+        })
+        it('Can enter email', () => {
+            emailText().type('rodolfojaspe21@gmail.com').should('have.value', 'rodolfojaspe21@gmail.com')
+        })
+        it('Can enter password', () => {
+            passwordText().type('password').should('have.value', 'password')
+        })
     })
+    describe('Checkbox', () => {
+        it('Checkbox can be checked', () => {
+            termsBox().click().should('be.checked')
+        })
+    })
+    describe('Submit', () => {
+        it('form can be submitted', () => {
+            nameText().type('Rodolfo');
+            emailText().type('rodolfo@rodolfo.com');
+            passwordText().type('Rodolfo');
+            termsBox().click();
 
-
+            cy.get('button').should('be.enabled').click()
+        })
+    })
 })
