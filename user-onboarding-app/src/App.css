@@ -1,0 +1,91 @@
+.App {
+  text-align: center;
+}
+
+
+.form-container {
+display: flex;
+justify-items: center;
+width: 600px;
+flex-direction: column;
+color: black;
+margin: 0 auto;
+margin-bottom: 0;
+border: 3px solid black;
+height: fit-content;
+
+}
+
+
+
+input {
+display: flex;
+justify-items: center;
+justify-content: center;
+flex-direction: column;
+margin: 0 auto;
+text-align: center;
+height: 15px;
+padding: 5px;
+margin-top: 10px;
+
+}
+
+
+.newUser {
+
+display: flex;
+justify-items: center;
+justify-content: space-evenly;
+text-align: left;
+flex-direction: column;
+margin-top: 30px;
+color: black;
+font-weight: bold;
+height: 400px;
+
+}
+
+button {
+display: flex;
+justify-content: center;
+justify-items: center;
+margin: 0 auto;
+margin-top: 15px;
+width: 150px;
+height: 50px;
+padding: 15px;
+
+
+}
+
+
+label {
+margin-top: 25px;
+margin-bottom: 10px;
+padding-bottom: 10px;
+font-size: 20px;
+font-weight: bold;
+
+
+}
+
+h2 {
+background-color: rebeccapurple;
+margin-top: 0;
+font-size: 35px;
+text-align: center;
+
+}
+
+p {
+padding: 10px;
+font-size: 20px;
+
+}
+
+.error-msg {
+padding: 10px;
+font-size: 25px;
+
+}

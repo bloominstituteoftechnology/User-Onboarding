@@ -1,0 +1,8 @@
+{
+    "viewportWidth": 1000,
+    "viewportHeight": 1000,
+    "baseUrl": "http://localhost:3000/",
+    "integrationFolder": "cypress/integration"
+    
+  }
+  
