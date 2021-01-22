@@ -73,7 +73,7 @@ export default function Form(props){
 
 
             
-            <button disabled= {!values.username || !values.email || !values.password}> Add new user</button>
+            <button class='submitbtn' disabled= {!values.username || !values.email || !values.password}> Add new user</button>
             </div>
 
 
