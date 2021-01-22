@@ -2,86 +2,25 @@
 //folder (here it is my-app), to be able to add dependencies & get everything 
 //working correctly
 
-import React, { useState, useEffect } from 'react';
-//placing the form state here in App.js
+//import React, { useState } from 'react';
+
 //import './App.css';
 import Form from './components/Form';
-
-import * as yup from 'yup';
-import axios from 'axios'
-
-//Yup Schema - outside the function scope
-const formSchema = yup.object().shape({
-  name: yup
-    .string()
-    .required('Must include name.'),
-  email: yup
-    .string()
-    .email()
-    .required(), 
-  password: yup
-    .string()
-    .required('Must include letters and numbers'),
-  terms: yup
-    .boolean()
-    .oneOf([true])
-});
+//import formSchema from './components/formSchema';
+//import * as yup from 'yup';
+//import axios from 'axios'
 
 
+
+//The app is rendering the Form component, but the helper functions live inside the individual component. 
+//This can make it simpler than passing down the state and functions through props.
+//However be aware that if some other file needs access to that state, you may need to move it up into App
+//..so that way other child files have access.
 function App() {
-//Two slices of state, users & error
-    const [usersState, setUsersState] = useState({
-      name: '',
-      email: '',
-      password: '',
-      terms: false
-  });
 
-  const [errorState, setErrorState] = useState({   
-      name: '',
-      email: '',
-      password: '',
-      terms: false
-  });
-//formSubmit function, axios post -> getting data & sending our gathered data
-  const formSubmit = evt => {
-      evt.preventDefault();
-      console.log('form submitted!');
-      axios.post('http://reqres.in/api/users', usersState) 
-        .then( res => console.log(res))
-        .catch(err => console.log(err))
-  }; 
-//validate function - validating the form fields with yup
-  const validate = (evt) => {
-    yup.reach(formSchema.evt.target.name)
-        .validate(evt.target.value) 
-        .then(res => {
-            setErrorState({
-                ...errorState,
-                [evt.target.name]: ""
-            })
-        })
-        .catch(err => {
-            console.log(err.errors)
-            setErrorState({
-                ...errorState,
-                [evt.target.name]: err.errors[0]
-            })
-        })
-
-  }; 
-
-//onChange function - keeps evt variable relevant, runs validate function, checks the validation sets the state
-  const inputChange = evt => {
-      evt.persist();
-      validate(evt);
-      let value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value; 
-      setUsersState({ ...usersState, [evt.target.name] : evt.target.value}) 
-  }
-
- return (
+  return (
     <div className="App">
-      <Form>
+      <Form stateProps={usersState}>
 
       </Form>
     </div>
