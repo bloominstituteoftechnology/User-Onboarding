@@ -5,11 +5,11 @@ import schema from "./formSchema.js";
 import Friends from "./Friends";
 import initialFormValues from "./initialFormValues";
 import initialFormErrors from "./initialFormErrors";
-import axios from 'axios';
+import axios from "axios";
 import "./App.css";
 
 export default function Form() {
-  const [disabled, setDisabled] = useState(true)
+  const [disabled, setDisabled] = useState(true);
   const [isEditMode, setIsEditMode] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [friends, setFriends] = useState(Friends);
@@ -18,18 +18,18 @@ export default function Form() {
     initialFormErrors,
   });
 
-  const postnewHire = newHire => {
-    axios.post('http://reqres.in/api/users', newHire)
-    .then(res => {
-      setFriends([res.data, ...friends])
-      console.table("API SUCCESS POST", res.data)
-      setFormValues(initialFormValues);
-    })
-    .catch(err => {
-      console.log("AXIOS FAIL ERROR: ", err)
-    })
-  }
-
+  const postnewHire = (newHire) => {
+    axios
+      .post("http://reqres.in/api/users", newHire)
+      .then((res) => {
+        setFriends([res.data, ...friends]);
+        console.table("API SUCCESS POST", res.data);
+        setFormValues(initialFormValues);
+      })
+      .catch((err) => {
+        console.log("AXIOS FAIL ERROR: ", err);
+      });
+  };
 
   //Form Validation Feature
   //validate whether form matches schema
@@ -64,17 +64,15 @@ export default function Form() {
     setFormValues((prevFormValues) => ({ ...prevFormValues, [name]: value }));
   };
 
-
   //submit disable feature
-useEffect (() => {
-  schema.isValid(formValues).then(valid => setDisabled(!valid))
-}, [formValues])
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => setDisabled(!valid));
+  }, [formValues]);
 
-//form error validation tester
-// useEffect (() => {
-//   console.log("form errors have changed", errors)
-// })
-
+  //form error validation tester
+  // useEffect (() => {
+  //   console.log("form errors have changed", errors)
+  // })
 
   // to update new hires
   const handleUpdate = (eId) => {
@@ -98,7 +96,7 @@ useEffect (() => {
 
     if (isEditMode) {
       const friend = friends.find((f) => f.id === editingId);
-        
+
       if (friend) {
         const toBeUpdated = { ...friend };
         toBeUpdated.fname = formValues.fname || toBeUpdated.fname;
@@ -131,7 +129,7 @@ useEffect (() => {
 
     // use your setFriends helper function
     // setFriends(friends.concat(newFriend));
-    postnewHire(newHire)
+    postnewHire(newHire);
     // reset the formsValue state
     setFormValues(initialFormValues);
   };
@@ -234,15 +232,22 @@ useEffect (() => {
         />
         <br />
 
-        <button type="submit" disabled={disabled}>
+        <button type="submit" disabled={disabled} id="btn-id">
           {isEditMode ? "Update" : "Submit New Employee"}
         </button>
-        <div><em>{initialFormErrors.fname}</em></div>
-        <div><em>{initialFormErrors.lname}</em></div>
-        <div><em>{initialFormErrors.department}</em></div>
-        <div><em>{initialFormErrors.termsConditions}</em></div>
+        <div>
+          <em>{initialFormErrors.fname}</em>
+        </div>
+        <div>
+          <em>{initialFormErrors.lname}</em>
+        </div>
+        <div>
+          <em>{initialFormErrors.department}</em>
+        </div>
+        <div>
+          <em>{initialFormErrors.termsConditions}</em>
+        </div>
       </form>
-
 
       <div style={{ marginTop: "3rem", marginBottom: "2rem" }}>
         <h3 style={{ color: "white" }}>
@@ -269,8 +274,10 @@ useEffect (() => {
           </p>
           <br />
           <br />
-          <button onClick={() => handleUpdate(friend.id)}>Edit Employee</button>
-          <button>Delete Employee</button>
+          <button id="edit-btn" onClick={() => handleUpdate(friend.id)}>
+            Edit Employee
+          </button>
+          <button id="delete-btn">Delete Employee</button>
         </div>
       ))}
     </div>
