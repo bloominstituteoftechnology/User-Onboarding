@@ -150,7 +150,7 @@ function Form() {
           />
         </label>
 
-          <button disabled={disabled}>Submit</button> 
+          <button id="submitBtn" disabled={disabled}>Submit</button> 
 
           <div>{formErrors.name}</div>
           <div>{formErrors.email}</div>
@@ -160,15 +160,6 @@ function Form() {
 
 
       </form>
-
-    {/* users.map(user => {
-      return (
-        <div>
-          USER
-
-        </div>
-      )
-    }) */}
 
     </div>
 
