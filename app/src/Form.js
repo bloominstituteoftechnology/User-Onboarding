@@ -24,7 +24,7 @@ const Form = () => {
   const formSchema = yup.object().shape({
     name: yup.string().required("Name is required field"),
     email: yup.string().email("Must be a valid email address").required(),
-    password: yup.string().password("Password is required"),
+    password: yup.string().required("Password is required"),
     terms: yup.boolean().oneOf([true], "must be checked"),
   });
 
@@ -89,6 +89,7 @@ const Form = () => {
           id="name"
           type="text"
           name="name"
+          data-cy="name"
           onChange={inputChange}
           value={formState.name}
         />
@@ -101,6 +102,7 @@ const Form = () => {
         <input
           type="email"
           name="email"
+          data-cy="email"
           onChange={inputChange}
           value={formState.email}
         />
@@ -110,6 +112,7 @@ const Form = () => {
       </label>
       <label
         htmlFor="password"
+        data-cy="password"
         onChange={inputChange}
         value={formState.password}
       >
@@ -124,6 +127,7 @@ const Form = () => {
         <input
           type="checkbox"
           name="terms"
+          data-cy="terms"
           checked={true}
           onChange={inputChange}
           checked={formState.terms}
@@ -131,8 +135,8 @@ const Form = () => {
         Terms & Conditions
       </label>
 
-      <pre>[JSON.stringfly(post, null, 2)]</pre>
-      <button disabled={isButtonDisabled} type="submit">
+      <pre>{JSON.stringify(post, null, 2)}</pre>
+      <button data-cy="submit" disabled={isButtonDisabled}>
         {" "}
         Submit
       </button>
