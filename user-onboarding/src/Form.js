@@ -31,6 +31,10 @@ export default function Form() {
       });
   };
 
+  const deleteQuote = (friend, idx) => {
+    console.log("this employee is no longer scheduled for orientation")
+  }
+
   //Form Validation Feature
   //validate whether form matches schema
   const validateChange = (e) => {
@@ -231,6 +235,7 @@ export default function Form() {
           errors={errors}
         />
         <br />
+        
 
         <button type="submit" disabled={disabled} id="btn-id">
           {isEditMode ? "Update" : "Submit New Employee"}
@@ -277,7 +282,7 @@ export default function Form() {
           <button id="edit-btn" onClick={() => handleUpdate(friend.id)}>
             Edit Employee
           </button>
-          <button id="delete-btn">Delete Employee</button>
+          <button id={idx} onClick={() => deleteQuote(friend.id)}>Delete Employee</button>
         </div>
       ))}
     </div>
