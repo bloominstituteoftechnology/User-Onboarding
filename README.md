@@ -41,8 +41,8 @@ Being able to `POST` data is a key skill of any developer, no matter your skill 
 
 (Note: For those that are curious, we're using [reqres.in](https://reqres.in/) for this assignment's API. It's a free API that allows us to simulate a `POST` request for any data that we send it. Pretty awesome!)
 
-#### Display Returned Data to Screen
-
+#### Display Returned Data to Screen l
+ 
 When you get your data back, you will want to do something with it, right? Let's display a list of users in our app.
 
 - [ ] Set up a state property called `users` that is initialized with an empty array
