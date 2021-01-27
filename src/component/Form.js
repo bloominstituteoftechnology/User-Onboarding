@@ -3,6 +3,7 @@ import React from 'react'
 export default function Form({values, change, submit, disabled, errors}) {
     const onSubmit = (evt) => {
         evt.preventDefault();
+        submit();
     };
     const onChange = (evt) => {
         const { name, value, type, checked } = evt.target;
@@ -39,7 +40,7 @@ export default function Form({values, change, submit, disabled, errors}) {
                         value={values.password}
                         onChange={onChange}
                         name='password'
-                        text='password'
+                        type='password'
                     />
                 </label>
                 <br />

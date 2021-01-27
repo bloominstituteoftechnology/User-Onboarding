@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import schema from './validation/schema';
 import './App.css';
+import User from './component/User.js'
 
 const initialFormValues = {
   name:'',
@@ -61,13 +62,14 @@ const inputChange = (name, value) => {
       ...formErrors,
       [name]: '',
     })
+  })
     .catch(err => {
       setFormErrors({
         ...formErrors,
         [name]: err.errors[0],
       });
     });
-  });
+
   setFormValues({
     ...formValues,
     [name]: value,
@@ -111,9 +113,9 @@ useEffect(()=> {
       disabled={disabled}
       errors={formErrors}
      />
-     {
-      //  display new user
-     }
+     {/* {user.map((user) => {
+       return <User key={user.id} details={user} />;
+     })} */}
     </div>
   );
 }
