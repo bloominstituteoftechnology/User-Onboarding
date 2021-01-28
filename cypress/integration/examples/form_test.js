@@ -1,5 +1,7 @@
-const textInput = () => cy.get('input[name="name"]')
+const nameInput = () => cy.get('input[name="name"]')
 const emailInput = () => cy.get('input[name="email"]')
+const passwordInput = () => cy.get('input[name="password"]')
+const termsButton = () => cy.get('input[name="terms"]')
 
 it("sanity test to make sure tests work", () => {
     // expect is an assertion
@@ -10,10 +12,38 @@ it("sanity test to make sure tests work", () => {
     expect(2 + 2).not.to.equal(5);
   });
 
-describe('index.html loads successfully', function () {
-    it('Visits a new site', function() {
-        cy.visit("index.html");
-    })
+
+it('Index html loads', function() {
+    cy.visit("index.html");
+})
+
+
+it("elements are showing on screen", function() {
+    nameInput().should("exist");
+    cy.get('input[name="falseword"]').should("not.exist");
+    emailInput().should("exist");
+    passwordInput().should("exist");
+    termsButton().should("exist");
+    cy.contains("Submit");
+
+})
+
+it("can type in input fields", () => {
+    nameInput()
+    .should("have.value", "")
+    .type("Harry")
+    .should("have.value", "Harry");
+
+    emailInput()
+    .should("have.value", "")
+    .type("argy@bargy.com")
+    .should("have.value", "argy@bargy.com");
+
+    passwordInput()
+    .should("have.value", "")
+    .type("badpassword")
+    .should("have.value", "badpassword");
+
 })
 
 //   it("can type in the inputs", () => {
