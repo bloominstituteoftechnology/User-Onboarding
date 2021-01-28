@@ -1,7 +1,7 @@
 import React from "react"
 
 export default function TonyForm(props){
-  const {values, submit, change, disabled, errors} = props
+  const {values, submit, change, disable, errors} = props
   
   const onSubmit = evt => {
     evt.preventDefault() //prevents page from refreshing
@@ -19,14 +19,14 @@ export default function TonyForm(props){
         <div className="headlinediv">
           <h2>TONY'S <br></br> FRIEND'S<br></br> LIST</h2>
           <h6>Be My Friend</h6>
-          <button>submit</button>
+          <button disabled={disable}>submit</button>
             <div className="errordiv">
-              {/* <div>{errors.name}</div>
+              <div>{errors.name}</div>
               <div>{errors.email}</div>
               <div>{errors.state}</div>
               <div>{errors.food}</div>
               <div>{errors.password}</div>
-              <div>{errors.tos}</div> */}
+              <div>{errors.tos}</div>
             </div>
         </div>
       </div>
