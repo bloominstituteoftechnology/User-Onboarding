@@ -1,64 +1,114 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import * as yup from "yup";
+import Users from "./Users";
 
-function Form({ values, change, submit, error }) {
-  const onChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const newValue = type === "checkbox" ? checked : value;
-    change(name, newValue);
+const defaultValue = {
+  name: "",
+  email: "",
+  password: "",
+  terms: false,
+};
+
+function Form() {
+  const [formState, setFormState] = useState(defaultValue);
+  const [errors, setErrors] = useState({ ...defaultValue, terms: "" });
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  let formSchema = yup.object().shape({
+    name: yup.string().required("Name is required"),
+    email: yup
+      .string()
+      .email("Must be a valid email")
+      .required("Email is required"),
+    password: yup
+      .string()
+      .required("Password is required")
+      .min(5, "Password must be at least 6 characters long"),
+
+    terms: yup.boolean().oneOf([true], "Please agree to the Terms of Service"),
+  });
+
+  useEffect(() => {
+    formSchema.isValid(formState).then((valid) => setButtonDisabled(!valid));
+  }, [formState, formSchema]);
+
+  const formSubmit = (e) => {
+    e.preventDefault();
+    console.log("form submitted");
+    axios
+      .post("https://reqres.in/api/users", formState)
+      .then((res) => console.log("Form submit was a success"))
+      .catch((err) => console.log(err));
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    submit();
+  const validateChange = (e) => {
+    e.persist();
+    yup
+      .reach(formSchema, e.target.name)
+      .validate(e.target.value)
+      .then((valid) =>
+        setErrors({
+          ...errors,
+          [e.target.name]: "",
+        })
+      )
+      .catch((error) =>
+        setErrors({
+          ...errors,
+          [e.target.name]: error.errors[0],
+        })
+      );
+  };
+
+  const inputChange = (e) => {
+    // ternary operator to determine the form value
+    const newValue =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    setFormState({
+      ...formState,
+      [e.target.name]: newValue,
+    });
+    validateChange(e);
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <div>
-        <label htmlFor="name">
-          Name
-          <input
-            type="text"
-            name="name"
-            onChange={onChange}
-            value={values.name}
-          />
-        </label>
-      </div>
+    <form onSubmit={formSubmit}>
+      <Users
+        type="text"
+        name="name"
+        onChange={inputChange}
+        value={formState.name}
+        errors={errors}
+        label="Name: "
+      />
+      <Users
+        type="text"
+        name="email"
+        onChange={inputChange}
+        value={formState.email}
+        errors={errors}
+        label="Email: "
+      />
+      <Users
+        type="text"
+        name="password"
+        onChange={inputChange}
+        value={formState.password}
+        errors={errors}
+        label="Password: "
+      />
+      <Users
+        type="checkbox"
+        name="terms"
+        onChange={inputChange}
+        label="Terms of Service"
+        value={formState.terms}
+        errors={errors}
+      />
 
       <div>
-        <label htmlFor="email">
-          Email
-          <input
-            type="text"
-            name="email"
-            onChange={onChange}
-            value={values.email}
-          />
-        </label>
-      </div>
-
-      <div>
-        <label htmlFor="password">
-          Password
-          <input
-            type="text"
-            name="password"
-            onChange={onChange}
-            value={values.password}
-          />
-        </label>
-      </div>
-
-      <div>
-        <label htmlFor="terms">
-          Terms of Service
-          <input type="checkbox" name="terms" onChange={onChange} />
-        </label>
-      </div>
-
-      <div>
-        <button>Submit</button>
+        <button disabled={buttonDisabled}>Submit</button>
       </div>
     </form>
   );
