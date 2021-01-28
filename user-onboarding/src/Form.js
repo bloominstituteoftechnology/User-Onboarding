@@ -1,9 +1,12 @@
 import React from 'react'
 
 export default function Form(props) {
-    const {members, values, change} = props
+    const { values, change, submit, disabled } = props
 
-
+    const formSubmit = (evt)=>{
+        evt.preventDefault();
+        submit();
+    }
     
     const handleChange = (evt)=>{
         const {name, value, type, checked} = evt.target;
@@ -12,9 +15,9 @@ export default function Form(props) {
     };
     return (
         <div>
-            <h1> Render me!</h1>
+            <h1> Fill This Out:</h1>
 
-            <form>
+            <form onSubmit={formSubmit}>
                 <label>Name:
                     <input type='text' name='name' value={values.name} onChange={handleChange}/>
                 </label>
@@ -32,7 +35,7 @@ export default function Form(props) {
                     {/* Checkbox doesn't use value like other form inputs because value returns "on/off" instead of "true/false" checked={values.checked} This makes our our input controlled by state.  */}
                 </label>
                 <br></br>
-                <button> Send It </button>
+                <button disabled={disabled}> Send It </button>
             </form>
         </div>
     )
