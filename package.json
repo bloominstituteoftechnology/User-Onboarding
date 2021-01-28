@@ -36,5 +36,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "css-loader": "^5.0.1",
+    "less": "^4.1.0",
+    "less-loader": "^7.3.0",
+    "style-loader": "^2.0.0"
   }
 }
