@@ -13,5 +13,5 @@ export default yup.object().shape({
     .string()
     .required('A password is required')
     .min(3, 'Password must be >3 characters'),
-    terms: yup.boolean().required('you must sign your life away'),
+    terms: yup.boolean().oneOf([true], 'You must sign your life away'),
 })

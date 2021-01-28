@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Form(props) {
-    const { values, change, submit, disabled } = props
+    const { values, change, submit, disabled, errors } = props
 
     const formSubmit = (evt)=>{
         evt.preventDefault();
@@ -16,6 +16,13 @@ export default function Form(props) {
     return (
         <div>
             <h1> Fill This Out:</h1>
+            <div className="errors" color='red'>
+                <div>{errors.username}</div>
+                <div>{errors.email}</div>
+                <div>{errors.password}</div>
+                <div>{errors.terms}</div>
+
+            </div>
 
             <form onSubmit={formSubmit}>
                 <label>Name:

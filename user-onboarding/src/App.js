@@ -73,7 +73,7 @@ useEffect(()=>{
 
   return (
     <div >
-      <Form values={formValues} change={inputChange} submit={submitForm} disabled = {disabled}/>
+      <Form values={formValues} change={inputChange} submit={submitForm} disabled = {disabled} errors={formErrors} />
   
     </div>
   );
