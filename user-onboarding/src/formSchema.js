@@ -1,8 +1,7 @@
-import { waitForDomChange } from "@testing-library/react";
 import * as yup from "yup";
 
 export default yup.object().shape({
-  name: yup
+  first_name: yup
     .string()
     .required("Name is required.")
     .min(2, "Must have 3 characters."),
@@ -25,6 +24,6 @@ export default yup.object().shape({
     .max(15,"Password over 15 characters."),
   tos: yup
     .boolean()
-    .required("Must agree to terms of service."),
+    .oneOf([true], "Terms of service are required.")
 
 })

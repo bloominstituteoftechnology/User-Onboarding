@@ -1,28 +1,32 @@
-import logo from './logo.svg';
 import React, {useState, useEffect} from "react"
 import './App.css';
 import Forms from "./Forms";
 import axios from "axios";
 import * as yup from "yup";
 import schema from "./formSchema"
+import Friend from "./Friend"
 
 
 
 const initialFormValues = {
-  name:"",
+  first_name:"",
   email:"",
   password:"",
   state:"",
   pizza:false,
   tacos:false,
-  burgers:false
+  burgers:false,
+  tos:false,
 }
 
 const initialFormErrors = {
-  name:"",
+  first_name:"",
   email:"",
   password:"",
   state:"",
+  food:"",
+  tos:false,
+
 }
 
 const initialMembers = []
@@ -42,7 +46,7 @@ function App() {
         .get(`https://reqres.in/api/users`)
         .then(res => {
           console.log(res)
-          setMembers(res.data)
+          setMembers(res.data.data)
         })
         .catch(err => {
           console.log(err)
@@ -51,9 +55,9 @@ function App() {
 
     const postNewMember = newMember => {
       axios
-        .post(`https://reqres.in/api/users`)
+        .post(`https://reqres.in/api/users`, newMember)
         .then(res => {
-          setMembers(...members,res.data)
+          setMembers([...members,res.data])
           setFormValues(initialFormValues)
         })
         .catch(err => {
@@ -67,13 +71,15 @@ function App() {
         .reach(schema, name)
         .validate(value)
         .then(() =>{
-          setFormErrors({...formErrors,
-          [name]: ""})
+          setFormErrors({
+            ...formErrors,
+            [name]: ""
+          })
         })
         .catch( err => {
           setFormErrors({
             ...formErrors,
-            [name]: err.error[0]
+            [name]: err.errors[0]
           })
         })
       setFormValues({
@@ -85,10 +91,10 @@ function App() {
 
     const formSubmit = () => {
       const newMember = {
-        name: formValues.name.trim(),
+        first_name: formValues.first_name.trim(),
         email: formValues.email.trim(),
-        state: formValues.state,
-        foods:["pizza", "burgers","tacos"].filter(food => formValues(food)),
+        state: formValues.state.trim(),
+        foods:["pizza", "burgers","tacos"].filter(food => formValues[food]),
         password: formValues.password,
         terms:formValues.tos
       }
@@ -108,9 +114,22 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Forms values={formValues} change={inputChange} submit={formSubmit} disabled={disable} errors={formErrors}/>
-      </header>
+      
+      
+        <Forms 
+          values={formValues} 
+          change={inputChange} 
+          submit={formSubmit} 
+          disabled={disable} 
+          errors={formErrors}
+        />
+        {
+          members.map((member) => {
+            return (
+              <Friend key={member.id} details={member}/>
+            )
+          })
+        } 
     </div>
   );
 }
