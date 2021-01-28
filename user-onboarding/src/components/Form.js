@@ -112,10 +112,10 @@ function Form() {
         value={formState.terms}
         errors={errors}
       />
-
       <div>
         <button disabled={buttonDisabled}>Submit</button>
       </div>
+      <pre>{JSON.stringify(users, null, 2)}</pre>
     </form>
   );
 }
