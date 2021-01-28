@@ -25,7 +25,7 @@ export default function Form(props) {
         <div>
             <form onSubmit={onSubmit}>
                 <h2> ADD A USER </h2>
-                <button disabled={disabled}> Submit </button>
+                <button disabled={disabled} className="submit"> Submit </button>
 
                 <div className='errors'>
                     <div>{errors.name}</div>
