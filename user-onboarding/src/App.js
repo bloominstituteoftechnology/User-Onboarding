@@ -3,7 +3,10 @@ import { useState } from 'react'
 import Form from './Components/Form'
 
 
-const initialUsers=[]
+const initialUsers={ 
+  name:'',
+  email:'',
+}
 
 function App() {
 ///States//////
@@ -21,11 +24,15 @@ function App() {
       <Form 
       setUser={setUser}     
       />
-      <div>
+      
+      
+      <div className='user container'>
         <h2>User</h2>
         <p>Name : {user.name}</p>
         <p>Email: {user.email}</p>
       </div>
+      
+      
     </div>
   );
 }
