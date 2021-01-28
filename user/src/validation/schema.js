@@ -1,5 +1,3 @@
-import * from "yup"
-
 import * as yup from "yup";
 
 export default yup.object().shape({
@@ -14,6 +12,6 @@ export default yup.object().shape({
     password: yup
         .string()
         .required("password is required"),
-    term: yup.boolean()
-
+    terms: yup.boolean()
+        .oneOf([true], "Must agree" )
 }) 
