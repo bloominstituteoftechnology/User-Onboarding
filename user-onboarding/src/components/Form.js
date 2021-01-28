@@ -10,10 +10,13 @@ const defaultValue = {
   terms: false,
 };
 
+const initialUsers = [];
+
 function Form() {
   const [formState, setFormState] = useState(defaultValue);
   const [errors, setErrors] = useState({ ...defaultValue, terms: "" });
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [users, setUsers] = useState(initialUsers);
 
   let formSchema = yup.object().shape({
     name: yup.string().required("Name is required"),
@@ -38,7 +41,10 @@ function Form() {
     console.log("form submitted");
     axios
       .post("https://reqres.in/api/users", formState)
-      .then((res) => console.log("Form submit was a success"))
+      .then(() => {
+        setUsers([[formState, ...users]]);
+        setFormState(defaultValue);
+      })
       .catch((err) => console.log(err));
   };
 
