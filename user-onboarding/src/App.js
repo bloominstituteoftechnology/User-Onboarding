@@ -68,7 +68,7 @@ function App() {
     const newUser = {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
-      password: formValues.password,
+      password: formValues.password.trim(),
       terms: formValues.terms,
     }
     postNewUser(newUser)
