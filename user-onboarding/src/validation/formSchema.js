@@ -15,7 +15,7 @@ export default yup.object().shape({
     .required("Password is required"),
     terms: yup
     .boolean()
-    .required("Need to agree to terms of service"),
+    .oneOf([true], 'Terms of service must be agreed on')
 })
 
 

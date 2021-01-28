@@ -54,3 +54,11 @@
 input  {
   margin:0 5px;
 }
+
+.errors {
+  margin-left: 10px;
+  padding: 5px;
+  color: red;
+  text-decoration-line: underline;
+  
+}
