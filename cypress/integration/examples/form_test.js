@@ -46,18 +46,11 @@ it("can type in input fields", () => {
 
 })
 
-//   it("can type in the inputs", () => {
-//     // grab the inputs
-//     // assert they are empty
-//     // type in them
-//     // assert that the thing we typed is there
-//     textInput()
-//       .should("have.value", "")
-//       .type("NotHarry")
-//       .should("have.value", "NotHarry");
-
-//     emailInput()
-//       .should("have.value", "")
-//       .type("harry@harry.com")
-//       .should("have.value", "harry@harry.com");
-//   });
+it("can check the TOS button", () => {
+    termsButton().should("not.be.disabled");
+    termsButton().check()
+    termsButton().should("be.checked")
+    termsButton().uncheck()
+    termsButton().should("not.be.checked")
+    
+})
