@@ -13,23 +13,20 @@ export default function Form (props) {
     const { name, value, type, checked } = evt.target;
     const valueToUse = type === "checkbox" ? checked : value;
     change(name, valueToUse);
-    // console.log(name);
   };
-
-  console.log(values);
 
   return (
     <form className="form container" onSubmit={onSubmit}>
       <div className="form-group submit">
         <h2>Register user</h2>
-        {/* {console.log(typeof(disabled))} */}
         <button disabled={disabled}>submit</button>
         {/* TODO: MORE ERRORS */}
         <div className="errors">
           <div>{errors.first_name}</div>
           <div>{errors.last_name}</div>
-
           <div>{errors.email}</div>
+          <div>{errors.password}</div>
+          <div>{errors.tosAgree}</div>
         </div>
       </div>
       <div className="form-group inputs">
@@ -78,8 +75,6 @@ export default function Form (props) {
           </label>
         </p>
       </div>
-        
-
     </form>
   )
 }

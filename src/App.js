@@ -36,12 +36,10 @@ export default function App() {
   const getMembers = () => {
     axios.get('https://reqres.in/api/users')
       .then((res) => {
-        console.log(res.data.data);
         setMembers(res.data.data);
       })
       .catch((err) => {
         console.log(err);
-        debugger;
       });
   }
 
@@ -51,7 +49,7 @@ export default function App() {
         setMembers([res.data, ...members]);
         })
       .catch((err) => {
-        console.log('POST ERR -->', err)
+        console.log(err)
       })
       .finally(() => {
         setFormValues(initialFormValues);
@@ -59,7 +57,6 @@ export default function App() {
   }
   
   const inputChange = (name, value) => {
-    console.log(name)
     yup
       .reach(schema, name)
       .validate(value)
@@ -88,17 +85,15 @@ export default function App() {
       last_name: formValues.last_name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      tosAgree: formValues.tosAgree, // MAYBE ERROR
+      tosAgree: formValues.tosAgree, 
     }
     postNewMember(newUser)
   }
-    
   
-
-    useEffect(() => {
-    // TODO: get members
-      getMembers();
-    }, []);
+  useEffect(() => {
+  // TODO: get members
+    getMembers();
+  }, []);
 
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
