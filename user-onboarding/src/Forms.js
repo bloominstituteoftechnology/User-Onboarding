@@ -16,19 +16,46 @@ export default function TonyForm(props){
   return (
     <form className="form-container" onSubmit={onSubmit}>
       <div className="form-sub-con">
-        <h1>TONY'S FRIENDS LIST</h1>
-        <h3>Be My Friend</h3>
-         <button disabled={button}>submit</button>
-        <div className="errordiv">
-          <div>{errors.name}</div>
-          <div>{errors.email}</div>
-          <div>{errors.state}</div>
-          <div>{errors.password}</div>
-          <div>{errors.tos}</div>
+        <div className="headlinediv">
+          <h2>TONY'S <br></br> FRIEND'S<br></br> LIST</h2>
+          <h6>Be My Friend</h6>
+          <button>submit</button>
+            <div className="errordiv">
+              {/* <div>{errors.name}</div>
+              <div>{errors.email}</div>
+              <div>{errors.state}</div>
+              <div>{errors.food}</div>
+              <div>{errors.password}</div>
+              <div>{errors.tos}</div> */}
+            </div>
         </div>
       </div>
-      <div>
-        
+      <div className="form-inputs">
+        <h6>Information Here</h6>
+        <label>Name
+          <input type="text" name="name" onChange={onChange}/>
+        </label>
+        <label>Email
+          <input type="text" name="email" onChange={onChange}/>
+        </label>
+        <label>State
+          <input type="text" name="state" onChange={onChange}/>
+        </label>
+        <label>Pizza
+          <input type="radio" name="food" value="pizza" onChange={onChange}/>
+        </label>
+        <label>Tacos
+          <input type="radio" name="food" value="tacos" onChange={onChange}/>
+        </label>
+        <label>Burgers
+          <input type="radio" name="food" value="burgers" onChange={onChange}/>
+        </label>
+        <label>Password
+          <input type="password" name="password" onChange={onChange}/>
+        </label>
+        <label>Terms Of Service
+          <input type="checkbox" name="tos"  onChange={onChange}/>
+        </label>
       </div>
 
 
