@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "axios": "^0.21.1",
+    "yup": "^0.32.8"
+  },
+  "devDependencies": {
+    "cypress": "^6.3.0"
+  }
+}
