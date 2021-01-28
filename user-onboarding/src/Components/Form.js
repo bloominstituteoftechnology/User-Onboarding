@@ -22,7 +22,7 @@ const initialFormValues ={
   const initialDisabled = true
 
 function Form(props) {  
-
+const { setUser } = props
 
   const [formValues, setFormValues] =useState(initialFormValues)
   const [formErrors, setFormErrors]=useState(initialFormErrors)
@@ -34,7 +34,7 @@ const postNewUser = (newUser) => {
     axios
     .post('https://reqres.in/api/users', newUser)
     .then((res) => {
-     console.log(res.data)
+    setUser(newUser)
     })
     .catch((err) => {
       console.log(err);

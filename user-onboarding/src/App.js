@@ -18,9 +18,14 @@ function App() {
 
   return (
     <div className="App">
-      
-      <Form      
+      <Form 
+      setUser={setUser}     
       />
+      <div>
+        <h2>User</h2>
+        <p>Name : {user.name}</p>
+        <p>Email: {user.email}</p>
+      </div>
     </div>
   );
 }
