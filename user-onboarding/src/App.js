@@ -74,7 +74,14 @@ useEffect(()=>{
   return (
     <div >
       <Form values={formValues} change={inputChange} submit={submitForm} disabled = {disabled} errors={formErrors} />
-  
+     {
+       members.map(member =>{
+         return <div>
+           <h1>{member.name}</h1>
+           <h2>{member.email}</h2>
+         </div>
+       })
+     }
     </div>
   );
 }
