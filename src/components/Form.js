@@ -13,6 +13,11 @@ export default function Form(props) {
         evt.preventDefault()
         submit()
       }
+      const onChange = evt => {
+        const { name, value, type, checked } = evt.target
+        const valueToUse = type === "checkbox" ? checked : value;
+        change(name, valueToUse)
+      }
 
 
 
@@ -34,16 +39,31 @@ export default function Form(props) {
                 <label>Name
                     <input
                     value={values.name}
-                    onChange={change}
+                    onChange={onChange}
                     name='name'
                     type='text'/>
                 </label>
                 <label>Email
                     <input
                     value={values.email}
-                    onChange={change}
+                    onChange={onChange}
                     name='email'
                     type='email'/>
+                </label>
+                <label>Password
+                    <input
+                    value={values.password}
+                    onChange={onChange}
+                    name='password'
+                    type='text'/>
+                </label>
+                <label>Terms of Service
+                    <input 
+                    name="terms"
+                    type="checkbox"
+                    checked={values.terms}
+                    onChange={onChange}
+                    />
                 </label>
 
             </form>
