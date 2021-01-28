@@ -21,9 +21,10 @@ const initialFormValues ={
   
   const initialDisabled = true
 
+
 function Form(props) {  
 const { setUser } = props
-
+//setting state
   const [formValues, setFormValues] =useState(initialFormValues)
   const [formErrors, setFormErrors]=useState(initialFormErrors)
   const [disabled, setDisabled]=useState(initialDisabled)
@@ -67,10 +68,7 @@ const inputChange = (name, value) =>{
               ...formErrors,
               [name]: err.errors[0],
             })});
-         
-      
-  
-      setFormValues({
+       setFormValues({
         ...formValues,
         [name]: value, 
       });
@@ -84,22 +82,13 @@ useEffect(()=>{
     })
   },[formValues])
 
-    // const formSubmit =() => {
-    //     const newUser = {
-    //       name: formValues.name.trim(),
-    //       email: formValues.email.trim(),
-    //       passsword: formValues.password.trim(),
-    //       termsOfService: false
-    //     }
-    //     postNewUser(newUser)
-    //    }
 
     return (
         <form className='form container' onSubmit={onSubmit}>
             {/* {errors} */}
             <div className='form-group submit'>
                 <h2>Add New User</h2>
-                <button disabled={disabled}>submit</button>
+                <button id='submitBtn' disabled={disabled}>submit</button>
                 <div className='errors'>
                     <div>{formErrors.name}</div>
                     <div>{formErrors.email}</div>
