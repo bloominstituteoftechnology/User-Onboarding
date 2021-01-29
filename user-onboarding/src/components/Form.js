@@ -113,7 +113,9 @@ function Form() {
         errors={errors}
       />
       <div>
-        <button disabled={buttonDisabled}>Submit</button>
+        <button id="submit-button" disabled={buttonDisabled}>
+          Submit
+        </button>
       </div>
       <pre>{JSON.stringify(users, null, 2)}</pre>
     </form>
