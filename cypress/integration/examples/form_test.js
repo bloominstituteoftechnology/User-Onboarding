@@ -10,10 +10,15 @@ describe("Name", () => {
 
   it("Name", () => {
     cy.get('input[name="first_name"]').should("exist");
-    cy.get('input[first_name="tony"]').should("not.exist");
+    
   })
 
+  it("Email", () => {
+    cy.get('input[name="email"]').should("exist");
+  })
 
-
+  it("Password", () => {
+    cy.get('input[name="email"]').should("exist");
+  })
 
 })
