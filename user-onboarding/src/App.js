@@ -13,9 +13,7 @@ const initialFormValues = {
   email:"",
   password:"",
   state:"",
-  pizza:false,
-  tacos:false,
-  burgers:false,
+  food:"",
   tos:false,
 }
 
