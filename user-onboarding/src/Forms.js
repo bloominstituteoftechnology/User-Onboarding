@@ -23,7 +23,7 @@ export default function TonyForm(props){
         <div className="headlinediv">
           <h2>TONY'S <br></br> FRIEND'S<br></br> LIST</h2>
           <h6>Be My Friend</h6>
-          <button disabled={disable}>submit</button>
+          <button id="subbutton" disabled={disable}>submit</button>
             <div className="errordiv">
               <div>{errors.name}</div>
               <div>{errors.email}</div>
