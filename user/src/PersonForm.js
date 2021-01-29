@@ -93,7 +93,7 @@ const [disable, setFormDisable] = useState(initialDisable)
                 name="name"
                 onChange={onChange}
                 value={formValues.name}
-             ></input>
+             />
                 </label>  
                 
             <label> Email
@@ -102,7 +102,7 @@ const [disable, setFormDisable] = useState(initialDisable)
                 name="email"
                 onChange={onChange}
                 value={formValues.email}
-             ></input>    
+             />    
             </label>   
             <label> Password
              <input
@@ -110,7 +110,7 @@ const [disable, setFormDisable] = useState(initialDisable)
                 name="password"  
                 onChange={onChange}
                 value={formValues.password}               
-             ></input>
+             />
              </label>   
                 
         <div className="term">
@@ -120,11 +120,11 @@ const [disable, setFormDisable] = useState(initialDisable)
                 name= "terms"
                 value={formValues.terms}
                 onChange={onChange}        
-               ></input>
+               />
              </label>
         </div>
         <div className="submit">
-                    <button disabled={disable} >Submit</button>
+                    <button id="submit-btn" disabled={disable} >Submit</button>
         </div>
         </div>
     </form>
