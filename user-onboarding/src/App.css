@@ -1,0 +1,24 @@
+button {
+  height: 2rem;
+  width: 6rem;
+  border-radius: 8px;
+  color: rgb(30, 220, 20);
+  background-color: white;
+  border: 2px solid rgb(30, 220, 20);
+  &:hover {
+    cursor: pointer;
+  }
+  &:disabled {
+    color: crimson;
+    background-color: white;
+    border: 2px solid crimson;
+    cursor: not-allowed;
+  }
+}
+
+
+.errors {
+  margin: 8px;
+  font-size: 0.7em;
+  color: red;
+}
