@@ -271,7 +271,7 @@ export default function Form() {
             {friend.email}
           </p>
           <p>
-            <em>Home Department: </em>
+            <em>Home Department: </em><br />
             {friend.department}
           </p>
           <p>
