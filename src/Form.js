@@ -262,7 +262,7 @@ export default function Form() {
         </h3>
       </div>
       {friends.map((friend, idx) => (
-        <div className="player-trans" key={idx} style={{ border: "2px" }}>
+        <div className="player-trans container" key={idx} style={{ border: "2px" }}>
           <h3 style={{ marginBottom: "3rem", marginTop: "2rem" }}>
             {friend.fname} {friend.lname}
           </h3>
