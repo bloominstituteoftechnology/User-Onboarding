@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   background-color: #727062;
+  display: flex;
+  justify-content: center;
 }
 
   body {
