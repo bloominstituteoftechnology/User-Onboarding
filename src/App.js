@@ -2,7 +2,7 @@ import React from "react";
 import Form from "./Form.js";
 import Logo from "./SONVR.svg"
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.css";
+//import "bootstrap/dist/css/bootstrap.css";
 
 
 
