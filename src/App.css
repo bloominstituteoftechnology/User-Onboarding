@@ -39,7 +39,6 @@ p,
   min-height: 70%;
   background-color: #f37a20;
   box-shadow: 0 0 1.5rem #000;
-  flex-flow: column wrap;
 }
 
 .player-trans {

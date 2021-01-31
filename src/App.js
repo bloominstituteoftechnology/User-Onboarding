@@ -15,8 +15,8 @@ export default function App() {
 
 
   return (
-    <div className="App d-flex justify-content-center" >
-      <div className="form-card d-flex justify-content-center container">
+    <div className="d-flex justify-content-center" >
+      <div className="form-card flex-column-wrap d-flex justify-content-center container">
         <div className="player-trans d-flex justify-content-center container">
           <img src={Logo} alt="sonar logo" style={{width: "40%"}}></img>
           <h3>Welcome to the new hire onboarding portal.</h3>
