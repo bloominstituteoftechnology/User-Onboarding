@@ -275,7 +275,7 @@ export default function Form() {
             {friend.department}
           </p>
           <p>
-            <em>Terms and Conditions Agreed To: </em>
+            <em>New Hire Packet Collected: </em>
             {friend.termsConditions ? "Yes" : "No"}
           </p>
           <br />
