@@ -3,6 +3,19 @@ import React from 'react'
 
 
 export default function Form (props) {
+    const {
+      values,
+      disabled,
+      errors,
+      submit,
+      change,
+    } = props
+
+    const onChange = evt => {
+        const { name, value, type, checked} = evt.target
+        const valueToUse = type === 'checkbot' ? checked : value
+        change(name, valueToUse)
+    }
 
 
 
@@ -19,24 +32,24 @@ export default function Form (props) {
                       <h3>Tell me about yourself...</h3>
                       <label>Name
                           <input 
-                        //   value = {values.username}
-                        //   onChange={onChange}
-                          name='name'
+                          value = {values.username}
+                          onChange={onChange}
+                          name='username'
                           type='text'
                           />
                       </label>
                       <label>Email
                           <input 
-                        //   value = {values.email}
-                        //   onChange={onChange}
+                          value = {values.email}
+                          onChange={onChange}
                           name='email'
                           type='text'
                           />
                       </label>
                       <label>Password
                           <input 
-                        //   value = {values.password}
-                        //   onChange={onChange}
+                          value = {values.password}
+                          onChange={onChange}
                           name='password'
                           type='text'
                           />
@@ -46,14 +59,14 @@ export default function Form (props) {
                           value= 'agree'
                           name= 'termsOfService'
                           type= 'radio'
-                        //   onChange={onChange}
-                        //   checked={values.termsOfService ==='agree'}
+                          onChange={onChange}
+                          checked={values.termsOfService ==='agree'}
                           />
                       </label>
                       <label>roll
                           <select 
-                        //   value={valuse.roll}
-                        //   onChange={onChange}
+                          value={values.roll}
+                          onChange={onChange}
                         name='roll'>
                               <option value= ''>--Select a Roll--</option>
                               <option value= 'wizard'>Wizard</option>
