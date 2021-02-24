@@ -17,6 +17,11 @@ export default function Form (props) {
         change(name, valueToUse)
     }
 
+    const onSubmit = evt => {
+        evt.preventDefault()
+        submit()
+    }
+
 
 
     return(
@@ -56,11 +61,10 @@ export default function Form (props) {
                       </label>
                       <label>Terms of Service
                           <input 
-                          value= 'agree'
                           name= 'termsOfService'
-                          type= 'radio'
+                          type= 'checkbox'
                           onChange={onChange}
-                          checked={values.termsOfService ==='agree'}
+                          checked={values.termsOfService}
                           />
                       </label>
                       <label>roll

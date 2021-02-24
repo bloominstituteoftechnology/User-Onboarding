@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 
 
-export default const formSchema =yup.object().shape({
+const formSchema =yup.object().shape({
     username: yup.string()
         .trim()
         .required('Username of Hero is Required!')
@@ -10,7 +10,9 @@ export default const formSchema =yup.object().shape({
         .email('Must be a valid heroic Email')
         .required('Heroic Email is required'),
     roll: yup.string()
-        .oneOf(['wizard', 'rogue', 'warrior'], 'Roll is required')
+        .oneOf(['wizard', 'rogue', 'warrior'], 'Roll is required'),
     termsOfService: yup.boolean(),
 
 })
+
+export default formSchema
