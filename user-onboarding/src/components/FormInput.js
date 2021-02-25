@@ -5,10 +5,8 @@ import TextInput from './TextInput'
 import Checkbox from './Checkbox'
 
 const useLastAndCurrentValue = (value) => {
-    // console.log('useLast', value)
     const [lastValue, setLastValue] = useState(value)
     const [currentValue, setCurrentValue] = useState(value)
-
     useEffect(() => {
         console.log('update')
         setLastValue(lastValue)

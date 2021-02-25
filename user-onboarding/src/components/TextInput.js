@@ -1,4 +1,5 @@
 import React from 'react'
+import { FormGroup, Label, Input } from 'reactstrap'
 
 const TextInput = (props) => {
     const { 
@@ -15,10 +16,12 @@ const TextInput = (props) => {
     }
 
     return (
-        <label htmlFor={name}>
-            {label}
-            <input name={name} type={type} value={value} onChange={onChange} />
-        </label>
+        <FormGroup>
+            <Label htmlFor={name}>
+                {label}:
+            </Label>
+            <Input name={name} type={type} value={value} onChange={onChange} />
+        </FormGroup>
     )
 }
 
