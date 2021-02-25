@@ -1,18 +1,16 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
+import Icon from "@material-ui/core/Icon";
 
 export default function Form(props) {
-  const {} = props;
+  const { values, submit, change, errors, disabled } = props;
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    change(name, value);
+    const { name, value, type, checked } = event.target;
+    const valueToUse = type === "checkbox" ? checked : value;
+    change(name, valueToUse);
   };
 
   const onSubmit = (evt) => {
@@ -27,11 +25,11 @@ export default function Form(props) {
         id="outlined-basic"
         name="name"
         label="Name"
-        type="text"
         value={values.name}
         onChange={handleChange}
         maxLength="100"
         variant="outlined"
+        size="small"
       />
       <TextField
         id="outlined-basic"
@@ -43,37 +41,50 @@ export default function Form(props) {
         maxLength="100"
         label="Email"
         variant="outlined"
+        size="small"
       />
-      <FormControl variant="outlined" className="formControl">
-        <InputLabel id="demo-simple-select-outlined-label">Role</InputLabel>
-        <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          name="role"
-          value={values.role}
+      <TextField
+        id="outlined-basic"
+        name="password"
+        className="textField"
+        type="password"
+        value={values.password}
+        onChange={handleChange}
+        maxLength="40"
+        label="Password"
+        variant="outlined"
+        size="small"
+      />
+      <label>
+        <Checkbox
+          checked={values.terms}
           onChange={handleChange}
-          label="Role"
+          name="terms"
+          color="primary"
+        />
+        I understand and agree to the terms and conditions
+      </label>
+
+      <div className="container">
+        <Button
+          type="submit"
+          className="submit"
+          value="submit"
+          disabled={disabled}
+          variant="contained"
+          color="primary"
+          size="small"
+          endIcon={<Icon>send</Icon>}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value="CSS Bread Maker">CSS Bread Maker</MenuItem>
-          <MenuItem value="JavaScript dweller">JavaScript Dweller</MenuItem>
-          <MenuItem value="Component Picker">Component Picker</MenuItem>
-        </Select>
-      </FormControl>
-      <Button
-        type="submit"
-        className="submit"
-        value="Submit"
-        disabled={!values.name || !values.email || !values.role}
-        variant="contained"
-        color="primary"
-        size="large"
-        startIcon={<SaveIcon />}
-      >
-        Save
-      </Button>
+          submit
+        </Button>
+        <div className="errors">
+          <div>{errors.name}</div>
+          <div>{errors.email}</div>
+          <div>{errors.password}</div>
+          <div>{errors.terms}</div>
+        </div>
+      </div>
     </form>
   );
 }
