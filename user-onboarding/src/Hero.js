@@ -15,7 +15,5 @@ export default function Hero ({ details }){
             <p>roll: {details.roll}</p>
             
         </div>
-        
-        
     )
 }

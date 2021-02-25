@@ -36,7 +36,7 @@ function App() {
     axios.get('https://reqres.in/api/users')
     .then(res => {
       console.log(res.data.data, 'get')
-      setFriends(res.data.data)
+      setFriends([res.data.data, ...friends])
     })
     .catch(err => {
       debugger
