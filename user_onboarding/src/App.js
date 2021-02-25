@@ -42,30 +42,24 @@ export default function App() {
     axios.post('https://reqres.in/api/users', newUser)
     .then(res=> {
       setUsers([res.data.data, ...users])
-      setFormValues(initialFormValues)
     })
     .catch(err => {
       console.log(err)
     })
+   // setFormValues(initialFormValues)
   }
 
   const inputChange = (name, value) => {
-    yup.reach(formSchema, name).validate(value)
+    yup.reach(formSchema, name)
+    .validate(value)
     .then(()=> {
-      
       setFormErrors({...formErrors, [name]: ''})
-
-    setFormValues({
-      ...formValues,
-      [name]: value // NOT AN ARRAY
-    })})
+    })
     .catch(err => {
-      setFormErrors({...formErrors, [name]: ''});
-    });
-    setFormValues({...formValues, [name]: value});
+      setFormErrors({...formErrors, [name]: err.errors[0]})
+    })
+    setFormValues({...formValues, [name]: value})
   }
-
-  console.log(formValues);
 
   const formSubmit = () => {
     const newUser = {
