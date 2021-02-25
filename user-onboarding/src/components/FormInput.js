@@ -8,7 +8,6 @@ const useLastAndCurrentValue = (value) => {
     const [lastValue, setLastValue] = useState(value)
     const [currentValue, setCurrentValue] = useState(value)
     useEffect(() => {
-        console.log('update')
         setLastValue(lastValue)
         setCurrentValue(value)
     }, [lastValue, value])
