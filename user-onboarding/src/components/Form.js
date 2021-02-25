@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import * as yup from 'yup'
 
 // IMPORT CUSTOM COMPONENTS
 import TextInput from './TextInput'
@@ -11,19 +12,54 @@ const INITIAL_USER_FORM_DATA = {
     acceptedTerms: false
 }
 
+const INITIAL_USER_FORM_ERRORS = {
+    name: '',
+    email: '',
+    password: '',
+    acceptedTerms: ''
+}
+
+const schema = yup.object().shape({
+    name: yup.string().required("Please tell us your name"),
+    email: yup.string().email("I don't think that's an email address").required("Without your email we can't contact you"),
+    password: yup.string().required("Passwords keep you secure!"),
+    acceptedTerms: yup.boolean().required("Please accept the terms")
+})
 
 export default function Form(props) {
+    const { onSubmit } = props
+
     const [formValues, setFormValues] = useState(INITIAL_USER_FORM_DATA)
+    const [formErrors, setFormErrors] = useState(INITIAL_USER_FORM_ERRORS)
+    const [buttonDisabled, setButtonDisabled] = useState(true)
+
+    useEffect(() => {
+        schema.isValid(formValues).then(valid => {
+            setButtonDisabled(!valid)
+        })
+    })
+
     const onChange = (inputName, inputValue) => {
         setFormValues({
             ...formValues,
             [inputName]: inputValue
         })
+
+        yup.reach(schema, inputName)
+            .validate(inputValue)
+                .then(_ => {
+                    setFormErrors({ ...formErrors, [inputName]: '' })
+                })
+                .catch(err => {
+                    setFormErrors({ ...formErrors, [inputName]: err.errors[0] })
+                })
+
     }
 
     const handleSubmit = (evt) => {
         evt.preventDefault()
-        console.log(formValues)
+        
+        onSubmit(formValues)
     }
 
     return (
@@ -54,7 +90,7 @@ export default function Form(props) {
                 label="Accpet Terms"
                 handleChange={onChange}
             />
-            <button type="submit">JOIN!</button>
+            <button type="submit" disabled={buttonDisabled}>JOIN!</button>
         </form>
     )
 }
