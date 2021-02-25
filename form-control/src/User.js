@@ -12,7 +12,8 @@ const User = ({ user }) => {
         {user.favDog ? `they like ${dogs[user.favDog]}` : "They dont like dogs"}{" "}
         and his password is {user.password ? user.password : "N/A"}{" "}
       </p>
-      {user.pic ? <img src={user.pic} alt="user pic" /> : "NO PIC GIVEN"}
+
+      <img src="https://picsum.photos/200/300?grayscale" alt="user pic" />
     </div>
   );
 };

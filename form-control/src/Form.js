@@ -2,6 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { userSchema } from "./Validations/UserValidation";
 import * as yup from "yup";
+import Button from "@material-ui/core/Button";
+import SaveIcon from "@material-ui/icons/Save";
+import FormControl from "@material-ui/core/FormControl";
+import Checkbox from "@material-ui/core/Checkbox";
+import TextField from "@material-ui/core/TextField";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import { createMuiTheme } from "@material-ui/core";
 
 const Form = ({ addUser }) => {
   const [form, setForm] = useState({
@@ -9,12 +18,13 @@ const Form = ({ addUser }) => {
     email: "",
     password: "",
     favDog: "",
+    likesCheese: "",
     tos: false,
   });
 
   const [disabled, setDisabled] = useState(true);
   const [formErrors, setFormErrors] = useState({
-    name: "",
+    name: "Enter your Name",
     email: "",
     password: "",
     tos: "",
@@ -29,6 +39,7 @@ const Form = ({ addUser }) => {
       password: "",
       favDog: "",
       tos: false,
+      likesCheese: "",
     });
   };
 
@@ -52,32 +63,19 @@ const Form = ({ addUser }) => {
   };
 
   return (
-    <div>
-      <h1> Controlled Form</h1>
-      <div style={{ color: "red" }}>
-        {" "}
-        {disabled ? "Form is not ready to submit. See errors below" : ""}
-        <div>{formErrors.name}</div>
-        <div>{formErrors.email}</div>
-        <div>{formErrors.password}</div>
-        <div>{formErrors.tos}</div>
-      </div>
+    <div class="form">
       <form onSubmit={submitHandler}>
         <label>
-          {" "}
-          Name
-          <input
+          <TextField
             type="text"
             name="name"
             value={form.name}
             onChange={changeHandler}
-            placeholder="name"
+            placeholder="Name"
           />
         </label>
         <label>
-          {" "}
-          Email
-          <input
+          <TextField
             type="text"
             name="email"
             onChange={changeHandler}
@@ -86,8 +84,54 @@ const Form = ({ addUser }) => {
           />
         </label>
         <label>
+          <TextField
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={changeHandler}
+            placeholder="Password"
+          />
+        </label>
+        <br />
+        <br />
+        <span class="input">Preferred Cheese - </span>
+        <label>
           {" "}
-          Favorite Dog
+          Blue
+          <input
+            type="radio"
+            name="likesCheese"
+            value="blue"
+            checked={form.likesCheese === "blue"}
+            onChange={changeHandler}
+          />
+        </label>
+        <label>
+          {" "}
+          Cheddar
+          <input
+            type="radio"
+            name="likesCheese"
+            value="cheddar"
+            checked={form.likesCheese === "cheddar"}
+            onChange={changeHandler}
+          />
+        </label>
+        <label>
+          {" "}
+          I don't like cheese
+          <input
+            type="radio"
+            name="likesCheese"
+            value="no"
+            checked={form.likesCheese === "no"}
+            onChange={changeHandler}
+          />
+        </label>
+        <br />
+        <br />
+
+        <label class="input">
           <select value={form.favDog} onChange={changeHandler} name="favDog">
             <option value="0">Select a doggo if you like doggos</option>
             <option value="1">Lab</option>
@@ -95,29 +139,46 @@ const Form = ({ addUser }) => {
             <option value="3">Bulldog</option>
           </select>
         </label>
-        <label>
+        <br />
+        <br />
+        <br />
+        <label class="input">
           {" "}
-          Password
-          <input
-            type="password"
-            name="password"
-            value={form.password}
-            onChange={changeHandler}
-            placeholder="PW"
-          />
-        </label>
-        <label>
-          {" "}
-          Agree to ToS
-          <input
+          Agree to Terms of Service
+          <Checkbox
             type="checkbox"
             name="tos"
             checked={form.tos}
             onChange={changeHandler}
+            color="primary"
           />
         </label>
-        <input type="submit" onSubmit={submitHandler} disabled={disabled} />
+        <br />
+        <br />
+        <Button
+          size="small"
+          variant="contained"
+          color="primary"
+          type="submit"
+          onSubmit={submitHandler}
+          disabled={disabled}
+          endIcon={<SaveIcon />}
+        >
+          {" "}
+          Submit{" "}
+        </Button>
       </form>
+      <Card>
+        <CardContent>
+          <Typography>
+            {disabled ? "*Form is not ready to submit. See errors below" : ""}
+          </Typography>
+          {formErrors.name}
+          <Typography>{formErrors.email}</Typography>
+          <Typography>{formErrors.password}</Typography>
+          <Typography>{formErrors.tos}</Typography>
+        </CardContent>
+      </Card>
     </div>
   );
 };

@@ -1,16 +1,13 @@
 import * as yup from "yup";
 
 export const userSchema = yup.object().shape({
-  name: yup
-    .string()
-    .trim()
-    .required("I need a name")
-    .min(4, "your name is too short"),
+  name: yup.string().trim().required("Please enter your name").min(4),
   email: yup
     .string()
-    .email("must be an email address")
-    .required("give me email"),
+    .email("Not a valid email")
+    .required("Email Field is required"),
   favDog: yup.string(),
-  password: yup.string().min(4).max(10).required("pw is req"),
+  password: yup.string().min(4).required("pw is req"),
   tos: yup.boolean().oneOf([true], "You must agree to ToS to continue"),
+  likesCheese: yup.string(),
 });
