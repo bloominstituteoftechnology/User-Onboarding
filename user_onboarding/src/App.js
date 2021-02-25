@@ -34,19 +34,21 @@ export default function App() {
     .catch(err => {
       console.log(err);
     })
-   
   }
   // console.log(users);
 
   const postNewUser = newUser => {
     axios.post('https://reqres.in/api/users', newUser)
     .then(res=> {
-      setUsers([res.data.data, ...users])
+      const newData = [res.data, ...users];
+      console.log(res.data)
+      setUsers(newData)
+      // console.log(newData)
     })
     .catch(err => {
       console.log(err)
     })
-   // setFormValues(initialFormValues)
+    setFormValues(initialFormValues)
   }
 
   const inputChange = (name, value) => {
@@ -66,7 +68,7 @@ export default function App() {
       username: formValues.username.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      tos: ['tos',].filter(accepted => formValues[accepted])
+      tos: ['tos'].filter(accepted => formValues[accepted])
     }
     postNewUser(newUser);
   }
@@ -81,7 +83,7 @@ export default function App() {
 
   return (
     <div className='container'>
-      <header><h1>Users App</h1></header>
+      <header><h1>User Onboarding</h1></header>
 
       <Form
         values={formValues}
@@ -99,6 +101,6 @@ export default function App() {
         })
       }
     </div>
-  );
+  )
 }
 

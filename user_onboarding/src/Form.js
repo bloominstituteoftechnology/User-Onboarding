@@ -24,12 +24,12 @@ export default function Form(props){
     <form className='form container' onSubmit={onSubmit}>
         <div className='form-group submit'>
     
-    <div className='errors'>
-        <div>{errors.username}</div>
-        <div>{errors.email}</div>
-        <div>{errors.password}</div>
-        <div>{errors.tos}</div>
-    </div>
+        <div className='errors'>
+            <div>{errors.username}</div>
+            <div>{errors.email}</div>
+            <div>{errors.password}</div>
+            <div>{errors.tos}</div>
+        </div>
     
         </div>
 
