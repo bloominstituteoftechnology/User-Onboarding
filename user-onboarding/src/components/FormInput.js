@@ -4,17 +4,6 @@ import { Alert } from 'reactstrap'
 import TextInput from './TextInput'
 import Checkbox from './Checkbox'
 
-const useLastAndCurrentValue = (value) => {
-    const [lastValue, setLastValue] = useState(value)
-    const [currentValue, setCurrentValue] = useState(value)
-    useEffect(() => {
-        setLastValue(lastValue)
-        setCurrentValue(value)
-    }, [lastValue, value])
-
-    return [lastValue, currentValue]
-}
-
 const FormInput = (props) => {
     const { 
         type,
@@ -26,19 +15,18 @@ const FormInput = (props) => {
     } = props
 
     const [showError, setShowError] = useState(false)
-    const [lastValue, currentValue] = useLastAndCurrentValue(value)
 
     const onChange = (inputName, inputValue) => {
         handleChange(inputName, inputValue)
     }
 
     useEffect(() => {
-        if (error === '') {
+        if (!error) {
             setShowError(false)
-        } else if (error !== '' && lastValue !== currentValue) {
+        } else if (error) {
             setShowError(true)
         }
-    }, [lastValue, currentValue, error])
+    }, [error])
 
     const dismissError = () => {
         setShowError(false)
