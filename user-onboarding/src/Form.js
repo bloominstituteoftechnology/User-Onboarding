@@ -1,12 +1,13 @@
 import React from 'react'
 
 export default function Form(props){
-    const { values, change } = props
+    const { values, change, disabled, submit } = props
+
 
 
 
     return (
-        <form className ='the-form' >
+        <form className ='the-form' onSubmit={submit} >
         <div className='form-container'>
             <h2>Onboarding Information</h2>
             <label>Name:
@@ -41,7 +42,7 @@ export default function Form(props){
                 type='checkbox'
                 />
             </label>
-            <button>Submit Information!</button>
+            <button id='submitBtn' disabled={disabled}>Submit Information!</button>
         </div>
         </form>
     )

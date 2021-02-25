@@ -43,3 +43,18 @@
   justify-content: center;
   align-items: center;
 }
+
+.users-container{
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.user{
+  border-style: solid;
+  border-width: 4px;
+  border-color: black;
+  padding: 4px;
+  margin: 4px;
+}
