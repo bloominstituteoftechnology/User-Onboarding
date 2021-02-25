@@ -11,8 +11,16 @@ const formSchema =yup.object().shape({
         .required('Heroic Email is required'),
     roll: yup.string()
         .oneOf(['wizard', 'rogue', 'warrior'], 'Roll is required'),
-    termsOfService: yup.boolean(),
+    termsOfService: yup.string()
+    .required(),
+    password: yup.string()
+    .trim()
+    .required('Input password please')
+    .min(10, 'Password must be at least 8 letters long, include at least one uppercas and lowercase letter, at least one number and one special symble')
+
 
 })
 
 export default formSchema
+
+

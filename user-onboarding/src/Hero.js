@@ -10,7 +10,7 @@ export default function Hero ({ details }){
         
         <div>
             <h3>{details.name}</h3>
-            <img src={details.avatar} />
+            <img src={details.avatar} alt={details.name} />
             <p>Email: {details.email}</p>
             <p>roll: {details.roll}</p>
             

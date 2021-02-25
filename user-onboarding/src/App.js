@@ -57,23 +57,40 @@ function App() {
     setFormValues(initialFormValues)
   }
 
+  const inputChange = (name, value) => {
+    yup.reach(formSchema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({...formErrors, [name]: ''})
+      })
+      .catch(err =>{
+        setFormErrors({...formErrors, [name]: err.errors[0]})
+      })
+      setFormValues({
+        ...formValues, 
+        [name]: value
+      })
+  }
+
   const formSubmit = () => {
     const newFriend = {
       username:formValues.username.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
+      termsOfService:formValues.termsOfService,
       roll: formValues.roll.trim()
     }
     postNewFriend(newFriend)
   }
 
-  const inputChange = (name,value) => {
-
-  }
 
   useEffect(() => {
     getFriends()
   }, [])
+
+  useEffect(() => {
+    formSchema.isValid(formValues).then(valid => setDisabled(!valid))
+  })
 
   return (
     <div className="App">

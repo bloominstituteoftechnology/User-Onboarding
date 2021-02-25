@@ -22,17 +22,19 @@ export default function Form (props) {
         submit()
     }
 
-
-
     return(
         <div>
-          <form className='formContainer'>
+          <form className='formContainer' onSubmit={onSubmit}>
               <div className='formGroup'>
                   <h2>Lets build a FRIEND!</h2>
                   
                   <div className='errors'>
-
+                    <div>{errors.username}</div>
+                    <div>{errors.email}</div>
+                    <div>{errors.role}</div>
+                    <div>{errors.civil}</div>
                   </div>
+
                   <div className='formGroup inputs'>
                       <h3>Tell me about yourself...</h3>
                       <label>Name
@@ -63,6 +65,7 @@ export default function Form (props) {
                           <input 
                           name= 'termsOfService'
                           type= 'checkbox'
+                          value='agree'
                           onChange={onChange}
                           checked={values.termsOfService}
                           />
@@ -79,7 +82,7 @@ export default function Form (props) {
                           </select>
                       </label>
                   </div>
-                  <button >Submit</button>
+                  <button disabled={disabled}>Submit</button>
               </div>
           </form>
         </div>
