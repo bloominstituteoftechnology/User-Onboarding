@@ -1,0 +1,59 @@
+.App {
+  text-align: center;
+  padding-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+* {
+  box-sizing: border-box;
+}
+
+Form {
+  width: 40%;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: space-between;
+  justify-items: center;
+  margin: 0;
+}
+
+.textField {
+  flex-basis: 40%;
+  padding: 10px;
+}
+
+.submit {
+  flex-basis: 100%;
+  margin-bottom: 50px;
+}
+
+.formControl {
+  margin-top: 10px;
+  display: block;
+  flex-basis: 100%;
+}
+
+.container {
+  width: 60vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+pre {
+  transform: scale(0.7);
+  margin: 40px 0 0 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
