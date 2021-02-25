@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Container } from 'reactstrap'
 import axios from 'axios'
 
 import Form from './components/Form'
@@ -23,10 +24,10 @@ function App() {
   }
 
   return (
-    <>
+    <Container>
       <pre>{JSON.stringify(users)}</pre>
       <Form onSubmit={onSubmit} />
-    </>
+    </Container>
   )
 }
 
