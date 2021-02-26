@@ -20,7 +20,7 @@ export default function Form() {
 
   const postnewHire = (newHire) => {
     axios
-      .post("http://reqres.in/api/users", newHire)
+      .post("https://reqres.in/api/users", newHire)
       .then((res) => {
         setFriends([res.data, ...friends]);
         console.table("API SUCCESS POST", res.data);
