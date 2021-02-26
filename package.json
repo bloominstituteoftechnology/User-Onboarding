@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "yup-password": "^0.2.1"
+  }
+}
