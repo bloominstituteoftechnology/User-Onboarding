@@ -59,18 +59,19 @@ describe('user onboard app', ()=>{
             termsOfService().click()
               .should('have.value', 'agree')
             roll().select('Wizard')
+            submitBtn().should('not.be.disabled')
             submitBtn().click()
             cy.contains('IndyDog').should('exist')
         })
-        it('Lets try to fill out the form but no password, this test should fail', () => {
-            //intentional failing test
+        it('Lets try to fill out the form but no password', () => {
+
             cy.contains('IndyDog').should('not.exist')
             userNameInput().type('IndyDog')
             emailInput().type('dogzilla@dogmail.com')
             termsOfService().click()
             roll().select('Wizard')
-            submitBtn().click()
-            cy.contains('IndyDog').should('exist')
+            submitBtn().should('be.disabled')
+            cy.contains('IndyDog').should('not.exist')
         })
 
         
