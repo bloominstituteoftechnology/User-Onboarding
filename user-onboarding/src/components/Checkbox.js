@@ -12,7 +12,7 @@ const Checkbox = (props) => {
 
     return (
         <FormGroup check>
-            <Input type="checkbox" checked={checked} name={name} onChange={onChange} />{' '}
+            <Input type="checkbox" value={checked}  name={name} onChange={onChange} />{' '}
             <Label htmlFor={name} check>
               {label}
             </Label>

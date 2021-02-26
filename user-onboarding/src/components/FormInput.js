@@ -10,6 +10,7 @@ const FormInput = (props) => {
         name,
         label,
         value,
+        checked,
         handleChange,
         error
     } = props
@@ -44,6 +45,7 @@ const FormInput = (props) => {
                 name={name}
                 label={label}
                 value={value}
+                checked={checked}
                 handleChange={onChange}
             />
             <Alert 

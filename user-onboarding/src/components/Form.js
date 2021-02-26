@@ -61,6 +61,10 @@ export default function Form(props) {
         evt.preventDefault()
         
         onSubmit(formValues)
+        setFormValues(INITIAL_USER_FORM_DATA)
+        // Needed for reactstrap styling :(
+        const _checkbox = document.querySelector('input[name=acceptedTerms]')
+        _checkbox.checked = false
     }
 
     return (
@@ -91,12 +95,13 @@ export default function Form(props) {
             <FormInput
                 name="acceptedTerms"
                 value={formValues.acceptedTerms}
+                checked={formValues.acceptedTerms}
                 label="Accept Terms"
                 handleChange={onChange}
                 error={formErrors.acceptedTerms}
                 type="checkbox"
             />
-            <Button style={{ marginTop: '1rem' }}type="submit" disabled={buttonDisabled}>JOIN!</Button>
+            <Button style={{ marginTop: '1rem' }} type="submit" disabled={buttonDisabled}>JOIN!</Button>
         </ReactStrapForm>
     )
 }
