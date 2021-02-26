@@ -78,7 +78,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    formSchema.isValid(formValues).then(() => setDisabled(false));
+    formSchema.isValid(formValues).then(valid => setDisabled(!valid));
   }, [formValues])
 
   return (
