@@ -15,12 +15,12 @@ function Form(props) {
       return (
         <form onSubmit={onSubmit}>
             <h2>Add a Friend</h2>
-            <button>submit</button>
+            <button id = "submit">submit</button>
             <div>
                 <div>{errors.username}</div>
                 <div>{errors.email}</div>
-                <div>{errors.role}</div>
-                <div>{errors.civil}</div>
+                <div>{errors.password}</div>
+                <div>{errors.agreed}</div>
             </div>
             <label>Username&nbsp;
                 <input value={values.username} onChange={onChange} name='username' type='text'/>
