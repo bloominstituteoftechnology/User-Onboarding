@@ -58,7 +58,7 @@ function Form(props){
             <label> Pushing this you agree with our terms of service
            <input name='terms' type='checkbox' checked={value.terms} onChange={change}/>
             </label>
-            <button disabled={disabled}>Submit</button>
+            <button id={'submitButton'} disabled={disabled}>Submit</button>
 
 
 
