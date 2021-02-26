@@ -63,7 +63,7 @@ function App(props) {
           />
         </label>
 
-        <button disabled={disabled}>submit</button>
+        <button id = 'submit' disabled={disabled}>submit</button>
 
         <div className='errors'>
           <div>{errors.username}</div>
