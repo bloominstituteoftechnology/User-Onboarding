@@ -41,7 +41,9 @@ describe('user onboard app', ()=>{
             roll()
               .should('have.value', '')
               .select('Wizard')
-              .should('.have.value', 'wizard')
+              .should('have.value', 'wizard')
+              .select('--Select a Roll--')
+              .should('have.value', '')
 
         })
 
@@ -50,8 +52,28 @@ describe('user onboard app', ()=>{
             //click TOS then select roll
             //click the TOS a second time
             //click the submit button to see if you can submit with the TOS unclicked
-
+            cy.contains('IndyDog').should('not.exist')
+            userNameInput().type('IndyDog')
+            emailInput().type('dogzilla@dogmail.com')
+            passwordInput().type('dOgPaSsWoRd')
+            termsOfService().click()
+              .should('have.value', 'agree')
+            roll().select('Wizard')
+            submitBtn().click()
+            cy.contains('IndyDog').should('exist')
         })
+        it('Lets try to fill out the form but no password, this test should fail', () => {
+            //intentional failing test
+            cy.contains('IndyDog').should('not.exist')
+            userNameInput().type('IndyDog')
+            emailInput().type('dogzilla@dogmail.com')
+            termsOfService().click()
+            roll().select('Wizard')
+            submitBtn().click()
+            cy.contains('IndyDog').should('exist')
+        })
+
+        
     })
 
 })
