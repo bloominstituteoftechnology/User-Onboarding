@@ -16,7 +16,7 @@ const formSchema = yup.object().shape({
         .min(3, 'name must be 3 characters long'),
 
    // Checkboxes are not required
-   term_of_Service: yup.boolean(),
+   termOfService: yup.boolean(),
     
 })
 

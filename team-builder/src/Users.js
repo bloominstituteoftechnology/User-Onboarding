@@ -19,11 +19,11 @@ function Users({ details }) {
       
       
       {/* {
-        !!details.term_of_Service && !!details.term_of_Service.length &&
+        !!details.termOfService && !!details.termOfService.length &&
         <div>
           Term of Service:
           
-            {details.term_of_Service.map((like, idx) => <li key={idx}>{like}</li>)}
+            {details.termOfService.map((like, idx) => <li key={idx}>{like}</li>)}
           
         </div>
       } */}

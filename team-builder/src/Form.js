@@ -25,8 +25,8 @@ function Form(props) {
     return (
       <form className='form container' onSubmit={onSubmit}>
 
-        <div className = 'form-submit'>
-          <button disabled={disabled}>submit</button>
+        <div className = 'formSubmit'>
+          <button id ="submitBtn"disabled={disabled}>submit</button>
 
           <div className='errors'>
           {/* 🔥 RENDER THE VALIDATION ERRORS HERE */}
@@ -69,9 +69,9 @@ function Form(props) {
                 <label>Term of Service
                     <input 
                         type='checkbox'
-                        name='term_of_Service'
+                        name='termOfService'
                         onChange={onChange}
-                        checked={values.term_of_Service}
+                        checked={values.termOfService}
                     />
                 </label>
           </div>

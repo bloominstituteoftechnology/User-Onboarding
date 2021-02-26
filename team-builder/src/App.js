@@ -12,7 +12,7 @@ const initialFormValues = {
   email:'',
   password:'',
   ///// CHECKBOXES /////
-  term_of_Service: false,
+  termOfService: false,
 }
 const initialFormErrors = {
   ///// TEXT INPUT ERRORS /////
