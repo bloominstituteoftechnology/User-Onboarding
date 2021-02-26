@@ -31,9 +31,14 @@ button{
 
 function Form(props){
     const {members, value, change, submit,disabled,errors} = props;
+    const onSubmit = e =>{
+        e.preventDefault()
+        submit()
+    }
+
 
     return (
-        <StyleForm onSubmit={submit}>
+        <StyleForm onSubmit={onSubmit}>
             <h2>hello there</h2>
             <div className='errors'>
           <div>{errors.name}</div>
@@ -51,7 +56,7 @@ function Form(props){
            <input name='password' type='password' value={value.password} placeholder="enter your password" onChange={change}/>
             </label>
             <label> Pushing this you agree with our terms of service
-           <input name='terms' type='checkbox' value={value.terms} onChange={change}/>
+           <input name='terms' type='checkbox' checked={value.terms} onChange={change}/>
             </label>
             <button disabled={disabled}>Submit</button>
 

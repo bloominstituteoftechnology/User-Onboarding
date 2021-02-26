@@ -10,7 +10,7 @@ const initialFormValues = {
   name:'',
   email:'',
   password:'',
-  terms:false,
+  terms: false,
 }
 const initialFormErrors ={
   name:'',
@@ -28,8 +28,10 @@ function App() {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled,setDisabled] = useState(initialDisabled)
   
+  
+  
   const change = e => {
-    e.preventDefault()
+
     const {name,value,checked,type} = e.target;
     const valueToUse = type ==='checkbox' ? checked : value;
     inputChange(name,valueToUse)
@@ -82,11 +84,11 @@ function App() {
     const newMember ={
         name: formValues.name.trim(),
         email: formValues.email.trim(),
-        password: formValues.password.trim(),
+        password: formValues.password,
         terms: formValues.terms,
     }
     postMember(newMember)
-    setMembers(members.concat(newMember))
+    // setMembers(members.concat(newMember))
   }
   useEffect(() => {
     formSchema.isValid(formValues).then(valid => setDisabled(!valid))

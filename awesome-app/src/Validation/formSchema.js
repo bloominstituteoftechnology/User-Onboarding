@@ -16,7 +16,7 @@ const formSchema = yup.object().shape({
         /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
         "Password must contain at least 8 characters, one uppercase, one number and one special case character"
       ),
-    terms: yup.boolean().required('please agree with our policy'),
+    terms: yup.boolean().oneOf([true],'please agree with our policy'),
 })
 
 export default formSchema
