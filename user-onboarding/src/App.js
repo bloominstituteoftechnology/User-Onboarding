@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import User from './User'
 import Form from './Form'
 
+// 🔥  IMPORT THE SCHEMA, AXIOS AND YUP
 // 🔥  FLESH OUT Form.js
 // 🔥  FLESH THE SCHEMA IN ITS OWN FILE
-// 🔥  IMPORT THE SCHEMA, AXIOS AND YUP
+
 import axios from 'axios'
 import formSchema from './formSchema'
 import * as yup from 'yup'
@@ -19,15 +20,17 @@ const initialFormValues = {
   ///// CHECKBOXES /////
   Agree: false,
   Disagree: false,
+  Skip: false
   
 }
+//LET'S INITIALIZE FORM ERRORS
 const initialFormErrors = {
   name: '',
   email: '',
   password: '',
   Agree: false,
   Disagree:false,
-  Skip: false,
+  Skip: false
  
 }
 const initialUsers = []
@@ -36,14 +39,14 @@ const initialDisabled = true
 
 export default function App() {
   //////////////// STATES ////////////////
-  const [users, setUsers] = useState(initialUsers)          // array of friend objects
+  const [users, setUsers] = useState(initialUsers)          // array of user objects
   const [formValues, setFormValues] = useState(initialFormValues) // object
   const [formErrors, setFormErrors] = useState(initialFormErrors) // object
   const [disabled, setDisabled] = useState(initialDisabled)       // boolean
   //////////////// HELPERS ////////////////
   const postNewUser = newUser => {
-    // 🔥 IMPLEMENT! ON SUCCESS ADD NEWLY CREATED MEMBER TO STATE
-    //    helper to [POST] `newMember` to `http://buddies.com/api/friends`
+    // 🔥 IMPLEMENT! ON SUCCESS ADD NEWLY CREATED USER TO STATE
+    //    helper to [POST] `newUser` to `https://reqres.in/api/users`
     //    and regardless of success or failure, the form should reset
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
@@ -81,7 +84,7 @@ export default function App() {
       // 🔥 AGREE TO THE TERMS
       TermsOfService: ['Agree', 'Disagree','Skip'].filter(term => formValues[term])
     }
-    // 🔥 STEP 8- POST NEW MEMBER USING HELPER
+    // 🔥POST NEW USER USING HELPER
     postNewUser(newUser)
   }
 

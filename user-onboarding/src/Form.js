@@ -9,7 +9,7 @@ export default function Form(props) {
   }
 
   const onChange = evt => {
-    /* 🔥 FIX THIS SO IT ALSO WORKS WITH CHECKBOXES */
+    /* 🔥 LET'S SPECIFY SO IT ALSO WORKS WITH CHECKBOXES */
     const { name, value, type, checked } = evt.target
     const valueToUse = type === 'checkbox' ? checked : value
     change(name, valueToUse)
@@ -52,7 +52,7 @@ export default function Form(props) {
             value={values.email}
             onChange={onChange}
             name='email'
-            type='text'
+            type='email'
           />
         </label>
         
@@ -61,7 +61,7 @@ export default function Form(props) {
             value={values.password}
             onChange={onChange}
             name='password'
-            type='text'
+            type='password'
           />
         </label>
         

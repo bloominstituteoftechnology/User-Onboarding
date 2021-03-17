@@ -9,15 +9,13 @@ function User({ details }) {
     <div className='user container'>
       <h2>{details.name}</h2>
       <p>Email: {details.email}</p>
-      <p>password: {details.password}</p>
       
-
       {
         !!details.TermsOfService && !!details.TermsOfService.length &&
         <div>
           TermsOfService:
           <ul>
-            {details.TermsOfService.map((like, idx) => <li key={idx}>{like}</li>)}
+            {details.TermsOfService.map((like, id) => <li key={id}>{like}</li>)}
           </ul>
         </div>
       }
