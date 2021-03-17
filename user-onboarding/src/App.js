@@ -4,6 +4,7 @@ import Form from './components/Form'
 import User from './components/Users'
 import * as yup from 'yup'
 import { formSchema } from './Schema/formSchema'
+import axios from 'axios';
 
 const initialFormValues = {
   name: '',
@@ -28,7 +29,7 @@ function App() {
   const [ users, setUsers ] = useState(initialUsers)
   const [ formErrors, setFormErrors ] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
-
+  const [ post, setPost ] = useState([])
   const inputChange = (name, value) => {
 
     yup.reach(formSchema, name)
@@ -41,8 +42,16 @@ function App() {
     })
   }
 
-  const formSubmit = e => {
+  
 
+  const formSubmit = e => {
+      axios
+      .post("https://reqres.in/api/users")
+      .then( res => {
+        setPost(res.data);
+        console.log("Sucsess",res)
+      })
+      .catch( err => console.log(err))
     setUsers([...users, formValues])
 
   }
@@ -67,7 +76,7 @@ useEffect(() => {
       {
         users.map(user => {
           return(
-          <User info={user} errors={formErrors} />
+          <User info={user} />
           )
         })
       }
