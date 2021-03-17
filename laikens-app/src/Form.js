@@ -1,16 +1,18 @@
 function Form (props){
 
   const {onChange} = props
-  const { name, password, email, serviceTerms } = props;
+  const { name, password, email, serviceTerms } = props.form
+  const {onSubmit} = props;
   return (
     <div>
-      <form >
+      <form name="userForm" onSubmit = {onSubmit} >
         <input
          onChange={onChange}
           placeholder="First Name"
           id="firstNameInput"
           name="firstName"
           type="text"
+          value= {name}
         />
         <br />
         
@@ -20,6 +22,7 @@ function Form (props){
           id="emailInput"
           name="Email"
           type="Email"
+          value = {email}
         />
         <br />
         
@@ -29,6 +32,7 @@ function Form (props){
           id="passwordInput"
           name="password"
           type="text"
+          value = {password}
         />
         <br  />
         
@@ -36,6 +40,8 @@ function Form (props){
         <input 
         type="checkbox"
          name="serviceTerms"
+         checked= {serviceTerms}
+         onChange= {onChange}
    />
          </label>
          <br  />

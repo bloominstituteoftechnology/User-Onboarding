@@ -1,12 +1,12 @@
-import React from 'react';
-
-const user =[
-    {
-    id:1,
-    firstName: 'John Doe',
-    Email:'DoeJohn@gmail.com',
-    Password: '1234',
-    
-    }
-]
-export default user;
+function User (props){
+const {user} = props;
+return(
+    <div className='user-list'>
+        name: {user.name}
+        password: {user.password}
+        Email: {user.Email}
+        serviceTerms: {user.serviceTerms}
+    </div>
+);
+}
+export default User;
