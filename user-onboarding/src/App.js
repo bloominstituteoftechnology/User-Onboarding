@@ -5,10 +5,6 @@ import User from './components/Users'
 import * as yup from 'yup'
 import { formSchema } from './Schema/formSchema'
 
-formSchema.isValid({
-
-})
-
 const initialFormValues = {
   name: '',
   email: '',
@@ -34,15 +30,11 @@ function App() {
   const [disabled, setDisabled] = useState(initialDisabled)
 
   const inputChange = (name, value) => {
-    yup
-    .reach(formSchema, name)
 
-    .vaidate(value)
-
+    yup.reach(formSchema, name)
+    .validate(value)
     .then(() => setFormErrors({...formErrors, [name]: ''}))
-
-    .catch(({errors}) => setFormErrors({...formErrors, [name]: errors[0]}))
-    
+    .catch(({errors}) => setFormErrors({...errors, [name]: formErrors[0]}))
     setFormValues({
       ...formValues,
       [name]: value
@@ -50,12 +42,7 @@ function App() {
   }
 
   const formSubmit = e => {
-    const newUser = {
-      name: formValues.name.trim(),
-      email: formValues.email.trim(),
-      password: formValues.password.trim(),
-      terms: ['terms']
-    }
+
     setUsers([...users, formValues])
 
   }
@@ -72,7 +59,7 @@ useEffect(() => {
       <Form 
       change={inputChange} 
       submit={formSubmit} 
-      values={formValues} 
+      values={formValues}
       errors={formErrors}
       disabled={disabled}
       />
@@ -80,7 +67,7 @@ useEffect(() => {
       {
         users.map(user => {
           return(
-          <User info={user} />
+          <User info={user} errors={formErrors} />
           )
         })
       }

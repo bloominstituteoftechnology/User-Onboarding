@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import * as yup from 'yup'
+import React from "react";
 
  function Form(props) {
 
@@ -11,7 +10,6 @@ import * as yup from 'yup'
         disabled,
     } = props
 
-    const [ formValues, setFormValues ] = useState(values)
     const onSubmit = e => {
         e.preventDefault();
         submit()
@@ -21,15 +19,16 @@ import * as yup from 'yup'
         const { name, value, checked, type } = e.target
         const v = type === 'checkbox' ? checked : value
         change(name, v)
-    
     }
 
     return(
         <div>
             <form onSubmit={onSubmit}>
-
+            <div>{errors.name}</div>
+            <div>{errors.email}</div>
+            <div>{errors.password}</div>
+            <div>{errors.terms}</div>
                 <button disabled={disabled}>Submit</button>
-
                 <label>Name
                 <input
                     value={values.name}
@@ -57,10 +56,7 @@ import * as yup from 'yup'
                     type='checkbox'
 
                 />
-                <div>{errors.name}</div>
-                <div>{errors.email}</div>
-                <div>{errors.password}</div>
-                <div>{errors.terms}</div>
+
             </form>
         </div>
     )
