@@ -1,103 +1,49 @@
-import React, { useState } from "react";
-import axios from "axios";
-import user from "./User";
-const initialFormValues = {
-  firstName: "",
-  Email: "",
-  Password: "",
-  serviceTerms:false,
-};
+function Form (props){
 
-export default function Form() {
-  const [newUser, setNewUser] = useState();
-  const [formValues, setFormValues] = useState(initialFormValues);
-  // const[formErrors, setFormErrors]= useState(initialFormErrors);
-
-  const getUser = () => {
-    axios
-      .get("http://regres.in/api/users")
-      .then((res) => {
-        setNewUser(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const postNewUser = newUser => {
-    axios
-      .post("http://regres.in/api/users", newUser)
-      .then((res) => {
-        setNewUser([res.data, ...user]);
-        console.log("Api success", res.data);
-      })
-      .catch((err) => {
-        console.log("error", err);
-      });
-    setFormValues(initialFormValues);
-  };
-  const submit = (e) => {
-    e.preventDefault();
-
-    const toBeUpdated = {
-      firstName: formValues.firstName,
-      Email: formValues.Email,
-      Password: formValues.Password,
-    };
-    setNewUser(...user, toBeUpdated);
-    setFormValues(initialFormValues);
-  };
-
-  const onChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const valueToUse = type === 'checkbox' ? checked : value
-    // change(name, valueToUse)
-  };
-
+  const {onChange} = props
+  const { name, password, email, serviceTerms } = props;
   return (
     <div>
-      <form onSubmit={submit}>
+      <form >
         <input
-          onChange={onChange}
-          value={formValues.firstName}
+         onChange={onChange}
           placeholder="First Name"
           id="firstNameInput"
           name="firstName"
           type="text"
         />
+        <br />
+        
         <input
           onChange={onChange}
-          value={formValues.Email}
           placeholder="Email"
           id="emailInput"
           name="Email"
           type="Email"
         />
+        <br />
+        
         <input
-          onChange={onChange}
-          value={formValues.Password}
-          placeholder="Password"
+         onChange={onChange}
+          placeholder="password"
           id="passwordInput"
-          name="Password"
+          name="password"
           type="text"
         />
+        <br  />
+        
         <label> service Terms
-        <input onChange={onChange} 
+        <input 
         type="checkbox"
          name="serviceTerms"
-         checked={formValues.serviceTerms} />
+   />
          </label>
+         <br  />
+         
 
         <button type="submit">submit</button>
       </form>
-      {user &&
-        user.map((users, idx) => (
-          <div style={{ border: ".15rem solid black" }} key={idx}>
-            <h3>{users.firstName}</h3>
-            <p>{users.Email}</p>
-            <p>{users.Password}</p>
-          </div>
-        ))}
     </div>
   );
 }
+export default Form;
