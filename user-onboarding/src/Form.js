@@ -1,13 +1,7 @@
 import React from 'react'
 
 export default function Form(props) {
-  const {
-    values,
-    submit,
-    change,
-    disabled,
-    errors,
-  } = props
+  const {values,submit,change,disabled,errors,} = props
 
   const onSubmit = evt => {
     evt.preventDefault()
@@ -24,7 +18,7 @@ export default function Form(props) {
   return (
     <form className='form container' onSubmit={onSubmit}>
       <div className='form-group submit'>
-        <h2>Add a Member</h2>
+        <h2>Add User</h2>
 
         {/* 🔥 DISABLE THE BUTTON */}
         <button disabled={disabled}>submit</button>
@@ -35,6 +29,8 @@ export default function Form(props) {
           <div>{errors.email}</div>
           <div>{errors.password}</div>
           <div>{errors.Agree}</div>
+          <div>{errors.Disagree}</div>
+          <div>{errors.Skip}</div>
         </div>
       </div>
 

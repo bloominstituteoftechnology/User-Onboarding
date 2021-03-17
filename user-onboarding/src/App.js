@@ -25,6 +25,9 @@ const initialFormErrors = {
   name: '',
   email: '',
   password: '',
+  Agree: false,
+  Disagree:false,
+  Skip: false,
  
 }
 const initialUsers = []
@@ -38,11 +41,11 @@ export default function App() {
   const [formErrors, setFormErrors] = useState(initialFormErrors) // object
   const [disabled, setDisabled] = useState(initialDisabled)       // boolean
   //////////////// HELPERS ////////////////
-  const postNewMember = newMember => {
+  const postNewUser = newUser => {
     // 🔥 IMPLEMENT! ON SUCCESS ADD NEWLY CREATED MEMBER TO STATE
     //    helper to [POST] `newMember` to `http://buddies.com/api/friends`
     //    and regardless of success or failure, the form should reset
-    axios.post('https://reqres.in/api/users', newMember)
+    axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
         setUsers([res.data, ...users])
       })
@@ -75,18 +78,17 @@ export default function App() {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      
       // 🔥 AGREE TO THE TERMS
       TermsOfService: ['Agree', 'Disagree','Skip'].filter(term => formValues[term])
     }
     // 🔥 STEP 8- POST NEW MEMBER USING HELPER
-    postNewMember(newUser)
+    postNewUser(newUser)
   }
 
   //////////////// SIDE EFFECTS ////////////////
   
   useEffect(() => {
-    // 🔥 STEP 9- ADJUST THE STATUS OF `disabled` EVERY TIME `formValues` CHANGES
+    // 🔥 ADJUST THE STATUS OF `disabled` EVERY TIME `formValues` CHANGES
     formSchema.isValid(formValues).then(valid => setDisabled(!valid))
   }, [formValues])
 

@@ -14,10 +14,9 @@ const formSchema = yup.object().shape({
         .required('Password is required, please fill out.'),   
     
    // Checkboxes are required
-    Agree: yup.boolean()
-    .required(true,'must be checked'),
-    Disagree: yup.boolean(),
-    Skip: yup.boolean()
+    Agree: yup.boolean().oneOf([true],'Must Accept Terms of Service'),
+    Disagree: yup.boolean().oneOf([false],'Must accept Terms of Service'),
+    Skip: yup.boolean().oneOf([false],'Must Accept Terms of Service'),
     
 })
 
