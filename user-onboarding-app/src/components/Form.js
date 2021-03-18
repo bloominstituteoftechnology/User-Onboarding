@@ -2,58 +2,44 @@ import React, { useState } from 'react';
 
 export default function UserForm(props) {
 
-    const { values, update, submit } = props
-
-    const [form, setForm] = useState({terms: false });
-
-    const onChange = event => {
-        const { name, value } = event.target
-        update(name, value)
-        const { checked } = event.target;
-        // const updatedInfo = type === 'checkbox' ? checked: value;
-    }
-
-    const onSubmit = event => {
-        event.preventDefault()
-        submit()
-    }
+    const { formValues, updateForm, submitForm } = props
 
     return(
-        <form className='form-container'>
+        <form className='form-container' onSubmit={submitForm}>
             <div className='form-group inputs'>
                 <label>Name
                     <input 
                         type='text'
-                        value={values.name}
+                        value={formValues.name}
                         placeholder='Name'
                         name='name' maxLength='30'
-                        onChange={onChange}
+                        onChange={updateForm}
                     />
                 </label>
                 <label>Email
                     <input 
                         type='text'
-                        value={values.email}
+                        value={formValues.email}
                         placeholder='Email'
                         name='email' maxLength='50'
-                        onChange={onChange}
+                        onChange={updateForm}
                     />
                 </label>
                 <label>Password
                     <input 
                         type='text'
-                        value={values.password}
+                        value={formValues.password}
                         placeholder='Password'
                         name='password' maxLength='25'
-                        onChange={onChange}
+                        onChange={updateForm}
                     />
                 </label>
                 <label>Terms and Conditions
                     <input
                         name='terms'
                         type='checkbox'
-                        checked={form.terms}
-                        onChange={onChange}
+                        checked={formValues.terms}
+                        onChange={updateForm}
                     />
                 </label>
                 <div className='submit'>
