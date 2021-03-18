@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import UserForm from './components/Form'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const initialFormValues = {
+  name: '',
+  email: '',
+  password: '',
 }
 
-export default App;
+export default function App() {
+  const [users, setUsers] = useState([])
+
+  const [formValues, setForms] = useState(initialFormValues)
+
+  const updateForm = (inputName, inputValue) => {
+    setForms({...formValues, [inputName]: inputValue})
+  }
+
+  const submitForm = () => {
+    const newUser = {
+      name: formValues.name.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim()
+    }
+
+    setUsers([...users, newUser])
+    setForms(initialFormValues)
+  }
+
+  return (
+    <div className="container">
+      <h1>User Onboarding</h1>
+
+      <UserForm 
+        values={formValues}
+        update={updateForm}
+        submit={submitForm}
+      />
+    </div>
+  )
+}
