@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import Form from './components/Form'
-import User from './components/Users'
-import * as yup from 'yup'
-import { formSchema } from './Schema/formSchema'
+import Form from './components/Form';
+import User from './components/Users';
+import * as yup from 'yup';
+import { formSchema } from './Schema/formSchema';
 import axios from 'axios';
 
 const initialFormValues = {
@@ -42,14 +42,12 @@ function App() {
     })
   }
 
-  
-
   const formSubmit = e => {
       axios
       .post("https://reqres.in/api/users")
       .then( res => {
         setPost(res.data);
-        console.log("Sucsess",res)
+        console.log("Firing",res)
       })
       .catch( err => console.log(err))
     setUsers([...users, formValues])
