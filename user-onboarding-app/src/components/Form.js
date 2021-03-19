@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function UserForm(props) {
 
-    const { formValues, updateForm, submitForm } = props
+    const { formValues, updateForm, submitForm, disabled, errors } = props
 
     return(
         <form className='form-container' onSubmit={submitForm}>
@@ -43,7 +43,14 @@ export default function UserForm(props) {
                     />
                 </label>
                 <div className='submit'>
-                    <button>submit</button>
+                    <button disabled={disabled}>submit</button>
+
+                    <div className='errors'>
+            
+                        <div>{errors.name}</div>
+                        <div>{errors.email}</div>
+                        <div>{errors.password}</div>
+                    </div>
                 </div>
             </div>
         </form>

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import UserForm from './components/Form'
-import User from './components/User'
+import * as yup from 'yup'
 import axios from 'axios'
+
+import UserForm from './components/Form'
+
+// better way
+// import User from './components/User'
+
+import { formSchema } from './validation/formSchema'
 
 const initialFormValues = {
   name: '',
@@ -10,30 +16,44 @@ const initialFormValues = {
   terms: false
 }
 
-export default function App() {
-  const [users, setUsers] = useState([])
+const initialFormErrors = {
+  name: '',
+  email: '',
+  password: '',
+}
 
-  const [formValues, setForms] = useState(initialFormValues)
+const initialUsers = []
+const initialDisabled = true
+
+export default function App() {
+  const [users, setUsers] = useState(initialUsers)
+  const [formValues, setFormValues] = useState(initialFormValues)
+  const [formErrors, setFormErrors] = useState(initialFormErrors)
+  const [disabled, setDisabled] = useState(initialDisabled)
 
   const updateForm = (event) => {
     const { name, value, type, checked } = event.target
     const updatedInfo = type === 'checkbox' ? checked: value;
-    setForms({...formValues, [name]: updatedInfo})
+    setFormValues({...formValues, [name]: updatedInfo})
+    yup.reach(formSchema, name)
+      .validate(value)
+      .then(() => setFormErrors({...formErrors, [name]: ''}))
+      .catch(({errors}) => setFormErrors({...formErrors, [name]: errors[0]}))
   }
 
   const submitForm = (event) => {
     event.preventDefault()
     const newUser = {
-      name: formValues.name,
-      email: formValues.email,
-      password: formValues.password,
+      name: formValues.name.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim(),
       terms: formValues.terms
     }
     axios.post('https://reqres.in/api/users', newUser)
     .then(res => {
       console.log(res.data)
       setUsers([...users, res.data])
-      setForms(initialFormValues)
+      setFormValues(initialFormValues)
     })
   }
 
@@ -41,6 +61,11 @@ export default function App() {
   // useEffect(() => {
   //   console.log(users)
   // }, [users])
+
+  useEffect(() => {
+    formSchema.isValid(formValues)
+      .then(valid => setDisabled(!valid))
+  })
 
   return (
     <div className="container">
@@ -50,15 +75,20 @@ export default function App() {
         formValues={formValues}
         updateForm={updateForm}
         submitForm={submitForm}
+        disabled={disabled}
+        errors={formErrors}
       />
 
-      {
+{
+  JSON.stringify(users)
+}
+      {/* {
         users.map(user => (
           <User 
             user={user}
           />
         ))
-      }
+      } */}
     </div>
   )
 }
