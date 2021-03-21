@@ -60,7 +60,7 @@ export default function App() {
 
   //////////////// EVENT HANDLERS ////////////////
   const inputChange = (name, value) => {
-    // 🔥 STEP 10- RUN VALIDATION WITH YUP
+    // 🔥 RUN VALIDATION WITH YUP
     yup.reach(formSchema, name)
       .validate(value)
       .then(() => {

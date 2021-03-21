@@ -1,7 +1,7 @@
 import React from 'react'
 
 function User({ details }) {
-  if (!details) {
+  if(!details) {
     return <h3>Working fetching your member&apos;s details...</h3>
   }
 
@@ -9,7 +9,7 @@ function User({ details }) {
     <div className='user container'>
       <h2>{details.name}</h2>
       <p>Email: {details.email}</p>
-      
+    
       {
         !!details.TermsOfService && !!details.TermsOfService.length &&
         <div>
