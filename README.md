@@ -8,11 +8,11 @@ We've seen many different styles of form management by now -- simple to complex.
 
 ### Task 1: Set Up The Project
 
-- [ ] Start off by installing a blank React app by running `npx create-react-app <app-name> --use-npm`.
-- [ ] Using `npm`, add the following as dependencies inside your React app:
+- [X] Start off by installing a blank React app by running `npx create-react-app <app-name> --use-npm`.
+- [X] Using `npm`, add the following as dependencies inside your React app:
   - `yup`
   - `axios`
-- [ ] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
+- [X] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
 
 ### Task 2: MVP
 
@@ -20,11 +20,11 @@ We've seen many different styles of form management by now -- simple to complex.
 
 We want to create a form to onboard a new user to our system. We need _at least_ the following pieces of information about our new user:
 
-- [ ] Name
-- [ ] Email
-- [ ] Password
-- [ ] Terms of Service (checkbox)
-- [ ] A Submit button to send our form data to the server.
+- [X] Name
+- [X] Email
+- [X] Password
+- [X] Terms of Service (checkbox)
+- [X] A Submit button to send our form data to the server.
 
 #### Implement Form Validation and Error Messaging
 

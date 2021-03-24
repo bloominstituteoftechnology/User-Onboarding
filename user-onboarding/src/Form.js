@@ -1,8 +1,31 @@
 import React from 'react'
 
-export default function Form(props) {
-    console.log('hi')
+export default function form(props) {
     return (
-      <h2>Test</h2>
+      <div>
+        <h2>Welcome, new user!</h2>
+        <label>
+          Name:
+          <input name='username' type='text'/>
+        </label>
+        <br></br>
+        <label>
+          Email:
+          <input name='email' type='text'/>
+        </label>
+        <br></br>
+        <label>
+          Password:
+          <input name='password' type='text'/>
+        </label>
+        <br></br>
+        <label>
+          Do you accept the terms of service?
+          <input name='tos' type='checkbox'/>
+        </label>
+        <br></br>
+        <button>Join</button>
+      </div>
+      
     )
 }
