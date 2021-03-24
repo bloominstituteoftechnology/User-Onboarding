@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import './App.css';
 import Form from './components/Form'
-import schema from './components/Schema'
+import schema from './validation/formSchemas'
+import Person from './components/Person'
 import axios from 'axios'
 import * as yup from 'yup'
 
@@ -40,6 +41,7 @@ function App() {
       console.log(err)
     })
   };
+
   const inputChange = (name, value) => {
     yup
       .reach(schema, name) 
@@ -75,6 +77,7 @@ function App() {
     postNewPerson(newPerson)
   };
 
+  
   useEffect(() => {
     schema
     .isValid(formValues)
@@ -94,6 +97,14 @@ function App() {
         disabled={disabled}
         errors={formErrors}
       />
+      
+      {
+        person.map(persons => {
+          return(
+          <Person key={persons.id} details={persons}/>
+          )
+      })
+      }
     </div>
   );
 }

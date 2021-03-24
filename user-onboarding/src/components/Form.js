@@ -1,8 +1,5 @@
 import React from 'react'
 
-
-
-
 export default function Form(props){
 
     const {values, submit, change, disabled, errors} = props;
@@ -21,7 +18,7 @@ export default function Form(props){
             <div className='form-group-submit'>
                 <h2>Add Person</h2>
 
-                <button disabled={disabled}>Submit</button>
+                <button>Submit</button>
 
                 <div className='errors'>
                     <div>{errors.name}</div>
@@ -68,7 +65,7 @@ export default function Form(props){
                         name='service'
                         type='checkbox'
                         value='service'
-                        checked={values.service === 'service'}
+                        checked={values.service}
                         onChange={onChange}
                     />
                 </label>
