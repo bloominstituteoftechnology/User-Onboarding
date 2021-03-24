@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Form from './Form';
 import schema from './formSchema';
 import * as yup from 'yup';
+import './App.css';
 
 const initialFormValues = {
   name: '',
@@ -61,6 +63,7 @@ function App() {
       password: formValues.password,
       tos: true
     }
+    postNewUser(newUser);
   }
 
   useEffect(() => {
@@ -68,6 +71,15 @@ function App() {
       setDisabled(!valid);
     });
   }, [formValues])
+
+  const postNewUser = (newUser) => {
+    axios.post('https://reqres.in/api/users', newUser)
+    .then((res) => {
+      console.log(res);
+      setUsers([res.data, ...users]);
+      setFormValues(initialFormValues);
+    })
+  }
 
   return (
     <div className="App">
