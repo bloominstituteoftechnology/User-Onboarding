@@ -17,7 +17,7 @@ return (
     <form onSubmit = {onSubmit}>
         <div>
         <h2>Add Member</h2>
-        <button disabled = {disabled}>Submit</button>
+        <button id = "submitBtn" disabled = {disabled}>Submit</button>
         <div>
             <div>{errors.name}</div>
             <div>{errors.email}</div>
