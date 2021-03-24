@@ -1,6 +1,6 @@
 
 export default function Form(props) {
-    const { form, change, disable, submit } = props
+    const { form, change, disable, submit, errors } = props
 
     const onChange = event => {
         const {name, value, type, checked} = event.target
@@ -12,43 +12,59 @@ export default function Form(props) {
         event.preventDefault();
         submit();
     }
-
+    
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <label>Name
-                    <input 
-                        name='name'
-                        type='text'
-                        value={form.name}
-                        onChange={onChange}
-                    />
-                </label>
-                <label>Email
-                    <input 
-                        name='email'
-                        type='email'
-                        value={form.email}
-                        onChange={onChange}
-                    />
-                </label>
-                <label>Password (8 characters minimum)
-                    <input 
-                        name='password'
-                        type='password'
-                        value={form.password}
-                        onChange={onChange}
+                <div>
+                    <label>Name:
+                        <input 
+                            name='name'
+                            type='text'
+                            value={form.name}
+                            onChange={onChange}
                         />
-                </label>
-                <label>Terms of Service
-                    <input 
-                        name='tos'
-                        type='checkbox'
-                        checked={form.tos}
-                        onChange={onChange}
-                    />
-                </label>
-                <button disabled={disable}>submit</button> 
+                        <h4 className='errors'>{errors.name}</h4>
+                    </label>
+                </div>
+                <div>   
+                    <label>Email:
+                        <input 
+                            name='email'
+                            type='email'
+                            value={form.email}
+                            onChange={onChange}
+                        />
+                        <h4 className='errors'>{errors.email}</h4>
+                    </label>
+                </div>    
+                <div>   
+                    <label>Password (8 characters minimum):
+                        <input 
+                            name='password'
+                            type='password'
+                            value={form.password}
+                            onChange={onChange}
+                        />
+                        <h4 className='errors'>{errors.password}</h4>
+                    </label>
+                </div>     
+                <div>
+                    <label>Terms of Service (required):
+                        <input 
+                            name='tos'
+                            type='checkbox'
+                            checked={form.tos}
+                            onChange={onChange}
+                        />
+                        <h4 className='errors'>{errors.tos}</h4>    
+                    </label>
+                </div>    
+                <div>
+                    <button disabled={disable}>submit</button> 
+                    <div className='errors'>
+                    </div>
+                </div>
             </form>
         </div>
     )
