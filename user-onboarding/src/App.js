@@ -3,6 +3,7 @@ import axios from 'axios';
 import Form from './Form';
 import schema from './formSchema';
 import * as yup from 'yup';
+import Users from './Users'
 import './App.css';
 
 const initialFormValues = {
@@ -82,8 +83,17 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Form form={formValues} disable={disabled} change={inputChange} submit={formSubmit} errors={formErrors} />
+    <div className='App'>
+      <div className="App">
+        <Form form={formValues} disable={disabled} change={inputChange} submit={formSubmit} errors={formErrors} />
+      </div>
+      <div className='userContainer'>
+        {
+          users.map((user) => {
+            return <Users key={user.email} details={user}/>
+          })
+        }
+      </div>
     </div>
   );
 }
