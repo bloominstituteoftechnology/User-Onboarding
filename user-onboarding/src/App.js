@@ -28,7 +28,7 @@ function App() {
   const [person, setPerson] = useState(initialForm)
   const [formValues, setFormValues] = useState(initialFormValues)
   const [ disabled, setDisabled] = useState(initialDisabled)
-  const [ formErrors, setFormErrors] = useState(initialFormErrors)
+  const [ formErrors, setFormErrors] = useState(null)
 
 
   const postNewPerson = newPerson =>{

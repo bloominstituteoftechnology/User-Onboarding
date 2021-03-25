@@ -8,6 +8,7 @@ describe("User app", () => {
     const passwordInput = () => cy.get('input[name="password"]');
     const serviceInput = () => cy.get('input[type="checkbox"]');
     const submitBtn = () => cy.get("#submitBtn");
+    const error = () => cy.get('[name="errors"]');
 
     it("sanity check", () => {
         expect(1 + 2).to.equal(3);
@@ -63,11 +64,27 @@ describe("User app", () => {
         serviceInput()
         .check();
         submitBtn().should("not.be.disabled")
+        submitBtn().click();
     });
 
-    it("check if submition will go with mission data", () => {
+     it("check if submition will go with mission data", () => {
         nameInput()
-        .should("have.value", "")
-        
-    })
+        .type('Zach')
+        .should("have.value", "Zach")
+        .clear()
+
+        emailInput()
+        .type("Z@z.com")
+        .should('have.value', "Z@z.com")
+        .clear();
+
+        passwordInput()
+        .type("Abc123")
+        .should('have.value', "Abc123")
+        .clear();
+
+        serviceInput()
+        .check()
+        .uncheck()
+     })
 })

@@ -19,12 +19,14 @@ export default function Form(props){
                 <h2>Add Person</h2>
 
                 <button id ='submitBtn' disabled={disabled}>Submit</button>
-
-                <div className='errors'>
-                    <div>{errors.name}</div>
-                    <div>{errors.email}</div>
-                    <div>{errors.password}</div>
-                </div>
+                { errors &&
+                    <div className='errors'>
+                        <div>{errors.name}</div>
+                        <div>{errors.email}</div>
+                        <div>{errors.password}</div>
+                        <div>{errors.service}</div>
+                    </div>
+                }
             </div>
 
             <div className='form-inputs'>
