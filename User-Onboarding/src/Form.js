@@ -3,58 +3,40 @@ import * as yup from 'yup';
 
 
 
-const initialOnboardValues = {
-    // Text Inputs
-    name: ''
-    email: ''
-    password: ''
-    // checkboxes
-    termsOfService: false;
-
-}
-
-
-const onChange = (event) => {
-    const { name, value } = event.target;
-    setFormValues({ ...formValues, [name]: value });
-};
-
 // FORM VALIDATION / SCHEMA - "Does it fit the scheme of the form : satisfy the goal of collecting information"
 
-const formSchema = Yup.object().shape({
-    name:
-        .string()
-        .name("Who art thou?")
-        .max(50, "More than 50 characters? Online forms must be a chore for you.")
-        .required("Not having a name must make life tough.")
-    email: 
-        .string()
-        .email("Real emails only, please.")
-        .required("For hittin' you up with updates"),
-    password:
-        .string()
-        .min(6, "Passwords must be at least 6 characters long.")
-        .required("Password is Required")
-    termsOfService:
-        .boolean()
-        ..oneOf([true], "Read it or don't but we need you to at least pretend you read it.")
 
-});
+export default function newForm(props) {
+    const { values, submit, change, disabled, errors } = props;
 
-export default function Form(props) {
+    const onSubmit = (event) => {
+        event.preventDefault(); // stops page refresh, 
+        submit(); // invokes the submit function
+    };
 
-}
+    const onChange = (event) => {
+        const { name, value } = event.target;
+        setFormValues({ ...formValues, [name]: value });
+    };
+
 
 return(
     <form className = "form" onSubmit={onSubmit}>
+        <h2>Add a User</h2>
+    <div className="errors">
+        <div>{errors.username}</div>
+        <div>{errors.email}</div>
+        <div>{errors.role}</div>
+        <div>{errors.civil}</div>
+    </div>
         <label>
             <input
                 name="username"
                 type="text"
                 onChange={onChange}
                 value={formValues.username}
-                placeholder="Member Name" //<< initial text shown to User
-                maxLength="30" //<< max character limit
+                placeholder="Who art thou?"
+                maxLength="30"
             />
             <br/>
             <input 
@@ -62,16 +44,16 @@ return(
                 type="text"
                 onChange={onChange}
                 value={formValues.email}
-                placeholder="Your Email Here!"
+                placeholder="How to we hit you up?"
                 maxLength="30"
             />
             <br/>
             <input
-                name="role"
-                type="text"
+                name="password"
+                type="password"
                 onChange={onChange}
                 value={formValues.role}
-                placeholder="Your Role"
+                placeholder="The holy word of access"
                 maxLength="30"
             />
             <br/>
@@ -79,10 +61,9 @@ return(
                 name="termsOfService"
                 type="checkbox"
                 onChange={onChange}
-                value={formValues.role}
-                placeholder="Please agree to Terms of Service!"
+                checked={values.termsAgreed} // where does this link??
             />
-            <button>Submit!</button>
+            <button disabled = {disabled}>Submit</button>
         </label>
     </form>
     )

@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   border: 3px dashed #CFDC28;
-  background: #31248C
+  background-color: #31248C;
   padding: 5px;
 }
 
@@ -10,4 +10,6 @@
   border: 3px solid red;
 }
 
-.form
+.form {
+  background-color: #D12F2A;
+}
