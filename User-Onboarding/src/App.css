@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  border: 3px dashed #CFDC28;
+  background-color: #31248C;
+  padding: 5px;
+}
+
+.onboard-form {
+  text-align: center;
+  border: 3px solid red;
+}
+
+.form {
+  background-color: #D12F2A;
+}
