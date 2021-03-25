@@ -17,6 +17,7 @@ const initialFormErrors = {
   name:'',
   email: '',
   password: '',
+  service:'',
 }
 
 const initialForm = []
@@ -70,9 +71,9 @@ function App() {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password:formValues.password.trim(),
-      services: ['service'].filter(
-        (service) => formValues[service]
-      )
+      // services: ['service'].filter(
+      //   (service) => formValues[service]
+      // )
     }
     postNewPerson(newPerson)
   };

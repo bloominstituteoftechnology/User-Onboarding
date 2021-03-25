@@ -13,8 +13,8 @@ export default yup.object().shape({
       .string()
       .required("password is required"),
     service: yup
-    .string()
-    .required("Term of service is required"),
+    .boolean()
+    .oneOf([true], 'Must agree to Terms os Service'),
   });
 
 // const formSchema = Yup.object().shape({

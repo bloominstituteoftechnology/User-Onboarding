@@ -10,6 +10,7 @@ function Friend({ details }) {
         <h2>{details.name}</h2>
         <p>Email: {details.email}</p>
         <p>Password: {details.password}</p>
+        
   
         {
           !!details.service && !!details.service.length &&
