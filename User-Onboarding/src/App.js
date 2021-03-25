@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './App.css';
-import Form from './Form';
 import axios from 'axios';
 import * as yup from 'yup';
 import schema from "./formValidation"
+import NewForm from './Form';
 
 
 
@@ -26,22 +26,24 @@ const initialFormErrors = {
 }
 
 const initialForm = []; // starting form is an EMPTY ARRAY, each form is an OBJECT
+const initialDisabled = true;
 
 export default function App() {
   // STATES //
-const [form, setForm] = useState(initialForm)
-const [formErrors, setFormErrors] = useState(initialFormErrors)
+const [form, setForm] = useState(initialForm);
+const [formValues, setFormValues] = useState(initialFormValues);
+const [formErrors, setFormErrors] = useState(initialFormErrors);
+const [disabled, setDisabled] = useState(initialDisabled);
 
 
   // AXIOS POST //
-  const postNewForm = (newForm) => {
-    //    helper to [POST] `newFriend` to `http://buddies.com/api/friends`
-    //    and regardless of success or failure, the form should reset
+  const postNewForm = (newUser) => {
     axios
-      .post("https://reqres.in/api/users", newForm)
+      .post("https://reqres.in/api/users", newUser)
       .then((response) => {
         setForm([response.data, ...form]);
-        setForm(initialFormValues);
+        setFormValues(initialFormValues);
+        setDisabled(true);
       })
       .catch((error) => {
         console.log(error);
@@ -57,7 +59,6 @@ const [formErrors, setFormErrors] = useState(initialFormErrors)
         setFormErrors({
           ...formErrors,
           [name]: "",
-          [termsOfService]: false,
         });
       })
       .catch((error) => {
@@ -72,31 +73,35 @@ const [formErrors, setFormErrors] = useState(initialFormErrors)
       [name]: value,
     });
   };
-  
+
   const formSubmit = () => {
-    const newFriend = {
-      username: formValues.username.trim(),
+    const newUser = {
+      name: formValues.name.trim(),
       email: formValues.email.trim(),
-      role: formValues.role.trim(),
-      civil: formValues.civil.trim(),
-      // 🔥 STEP 7- WHAT ABOUT HOBBIES?
-      hobbies: ["coding", "reading", "hiking"].filter(
-        (hobby) => formValues[hobby]
-      ),
+      password: formValues.password.trim(),
+      termsOfService: formValues.termsOfService,
     };
-    // 🔥 STEP 8- POST NEW FRIEND USING HELPER
-    postNewFriend(newFriend);
+    postNewForm(newUser);
   };
 
-
-
-}
-
-
+  useEffect(() => {
+    schema.isValid(formValues)
+      .then(valid => {
+        setDisabled(!valid)
+      }) 
+  }, [formValues])
 
   return (
     <div className="App">
-        <Form />
+        <NewForm values={formValues} submit={formSubmit} change={inputChange} disabled={disabled} errors={formErrors} />
+        {form.map((user, idx) => {
+          return (
+            <div key={idx}>
+            <h2>{user.name}</h2>
+            <p>{user.email}</p>
+            </div>
+          )
+        })}
     </div>
   );
 }
