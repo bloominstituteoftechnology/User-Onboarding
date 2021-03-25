@@ -17,7 +17,7 @@ export default function Form(props) {
         <div>
             <form onSubmit={onSubmit}>
                 <div>
-                    <label>Name:
+                    <label>Name: 
                         <input 
                             name='name'
                             type='text'
@@ -28,7 +28,7 @@ export default function Form(props) {
                     </label>
                 </div>
                 <div>   
-                    <label>Email:
+                    <label>Email: 
                         <input 
                             name='email'
                             type='email'
@@ -39,7 +39,7 @@ export default function Form(props) {
                     </label>
                 </div>    
                 <div>   
-                    <label>Password (8 characters minimum):
+                    <label>Password (8 characters minimum): 
                         <input 
                             name='password'
                             type='password'
@@ -48,6 +48,24 @@ export default function Form(props) {
                         />
                         <h4 className='errors'>{errors.password}</h4>
                     </label>
+                </div>
+                <div className='role'>
+                    <label> Role: 
+                        <select 
+                            name='role'
+                            type='dropdown'
+                            value={form.role}
+                            onChange={onChange}
+                        >
+                            <option value=''>-- Select a Role --</option>
+                            <option value='frontend'>Frontend</option>
+                            <option value='backend'>Backend</option>
+                            <option value='fullstack'>Fullstack</option>
+                            <option value='data-science'>Data Science</option>
+                            <option value='machine-learning'>Machine Learning</option>
+                        </select>
+                        <h4 className='errors'>{errors.role}</h4>
+                    </label>    
                 </div>     
                 <div>
                     <label>Terms of Service (required):

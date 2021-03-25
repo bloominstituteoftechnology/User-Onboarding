@@ -9,6 +9,7 @@ describe('Form Test', () => {
     const passwordInput = () => cy.get('input[name="password"]');
     const tosInput = () => cy.get('input[name="tos"]');
     const submitButton = () => cy.get('button');
+    const roleSelect = () => cy.get("select");
 
     it('sanity test to make sure that test works', () => {
         expect(true).to.equal(true);
@@ -44,6 +45,7 @@ describe('Form Test', () => {
         nameInput().type('Justin Peczenij');
         emailInput().type('justinpeczenij@gmail.com');
         passwordInput().type('nobarallfoo');
+        roleSelect().select('frontend')
         // Check for disabled submit on partial fill
         submitButton().should('be.disabled');
         tosInput().check()
@@ -55,5 +57,25 @@ describe('Form Test', () => {
         passwordInput().should('have.value', '');
         tosInput().should('not.be.true');
     })
+  
+    it('Check for validation if a form is left unfilled', () => {
+        passwordInput().type('foobar')
+        cy.get('.errors').should('exist')
+    })
     
+
+    // This will pass because my form errors are saved in memory.
+    // I thought it would fail due to the errors not being printed on screen.
+    // Good to know!
+    it('Check for validation if a form is left empty', () => {
+        cy.get('.errors').should('exist')
+    })
+
+    it('Check if form validation goes away on role change', () => {
+        roleSelect().select('frontend');
+        cy.get('.role h4')
+            .should('not.visible')
+    })    
+
+
 })
