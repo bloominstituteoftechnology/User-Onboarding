@@ -8,7 +8,7 @@ export default function Form() {
     name: "",
     email: "",
     password: "",
-    terms: true,
+    terms: false,
   });
 
   const [users, setUsers] = useState();
@@ -130,7 +130,13 @@ export default function Form() {
           <p className="error">{errors.terms}</p>
         ) : null}
       </label>
-      <button type="submit" disabled={buttonDisabled}>
+      <div name='error' style={{ color: 'red' }}> 
+        <div>{errors.name}</div>
+        <div>{errors.password}</div>
+        <div>{errors.email}</div>
+        <div>{errors.agree}</div>
+     </div>
+      <button id="submitBtn" disabled={buttonDisabled}>
         Submit
       </button>
       <pre>{JSON.stringify(users, null, 2)}</pre>
