@@ -19,6 +19,7 @@ const initialFormErrors = {
   username: "",
   email: "",
   password: "",
+  tos: false,
 };
 
 const initialFriends = [];
@@ -37,7 +38,8 @@ function App() {
     axios
       .get(`https://reqres.in/api/users`)
       .then(res => {
-        setFriends(res.data);
+        setFriends(res.data.data);
+        console.log(res.data.data)
       })
       .catch(err => {
         console.log(err)
