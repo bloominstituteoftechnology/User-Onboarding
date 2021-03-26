@@ -45,7 +45,7 @@ export default function Form(props) {
           <div style={{ color: 'red' }}>
             <div>{errors.username}</div>
             <div>{errors.email}</div>
-            <div>{errors.password}</div>
+            <div class='pass'>{errors.password}</div>
             <div>{errors.tos}</div>
         </div>
         </form>
