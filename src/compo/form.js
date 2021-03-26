@@ -11,7 +11,6 @@ const onChange = (evt) =>{
 }
 const onSubmit = (evt)=>{
     evt.preventDefault();
-    
     submit();
     
 }
@@ -55,11 +54,11 @@ return(
           <input
             type="checkbox"
             name="term"
-            checked={values.accept}
+            checked={values.term}
             onChange={onChange}
           ></input>
         </label>
-        <button >submit</button>
+        <button id="btn">submit</button>
         </div>
     </form>
 

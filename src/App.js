@@ -16,6 +16,7 @@ function App() {
     term: false,
   };
   const submitter= ()=>{
+
     const newUser = {
       username: value.username,
       email: value.email,
@@ -24,23 +25,25 @@ function App() {
   
   
     }
+    console.log(newUser)
     postNewUser(newUser);
     
   }
-  const inputChange = (name, value) => {
-    yup
-      .reach(schema, name) 
-      .validate(value) 
-      .then(() => {
+  const inputChange = (name, oooo) => {
+    // yup
+    //   .reach(schema, name) 
+    //   .validate(value) 
+    //   .then(() => {
      
-      })
-      .catch((err) => {
-       setError({...errors, [name]: err.errors[0]})
-      });
+    //   })
+    //   .catch((err) => {
+    //    setError({...errors, [name]: err.errors[0]})
+    //   });
     setValue(
       {
-      ...value,[name]: value, // NOT AN ARRAY
+      ...value,[name]: oooo,
     });
+    console.log(value)
   };
 
 
@@ -48,6 +51,7 @@ function App() {
 
   const postNewUser = (newpers) =>{
     setNewUser([...newUser, newpers])
+    console.log(value)
     setValue(intialVal)
 
   }
@@ -60,6 +64,7 @@ function App() {
   const [errors, setError] = useState(initialError)
   const [newUser, setNewUser] = useState([])
   const [value, setValue] = useState(intialVal);
+  useEffect(()=>{console.log(newUser)},[newUser])
   useEffect(()=>{console.log(errors)},[errors])
   return (
     
