@@ -2,7 +2,7 @@ import react from'react'
 
 export default function profile(props){
 
-const { values, submit, change, disable, error} = props
+const { values, submit, change, disabled, error} = props
 
 const onChange = (evt) =>{
     const { name, value, type, checked } = evt.target;
@@ -11,15 +11,13 @@ const onChange = (evt) =>{
 }
 const onSubmit = (evt)=>{
     evt.preventDefault();
-    
     submit();
-    
 }
-console.log(error)
+
 
     return (
-        <form onSubmit={onSubmit}>
-        <label>Username
+    <form onSubmit={onSubmit}>
+        <label>username
             <input
             value={values.username}
             onChange={onChange}
@@ -27,33 +25,38 @@ console.log(error)
             name='username'
             />
         </label>
-            <label>Email
-                <input
-                value={values.email}
-                onChange={onChange}
-                type='email'
-                name='email'
-                />
-            </label>
-            <label>Password
-                <input
-                value={values.password}
-                onChange={onChange}
-                type='password'
-                name='password'
-                />
-            </label>
-            <label>TOS
-                <input
-                value={values.tos}
-                onChange={onChange}
-                type='checkbox'
-                name='tos'
-                />
-            </label>
-            <button>
-                Submit
-            </button>
-        </form>
+
+        <label>email
+            <input
+            value={values.email}
+            onChange={onChange}
+            type='email'
+            name='email'
+            />
+        </label>
+
+        <label>password
+            <input
+            value={values.password}
+            onChange={onChange}
+            type='password'
+            name='password'
+            />
+        </label>
+
+        <label>tos
+            <input
+            type='checkbox'
+            name='tos'
+            checked={values.tos}
+            onChange={onChange}
+            />
+        </label>
+
+        <button disabled={disabled}>
+            Submit
+        </button>
+
+    </form>
     )
 }
