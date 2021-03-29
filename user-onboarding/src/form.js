@@ -1,8 +1,8 @@
-import react from'react'
+
 
 export default function profile(props){
 
-const { values, submit, change, disabled, error} = props
+const { values, submit, change, disabled} = props
 
 const onChange = (evt) =>{
     const { name, value, type, checked } = evt.target;

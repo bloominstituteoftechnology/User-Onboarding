@@ -4,6 +4,7 @@ import axios from 'axios';
 import Form from './form';
 import {useEffect, useState} from 'react';
 import schema from './schema';
+import User from './User'
 
 const initialValue = {
   username: '',
@@ -18,12 +19,14 @@ function App() {
   const [value, setValue] = useState(initialValue)
   const [users, setUsers] = useState([])
   const [disabled, setDisabled] = useState(initialDisabled);
+  
 const postNewUser = (newUser) => {
   axios
     .post('https://reqres.in/api/users', newUser)
     .then(res => {
       console.log(res)
       setUsers([res.data, ...users])
+      setValue(initialValue)
     })
     .catch(err => {
       console.log(err)
@@ -38,8 +41,6 @@ const postNewUser = (newUser) => {
     }
 
     postNewUser(whatever)
-    setUsers([...users, whatever])
-    setValue(initialValue)
   }
   const inputChange = (name, value1) => {
     setValue({...value, [name]: value1,});
@@ -59,6 +60,7 @@ useEffect(() => {
       change={inputChange}
       submit={onSubmit}
       disabled={disabled}/>
+      {users.map((user, idx) => {return <User key={idx} values={user} />})}
     </div>
   );
 }
