@@ -1,0 +1,37 @@
+.App {
+  text-align: center;
+}
+body {
+  background: rgb(63, 94, 251);
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.user-container {
+  margin: 32px 0 0 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.user-information {
+  margin: 0 auto;
+  padding: 16px;
+  background-color: white;
+  border-radius: 8px;
+  width: 350px;
+}
+
+.usercard-info {
+  margin: 0 auto;
+}
