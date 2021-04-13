@@ -93,10 +93,11 @@ export default function App() {
       {/* Use a switch to navigate between components. Renders one at a time. */}
       <Switch>
         {/* Add a route then create a path(choose any name, symantic or relating to the component/page you want) */}
-        <Route path="/user/:id">
+        <Route path="/O/:id">
           {/* Add component between route */}
           <UserCard submitee={submitee} first_name={submitee.first_name} last_name={submitee.last_name}/>
         </Route>
+
         <Route path="/login">
           {/* LoginForm */}
           <Form
@@ -107,14 +108,17 @@ export default function App() {
           errors={formErrors}
           />
         </Route>
+
         <Route path="/users">
           <Users submitee={submitee}/>
         </Route>
+
         <Route path="/">
           <div>
             <h1> This is the home page. </h1>
           </div>
         </Route>
+
        </Switch>
 
       <Footer />
