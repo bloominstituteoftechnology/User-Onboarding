@@ -1,0 +1,33 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin: 10% auto;
+  }
+  button {
+    width: 4.5rem;
+    height: 2rem;
+    border-radius: 3px;
+    margin: auto;
+  }
+
+  label {
+    text-align: left;
+    margin: auto;
+    padding-bottom: 1rem;
+  }
+
+  input {
+    display: block;
+  }
+
+  #terms {
+    display: inline;
+    margin: 0 10px;
+  }
+
+  .error {
+    color: red;
+    margin: -22px 190px ;
+    position: fixed;
+  }
