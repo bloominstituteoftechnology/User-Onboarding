@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Form from "./components/Form";
 import * as yup from "yup";
@@ -17,23 +17,20 @@ const initialFormErrors = {
 	password: "",
 	tos: false,
 };
-// const initialUser = []
-// const initialSubmitDisabled = true
 
 //div for every user we input
-const UserContainer = (obj) => {
+const UserContainer = ({ obj }) => {
 	return (
 		<div className="user-container">
 			<p>Name: {obj.name}</p>
 			<p>Email: {obj.email}</p>
-			<p>Password: {obj.password}</p>
 		</div>
 	);
 };
 
 function App() {
 	const [users, setUsers] = useState([]);
-	const [user, setUser] = useState([]);
+
 	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors, setFormErrors] = useState(initialFormErrors);
 	const [submitDisabled, setSubmitDisabled] = useState(true);
@@ -57,15 +54,30 @@ function App() {
 		setFormValues({ ...formValues, [name]: value });
 	};
 
+	const submitHandler = (e) => {
+		const newUser = {
+			name: formValues.name.trim(),
+			email: formValues.email.trim(),
+		};
+		setUsers([...users, newUser]);
+	};
+
+	useEffect(() => {
+		schema.isValid(formValues).then((valid) => {
+			setSubmitDisabled(!valid);
+		});
+	}, [formValues]);
+
 	return (
 		<div className="App">
 			{users.map((user, i) => {
 				return <UserContainer key={i} obj={user} />;
 			})}
+
 			<Form
-				user={user}
 				formValues={formValues}
 				formErrors={formErrors}
+				submitHandler={submitHandler}
 				submitDisabled={submitDisabled}
 				onChangeHandler={onChangeHandler}
 			/>

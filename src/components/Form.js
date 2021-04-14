@@ -2,22 +2,31 @@ import React from "react";
 
 const Form = (props) => {
 	const {
-		user,
 		formValues,
 		formErrors,
+		submitHandler,
 		submitDisabled,
 		onChangeHandler,
 	} = props;
 
-	const onChange = (evt) => {
-		const { name, value, type, checked } = evt.target;
+	const onChange = (e) => {
+		const { name, value, type, checked } = e.target;
 		const valueToUse = type === "checkbox" ? checked : value;
 		onChangeHandler(name, valueToUse);
 	};
 
+	const onSubmit = (e) => {
+		e.preventDefault();
+		const newUser = {
+			name: formValues.name.trim(),
+			email: formValues.email.trim(),
+		};
+		submitHandler();
+	};
+
 	return (
 		<div>
-			<form>
+			<form onSubmit={onSubmit}>
 				<label className="name">
 					{" "}
 					Name:
