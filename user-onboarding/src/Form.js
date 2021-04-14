@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import axios from 'axios'
 import * as yup from "yup";
- function Form(){
+ function NewForm(){
 const [formState, setFormState] = useState({
     name: "",
     password: "",
@@ -65,7 +65,6 @@ const [formState, setFormState] = useState({
     password: yup.string().required("Password is required"),
     terms: yup.boolean().oneOf([true]),
   });
-
   useEffect(() => {
     schema.isValid(formState).then((isFormValid) => {
       setButtonDisabled(!isFormValid);
@@ -82,21 +81,19 @@ const [formState, setFormState] = useState({
           name="name"
           value={formState.name}
           onChange={inputChange}
-        />
-
+/>
         {errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
 
       </label>
-
       <label htmlFor="email">
-        Email
+        Email Address
         <input
           type="text"
           id="email"
           name="email"
           value={formState.email}
           onChange={inputChange}
-        />
+/>
         {errors.email.length > 0 ? (
           <p className="error">{errors.email}</p>
         ) : null}
@@ -110,7 +107,7 @@ const [formState, setFormState] = useState({
           id="password"
           value={formState.password}
           onChange={inputChange}
-        />
+ />
 
         {errors.password.length > 0 ? (
           <p className="error">{errors.password}</p>
@@ -126,12 +123,12 @@ const [formState, setFormState] = useState({
           name="terms"
           checked={formState.terms}
           onChange={inputChange}
-        />
-        {errors.terms.length > 0 ? (
-          <p className="error">{errors.terms}</p>
-        ) : null}
+/>
+  {errors.terms.length > 0 ? (
+      <p className="error">{errors.terms}</p>
+  ) : null}
 
-      </label>
+ </label>
 
       <button type="submit" disabled={buttonDisabled}>
         Submit
@@ -139,4 +136,4 @@ const [formState, setFormState] = useState({
 <pre>{JSON.stringify(users, null, 2)}</pre>
 </form>
 );}
-export default Form;
+export default NewForm;

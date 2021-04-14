@@ -2,12 +2,11 @@
 import './App.css';
 import './Form.js';
 import React,{useEffect,useState} from 'react'
-import axios from 'axios'
-import * as yup from "yup";
+import NewForm from './Form.js';
 function App() {
   return (
     <div className="App">
-    <Form
+    <NewForm
     />
   </div>
   );
