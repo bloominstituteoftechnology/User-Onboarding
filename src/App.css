@@ -3,6 +3,12 @@
 	margin: 10% 10%;
 }
 
+.user-container {
+	border-bottom: 2px solid black;
+	border-right: 2px solid black;
+	margin: 0 20%;
+}
+
 form label {
 	display: flex;
 	flex-direction: column;

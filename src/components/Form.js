@@ -59,7 +59,7 @@ const Form = (props) => {
 				<label>
 					{" "}
 					Terms of service
-					<input type="checkbox" name="tos" />
+					<input type="checkbox" name="tos" onChange={onChange} />
 				</label>
 
 				<button disabled={submitDisabled}> Submit </button>
