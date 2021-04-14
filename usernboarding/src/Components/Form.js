@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import * as Yup from 'yup'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import * as Yup from 'yup';
+import axios from 'axios';
 
 const Form = () => {
   // form schema
@@ -15,82 +15,95 @@ const Form = () => {
     terms: Yup.boolean().oneOf(
       [true],
       'You must accept Terms of Service to continue.'
-    )
-  }) // basic event handler for form submission
+    ),
+  });
 
-  const [post, setPost] = useState([])
-  const formSubmit = e => {
-    e.preventDefault()
-    console.log('submitted')
-    axios.post('https://reqres.in/api/users', formState)
-    .then(res =>{
-      setPost(res.data)
-      console.log('success', res)
-    })
-    .catch(err =>console.log(err.response))
-  }
+  const [user, setUser] = useState([]);
+
+  //  event handler for form submission
+  const formSubmit = (e) => {
+    e.preventDefault();
+    console.log('submitted');
+    axios
+      .post('https://reqres.in/api/users', formState)
+      .then((res) => {
+        setFormState(res.data);
+        console.log('success', res);
+      })
+      .catch((err) => {
+        console.log(err.response);
+        setErrors(err.response);
+      });
+  };
 
   // create form values state
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     password: '',
-    terms: ''
-  }) // create error messages state
+    terms: '',
+  });
 
+  const handleChange = (event) => {
+    setUser({ ...user, [event.target.name]: event.target.value });
+  };
+
+  // create error messages state
   const [errors, setErrors] = useState({
     name: '',
     email: '',
     password: '',
-    terms: ''
-  }) // Define form elements
+    terms: '',
+  }); // Define form elements
 
-  const [buttonDisabled, setButtonDisabled] = useState()
+  //create submission button state
+  const [buttonDisabled, setButtonDisabled] = useState();
 
-  useEffect(()=>{
-    formSchema.isValid(formState).then(valid =>{
-      setButtonDisabled(!valid)
-    })
-  }, [formState])
+  // if form fails validation, submission button disabled
+  useEffect(() => {
+    formSchema.isValid(formState).then((valid) => {
+      setButtonDisabled(!valid);
+    });
+  }, [errors]);
 
-   
-    return (
-      <form>
+  return (
+    <form onSubmit={formSubmit}>
+      <label htmlFor='nameInput'>
+        Name{' '}
+        <input
+          id='nameInput'
+          type='text'
+          name='nameInput'
+          placeholder='Name'
+          onChange={handleChange}
+        />{' '}
+      </label>{' '}
+      <label htmlFor='emailInput'>
         {' '}
-        <label htmlFor="nameInput">
-          {' '}
-          Name{' '}
-          <input
-            id="nameInput"
-            type="text"
-            name="name"
-            placeholder="Name"
-          />{' '}
-        </label>{' '}
-        <label htmlFor="emailInput">
-          {' '}
-          <input
-            id="emailInput"
-            type="email"
-            name="email"
-            placeholder="Email"
-          />{' '}
-        </label>{' '}
-        <label htmlFor="current-password">
-          {' '}
-          Password{' '}
-          <input type="password" name="current-password" placeholder="Password" />{' '}
-        </label>{' '}
-        <label htmlFor="termsInput">
-          {' '}
-          Do you agree to our term of service?{' '}
-          <input id="termsInput" type="checkbox" name="terms" />{' '}
-        </label>{' '}
-        <button>Submit</button>{' '}
-      </form>
-    )
-  
-  
-}
+        <input
+          id='emailInput'
+          type='email'
+          name='email'
+          placeholder='Email'
+        />{' '}
+      </label>{' '}
+      <label htmlFor='current-password'>
+        {' '}
+        Password{' '}
+        <input
+          type='password'
+          name='current-password'
+          placeholder='Password'
+        />{' '}
+      </label>{' '}
+      <label htmlFor='termsInput'>
+        {' '}
+        Do you agree to our term of service ?{' '}
+        <input id='termsInput' type='checkbox' name='terms' />{' '}
+      </label>{' '}
+      <button> Submit </button>{' '}
+    </form>
+  );
+};
 
-export default Form
+export default Form;
