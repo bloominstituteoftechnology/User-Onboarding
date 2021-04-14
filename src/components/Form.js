@@ -63,15 +63,15 @@ const Form = (props) => {
 				</label>
 
 				<button disabled={submitDisabled}> Submit </button>
-
-				{/* validation errors */}
-				<div>
-					<div> {formErrors.name} </div>
-					<div> {formErrors.email} </div>
-					<div> {formErrors.password} </div>
-					<div> {formErrors.tos} </div>
-				</div>
 			</form>
+
+			{/* validation errors */}
+			<div>
+				<p> {formErrors.name} </p>
+				<p> {formErrors.email} </p>
+				<p> {formErrors.password} </p>
+				<p> {formErrors.tos} </p>
+			</div>
 		</div>
 	);
 };

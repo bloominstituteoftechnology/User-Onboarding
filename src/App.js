@@ -8,14 +8,13 @@ const initialFormValues = {
 	name: "",
 	email: "",
 	password: "",
-	tos: false,
 };
 
 const initialFormErrors = {
-	name: "",
-	email: "",
-	password: "",
-	tos: false,
+	name: "name required",
+	email: "email required",
+	password: "password required",
+	tos: "pls read and accept tos",
 };
 
 //div for every user we input
