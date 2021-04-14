@@ -17,10 +17,6 @@ const Form = (props) => {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		const newUser = {
-			name: formValues.name.trim(),
-			email: formValues.email.trim(),
-		};
 		submitHandler();
 	};
 
@@ -66,7 +62,15 @@ const Form = (props) => {
 					<input type="checkbox" name="tos" />
 				</label>
 
-				<button> Submit </button>
+				<button disabled={submitDisabled}> Submit </button>
+
+				{/* validation errors */}
+				<div>
+					<div> {formErrors.name} </div>
+					<div> {formErrors.email} </div>
+					<div> {formErrors.password} </div>
+					<div> {formErrors.tos} </div>
+				</div>
 			</form>
 		</div>
 	);

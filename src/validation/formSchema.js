@@ -5,5 +5,5 @@ export default yup.object().shape({
 	name: yup.string().required("pls enter your name"),
 	email: yup.string().email().required("pls enter your email"),
 	password: yup.string().required("pls set a password"),
-	tos: yup.boolean(),
+	tos: yup.boolean().required("Read and accept tos"),
 });
