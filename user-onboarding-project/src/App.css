@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+
+label {
+  margin: 5px;
+  display: block;
+}
+
+label input,
+label select {
+  margin: 5px;
+  padding: 3px;
+}
+
+.user-container {
+  /* border: 3px solid black; */
+  display: flex column;
+}
+
+.user-card {
+  border: 3px solid green;
+  width: fit-content;
+  margin: 5px;
+  text-align: left;
+}
+
+.user-name {
+  text-transform: uppercase;
+  text-align: center;
+}
