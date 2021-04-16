@@ -7,11 +7,10 @@ export default function UserForm({ details }) {
 
     return (
         <div className='user container'>
-            <h2>{details.username}</h2>
-            <p>Role: {details.role}</p>
-            <p>Email: {details.email}</p>
-            <p>Password: {details.password}</p>
-            <p>Terms of Service: {details.terms}</p>
+            <h2>{details.email}</h2>
+            <p>First Name: {details.first_name}</p>
+            <p>Last Name: {details.last_name}</p>
+            <p>Avatar: <img src={details.avatar}></img></p>
         </div>
     )
 }

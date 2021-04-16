@@ -25,11 +25,20 @@ export default function Form(props) {
 
             <div className='form-group inputs'>
                 <h2>General information</h2>
-                <label> Your Username:
+                <label> Your First Name:
             <input
-                        name='username'
+                        name='first_name'
                         type='text'
-                        value={values.username}
+                        value={values.first_name}
+                        onChange={onChange}
+                    />
+                </label>
+                <br></br>
+                <label> Your Last Name:
+            <input
+                        name='last_name'
+                        type='text'
+                        value={values.last_name}
                         onChange={onChange}
                     />
                 </label>
@@ -81,7 +90,9 @@ export default function Form(props) {
                 <button disabled={disabled}>submit</button>
 
                 <div className='errors' >
-                    <div>{errors.username}</div>
+                    <div>{errors.first_name}</div>
+                    <div>{errors.last_name}</div>
+                    <div>{errors.role}</div>
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
                     <div>{errors.terms}</div>

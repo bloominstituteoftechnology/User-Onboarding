@@ -7,7 +7,8 @@ import * as yup from 'yup';
 import './Form.css'
 
 const initialFormValues = {
-  username: '',
+  first_name: '',
+  last_name: '',
   role: '',
   email: '',
   password: '',
@@ -15,12 +16,14 @@ const initialFormValues = {
 }
 
 const initialFormErrors = {
-  username: '',
+  first_name: '',
+  last_name: '',
   email: '',
+  role: '',
   password: '',
 }
 
-const initialUsers = [];
+const initialUsers = []
 const initialDisabled = true
 
 export default function App() {
@@ -34,23 +37,27 @@ export default function App() {
     axios
       .get('https://reqres.in/api/users')
       .then(response => {
-        setUsers(response.data)
+        console.log(response.data)
+        setUsers(response.data.data)
       })
       .catch(error => {
-        console.log('Error')
+        console.log('Error one')
+
       })
+    //console.log(users)
   }
 
   const postNewUser = newUser => {
     axios
       .post('https://reqres.in/api/users', newUser)
       .then(response => {
-        setUsers([...users, response.data])
+        setUsers([response.data, ...users])
+        console.log(response.data)
         setFormValues(initialFormValues)
       })
       .catch(error => {
-        //setFormValues(initialFormValues)
-        console.log('Error')
+        setFormValues(initialFormValues)
+        console.log('Error two')
       })
   }
 
@@ -78,7 +85,8 @@ export default function App() {
 
   const formSubmit = () => {
     const newUser = {
-      username: formValues.username.trim(),
+      first_name: formValues.first_name.trim(),
+      last_name: formValues.last_name.trim(),
       role: formValues.role,
       email: formValues.email.trim(),
       password: formValues.password.trim(),
@@ -89,12 +97,13 @@ export default function App() {
 
   useEffect(() => {
     getUsers()
+    //console.log(getUsers)
   }, [])
 
   useEffect(() => {
     schema.isValid(formValues)
       .then(valid => {
-        setDisabled(!valid)
+        setDisabled(false)
       })
   }, [formValues])
 
@@ -103,7 +112,7 @@ export default function App() {
       <header><h1>Welcome!</h1></header>
 
       <Form
-        value={formValues}
+        values={formValues}
         change={inputChange}
         submit={formSubmit}
         disabled={disabled}
@@ -111,9 +120,7 @@ export default function App() {
       />
 
       {users.map(user => {
-        return (
-          <UserForm key={user.id} details={user} />
-        )
+        return <UserForm key={user.id} details={user} />
       })}
     </div>
   )
