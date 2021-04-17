@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useState } from 'react';
 import * as yup from 'yup';
 
@@ -29,6 +30,9 @@ export default function Form() {
     const formSubmit = e => {
         e.preventDefault();
         console.log ("Form submitted")
+        axios.post("https://reqres.in/api/users", formState)
+        .then(response => console.log(response))
+        .catch(err => console.log(err));
     }
     const validate  = (e) => {
     yup.reach(formScheama, e.target.name)
@@ -51,7 +55,10 @@ export default function Form() {
 
     }
     const inputChange = e => {
-       // console.log("Input Changed!", e.target.name);
+       e.persist()
+       
+     validate(e)
+
        let value = e.target.type ==="checkbox" ? e.target.checked : e.target.value
         setFormState({ ...formState, [e.target.name]: value });
         
