@@ -19,8 +19,10 @@ const Form = (props) => {
     setFormData({ ...formData, [name]: val });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     submit(formData);
+    setFormData(initialFormData);
   };
 
   return (
