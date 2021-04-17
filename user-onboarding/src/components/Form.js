@@ -1,5 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+
+// I chose to keep validation and form data encapsulated in the Form component for better separation of logic
+
+import React, { useEffect, useState } from "react";
+import * as yup from "yup";
+import schema from "../validation/formSchema";
 
 const initialFormData = {
   name: "",
@@ -7,15 +12,38 @@ const initialFormData = {
   password: "",
   tosCheck: false,
 };
+const initialFormErrors = {
+  name: "",
+  email: "",
+  password: "",
+  tosCheck: "",
+};
 
 const Form = (props) => {
   const { submit } = props;
 
   const [formData, setFormData] = useState(initialFormData);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [disabled, setDisabled] = useState(true);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const val = type === "checkbox" ? checked : value;
+    yup
+      .reach(schema, name)
+      .validate(val)
+      .then(() =>
+        setFormErrors({
+          ...formErrors,
+          [name]: " ",
+        })
+      ) //success
+      .catch((err) =>
+        setFormErrors({
+          ...formErrors,
+          [name]: err.errors[0],
+        })
+      ); //error
     setFormData({ ...formData, [name]: val });
   };
 
@@ -24,6 +52,10 @@ const Form = (props) => {
     submit(formData);
     setFormData(initialFormData);
   };
+
+  useEffect(() => {
+    schema.isValid(formData).then((valid) => setDisabled(!valid));
+  }, [formData]);
 
   return (
     <form action="submit" id="form">
@@ -72,9 +104,15 @@ const Form = (props) => {
           onChange={handleChange}
         />
       </label>
-      <button action="submit" onClick={handleSubmit}>
+      <button action="submit" onClick={handleSubmit} disabled={disabled}>
         Submit
       </button>
+      <div className="errors">
+        <div>{formErrors.name}</div>
+        <div>{formErrors.email}</div>
+        <div>{formErrors.password}</div>
+        <div>{formErrors.tosCheck}</div>
+      </div>
     </form>
   );
 };
