@@ -14,12 +14,9 @@ const Form = (props) => {
   const [formData, setFormData] = useState(initialFormData);
 
   const handleChange = (e) => {
-    console.groupCollapsed("handleChange(name, value, type, checked)");
     const { name, value, type, checked } = e.target;
-    console.log(name, value, type, checked);
     const val = type === "checkbox" ? checked : value;
-    setFormData([name], val);
-    console.groupEnd();
+    setFormData({ ...formData, [name]: val });
   };
 
   const handleSubmit = () => {
