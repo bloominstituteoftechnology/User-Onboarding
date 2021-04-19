@@ -65,7 +65,7 @@ const Form = (props) => {
           type="text"
           name="name"
           value={formData.name}
-          placeholder="name"
+          placeholder="minimum of 2 characters"
           onChange={handleChange}
         />
       </label>
@@ -87,7 +87,7 @@ const Form = (props) => {
           type="password"
           name="password"
           value={formData.password}
-          placeholder="password"
+          placeholder="4-8 character password"
           onChange={handleChange}
         />
       </label>

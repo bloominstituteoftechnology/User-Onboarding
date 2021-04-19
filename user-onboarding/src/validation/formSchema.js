@@ -3,15 +3,18 @@ import * as yup from 'yup';
 export default yup.object().shape({
     name: yup
     .string()
-    .required("Did you forget your name?"),
+    .min(2)
+    .required("Please enter a name"),
     email: yup
     .string()
     .email()
-    .required("Emails bro"),
+    .required("Please enter a valid email address"),
     password: yup
     .string()
-    .required("Enter a password"),
+    .min(4)
+    .max(8)
+    .required("Please enter a valid password"),
     tosCheck: yup
     .boolean()
-    .oneOf([true], "Please read and accept Terms of Service")
+    .oneOf([true], "Please read and accept the Terms of Service")
 })
