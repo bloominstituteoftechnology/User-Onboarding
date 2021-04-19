@@ -61,3 +61,5 @@ The following are stretch goals that you should attempt _after_ you meet MVP for
 ## Submission Format
 
 * [ ] Submit a Pull-Request to merge `<firstName-lastName>` Branch into `main` (student's  Repo). **Please don't merge your own pull request**
+
+line added to create a pull request for module 4 - I got confused somewhere and thought that all I needed to do was push the changes since the PR was already made for this project.
