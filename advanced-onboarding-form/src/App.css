@@ -1,0 +1,10 @@
+#body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 175%;
+}
+
+h1 {
+    font-family: "Lobster 1.4";
+}

@@ -1,0 +1,26 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Potatoes And Peas";
+    font-size: 3rem;
+    font-weight: bolder;
+}
+input {
+    border: 2px solid black;
+    font-family: Dialog;
+    font-size: 2.5rem;
+}
+.error {
+    color: red;
+    font-family: Monospaced;
+}
+button {
+    padding: 2%;
+    font-size: 3rem;
+    font-weight: bolder;
+}
+button:hover {
+    font-size: 4.5rem;
+    background-color: aqua;
+}

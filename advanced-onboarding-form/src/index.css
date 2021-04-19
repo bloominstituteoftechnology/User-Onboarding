@@ -1,0 +1,22 @@
+/**
+ * Remember your why
+ *
+ * minimalistic reset combined with condensed universal reset
+ *
+ */
+
+* {
+    font-family: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    border: 0;
+    outline: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
