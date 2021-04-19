@@ -104,9 +104,11 @@ const Form = (props) => {
           onChange={handleChange}
         />
       </label>
+
       <button action="submit" onClick={handleSubmit} disabled={disabled}>
         Submit
       </button>
+
       <div className="errors">
         <div>{formErrors.name}</div>
         <div>{formErrors.email}</div>

@@ -1,23 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
 import "./App.css";
+import axios from "axios";
 import Form from "./components/Form";
+import User from "./components/User";
 
 function App() {
-  const initialUsers = [
-    {
-      name: "",
-      email: "",
-      password: "",
-      tosCheck: true,
-    },
-  ];
+  const initialUsers = [];
   const [users, setUsers] = useState(initialUsers);
+  const url = "https://reqres.in/api/users";
 
   const submit = (user) => {
     console.groupCollapsed("submit()");
-    console.log(user);
-    setUsers([...users, user]);
+    axios.post(url, user).then((res) => setUsers([...users, res.data]));
     console.groupEnd();
   };
 
@@ -25,10 +20,7 @@ function App() {
     <div className="App">
       <Form submit={submit} />
       {users.map((user, index) => (
-        <div className="user" key={index}>
-          <h2>{user.name}</h2>
-          <a href="#">{user.email}</a>
-        </div>
+        <User key={index} name={user.name} email={user.email} />
       ))}
     </div>
   );
