@@ -36,5 +36,12 @@ describe('user onboarding', () => {
                 .type('password')
                 .should('have.value', 'password')
         })
+
+        it('can check terms box', () => {
+            termInput()
+            .should('have.value', 'false')
+            .check()
+            .should('have.value', 'true')
+        })
     })
 })
