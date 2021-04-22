@@ -13,7 +13,7 @@ export default function Form(props){
         const valueToUse = (type === "checkbox") ? checked : value;
         change(name, valueToUse);
     })
-
+///
     return (
         <form className = "form container" onSubmit = {onSubmit}>
             <div className = "form-group submit">
