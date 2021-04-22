@@ -1,4 +1,12 @@
 import React, {useState} from 'react';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+    name: yup.string().required("What is your name?!"),
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+    terms: yup.boolean().oneOf([true])
+})
 
 const Form = (props) => {
 //Managing state for form inputs
@@ -22,16 +30,16 @@ const formSubmit = event => {
     })
 }
 
+const [errors, setErrors] = useState()
+
 //validation 
-const validateEmail = (email) => {
+const validate = (email) => {
 
 }
 
 //onChange call-back Function 
 const inputChange = event => {
-    if(event.target.name === 'email') {
-        validateEmail(event.target.value)
-    }
+
     let value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
     setFormState({...formState, [event.target.name]: value})
 }
