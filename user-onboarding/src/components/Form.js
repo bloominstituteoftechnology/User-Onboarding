@@ -6,7 +6,7 @@ const [formState, setFormState] = useState({
     name: '',
     email: '',
     password: '',
-    terms_of_service: false
+    terms: false
 
 })
 
@@ -14,11 +14,26 @@ const [formState, setFormState] = useState({
 const formSubmit = event => {
     event.preventDefault();
     console.log('form submitted!');
+    setFormState({
+    name: '',
+    email: '',
+    password: '',
+    terms: false
+    })
+}
+
+//validation 
+const validateEmail = (email) => {
+
 }
 
 //onChange call-back Function 
 const inputChange = event => {
-    setFormState({...formState, [event.target.name]: event.target.value})
+    if(event.target.name === 'email') {
+        validateEmail(event.target.value)
+    }
+    let value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
+    setFormState({...formState, [event.target.name]: value})
 }
 
     return (
@@ -45,8 +60,20 @@ const inputChange = event => {
                     onChange={inputChange} 
                     name='password' />
                 </label>
-                
+
                 <br />
+
+                <label>
+                    I have agreed to sell my soul 
+                    <input type='checkbox' 
+                    value={formState.terms}
+                    onChange={inputChange}
+                    checked={formState.terms} 
+                    name='terms' />
+                </label>
+               
+                  <br />
+
                 <button>Submit</button>
             </form>
         </div>
