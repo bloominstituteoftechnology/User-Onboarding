@@ -19,6 +19,8 @@ const [formState, setFormState] = useState({
 
 })
 
+const [users, setUsers] = useState([])
+
 //onSubmit call-back function
 const formSubmit = event => {
     event.preventDefault();
@@ -33,6 +35,7 @@ const formSubmit = event => {
     .post('https://reqres.in/api/users', formState)
     .then( res => {
         console.log(res);
+        setUsers(formState);
     })
     .catch(err => console.log(err));
 }
@@ -113,6 +116,7 @@ const inputChange = event => {
                   <br />
 
                 <button>Submit</button>
+                <p>{JSON.stringify(users.name)}</p>
             </form>
         </div>
     )
