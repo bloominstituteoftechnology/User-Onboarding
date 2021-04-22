@@ -31,6 +31,10 @@ const formSubmit = event => {
     })
     axios
     .post('https://reqres.in/api/users', formState)
+    .then( res => {
+        console.log(res);
+    })
+    .catch(err => console.log(err));
 }
 
 const [errors, setErrors] = useState({
