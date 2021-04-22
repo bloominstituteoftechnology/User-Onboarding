@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import * as yup from 'yup';
+import axios from 'axios';
 
 const schema = yup.object().shape({
     name: yup.string().required("What is your name?!"),
-    email: yup.string().email().required(),
-    password: yup.string().required(),
-    terms: yup.boolean().oneOf([true])
+    email: yup.string().email("invalid email").required("must include email"),
+    password: yup.string().required("tell me your password"),
+    terms: yup.boolean().oneOf([true], "agree to sell your soul")
 })
 
 const Form = (props) => {
@@ -28,18 +29,40 @@ const formSubmit = event => {
     password: '',
     terms: false
     })
+    axios
+    .post('https://reqres.in/api/users', formState)
 }
 
-const [errors, setErrors] = useState()
+const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    password: '',
+    terms: ''
+})
 
 //validation 
-const validate = (email) => {
-
+const validate = (event) => {
+    yup.reach(schema, event.target.name)
+    .validate(event.target.value)
+    .then(valid => {
+        setErrors({
+            ...errors,
+            [event.target.name]: ""
+            
+        })
+    })
+    .catch(err => {
+        console.log(err.errors);
+        setErrors({
+            ...errors,
+            [event.target.name]: err.errors[0]
+        })
+    })
 }
 
 //onChange call-back Function 
 const inputChange = event => {
-
+    validate(event)
     let value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
     setFormState({...formState, [event.target.name]: value})
 }
@@ -61,6 +84,9 @@ const inputChange = event => {
                     onChange={inputChange} 
                     name='email' />
                 </label>
+
+                {errors.email.length > 0 ? <p>{errors.email}</p> : null} 
+
                 <label>
                     Password: 
                     <input type='password' 
