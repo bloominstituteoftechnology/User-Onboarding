@@ -9,6 +9,8 @@ describe('user onboarding', () => {
     const passwordInput = () => cy.get('input[name=password]')
     const termInput = () => cy.get('input[name=terms]')
     const buttonInput = () => cy.get('button')
+    const form = () => cy.get('Form')
+   
 
     it('proper elements exist', () => {
         expect(5).to.equal(5)
@@ -42,6 +44,42 @@ describe('user onboarding', () => {
             .should('have.value', 'false')
             .check()
             .should('have.value', 'true')
+        })
+
+        it('can submit form data', () => {
+            form()
+                .submit()
+                .should('have.value', '')
+            buttonInput()
+                .should('be.disabled')
+                
+        })
+
+        it('validation tests', () => {
+            nameInput()
+                .should('have.value', '')
+                .type('kaseem')
+                .should('not.have.value', '')
+                buttonInput().should('be.disabled')
+
+            emailInput()
+                .should('have.value', '')
+                .type('kaseem@gmail.com')
+                .should('not.have.value', '')
+                buttonInput().should('be.disabled')
+           
+            passwordInput()
+                .should('have.value', '')
+                .type('pass')
+                .should('not.have.value', '')
+                buttonInput().should('be.disabled')
+
+            termInput()
+                .should('have.value', 'false')
+                .check()
+                .should('have.value', 'true')
+                buttonInput().should('not.be.disabled')
+
         })
     })
 })

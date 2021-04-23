@@ -115,7 +115,11 @@ const inputChange = event => {
                
                   <br />
 
-                <button>Submit</button>
+                <button disabled={
+                    !formState.terms 
+                    || !formState.password
+                    || !formState.email
+                    || !formState.name}>Submit</button>
                 <p>{JSON.stringify(users.name)}</p>
             </form>
         </div>
