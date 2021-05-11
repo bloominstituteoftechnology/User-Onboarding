@@ -45,6 +45,7 @@ const Form = () => {
       "terms_of_service": `${form.terms_of_service}`,
       "checkboxes": ['check1', 'check2'].filter(check => form[check]),
       "radio": `${form.radio}`,
+      "drop": `${form.drop}`
     };
 
     // const obj = {
@@ -75,10 +76,8 @@ const Form = () => {
     const { checked, type, name, value } = event.target;
     if ( type == 'checkbox' )
       setForm( {...form, [name]: checked} )
-    else {
+    else
       setForm( {...form, [name]: value} );
-      console.log(`[${name}]: ${value}`);
-    }
   };
 
   // ============================================
@@ -156,9 +155,12 @@ const Form = () => {
           />
         </label>
 
-
-
         {/* drop: ''                 // dropdown */}
+        <select name="drop" value={form.drop} onChange={onChange}>
+          <option value="drop1">Drop 1</option>
+          <option value="drop2">Drop 2</option>
+          <option value="drop3">Drop 3</option>
+        </select>
 
         {/* <input type="submit" onSubmit={onSubmit} /> */}
         <button>Post Data</button>

@@ -22,14 +22,12 @@ const friends = [
     email: 'michael@michael.com',
     password: 'pswrd',
     terms_of_service: false,
-    radio: null,
-
-    civil: 'single',
     checkboxes: [
-      'hiking',
-      'reading',
-      'coding',
+      'check1',
+      'check1'
     ],
+    radio: null,
+    drop: null
   },
   // name: '',                // text
   // age: '',                 // number
