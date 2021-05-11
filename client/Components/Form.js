@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import * as yup from 'yup';
 
 // ==============================================
-// ============================================
+// ==============================================
 const init_form = {
   name: '',                // text
   age: '',                 // number
@@ -14,12 +15,23 @@ const init_form = {
   check2: false,           // checkbox
   drop: ''                 // dropdown
 };
-// ============================================
+// ==============================================
+// ==============================================
+
+const schema = yup.object().shape({
+  name: yup.string().required('name is required').min(2, 'user needs to be 2 chars min'),
+  radio: yup.string().oneOf(['radio-1', 'radio-2'], 'you must select a radio option'),
+  drop: yup.string().oneOf(['drop1', 'drop2', 'drop3'], 'you must choose a dropdown option!'),
+  terms_of_service: yup.boolean().oneOf([true], 'you must sell your soul!'),
+});
+
+// ==============================================
 // ============================================
 
 const Form = () => {
 
-  const [form, setForm] = useState(init_form);
+  const [form, setForm]         = useState(init_form);
+  const [disabled, setDisabled] = useState(true);
 
   // ============================================
 
@@ -48,16 +60,6 @@ const Form = () => {
       "drop": `${form.drop}`
     };
 
-    // const obj = {
-    //   "name": "josh",
-    //   "age": "55",
-    //   "email": "josh@josh.com",
-    //   "password": "abc",
-    //   "terms_of_service": "true",
-    //   "radio": "radio-1",
-    //   "checkboxes": ['check1', 'check2'].filter(check => form[check])
-    // };
-
     event.preventDefault();
     axios.post('http://localhost:5000/friends', obj)
       .then((response) => {
@@ -79,6 +81,16 @@ const Form = () => {
     else
       setForm( {...form, [name]: value} );
   };
+
+  // ============================================
+
+  useEffect(() => {
+    schema.isValid(form).then( (valid) => {
+      
+      console.log('valid: ', valid);
+      setDisabled(!valid);
+    } )
+  }, [form]);
 
   // ============================================
 
@@ -163,7 +175,7 @@ const Form = () => {
         </select>
 
         {/* <input type="submit" onSubmit={onSubmit} /> */}
-        <button>Post Data</button>
+        <button disabled={disabled}>Post Data</button>
       </form>
     </div>
   );

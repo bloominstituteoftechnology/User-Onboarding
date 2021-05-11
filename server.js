@@ -17,27 +17,18 @@ app.use(cors());
 const friends = [
   {
     id: uuid(),
-    name: 'Michael',
-    age: 'student',
-    email: 'michael@michael.com',
-    password: 'pswrd',
+    name: 'Friend 1',
+    age: '47',
+    email: 'steve@apple.com',
+    password: 'pwd',
     terms_of_service: false,
     checkboxes: [
       'check1',
-      'check1'
+      'check2'
     ],
-    radio: null,
-    drop: null
+    radio: 'radio2',
+    drop: 'drop3'
   },
-  // name: '',                // text
-  // age: '',                 // number
-  // email: '',               // text
-  // password: '',            // text
-  // terms_of_service: false, // checkbox
-  // radio: null,             // radio
-  // check1: false,           // checkbox
-  // check2: false,           // checkbox
-  // drop: ''                 // dropdown
 ];
 
 // ==============================================
@@ -61,8 +52,8 @@ app.get('/friends', (req, res) => {
 // ==============================================
 
 app.post('/friends', (req, res) => {
-  const { name, email, age, password, terms_of_service, radio } = req.body;
-  const requiredFields = { name, email, age, password, terms_of_service, radio };
+  const { name, terms_of_service, radio } = req.body;
+  const requiredFields = { name, terms_of_service, radio };
 
   if (Object.values(requiredFields).some(field => (!field || !field.trim()))) {
     res.status(400).json({ message: 'Some required fields are missing or invalid.' });
@@ -77,7 +68,7 @@ app.post('/friends', (req, res) => {
     friends.push(newFriend);
     console.log('friends: ', friends);
 
-    res.status(200).json(newFriend)
+    res.status(200).json(friends)
   }
 });
 
