@@ -19,10 +19,15 @@ const init_form = {
 // ==============================================
 
 const schema = yup.object().shape({
-  name: yup.string().required('name is required').min(2, 'user needs to be 2 chars min'),
-  radio: yup.string().oneOf(['radio-1', 'radio-2'], 'you must select a radio option'),
-  drop: yup.string().oneOf(['drop1', 'drop2', 'drop3'], 'you must choose a dropdown option!'),
+  name:     yup.string().required('name is required').min(2, 'user needs to be 2 chars min'),
+  age:      yup.string().required('age is required'),
+  email:    yup.string().required('email is required'),
+  password: yup.string().required('password is required'),
+  radio:    yup.string().oneOf(['radio-1', 'radio-2'], 'you must select a radio option'),
+  drop:     yup.string().oneOf(['drop1', 'drop2', 'drop3'], 'you must choose a dropdown option!'),
   terms_of_service: yup.boolean().oneOf([true], 'you must sell your soul!'),
+  check1:   yup.boolean().oneOf([true, false], 'you must either check or not check check1!'),
+  check2:   yup.boolean().oneOf([true, false], 'you must either check or not check check1!'),
 });
 
 // ==============================================
@@ -32,18 +37,7 @@ const Form = () => {
 
   const [form, setForm]         = useState(init_form);
   const [disabled, setDisabled] = useState(true);
-
-  // ============================================
-
-  const onGet = (event) => {
-    console.log('GET');
-    event.preventDefault();
-    axios.get('http://localhost:5000/friends')
-      .then((response) => {
-        const body = response.data;
-        console.log(body);
-      });
-  };
+  const [errors, setErrors]     = useState({name: '', age: '', email: '', password: '', terms_of_service: '', radio: '', check1: '', check2: '', drop: ''});
 
   // ============================================
 
@@ -73,30 +67,47 @@ const Form = () => {
 
   // ============================================
 
-  const onChange = (event) => {
-
-    const { checked, type, name, value } = event.target;
-    if ( type == 'checkbox' )
-      setForm( {...form, [name]: checked} )
-    else
-      setForm( {...form, [name]: value} );
-  };
-
-  // ============================================
-
   useEffect(() => {
-    schema.isValid(form).then( (valid) => {
-      
-      console.log('valid: ', valid);
-      setDisabled(!valid);
-    } )
+    schema.isValid(form).then( (valid) => setDisabled(!valid) )
   }, [form]);
 
   // ============================================
 
+  const onChange = (event) => {
+
+    // Check for errors:
+    const setFormErrors = (name, value) => {
+      yup.reach(schema, name).validate(value)
+        .then(  ()    => setErrors({ ...errors, [name]: '' }) ) // succssful validation => no error
+        .catch( (err) => setErrors({ ...errors, [name]: err.errors[0] }) )
+    };
+
+    const { checked, type, name, value } = event.target;
+    if ( type == 'checkbox' ) {
+      setFormErrors(name, checked);
+      setForm( {...form, [name]: checked} );
+    }
+    else {
+      setFormErrors(name, value);
+      setForm( {...form, [name]: value} );
+    }
+  };
+
+  // ============================================
+
   return (
-    <div>
-      <button onClick={onGet}>Get Data</button>
+    <>
+      <div style={{ color: 'red' }}>
+        <div>{errors.name}</div>
+        <div>{errors.age}</div>
+        <div>{errors.email}</div>
+        <div>{errors.password}</div>
+        <div>{errors.terms_of_service}</div>
+        <div>{errors.radio}</div>
+        <div>{errors.check1}</div>
+        <div>{errors.check2}</div>
+        <div>{errors.drop}</div>
+      </div>
 
       <form onSubmit={onPost}>
 
@@ -174,10 +185,9 @@ const Form = () => {
           <option value="drop3">Drop 3</option>
         </select>
 
-        {/* <input type="submit" onSubmit={onSubmit} /> */}
         <button disabled={disabled}>Post Data</button>
       </form>
-    </div>
+    </>
   );
 };
 
