@@ -37,25 +37,25 @@ const Form = () => {
 
   const onPost = (event) => {
 
-    const obj = {
-      "name": `${form.name}`,
-      "age": `${form.age}`,
-      "email": `${form.email}`,
-      "password": `${form.password}`,
-      "terms_of_service": `${form.terms_of_service}`,
-      "civil": "single",
-      "hobbies": ["a", "b"]
-    };
-
     // const obj = {
-    //   "name": "josh",
-    //   "age": "55",
-    //   "email": "josh@josh.com",
-    //   "password": "abc",
-    //   "terms_of_service": "true",
+    //   "name": `${form.name}`,
+    //   "age": `${form.age}`,
+    //   "email": `${form.email}`,
+    //   "password": `${form.password}`,
+    //   "terms_of_service": `${form.terms_of_service}`,
     //   "civil": "single",
     //   "hobbies": ["a", "b"]
     // };
+
+    const obj = {
+      "name": "josh",
+      "age": "55",
+      "email": "josh@josh.com",
+      "password": "abc",
+      "terms_of_service": "true",
+      "civil": "single",
+      "checkboxes": ['check1', 'check2'].filter(check => form[check])
+    };
 
     event.preventDefault();
     axios.post('http://localhost:5000/friends', obj)
@@ -122,9 +122,25 @@ const Form = () => {
           />
         </label>
 
-        {/* radio: null,             // radio */}
         {/* check1: false,           // checkbox */}
+        <label>
+          Check 1
+          <input type="checkbox" name="check1" 
+            checked={form.check1} // GUI check if form: {..., check1: true, ...} 
+            onChange={onChange} 
+          />
+        </label>
+
         {/* check2: false,           // checkbox */}
+        <label>
+          Check 2
+          <input type="checkbox" name="check2" 
+            checked={form.check2} // GUI check if form: {..., check2: true, ...} 
+            onChange={onChange} 
+          />
+        </label>
+
+        {/* radio: null,             // radio */}
         {/* drop: ''                 // dropdown */}
 
         {/* <input type="submit" onSubmit={onSubmit} /> */}
