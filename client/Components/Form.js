@@ -37,18 +37,11 @@ const Form = () => {
 
   const onPost = (event) => {
 
-    // const obj = {
-    //   "name": "johndoe",
-    //   "age": "45",
-    //   "email": "qwerty@q.com",
-    //   "civil": "single",
-    //   "hobbies": ["a", "b"]
-    // };
-
     const obj = {
       "name": `${form.name}`,
       "age": `${form.age}`,
       "email": `${form.email}`,
+      "password": `${form.password}`,
       "civil": "single",
       "hobbies": ["a", "b"]
     };
@@ -84,20 +77,36 @@ const Form = () => {
       <button onClick={onGet}>Get Data</button>
 
       <form onSubmit={onPost}>
+
+        {/* name: '',                // text */}
         <label>
           Name:
           <input type="text" name="name" value={form.name} onChange={onChange} />
         </label>
 
+        {/* age: '',                 // number */}
         <label>
           Age:
           <input type="number" name="age" value={form.age} onChange={onChange} />
         </label>
 
+        {/* email: '',               // text */}
         <label>
           Email:
           <input type="email" name="email" value={form.email} onChange={onChange} />
         </label>
+
+        {/* password: '',            // text */}
+        <label>
+          Password:
+          <input type="text" name="password" value={form.password} onChange={onChange} />
+        </label>
+
+        {/* terms_of_service: false, // checkbox */}
+        {/* radio: null,             // radio */}
+        {/* check1: false,           // checkbox */}
+        {/* check2: false,           // checkbox */}
+        {/* drop: ''                 // dropdown */}
 
         {/* <input type="submit" onSubmit={onSubmit} /> */}
         <button>Post Data</button>
