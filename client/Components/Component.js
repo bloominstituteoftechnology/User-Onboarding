@@ -2,30 +2,15 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Route, Link, Switch, useRouteMatch } from 'react-router-dom';
 import Home from './Home.js';
+import Form from './Form.js';
 
 // ==============================================
 
-const postAllFriends = () => {
-
-
-  const newFriend = {
-    "username": "johndoe",
-    "email": "qwerty@q.com",
-    "role": "tx",
-    "civil": "single",
-    "hobbies": ["a", "b"]
-  };
-
-
-  useEffect(() => {
-    axios
-      .post(`http://localhost:5000/friends`, newFriend)
-      .then(response => {
-        console.log('response: ', response);
-      })
-      .catch(error   => console.error('Server Error', error));
-  }, []);
-
+const Button = ({text}) => {
+  console.log('JOSH');
+  return (
+    <button>{text}</button>
+  );
 };
 
 // ==============================================
@@ -41,26 +26,47 @@ const GetAllFriends = () => {
       .catch(error   => console.error('Server Error', error));
   }, []);
 
-
   // return <div>{friends[0].username}</div>;
   return <div>{friends.map(x => <p key={x.id}>{x.username}</p>)}</div>;
 };
 
 // ==============================================
 
-const Component3 = () => {
+const Component = () => {
 
   
+  const postNewFriend = () => {
+
+    const newFriend = {
+      "username": "johndoe",
+      "email": "qwerty@q.com",
+      "role": "tx",
+      "civil": "single",
+      "hobbies": ["a", "b"]
+    };
+
+    useEffect(() => {
+      axios
+        .post(`http://localhost:5000/friends`, newFriend)
+        .then(response => {
+          console.log('response: ', response);
+        })
+        .catch(error   => console.error('Server Error', error));
+    }, []);
+  };
+
 
   return (
       <Router>
-        <div className="A3">
+        <div className="navbar">
           <Link to="/">Home</Link>
           <Link to="/friends">/friends</Link>
+        </div>
 
-          <button onClick={postAllFriends}>
-            Post Friend
-          </button>
+        <div className="container">
+
+          <Form></Form>
+
         </div>
 
         <div className="B3">
@@ -78,4 +84,4 @@ const Component3 = () => {
       </Router>
   );
 };
-export default Component3;
+export default Component;

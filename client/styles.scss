@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body { 
   background: black;
   color: white;
@@ -6,26 +12,18 @@ a {
   display: block;
   color: inherit;
 }
-.container {
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows:    repeat(2, 1fr);
-  grid-template-areas: 
-    'A1 A2 A3'
-    'B1 B2 B3';
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  height: 100px;
+  width: 100vw;
+  background: green;
+  border: solid deepskyblue 5px;
 
-  background: black;
-
-  .A1, .B1 { background: deepskyblue; }
-  .A2, .B2 { background: darkorange; }
-  .A3, .B3 { background: darkorchid; }
-
-  .A1 { grid-area: A1; }
-  .A2 { grid-area: A2; }
-  .A3 { grid-area: A3; }
-
-  .B1 { grid-area: B1; }
-  .B2 { grid-area: B2; }
-  .B3 { grid-area: B3; }
+  * {
+    border: solid hotpink 5px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
 }

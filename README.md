@@ -16,9 +16,11 @@ We've seen many different styles of form management by now -- simple to complex.
 
 ### Task 2: MVP
 
-#### Create Your Advanced Form
+#### MVP-1: Create Your Advanced Form
 
-We want to create a form to onboard a new user to our system. We need _at least_ the following pieces of information about our new user:
+Create a form to onboard a new user to our system. 
+
+We need _at least_ the following info about our new user:
 
 - [ ] Name
 - [ ] Email
@@ -26,24 +28,20 @@ We want to create a form to onboard a new user to our system. We need _at least_
 - [ ] Terms of Service (checkbox)
 - [ ] A Submit button to send our form data to the server.
 
-#### Implement Form Validation and Error Messaging
-
-Form validation is one of the facets of an application that makes it feel polished and controlled from a user perspective. With that in mind, implement the following:
+#### MVP-2: Implement Form Validation and Error Messaging
 
 - [ ] Using Yup, set up _at least_ two different validations along with custom error messages that will display on screen when validation fails.
 
-#### Make a POST Request
-
-Being able to `POST` data is a key skill of any developer, no matter your skill level.
+#### MVP-3: Make a POST Request
 
 - [ ] Craft a `POST` request using `axios` that sends your form data to the following endpoint: _`https://reqres.in/api/users`_
 - [ ] Verify using a `console.log()` that you are receiving a successful response back
 
 (Note: For those that are curious, we're using [reqres.in](https://reqres.in/) for this assignment's API. It's a free API that allows us to simulate a `POST` request for any data that we send it. Pretty awesome!)
 
-#### Display Returned Data to Screen
+#### MVP-4: Display Returned Data to Screen
 
-When you get your data back, you will want to do something with it, right? Let's display a list of users in our app.
+When you get your data back, display a list of users in our app.
 
 - [ ] Set up a state property called `users` that is initialized with an empty array
 - [ ] Every time you make a `POST` request, and get that new user data back, update your `users` state with the new user added to the array
