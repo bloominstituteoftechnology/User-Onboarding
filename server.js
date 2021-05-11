@@ -21,6 +21,7 @@ const friends = [
     age: 'student',
     email: 'michael@michael.com',
     password: 'pswrd',
+    terms_of_service: false,
 
     civil: 'single',
     hobbies: [
@@ -61,8 +62,8 @@ app.get('/friends', (req, res) => {
 // ==============================================
 
 app.post('/friends', (req, res) => {
-  const { name, email, age, password, civil } = req.body
-  const requiredFields = { name, email, age, password, civil }
+  const { name, email, age, password, terms_of_service,   civil } = req.body
+  const requiredFields = { name, email, age, password, terms_of_service,   civil }
 
   if (Object.values(requiredFields).some(field => (!field || !field.trim()))) {
     res.status(400).json({ message: 'Some required fields are missing or invalid.' })

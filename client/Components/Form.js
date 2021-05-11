@@ -42,9 +42,20 @@ const Form = () => {
       "age": `${form.age}`,
       "email": `${form.email}`,
       "password": `${form.password}`,
+      "terms_of_service": `${form.terms_of_service}`,
       "civil": "single",
       "hobbies": ["a", "b"]
     };
+
+    // const obj = {
+    //   "name": "josh",
+    //   "age": "55",
+    //   "email": "josh@josh.com",
+    //   "password": "abc",
+    //   "terms_of_service": "true",
+    //   "civil": "single",
+    //   "hobbies": ["a", "b"]
+    // };
 
     event.preventDefault();
     axios.post('http://localhost:5000/friends', obj)
@@ -103,6 +114,14 @@ const Form = () => {
         </label>
 
         {/* terms_of_service: false, // checkbox */}
+        <label>
+          Agree to Sell your Soul?
+          <input type="checkbox" name="terms_of_service" 
+            checked={form.terms_of_service} // GUI check if form: {..., terms_of_service: true, ...} 
+            onChange={onChange} 
+          />
+        </label>
+
         {/* radio: null,             // radio */}
         {/* check1: false,           // checkbox */}
         {/* check2: false,           // checkbox */}
