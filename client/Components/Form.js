@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import User from './User.js';
 import axios from 'axios';
 import * as yup from 'yup';
 
@@ -35,6 +36,7 @@ const schema = yup.object().shape({
 
 const Form = () => {
 
+  const [users, setUsers]       = useState([]);
   const [form, setForm]         = useState(init_form);
   const [disabled, setDisabled] = useState(true);
   const [errors, setErrors]     = useState({name: '', age: '', email: '', password: '', terms_of_service: '', radio: '', check1: '', check2: '', drop: ''});
@@ -43,7 +45,7 @@ const Form = () => {
 
   const onPost = (event) => {
 
-    const obj = {
+    const user = {
       "name": `${form.name}`,
       "age": `${form.age}`,
       "email": `${form.email}`,
@@ -55,15 +57,20 @@ const Form = () => {
     };
 
     event.preventDefault();
-    axios.post('http://localhost:5000/friends', obj)
+    axios.post('http://localhost:5000/friends', user)
       .then((response) => {
-
-        console.log('response from POST request!');
-
-        const body = response.data;
-        console.log(body);
+        console.log(response.data);
+        setUsers(response.data);
       });
   };
+
+  // ============================================
+  
+  // Get users from database upon page load
+  useEffect(() => {
+    axios.get('http://localhost:5000/friends')
+      .then((response) => setUsers(response.data));
+  }, []);
 
   // ============================================
 
@@ -180,6 +187,7 @@ const Form = () => {
 
         {/* drop: ''                 // dropdown */}
         <select name="drop" value={form.drop} onChange={onChange}>
+          <option value="">Choose One!</option>
           <option value="drop1">Drop 1</option>
           <option value="drop2">Drop 2</option>
           <option value="drop3">Drop 3</option>
@@ -187,6 +195,16 @@ const Form = () => {
 
         <button disabled={disabled}>Post Data</button>
       </form>
+
+      <div>
+        {
+          users.map(user => {
+            return (
+              <User key={user.id} user={user} />
+            )
+          })
+        }
+      </div>
     </>
   );
 };
