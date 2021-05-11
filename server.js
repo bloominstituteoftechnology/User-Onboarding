@@ -22,9 +22,10 @@ const friends = [
     email: 'michael@michael.com',
     password: 'pswrd',
     terms_of_service: false,
+    radio: null,
 
     civil: 'single',
-    hobbies: [
+    checkboxes: [
       'hiking',
       'reading',
       'coding',
@@ -62,17 +63,17 @@ app.get('/friends', (req, res) => {
 // ==============================================
 
 app.post('/friends', (req, res) => {
-  const { name, email, age, password, terms_of_service,   civil } = req.body
-  const requiredFields = { name, email, age, password, terms_of_service,   civil }
+  const { name, email, age, password, terms_of_service, radio } = req.body;
+  const requiredFields = { name, email, age, password, terms_of_service, radio };
 
   if (Object.values(requiredFields).some(field => (!field || !field.trim()))) {
-    res.status(400).json({ message: 'Some required fields are missing or invalid.' })
+    res.status(400).json({ message: 'Some required fields are missing or invalid.' });
   }
-  else if (req.body.hobbies && !Array.isArray(req.body.hobbies)) {
-    res.status(400).json({ message: 'The optional `hobbies` field must be an array.' })
+  else if (req.body.checkboxes && !Array.isArray(req.body.checkboxes)) {
+    res.status(400).json({ message: 'The optional `checkboxes` field must be an array.' });
   }
   else {
-    const newFriend = { id: uuid(), ...req.body }
+    const newFriend = { id: uuid(), ...req.body };
     
     console.log('newFriend: ', newFriend);
     friends.push(newFriend);

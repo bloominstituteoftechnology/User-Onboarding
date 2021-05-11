@@ -37,25 +37,25 @@ const Form = () => {
 
   const onPost = (event) => {
 
-    // const obj = {
-    //   "name": `${form.name}`,
-    //   "age": `${form.age}`,
-    //   "email": `${form.email}`,
-    //   "password": `${form.password}`,
-    //   "terms_of_service": `${form.terms_of_service}`,
-    //   "civil": "single",
-    //   "hobbies": ["a", "b"]
-    // };
-
     const obj = {
-      "name": "josh",
-      "age": "55",
-      "email": "josh@josh.com",
-      "password": "abc",
-      "terms_of_service": "true",
-      "civil": "single",
-      "checkboxes": ['check1', 'check2'].filter(check => form[check])
+      "name": `${form.name}`,
+      "age": `${form.age}`,
+      "email": `${form.email}`,
+      "password": `${form.password}`,
+      "terms_of_service": `${form.terms_of_service}`,
+      "checkboxes": ['check1', 'check2'].filter(check => form[check]),
+      "radio": `${form.radio}`,
     };
+
+    // const obj = {
+    //   "name": "josh",
+    //   "age": "55",
+    //   "email": "josh@josh.com",
+    //   "password": "abc",
+    //   "terms_of_service": "true",
+    //   "radio": "radio-1",
+    //   "checkboxes": ['check1', 'check2'].filter(check => form[check])
+    // };
 
     event.preventDefault();
     axios.post('http://localhost:5000/friends', obj)
@@ -141,6 +141,23 @@ const Form = () => {
         </label>
 
         {/* radio: null,             // radio */}
+        <label>
+          Radio 1
+          <input type="radio" name="radio" value="radio-1"  //  form: {..., name:  value, ...}
+            checked={form.radio == 'radio-1'}               //              radio: radio-1
+            onChange={onChange} 
+          />
+        </label>
+        <label>
+          Radio 2 
+          <input type="radio" name="radio" value="radio-2"  //  form: {..., name:  value, ...}
+            checked={form.radio == 'radio-2'}               //              radio: radio-2
+            onChange={onChange} 
+          />
+        </label>
+
+
+
         {/* drop: ''                 // dropdown */}
 
         {/* <input type="submit" onSubmit={onSubmit} /> */}
