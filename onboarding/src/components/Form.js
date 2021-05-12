@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function Form() {
   const initialFormState =
   {
-    name: '',
+    name: "",
     email: '',
     password: '',
     terms: false,
