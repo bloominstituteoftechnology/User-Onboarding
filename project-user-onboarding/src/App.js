@@ -13,7 +13,7 @@ function App() {
   /* -------------------------- STATE -------------------------- */
   /* -------------------------- STATE -------------------------- */
 
-  const [users, setUsers] = useState(userStart);
+  const [users, setUsers] = useState([]);
   const [formValues, setValues] = useState(formValueStart);
   const [formErrors, setFormErrors] = useState(errorsStart);
   const [disabled, setDisabled] = useState(disabledStart);
@@ -127,7 +127,7 @@ const formValueStart = {
   terms: false,
 }
 
-const userStart = [];
+
 
 const disabledStart = true;
 

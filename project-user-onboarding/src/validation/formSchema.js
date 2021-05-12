@@ -9,4 +9,7 @@ export const schema = yup.object().shape({
     .string()
     .email("Must be a valid email!")
     .required("Email is required!"),
+    terms: yup
+    .boolean()
+    .oneOf([true], "You must accept Terms and Conditions")
 });
