@@ -26,10 +26,16 @@ const getUsers = () => {
   axios
     .get("https://reqres.in/api/users")
     .then(({data}) => setUsers(data))
-    .catch((error) => console.log("Error retrieving User:", error));
+    .catch((err) => console.log("Error retrieving User:", err));
 };
 
+const postNewUser = (newUser) => {
+  axios
+    .post("https://reqres.in/api/users", newUser)
+    .then(({data}) => setUsers([data, ...users]))
+    .catch((err) => console.log("Error Retrieving New User", err))
 
+};
 
 
 
@@ -63,23 +69,46 @@ const getUsers = () => {
   };
  /* -------------------------- SUBMIT -------------------------- */
 
-  const formSubmit = (event) => {
+  const formSubmit = () => {
+    const terms = [];
+    Object.keys(formValues)
+    .filter((key) => key === "yes")
+    .forEach((key) => {
+      const value = formValues[key];
+      if (value) {
+        terms.push(key);
+      }
+    });
+
     const newUser = {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
-      password: formValues.password.trim()
+      password: formValues.password.trim(),
+      terms
     }
-    setUsers([...users, newUser]);
+    postNewUser(newUser);
+    setValues(formValueStart);
   }
+ /* -------------------------- SIDE EFFECT -------------------------- */
 
- /* -------------------------- SUBMIT  -------------------------- */
+  useEffect(() => {
+    getUsers();
+  },[]);
+
+ /* -------------------------- SUBMIT ENABLE/DISABLE -------------------------- */
+
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => setDisabled(!valid));
+  }, [formValues]);
+
  
   return (
     <div className="App">
+
       <Form values={formValues} change={inputChange} submit={formSubmit} disabled={disabled} errors={formErrors}/>
 
-      {users.map((user)=> {
-        return <User key={user.id} info={user}/>
+      {[users].map((usrx) => {
+        return <User key={usrx.id} info={usrx} />;
       })}
     </div>
   );

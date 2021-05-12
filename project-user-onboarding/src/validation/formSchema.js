@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const schema = yup.object().shape({
-  username: yup
+  password: yup
     .string()
     .min(3, "Must be at least 3 characters!")
     .required("Username is required!"),
