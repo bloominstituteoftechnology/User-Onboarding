@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function Form() {
   const initialFormState =
   {
-    name: "",
+    name: '',
     email: '',
     password: '',
     terms: false,
@@ -26,7 +26,7 @@ export default function Form() {
     password: '',
     terms: '',
   });
-    const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   // - [x] Set up a state property called `users` that is initialized with an empty array
   // - [ ] Every time you make a `POST` request, and get that new user data back, update your `users` state with the new user added to the array
@@ -48,7 +48,7 @@ export default function Form() {
     .then(data => {
       setUsers([...users, data.data]);
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log('errrrrorrr'));
   };
 
   const validate = e => {
@@ -68,10 +68,6 @@ export default function Form() {
     });
   };
 
-  // BONUS!: state for whether our button should be disabled or not.
-
-  // Everytime formState changes, check to see if it passes verification.
-  // If it does, then enable the submit button, otherwise disable
   useEffect(() => {
     formSchema.isValid(formState).then((valid) => {
       setButtonDisabled(!valid);
@@ -138,6 +134,7 @@ export default function Form() {
             onChange={inputChange}
             checked={formState.terms}
             />
+          {errorState.terms == '' ? null : <p className='text-danger'>please agree to tos</p>}
         </label>
 
         <label className='mt-3 text-center'>
