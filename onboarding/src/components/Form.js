@@ -28,9 +28,6 @@ export default function Form() {
   });
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
-  // - [x] Set up a state property called `users` that is initialized with an empty array
-  // - [ ] Every time you make a `POST` request, and get that new user data back, update your `users` state with the new user added to the array
-  // - [ ] Render `users` in your app. You can use the html pre tag and JSON.stringify() method to display your post request.
   const [users, setUsers] = useState([]);
 
   const inputChange = e => {
@@ -42,7 +39,7 @@ export default function Form() {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log('form has been submitted')
+    console.log('form has been submitted');
     setFormState(formState);
     axios.post('https://reqres.in/api/users', formState)
     .then(data => {
@@ -76,7 +73,7 @@ export default function Form() {
 
   return (
     <div style={{
-        margin: '5rem 40% 0',
+        margin: '5rem 35% 0',
       }}
       className='form-row'>
       <form className='mt-5 d-flex flex-column m-5 form-group' onSubmit={onSubmit}>
@@ -124,7 +121,7 @@ export default function Form() {
           {errorState.password.length > 0 ? <p className='text-danger'>{errorState.password}</p> : null}
         </label>
 
-        <label htmlFor='terms' className='mt-3 text-center'>
+        <label htmlFor='terms' className='mt-5 text-center'>
           Please Accept ToS
           <input
             className='form-check-input'
@@ -134,7 +131,7 @@ export default function Form() {
             onChange={inputChange}
             checked={formState.terms}
             />
-          {errorState.terms == '' ? null : <p className='text-danger'>please agree to tos</p>}
+          {errorState.terms === '' ? null : <p className='text-danger'>please agree to tos</p>}
         </label>
 
         <label className='mt-3 text-center'>
