@@ -11,17 +11,18 @@ function User({info}){
 
     return (
         <div className="user container">
-            <h2>{info.name}</h2>
+            <img src={info.avatar} alt=""/>
+                                     
+            <h2>{info.name}{info.first_name} {info.last_name}</h2>
             <p>email: {info.email}</p>
-            <p>password: {info.password}</p>
-            <p>terms: {info.email}</p>
+
 
             {!!info.terms && !!info.terms.length && (
                 <div>
                     Do you agree to the Terms of Service?
                     <ul>
                         {info.terms.map((like, idx) => (
-                             <li key={idx}>{like}</li>
+                             <li key={idx}>{like}Yes</li>
                         ))}
                     </ul>
                 </div>    

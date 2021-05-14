@@ -25,14 +25,20 @@ function App() {
 const getUsers = () => {
   axios
     .get("https://reqres.in/api/users")
-    .then(({data}) => setUsers(data))
+    .then(({data}) => {
+      console.log(data)
+      setUsers(data.data)
+    })
     .catch((err) => console.log("Error retrieving User:", err));
 };
 
 const postNewUser = (newUser) => {
   axios
     .post("https://reqres.in/api/users", newUser)
-    .then(({data}) => setUsers([data, ...users]))
+    .then(({data}) =>{
+      console.log(data)
+      setUsers([data, ...users])
+    })
     .catch((err) => console.log("Error Retrieving New User", err))
 
 };
@@ -46,14 +52,18 @@ const postNewUser = (newUser) => {
 
  /* -------------------------- CHANGE -------------------------- */
 
-  const inputChange = (name, value) => {
+  const inputChange = (event) => {
+
+    const { name, value, checked, type } = event.target
+    const inputValue = type === "checkbox" ? checked : value
+
     yup
       .reach(schema, name)
-      .validate(value)
-      .then(() =>
+      .validate(inputValue)
+      .then(() => 
         setFormErrors({
           ...formErrors,
-          [name]: ""
+          [name]: ''
         })
       )
       .catch((err) =>
@@ -62,32 +72,19 @@ const postNewUser = (newUser) => {
           [name]: err.errors[0]
         })
       );
+
       setValues({
-      ...formValues,
-      [name]: value 
-    });
+        ...formValues,
+        [name]: inputValue
+      })
+    
   };
  /* -------------------------- SUBMIT -------------------------- */
 
-  const formSubmit = () => {
-    const terms = [];
-    Object.keys(formValues)
-    .filter((key) => key === "yes")
-    .forEach((key) => {
-      const value = formValues[key];
-      if (value) {
-        terms.push(key);
-      }
-    });
+  const formSubmit = (event) => {
+    event.preventDefault()
+    postNewUser(formValues)
 
-    const newUser = {
-      name: formValues.name.trim(),
-      email: formValues.email.trim(),
-      password: formValues.password.trim(),
-      terms
-    }
-    postNewUser(newUser);
-    setValues(formValueStart);
   }
  /* -------------------------- SIDE EFFECT -------------------------- */
 
@@ -106,8 +103,8 @@ const postNewUser = (newUser) => {
     <div className="App">
 
       <Form values={formValues} change={inputChange} submit={formSubmit} disabled={disabled} errors={formErrors}/>
-
-      {[users].map((usrx) => {
+<br/><br/>
+      {users.map((usrx) => {
         return <User key={usrx.id} info={usrx} />;
       })}
     </div>
@@ -135,4 +132,5 @@ const errorsStart = {
   name: '',
   email: '',
   password: '',
+  terms: false
 }

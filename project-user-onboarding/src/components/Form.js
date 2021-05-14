@@ -5,22 +5,13 @@ import React from 'react';
 function Form(props) {
     const { values, change, submit, disabled, errors } = props;
 
-    const onSubmit = (event) => {
-        event.preventDefault();
-        submit();
-    };
 
-    const onChange = (event) => {
-        const { name, value, checked, type } = event.target;
-        const inputValue = type === "checkbox" ? checked : value;
-        change(name, inputValue);
-    }
+
     return (
-        <form className="form container" onSubmit={onSubmit}>
+        <form className="form container" onSubmit={submit}>
             <div className="form-group submit">
                 <h2> Add User </h2>
-                <button disabled={disabled}>submit</button>   
-
+                   
                 <div className="errors">
                     <div>{errors.name}</div>
                     <div>{errors.email}</div>
@@ -37,16 +28,16 @@ function Form(props) {
 
                 <label><br/>
                     Full Name: 
-                    <input value={values.name} onChange={onChange} name="name" type="text"/>
+                    <input placeholder="type here" value={values.name} onChange={change} name="name" type="text"/>
                 </label>
                 <label><br/><br/>
                     E-mail: 
 
-                    <input value={values.email} onChange={onChange} name="email" type="text"/>
+                    <input placeholder="type here" value={values.email} onChange={change} name="email" type="text"/>
                 </label><br/><br/>
                 <label>
                     password: 
-                    <input value={values.password} onChange={onChange} name="password" type="text"/>
+                    <input placeholder="type here" value={values.password} onChange={change} name="password" type="password"/>
                 </label>
                 {/* ---------- TERMS --------- */}
                 {/* ---------- TERMS --------- */}
@@ -54,12 +45,13 @@ function Form(props) {
                 {/* ---------- TERMS --------- */}
                 <label><br/><br/>
                     Do you acccept the Terms of Service?
-                    <input value={values.terms} onChange={onChange} name="checkbox" type="checkbox"/>
-                </label>
+                    <input value={values.terms} onChange={change} name="terms" type="checkbox"/>
+                </label><br/><br/>
 
 
 
-
+                <button disabled={disabled}>submit</button>
+              
             </div>
         </form>
     );
