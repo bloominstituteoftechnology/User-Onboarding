@@ -77,11 +77,13 @@ function App() {
     postNewUser(newUser)
   }
 
-  // useEffect(() => {})
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => setDisabled(!valid))
+  }, [formValues])
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header >
         <h1>
           User Onboarding App
         </h1>
