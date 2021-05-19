@@ -6,6 +6,7 @@ import Form from './Form';
 import * as yup from 'yup';
 import schema from './validation/formSchema';
 
+
 const initialFormValues ={
   name: '',
   email: '',
@@ -29,6 +30,7 @@ function App() {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
 
+
   const getUsers = () => {
     axios.get('https://reqres.in/api/users')
       .then(res => {
@@ -51,6 +53,9 @@ function App() {
       setFormValues(initialFormValues)
     }) 
   }
+
+  let newUsers = JSON.stringify(users)
+  console.log(newUsers)
 
   const validate = (name, value) => {
    yup.reach(schema, name)
@@ -95,17 +100,7 @@ function App() {
         disabled={disabled}
         errors={formErrors}
       />
-
-    {/* 
-    {
-    users.map(user => {
-      return (
-        <User key={user.id} details={friend} />
-      )
-    })
-   }
-    */}
-
+      <pre>{newUsers}</pre>
     </div>
   );
 }
