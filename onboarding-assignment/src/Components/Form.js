@@ -1,12 +1,13 @@
+import axios from "axios";
 import { useState } from "react";
 import * as yup from "yup";
 
 const initialState = {name: '', email: '', password: '', tos: false}
 const userSchema = yup.object().shape({
     name: yup.string().required(),
-    email: yup.string().required().email('You\'ve failed to supply a proper email address'),
-    password: yup.string().required('You kinda need this bud.'),
-    tos: yup.bool('I don\'t know what you did, or how you did it. But ToS is not a bool anymore.'),
+    email: yup.string().required('This E-Mail is REQUIRED').email('You\'ve failed to supply a proper email address'),
+    password: yup.string().required('No Password: You kinda need this bud.'),
+    tos: yup.bool('I don\'t know what you did, or how you did it. But ToS is not a bool anymore.').required('You must agree to the TOS'),
 })
 
 const Form = (props) => {
@@ -47,12 +48,18 @@ const Form = (props) => {
             <br/>
             <button onClick={ev => {
                 ev.preventDefault();
-                userSchema.validate(user)
-                .catch(err => {setErrMessages(err.errors)})
-                .then(res => {
-                    console.log(res);
+                try {
+                    userSchema.validateSync(user)
+                } catch (e) {
+                    setErrMessages(e);
+                }
+                if (errMessages.length === 0) {
+                    axios.post('https://reqres.in/api/users', user).then(res =>{
+                        console.log(res)
+                        setUsers([...users, res.data])
                 })
-                setUsers([...users, user])
+                };
+
             }}>Add User!</button>
             <p className="errors">{errMessages.map(msg => {
                 return (<div className='errorMessage'>{msg}</div>)
