@@ -90,7 +90,7 @@ return (
     <div className="App">
       <header className="App-header">
         New User Form
-      </header>
+      
 
       <UserForm
         values={formValues}
@@ -99,6 +99,9 @@ return (
         disabled={disabled}
         errors={formErrors}
       />
+
+        
+      </header>
 
 {
         users.map(user => {
