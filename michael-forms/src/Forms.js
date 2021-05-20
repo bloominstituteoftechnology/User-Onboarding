@@ -8,6 +8,7 @@ const Form = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [terms, setTerms] = useState(false);
+    const [role, setRole] = useState('');
 
         //used for handling the error message displayed to the screen
     const [errorMessage, setErrorMessage] = useState();
