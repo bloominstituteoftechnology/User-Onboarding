@@ -29,7 +29,8 @@ const Form = () => {
             name,
             email,
             password,
-            terms
+            terms,
+            role
         }).then(result=>{
             console.log(result.data);
             //take the data and add it to the array
@@ -56,7 +57,8 @@ const Form = () => {
         name,
         email,
         password,
-        terms
+        terms,
+        role
         })
         .then(function (valid) {
             //if valid, then clear the error message
@@ -77,6 +79,7 @@ const Form = () => {
                 <div>Email: <input type="text" name="email" onChange={e => setEmail(e.target.value)} value={email} /></div>
                 <div>Password: <input type="password" name="password" onChange={e => setPassword(e.target.value)} value={password} /></div>
                 <div>Terms: <input type="checkbox" name="terms" onChange={e => setTerms(e.target.checked)} value={terms} /></div>
+                <div>Role: <input type="checkbox" name="role" onChange={e => setRole(e.target.checked)} value={role} /></div>
                 {/*this is the error message we are going to show to the user if the value exists*/}
                 <div>{errorMessage}</div>
                 {/*this is our submit button that is used to call the onSubmit from the form above*/}
