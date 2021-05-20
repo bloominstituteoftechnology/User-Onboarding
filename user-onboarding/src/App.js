@@ -54,8 +54,8 @@ function App() {
     }) 
   }
 
-  let newUsers = JSON.stringify(users)
-  console.log(newUsers)
+  // let newUsers = JSON.stringify(users)
+  // console.log(newUsers)
 
   const validate = (name, value) => {
    yup.reach(schema, name)
@@ -100,7 +100,7 @@ function App() {
         disabled={disabled}
         errors={formErrors}
       />
-      <pre>{newUsers}</pre>
+      {/* <pre>{newUsers}</pre> */}
     </div>
   );
 }
