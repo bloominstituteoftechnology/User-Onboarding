@@ -10,4 +10,10 @@ describe('User OnBoarding Form App', () => {
         expect({}).not.to.equal({})
         expect({}).to.eql({})
     })
+
+    it('proper elements are showing', () => {
+        const submitBtn = () => cy.get('button[id=submitBtn]')
+    })
+
+
 })
