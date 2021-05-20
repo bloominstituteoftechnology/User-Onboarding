@@ -44,10 +44,24 @@ describe('User OnBoarding Form App', () => {
 
     it('can check terms of service check box', () => {
         termsCheckBox()
-            .check("value", "false")
-            .click()
-            .should("value", "true")
+            .check()
+            .uncheck()
+    })
 
+    it('can submit form if required fields completed', () => {
+        submitBtn()
+            .should("be.disabled")
+            nameInput().type("John")
+            emailInput().type("john@aol.com")
+            passwordInput().type("abcpass")
+            termsCheckBox().check()
+            submitBtn().should("not.be.disabled")
+
+    })
+
+    it('confirm submit button is disabled', () => {
+        submitBtn()
+            .should("be.disabled")
     })
 
 })
