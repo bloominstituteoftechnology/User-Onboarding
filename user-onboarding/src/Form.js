@@ -10,7 +10,7 @@ export default function UserForm(props) {
   } = props
 
   const onSubmit = evt => {
-    evt.preventDefault()
+    evt.preventDefault()   // is this why my submit is not working?
     submit()
   }
 
@@ -51,13 +51,21 @@ export default function UserForm(props) {
             value={values.email}
             onChange={onChange}
             name='email'
-            type='text'
+            type='email'
+          />
+        </label>
+
+        <label>Password
+          <input
+            value={values.password}
+            onChange={onChange}
+            name='password'
+            type='password'
           />
         </label>
         </div>
 
       <div className='form-group checkboxes'>
-        <h4>Terms of Service</h4>
 
         <label>Terms of Service
           <input 

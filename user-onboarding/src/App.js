@@ -1,6 +1,4 @@
-import logo from './logo.svg';
 import './App.css';
-import Form from './Form';
 import axios from 'axios';
 import * as yup from 'yup';
 import React, { useState, useEffect } from 'react';
@@ -71,7 +69,7 @@ const formSubmit = () => {
     name: formValues.name.trim(),
     email: formValues.email.trim(),
     password: formValues.password.trim(),
-    terms: formValues.terms.trim(),
+    terms: formValues.terms
   }
   postNewUser(newUser)
 }
@@ -82,9 +80,9 @@ const formSubmit = () => {
 //   getUsers()
 // }, [])
 
-// useEffect(() => {
-//   schema.isValid(formValues).then(valid => setDisabled(!valid))
-// }, [formValues])
+useEffect(() => {
+  schema.isValid(formValues).then(valid => setDisabled(!valid))
+}, [formValues])
 
 return (
     <div className="App">
