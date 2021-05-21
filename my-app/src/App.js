@@ -86,8 +86,6 @@ function App() {
         errors={formErrors}
       />
       <div>
-        {" "}
-        here is the friend list
         {friends.map((friend) => {
           return <Friend key={friend.id} details={friend} />;
         })}
