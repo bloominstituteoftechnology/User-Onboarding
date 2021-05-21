@@ -1,6 +1,7 @@
 import "./App.css";
 import Form from "./Form";
 import React, { useState, useEffect } from "react";
+import Friend from "./Friend";
 
 import formSchema from "./formSchema";
 import * as yup from "yup";
@@ -40,6 +41,7 @@ function App() {
       })
       .finally(() => {
         setFormValues(initialFormValues);
+        console.log(setFormValues);
       });
   };
 
@@ -65,7 +67,7 @@ function App() {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      terms: formValues.terms.trim(),
+      terms: formValues.terms,
     };
     postNewFriend(newFriend);
   };
@@ -83,6 +85,13 @@ function App() {
         disabled={disabled}
         errors={formErrors}
       />
+      <div>
+        {" "}
+        here is the friend list
+        {friends.map((friend) => {
+          return <Friend key={friend.id} details={friend} />;
+        })}
+      </div>
     </div>
   );
 }

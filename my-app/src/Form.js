@@ -23,7 +23,6 @@ export default function Form(props) {
         <div>{errors.terms}</div>
         <div>{errors.password}</div>
       </div>
-      <button disabled={disabled}>submit</button>
       <div>
         form container
         <label>
@@ -32,7 +31,7 @@ export default function Form(props) {
             type="text"
             name="name"
             onChange={onChange}
-            Value={values.name}
+            value={values.name}
           />
         </label>
         <label>
@@ -41,7 +40,7 @@ export default function Form(props) {
             type="text"
             name="email"
             onChange={onChange}
-            Value={values.email}
+            value={values.email}
           />
         </label>
         <label>
@@ -50,7 +49,7 @@ export default function Form(props) {
             type="password"
             name="password"
             onChange={onChange}
-            Value={values.password}
+            value={values.password}
           />
         </label>
         <label>
@@ -62,7 +61,7 @@ export default function Form(props) {
             onChange={onChange}
           />
         </label>
-        <button>Submit</button>
+        <button disabled={disabled}>submit</button>
       </div>
     </form>
   );
