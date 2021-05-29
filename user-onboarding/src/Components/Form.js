@@ -3,9 +3,12 @@ import axios from 'axios';
 import * as yup from 'yup';
 
 const initialFormValues = {
+    // TEXT
     name: '',
     email: '',
     password:'',
+    // checkbox
+    terms:false
 }
 
 
@@ -29,7 +32,28 @@ function Form() {
         const { name, value, checked, type } = evt.target
         const valueToUse = type === 'checkbox' ? checked : value
         inputChange(name, valueToUse)
-  }
+    }
+
+    const formSubmit = () => {
+        const newFriend = {
+            name: formValues.name.trim(),
+            email: formValues.email.trim(),
+            password: formValues.password.trim(),
+        }
+        // postNewFriend(newFriend)
+    }
+
+    const onSubmit = evt => {
+        evt.preventDefault()
+        formSubmit()
+    }
+
+    // Helpers
+
+    const getFriends = () => {
+
+    }
+
 
     return (
         <div>
@@ -63,7 +87,16 @@ function Form() {
                         />
                 </label>
                 <br></br>
-                <button>Submit</button>
+                <label> Do You agree to the Terms?
+                    <input
+                        type='checkbox'
+                        name='terms'
+                        checked={formValues.terms}
+                        onChange={onChange}
+                    />
+                </label>
+                <br></br>
+                <button onClick={onSubmit}>Submit</button>
             </form>
         </div>
     )
