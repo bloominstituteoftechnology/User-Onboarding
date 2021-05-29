@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+import schema from '../validation/formSchema'
 
 const initialFormValues = {
     // TEXT
@@ -11,7 +12,8 @@ const initialFormValues = {
     terms:false
 }
 
-
+const initialFriends = []
+const intitialDisabled = true
 
 
 function Form() {
@@ -19,6 +21,8 @@ function Form() {
 
     // STATES
     const [formValues, setFormValues] = useState(initialFormValues)
+    const [friends, setFriends] = useState(initialFriends)
+    const [disabled, setDisabled] = useState(intitialDisabled)
 
     //Event handlers
     const inputChange = (name, value) => {
@@ -40,7 +44,7 @@ function Form() {
             email: formValues.email.trim(),
             password: formValues.password.trim(),
         }
-        // postNewFriend(newFriend)
+        postNewFriend(newFriend)
     }
 
     const onSubmit = evt => {
@@ -51,9 +55,37 @@ function Form() {
     // Helpers
 
     const getFriends = () => {
-
+        axios.get('https://reqres.in/api/users')
+        .then(res => {
+            setFriends(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
+    const postNewFriend = newFriend => {
+        axios.post('http://buddies.com/api/friends', newFriend)
+            .then(res => {
+                setFriends([res.data, ...friends])
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            .finally(() => {
+                setFormValues(initialFormValues)
+        })
+    }
+    
+    // useEffects
+
+    useEffect(() => {
+        getFriends()
+    }, [])
+
+    useEffect(() => {
+        schema.isValid(formValues).then(valid => setDisabled(!valid))
+      }, [formValues])
 
     return (
         <div>
