@@ -12,8 +12,15 @@ const initialFormValues = {
     terms:false
 }
 
+const initialFormErrors = {
+    name:'',
+    email:'',
+    password:'',
+}
+
 const initialFriends = []
 const intitialDisabled = true
+
 
 
 function Form() {
@@ -23,9 +30,11 @@ function Form() {
     const [formValues, setFormValues] = useState(initialFormValues)
     const [friends, setFriends] = useState(initialFriends)
     const [disabled, setDisabled] = useState(intitialDisabled)
+    const [formErrors, setFormErrors] = useState(initialFormErrors)
 
     //Event handlers
     const inputChange = (name, value) => {
+        validate(name, value)
         setFormValues({
             ...formValues,
             [name]: value
@@ -77,6 +86,13 @@ function Form() {
         })
     }
     
+    const validate = (name, value) => {
+            yup.reach(schema, name)
+                .validate(value)
+                .then(() => setFormErrors({ ...formErrors, [name]: ''}))
+                .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0]}))
+    }
+
     // useEffects
 
     useEffect(() => {
@@ -85,7 +101,7 @@ function Form() {
 
     useEffect(() => {
         schema.isValid(formValues).then(valid => setDisabled(!valid))
-      }, [formValues])
+    }, [formValues])
 
     return (
         <div>
@@ -128,7 +144,7 @@ function Form() {
                     />
                 </label>
                 <br></br>
-                <button onClick={onSubmit}>Submit</button>
+                <button onClick={onSubmit} disabled={disabled}>Submit</button>
             </form>
         </div>
     )
