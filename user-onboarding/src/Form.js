@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
-import schema from '../validation/formSchema'
+import schema from './validation/formSchema'
+import Friend from './Friend'
 
 const initialFormValues = {
     // TEXT
@@ -67,6 +68,7 @@ function Form() {
         axios.get('https://reqres.in/api/users')
         .then(res => {
             setFriends(res.data)
+            console.log(res.data, 'THIS IS THE FRIENDS STATE')
         })
         .catch(err => {
             console.log(err)
@@ -74,7 +76,7 @@ function Form() {
     }
 
     const postNewFriend = newFriend => {
-        axios.post('http://buddies.com/api/friends', newFriend)
+        axios.post('https://reqres.in/api/users', newFriend)
             .then(res => {
                 setFriends([res.data, ...friends])
             })
@@ -95,9 +97,9 @@ function Form() {
 
     // useEffects
 
-    useEffect(() => {
-        getFriends()
-    }, [])
+    // useEffect(() => {
+    //     getFriends()
+    // }, [])
 
     useEffect(() => {
         schema.isValid(formValues).then(valid => setDisabled(!valid))
@@ -146,6 +148,13 @@ function Form() {
                 <br></br>
                 <button onClick={onSubmit} disabled={disabled}>Submit</button>
             </form>
+            {
+                friends.map(friend => {
+                return (
+                    <Friend key={friend.id} details={friend} />
+                )
+                })
+            }
         </div>
     )
 }

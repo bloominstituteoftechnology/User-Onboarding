@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Form from './Components/Form'
+import Form from './Form'
+import Friend from './Friend'
 
 function App() {
   return (
