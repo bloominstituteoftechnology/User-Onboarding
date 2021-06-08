@@ -4,6 +4,14 @@ import UserList from './components/UserList'
 import * as yup from 'yup'
 import schema from './formValidation'
 import axios from 'axios'
+import styled from 'styled-components'
+import './css/fonts.css'
+
+const TitleOne = styled.h1`
+  font-family: 'Roboto', sans-serif;
+  color: red;
+`
+
 
 function App() {
   const API_URL = "https://reqres.in/api/users"
@@ -54,6 +62,7 @@ function App() {
 
   return (
     <>
+    <TitleOne>Register Form</TitleOne>
     <div>{errorUser.name}</div><div>{errorUser.email}</div><div>{errorUser.password}</div>
     <Form reactSubmit={reactSubmit} userForm={userForm} user={user} disabled={disabled}/>
     <UserList listOfUsers={listOfUsers} />
