@@ -12,12 +12,13 @@ const formSchema = yup.object().shape({
     .email('Please enter a valid email')
     .required('email is required'),
     password: yup
-    .string('Password must contain at least 8 chars, at least 1 uppercase char, 1 number, 1 symbol'),
+    .string(),
     confirmPassword: yup
     .string()
     .oneOf([yup.ref('password')], 'Passwords must match'),
    tos: yup
     .boolean()
+    .required()
     .oneOf([true],'Please check that you have read and agree to our terms of Service'),
 
 

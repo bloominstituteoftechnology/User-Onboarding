@@ -5,6 +5,7 @@ import formSchema, { passSchema } from './validation/formSchema';
 import UserForm from './components/UserForm';
 import axios from 'axios';
 import API_URL from './constants/api';
+import PrintUsers from './components/PrintUsers';
 
 
 const initialFormValues = {
@@ -30,11 +31,11 @@ function App() {
   const[formErrors, setFormErrors] = useState(initialFormErrors);
   const[disabled, setDisabled] = useState(true);
 
-  const getFriends = () => {
+  const getUsers = () => {
     axios
       .get(API_URL)
       .then(res => {
-        setUsers(res.data)
+        setUsers(res.data.data)
       })
       .catch(err => console.log(err))
   }
@@ -78,6 +79,10 @@ function App() {
   }
 
   useEffect(() => {
+    getUsers()
+  }, [users])
+
+  useEffect(() => {
     formSchema.isValid(formValues)
       .then(valid => {
         const yupPass = require('yup')
@@ -92,6 +97,10 @@ function App() {
   return (
     <div className="App">
       <UserForm values={formValues} change={inputChange} submit={formSubmit} disabled={disabled} error={formErrors}/>
+      {users && users.map(user =>
+        <PrintUsers user={user} key={user.email}/>
+        )}
+      
     </div>
   );
 }
