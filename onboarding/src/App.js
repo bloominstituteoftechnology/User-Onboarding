@@ -3,8 +3,10 @@ import Form from './components/Form'
 import UserList from './components/UserList'
 import * as yup from 'yup'
 import schema from './formValidation'
+import axios from 'axios'
 
 function App() {
+  const API_URL = "https://reqres.in/api/users"
 
   const defaultUser = {
     name: '',
@@ -39,6 +41,10 @@ function App() {
 
   const reactSubmit = () => {
     //add verfication not same user email and user and email and ...
+    axios.post(API_URL, [...listOfUsers, user])
+    .then(response => console.log(response.data))
+    .catch(err => console.log(err))
+    
     setListOfUsers([...listOfUsers, user])
     setUser(defaultUser)
   }
