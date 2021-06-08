@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Form from './components/Form'
 import UserList from './components/UserList'
+import * as yup from 'yup'
+import schema from './formValidation'
 
 function App() {
 
@@ -10,24 +12,39 @@ function App() {
     email: '',
     termOfUse: false,
   }
+
+  const errorDefault = {
+    name: '',
+    password: '',
+    email: '',
+    termOfUse: false,
+  }
   
   const [ user, setUser ] = useState(defaultUser)
+  const [ errorUser, setErrorUser ] = useState(errorDefault)
   const [ listOfUsers, setListOfUsers ] = useState([]) 
   
-  const userForm = (e) => {
+  const userForm = ({ target }) => {
+    const { value, name } = target
+    yup.reach(schema, name)
+    .validate(value)
+    .then(() => {setErrorUser({...errorUser, [name]: ""})})
+    .catch(err => {setErrorUser({...errorUser, [name]: err.message})})
     setUser({
       ...user,
-      [e.target.name]: e.target.value
+      [name]: value
     })
   }
 
   const reactSubmit = () => {
+    //add verfication not same user email and user and email and ...
     setListOfUsers([...listOfUsers, user])
     setUser(defaultUser)
   }
 
   return (
     <>
+    <div>{errorUser.name}</div><div>{errorUser.email}</div><div>{errorUser.password}</div>
     <Form reactSubmit={reactSubmit} userForm={userForm} user={user}/>
     <UserList listOfUsers={listOfUsers} />
     </>
