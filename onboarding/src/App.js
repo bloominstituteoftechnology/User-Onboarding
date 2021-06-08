@@ -42,11 +42,9 @@ function App() {
   const reactSubmit = () => {
     //add verfication not same user email and user and email and ...
     axios.post(API_URL, [...listOfUsers, user])
-    .then(response => console.log(response.data))
+    .then(response => setListOfUsers(response.data))
     .catch(err => console.log(err))
-    
-    setListOfUsers([...listOfUsers, user])
-    setUser(defaultUser)
+    .finally(() => setUser(defaultUser))
   }
 
   useEffect(()=>{
