@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Form from './components/Form'
 import UserList from './components/UserList'
 import * as yup from 'yup'
@@ -23,6 +23,7 @@ function App() {
   const [ user, setUser ] = useState(defaultUser)
   const [ errorUser, setErrorUser ] = useState(errorDefault)
   const [ listOfUsers, setListOfUsers ] = useState([]) 
+  const [ disabled, setDisabled ] = useState(true)
   
   const userForm = ({ target }) => {
     const { value, name } = target
@@ -42,10 +43,15 @@ function App() {
     setUser(defaultUser)
   }
 
+  useEffect(()=>{
+    schema.isValid(user)
+    .then(valid => setDisabled(!valid))
+  }, [user])
+
   return (
     <>
     <div>{errorUser.name}</div><div>{errorUser.email}</div><div>{errorUser.password}</div>
-    <Form reactSubmit={reactSubmit} userForm={userForm} user={user}/>
+    <Form reactSubmit={reactSubmit} userForm={userForm} user={user} disabled={disabled}/>
     <UserList listOfUsers={listOfUsers} />
     </>
   );

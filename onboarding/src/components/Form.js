@@ -1,4 +1,4 @@
-const Form = ({ reactSubmit, userForm, user }) => {
+const Form = ({ reactSubmit, userForm, user, disabled }) => {
 
     const preventSubmit = (e) => {
         e.preventDefault()
@@ -24,7 +24,7 @@ const Form = ({ reactSubmit, userForm, user }) => {
                 <input type="radio" name="termOfUse" value={user.termOfUse} onChange={userForm}/> 
             </label>
             <label>
-                <input type="submit"/>
+                <input type="submit" disabled={disabled}/>
             </label>
         </form>
     )
