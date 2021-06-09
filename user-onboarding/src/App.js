@@ -28,7 +28,7 @@ function App() {
     <div className="row">
       <Form submit={submit} />
       {users.map((user, index) => (
-        <User key={index} name={user.name} email={user.email} />
+        <User key={index} name={user.name} email={user.email} role={user.role} />
       ))}
     </div>
   );
