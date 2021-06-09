@@ -120,6 +120,24 @@ const Form = (props) => {
 
       <div className="row">
         <div className="input-field col s6">
+          <label htmlFor="tosCheck">
+            <input
+              id="tosCheck"
+              type="checkbox"
+              name="tosCheck"
+              checked={formData.tosCheck}
+              onChange={handleChange}
+              className={formData.tosCheck ? "filled-in" : "unChecked"}
+            />
+            <small>
+              I have read and agree to the{" "}
+              <a href="#" onClick={(e) => e.preventDefault()}>
+                Terms of Service
+              </a>
+            </small>
+          </label>
+        </div>
+        <div className="input-field col s6">
           <button
             className="btn waves-effect waves-light"
             type="submit"
@@ -131,24 +149,6 @@ const Form = (props) => {
             Submit
             <i className="material-icons right">send</i>
           </button>
-          <div className="input-field col s6">
-            <label htmlFor="tosCheck">
-              <input
-                id="tosCheck"
-                type="checkbox"
-                name="tosCheck"
-                checked={formData.tosCheck}
-                onChange={handleChange}
-                className={formData.tosCheck ? "filled-in" : "unChecked"}
-              />
-              <small>
-                I have read and agree to the{" "}
-                <a href="#" onClick={(e) => e.preventDefault()}>
-                  Terms of Service
-                </a>
-              </small>
-            </label>
-          </div>
         </div>
       </div>
 
