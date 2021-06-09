@@ -98,14 +98,18 @@ const Form = (props) => {
           <label htmlFor="password">Password</label>
         </div>
         <div className="input-field col s6">
+
+          
+
+          <label htmlFor="tosCheck">
           <input
             id="tosCheck"
             type="checkbox"
             name="tosCheck"
             checked={formData.tosCheck}
             onChange={handleChange}
+            className={formData.tosCheck ? "filled-in" : "unChecked" }
           />
-          <label htmlFor="tosCheck">
             <small>
               I have read and agree to the{" "}
               <a href="#" onClick={(e) => e.preventDefault()}>
