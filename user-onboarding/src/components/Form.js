@@ -68,7 +68,6 @@ const Form = (props) => {
             className="validate"
             name="name"
             value={formData.name}
-            placeholder="minimum of 2 characters"
             onChange={handleChange}
           />
           <label htmlFor="name">Name</label>
@@ -78,7 +77,6 @@ const Form = (props) => {
             type="text"
             name="email"
             value={formData.email}
-            placeholder="email"
             onChange={handleChange}
             id="email"
             className="validate"
@@ -118,8 +116,16 @@ const Form = (props) => {
         </div>
       </div>
 
-      <button action="submit" onClick={handleSubmit} disabled={disabled}>
+      <button
+        className="btn waves-effect waves-light"
+        type="submit"
+        name="submit"
+        action="submit"
+        onClick={handleSubmit}
+        disabled={disabled}
+      >
         Submit
+        <i className="material-icons right">send</i>
       </button>
 
       <div className="errors">

@@ -47,4 +47,5 @@ table {
 	border-spacing: 0;
 }
 /* END OF RESET */
-
+/* Import Materialize CSS */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css");
