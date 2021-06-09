@@ -11,15 +11,15 @@ function App() {
   const url = "https://reqres.in/api/users";
 
   const submit = (user) => {
-    console.group("%cForm Submitted", "color: green");
+    console.groupCollapsed("%cForm Submitted", "color: green");
     axios
-    .post(url, user)
-    .then((res) => {
-      console.log(`%cResponse status: ${res.status}`, "color: #007AAF");
-      setUsers([...users, res.data]);
-      const activeInputs = document.querySelectorAll(".active");
-      // remove active classes on success
-        activeInputs.forEach(input => input.classList.remove("active"));
+      .post(url, user)
+      .then((res) => {
+        console.log(`%cResponse status: ${res.status}`, "color: #007AAF");
+        setUsers([...users, res.data]);
+        const activeInputs = document.querySelectorAll(".active");
+        // remove active classes on success
+        activeInputs.forEach((input) => input.classList.remove("active"));
       })
       .catch((err) => console.error(err));
   };
