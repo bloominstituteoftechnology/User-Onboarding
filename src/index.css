@@ -15,3 +15,35 @@ code {
 .errors {
   color:red;
 }
+
+/* button {
+  height: 2rem;
+  width: 4rem;
+  border-radius: 8px; 
+  color: black;
+  background-color: white;  
+  border: 2px solid aqua;
+  &:hover {
+    cursor: pointer;
+  }
+  &:disabled {
+    color: crimson;
+    background-color: white;
+    border: 2px solid crimson;
+    cursor: not-allowed;
+  }
+}
+ */
+
+button{
+height: 2rem;
+width: 5rem;
+border-radius: 8px;
+}
+
+label {
+  /* display: flex; */
+  /* align-content: ;
+  align-items: flex-end;
+  justify-content: space-around; */
+}
