@@ -21,11 +21,12 @@ const H2 = styled.h2`
 `
 
 const UserCard = ({ element}) =>{
-    const { name, email } = element
+    const { name, email, role } = element
     return(
         <Card>
             <H2>{name}</H2>
             <p>{email}</p>
+            <p>{role}</p>
         </Card>
     )
 

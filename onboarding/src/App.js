@@ -26,6 +26,7 @@ function App() {
     name: '',
     password: '',
     email: '',
+    role: '',
     termOfUse: false,
   }
 
@@ -33,6 +34,7 @@ function App() {
     name: '',
     password: '',
     email: '',
+    role: '',
     termOfUse: false,
   }
   

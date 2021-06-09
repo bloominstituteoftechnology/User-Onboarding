@@ -76,6 +76,21 @@ const Form = ({ reactSubmit, userForm, user, disabled, errorUser }) => {
             </IdDiv>
             <IdDiv>
                 <Label>
+                    <Lab>Role</Lab>
+                    <Lab>
+                        <select name="role" id="role" value={user.role} onChange={userForm}>
+                            <option value="" disabled>== Select ==</option>
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Teacher</option>
+                            <option value="Unknown">Unknown</option>
+                            <option value="Mentor">Mentor</option>
+                            <option value="Other">Other</option>
+
+                        </select>
+
+                    </Lab>
+                </Label>
+                <Label>
                     I accept the terms of service
                     <Input type="radio" name="termOfUse" value={user.termOfUse} onChange={userForm}/> 
                 </Label>
