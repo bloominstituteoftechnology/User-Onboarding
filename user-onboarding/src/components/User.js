@@ -3,7 +3,7 @@ const User = (props) => {
   const { name, email, role } = props;
   return (
     <div className="row">
-      <div className="col s12 m6">
+      <div className="col s12 m6 valign">
         <div className="card blue-grey">
           <div className="card-content white-text">
             <span className="card-title">{name}</span>
@@ -18,7 +18,7 @@ const User = (props) => {
             >
               <a href={`mailto:${email}`} className="white-text" >
                 Email {name}
-                <i class="material-icons right">send</i>
+                <i class="material-icons right">mail</i>
               </a>
             </button>
           </div>
