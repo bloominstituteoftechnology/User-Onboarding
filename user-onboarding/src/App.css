@@ -130,6 +130,7 @@ table {
 /* END OF RESET */
 /* Import Materialize CSS */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css");
+/* Materialize overrides */
 #tosCheck {
   opacity: 1 !important;
   position: static !important;
@@ -137,4 +138,7 @@ table {
 }
 label[for="tosCheck"] {
   cursor: pointer !important;
+}
+select {
+  display: block;
 }

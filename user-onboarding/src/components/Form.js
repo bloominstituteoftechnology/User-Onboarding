@@ -11,12 +11,14 @@ const initialFormData = {
   email: "",
   password: "",
   tosCheck: false,
+  role: "",
 };
 const initialFormErrors = {
   name: "",
   email: "",
   password: "",
   tosCheck: "",
+  role: "",
 };
 
 const Form = (props) => {
@@ -25,6 +27,14 @@ const Form = (props) => {
   const [formData, setFormData] = useState(initialFormData);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
+
+  const roles = [
+    "Project Manager",
+    "Requirement Analyst",
+    "UI/UX Designer",
+    "QA Engineer",
+    "Web Developer",
+  ];
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -97,36 +107,50 @@ const Form = (props) => {
           <label htmlFor="password">Password</label>
         </div>
         <div className="input-field col s6">
-          <label htmlFor="tosCheck">
-            <input
-              id="tosCheck"
-              type="checkbox"
-              name="tosCheck"
-              checked={formData.tosCheck}
-              onChange={handleChange}
-              className={formData.tosCheck ? "filled-in" : "unChecked"}
-            />
-            <small>
-              I have read and agree to the{" "}
-              <a href="#" onClick={(e) => e.preventDefault()}>
-                Terms of Service
-              </a>
-            </small>
-          </label>
+          <select id="role" name={"role"} onChange={handleChange}>
+            <option value="">Select a role</option>
+            {roles.map((role, index) => (
+              <option key={index} value={role}>
+                {role}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
-      <button
-        className="btn waves-effect waves-light"
-        type="submit"
-        name="submit"
-        action="submit"
-        onClick={handleSubmit}
-        disabled={disabled}
-      >
-        Submit
-        <i className="material-icons right">send</i>
-      </button>
+      <div className="row">
+        <div className="input-field col s6">
+          <button
+            className="btn waves-effect waves-light"
+            type="submit"
+            name="submit"
+            action="submit"
+            onClick={handleSubmit}
+            disabled={disabled}
+          >
+            Submit
+            <i className="material-icons right">send</i>
+          </button>
+          <div className="input-field col s6">
+            <label htmlFor="tosCheck">
+              <input
+                id="tosCheck"
+                type="checkbox"
+                name="tosCheck"
+                checked={formData.tosCheck}
+                onChange={handleChange}
+                className={formData.tosCheck ? "filled-in" : "unChecked"}
+              />
+              <small>
+                I have read and agree to the{" "}
+                <a href="#" onClick={(e) => e.preventDefault()}>
+                  Terms of Service
+                </a>
+              </small>
+            </label>
+          </div>
+        </div>
+      </div>
 
       <div className="errors">
         <div>{formErrors.name}</div>
