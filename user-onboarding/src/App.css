@@ -133,5 +133,8 @@ table {
 #tosCheck {
   opacity: 1 !important;
   position: static !important;
-  margin-right: .5em;
+  margin-right: 0.5em;
+}
+label[for="tosCheck"] {
+  cursor: pointer !important;
 }
