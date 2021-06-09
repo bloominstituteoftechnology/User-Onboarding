@@ -11,6 +11,12 @@ const TitleOne = styled.h1`
   font-family: 'Roboto', sans-serif;
   color: red;
 `
+const FormDiv = styled.div`
+  font-family: 'Roboto', sans-serif;
+  border: 2px solid grey;
+  border-radius: 3px;
+  padding: 20px;
+`
 
 
 function App() {
@@ -62,9 +68,10 @@ function App() {
 
   return (
     <>
+    <FormDiv>
     <TitleOne>Register Form</TitleOne>
-    <div>{errorUser.name}</div><div>{errorUser.email}</div><div>{errorUser.password}</div>
-    <Form reactSubmit={reactSubmit} userForm={userForm} user={user} disabled={disabled}/>
+      <Form reactSubmit={reactSubmit} userForm={userForm} user={user} disabled={disabled} errorUser={errorUser}/>
+    </FormDiv>
     <UserList listOfUsers={listOfUsers} />
     </>
   );

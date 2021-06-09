@@ -1,15 +1,26 @@
 import { element } from "prop-types";
+import UserCard from './UserCard'
+import styled from 'styled-components'
+
+const UsersBlock = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    aligns-content: flex-start;
+    justify-content: flex-start;
+`
 
 const UserList = ({ listOfUsers }) => {
 
     return(
-        <ul>
+        <UsersBlock>
         {listOfUsers.map(element => {
             return(
-            <li key={element.email}>{element.name}</li>
+            <UserCard key={element.email} element={element}/>
             )
         })}
-        </ul>
+        </UsersBlock>
+
     )
     ;
 }
