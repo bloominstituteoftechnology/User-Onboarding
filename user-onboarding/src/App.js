@@ -11,9 +11,14 @@ function App() {
   const url = "https://reqres.in/api/users";
 
   const submit = (user) => {
-    console.groupCollapsed("submit()");
-    axios.post(url, user).then((res) => setUsers([...users, res.data]));
-    console.groupEnd();
+    console.group("%cForm Submitted", "color: green");
+    axios
+      .post(url, user)
+      .then((res) => {
+        console.log(`%cResponse status: ${res.status}`, "color: #007AAF");
+        setUsers([...users, res.data]);
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
