@@ -71,11 +71,11 @@ function App() {
 
 
   useEffect(() => {
-    formSchema.isValid(formValues)
+    const yupPass = require('yup')
+    require('yup-password')(yup)
+    passSchema.isValid(formValues.confirmPassword)
       .then(valid => {
-        const yupPass = require('yup')
-        require('yup-password')(yup)
-        passSchema.isValid(formValues.confirmPassword)
+        formSchema.isValid(formValues)
           .then(valid => {
             setDisabled(!valid)
       })
