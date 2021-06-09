@@ -31,15 +31,6 @@ function App() {
   const[formErrors, setFormErrors] = useState(initialFormErrors);
   const[disabled, setDisabled] = useState(true);
 
-  const getUsers = () => {
-    axios
-      .get(API_URL)
-      .then(res => {
-        setUsers(res.data.data)
-      })
-      .catch(err => console.log(err))
-  }
-
   const postNewUser = newUser => {
     axios 
       .post(API_URL, newUser)
@@ -78,16 +69,13 @@ function App() {
     postNewUser(newUser);
   }
 
-  useEffect(() => {
-    getUsers()
-  }, [users])
 
   useEffect(() => {
     formSchema.isValid(formValues)
       .then(valid => {
         const yupPass = require('yup')
         require('yup-password')(yup)
-        passSchema.isValid(formValues)
+        passSchema.isValid(formValues.confirmPassword)
           .then(valid => {
             setDisabled(!valid)
       })

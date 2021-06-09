@@ -27,14 +27,11 @@ const formSchema = yup.object().shape({
 const yupPass = require('yup')
 require('yup-password')(yup)
 
-const passSchema = yupPass.object().shape({
-    password: yupPass
+const passSchema = yupPass
         .string()
         .password()
-        .required(),
-    confirmPassword: yupPass
-        .string(),
-})
+        .required()
+
 
 export default formSchema;
 export { passSchema };
