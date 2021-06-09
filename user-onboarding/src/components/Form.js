@@ -55,55 +55,68 @@ const Form = (props) => {
 
   useEffect(() => {
     schema.isValid(formData).then((valid) => setDisabled(!valid));
+    console.log(formData);
   }, [formData]);
 
   return (
-    <form action="submit" id="form">
-      <label htmlFor="name">
-        Enter your name
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          placeholder="minimum of 2 characters"
-          onChange={handleChange}
-        />
-      </label>
+    <form className="col s12" action="submit" id="form">
+      <div className="row">
+        <div className="input-field col s6">
+          <input
+            id="name"
+            type="text"
+            className="validate"
+            name="name"
+            value={formData.name}
+            placeholder="minimum of 2 characters"
+            onChange={handleChange}
+          />
+          <label htmlFor="name">Name</label>
+        </div>
+        <div className="input-field col s6">
+          <input
+            type="text"
+            name="email"
+            value={formData.email}
+            placeholder="email"
+            onChange={handleChange}
+            id="email"
+            className="validate"
+          />
+          <label htmlFor="email">Email</label>
+        </div>
+      </div>
 
-      <label htmlFor="email">
-        Enter your email
-        <input
-          type="text"
-          name="email"
-          value={formData.email}
-          placeholder="email"
-          onChange={handleChange}
-        />
-      </label>
-
-      <label htmlFor="password">
-        Create a password
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          placeholder="4-8 character password"
-          onChange={handleChange}
-        />
-      </label>
-
-      <label htmlFor="tosCheck">
-        Accept{" "}
-        <a href="#" onClick={(e) => e.preventDefault()}>
-          Terms of Service
-        </a>
-        <input
-          type="checkbox"
-          name="tosCheck"
-          checked={formData.tosCheck}
-          onChange={handleChange}
-        />
-      </label>
+      <div className="row">
+        <div className="input-field col s6">
+          <input
+            id="password"
+            name="password"
+            type="password"
+            className="validate"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <label htmlFor="password">Password</label>
+        </div>
+        <div className="input-field col s6">
+          <input
+            id="tosCheck"
+            type="checkbox"
+            name="tosCheck"
+            checked={formData.tosCheck}
+            onChange={handleChange}
+          />
+          <label htmlFor="tosCheck">
+            <small>
+              I have read and agree to the{" "}
+              <a href="#" onClick={(e) => e.preventDefault()}>
+                Terms of Service
+              </a>
+            </small>
+          </label>
+        </div>
+      </div>
 
       <button action="submit" onClick={handleSubmit} disabled={disabled}>
         Submit
