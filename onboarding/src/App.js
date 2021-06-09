@@ -66,7 +66,22 @@ function App() {
   useEffect(()=>{
     schema.isValid(user)
     .then(valid => setDisabled(!valid))
-  }, [user])
+    .finally(() =>{
+      if(listOfUsers.find(({ name }) => name === user.name )){
+        setErrorUser({
+          ...errorUser,
+          name: "This username is already taken"
+        })
+        setDisabled(true)
+      }
+      if(listOfUsers.find(({ email }) => email === user.email )){
+        setErrorUser({
+          ...errorUser,
+          email: "This email is already taken"
+        })
+        setDisabled(true)
+      }
+    })}, [user])
 
   return (
     <>
