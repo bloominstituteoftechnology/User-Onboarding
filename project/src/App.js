@@ -71,7 +71,6 @@ function App() {
 
 
   useEffect(() => {
-    const yupPass = require('yup')
     require('yup-password')(yup)
     passSchema.isValid(formValues.confirmPassword)
       .then(valid => {

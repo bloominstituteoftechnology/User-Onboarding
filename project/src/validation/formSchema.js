@@ -15,6 +15,7 @@ const formSchema = yup.object().shape({
     .string(),
     confirmPassword: yup
     .string()
+    .required('password is required')
     .oneOf([yup.ref('password')], 'Passwords must match'),
    tos: yup
     .boolean()

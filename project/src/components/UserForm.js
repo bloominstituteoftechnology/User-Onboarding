@@ -24,7 +24,7 @@ const UserForm = (props) => {
     return(
         <Container>
             <h2>Create Account:</h2>
-            <Form onSubmit={submitHandler}>
+            <Form className='form' onSubmit={submitHandler}>
                 <Form.Group controlId='formName'>
                     <Form.Label>Username</Form.Label>
                     <Form.Control 
