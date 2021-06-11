@@ -7,5 +7,5 @@ const schema = yup.object().shape({
     role: yup.string().required("please define your role"),
     termOfUse: yup.boolean(),
 })
-
+// few comments ot get a new pull request
 export default schema
