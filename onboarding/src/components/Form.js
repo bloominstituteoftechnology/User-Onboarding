@@ -43,10 +43,15 @@ const Lab = styled.div`
 `
 
 const Form = ({ reactSubmit, userForm, user, disabled, errorUser }) => {
-
     const preventSubmit = (e) => {
         e.preventDefault()
         reactSubmit()
+    }
+
+    const onchange = ({target}) => {
+        const {name, value, checked, type} = target
+        const valueToUse = type === "radio"? checked: value
+        userForm(name, valueToUse)
     }
 
     return(
@@ -55,30 +60,30 @@ const Form = ({ reactSubmit, userForm, user, disabled, errorUser }) => {
                 <Label>
                     <Lab>Name</Lab>
                     <Lab>
-                        <Input id="name" type="text" name="name" value={user.name} onChange={userForm}/>
+                        <Input id="name" type="text" name="name" value={user.name} onChange={onchange}/>
                     </Lab>
                 </Label>
-                <Warning>{errorUser.name}</Warning>
+                <Warning id="warningName">{errorUser.name}</Warning>
                 <Label>
                     <Lab>Email</Lab>
                     <Lab>
-                        <Input type="mail" name="email" value={user.email} onChange={userForm}/>
+                        <Input id="mail" type="mail" name="email" value={user.email} onChange={onchange}/>
                     </Lab>
                 </Label>
-                <Warning>{errorUser.email}</Warning>
+                <Warning id="warningEmail">{errorUser.email}</Warning>
                 <Label>
                     <Lab>Password</Lab>
                     <Lab>
-                        <Input type="text" name="password" value={user.password} onChange={userForm}/>
+                        <Input id="password" type="text" name="password" value={user.password} onChange={onchange}/>
                     </Lab>
                 </Label>
-                <Warning>{errorUser.password}</Warning>
+                <Warning id="warningPassword">{errorUser.password}</Warning>
             </IdDiv>
             <IdDiv>
                 <Label>
                     <Lab>Role</Lab>
                     <Lab>
-                        <select name="role" id="role" value={user.role} onChange={userForm}>
+                        <select name="role" id="role" value={user.role} onChange={onchange}>
                             <option value="" disabled>== Select ==</option>
                             <option value="Student">Student</option>
                             <option value="Teacher">Teacher</option>
@@ -92,7 +97,7 @@ const Form = ({ reactSubmit, userForm, user, disabled, errorUser }) => {
                 </Label>
                 <Label>
                     I accept the terms of service
-                    <Input type="radio" name="termOfUse" value={user.termOfUse} onChange={userForm}/> 
+                    <Input id="termOfUse" type="radio" name="termOfUse" value={user.termOfUse} onChange={onchange}/> 
                 </Label>
                 <Label>
                     <Input type="submit" disabled={disabled}/>

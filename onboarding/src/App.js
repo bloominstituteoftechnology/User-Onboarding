@@ -43,8 +43,7 @@ function App() {
   const [ listOfUsers, setListOfUsers ] = useState([]) 
   const [ disabled, setDisabled ] = useState(true)
   
-  const userForm = ({ target }) => {
-    const { value, name } = target
+  const userForm = (name, value) => {
     yup.reach(schema, name)
     .validate(value)
     .then(() => {setErrorUser({...errorUser, [name]: ""})})
