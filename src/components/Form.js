@@ -177,13 +177,7 @@ return(
                     onChange={inputChange}
                 />
             </label>
-            {
-        formState.map(friend => {
-          return (
-            <Users key={friend.id} details={friend} />
-          )
-        })
-      } 
+            
         </form>
 
     )

@@ -9,7 +9,8 @@
     "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^1.1.5",
+    "server": "^1.0.33",
     "web-vitals": "^1.1.2",
     "yup": "^0.32.9"
   },
@@ -36,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^7.5.0"
   }
 }
