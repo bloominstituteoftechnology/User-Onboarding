@@ -12,13 +12,13 @@ const User = (props) => {
           </div>
           <div className="card-action">
             <button
-              class="btn waves-effect waves-light blue lighten-1"
+              className="btn waves-effect waves-light blue lighten-1"
               type="submit"
               name="action"
             >
-              <a href={`mailto:${email}`} className="white-text" >
+              <a href={`mailto:${email}`} className="white-text">
                 Email {name}
-                <i class="material-icons right">mail</i>
+                <i className="material-icons right">mail</i>
               </a>
             </button>
           </div>
