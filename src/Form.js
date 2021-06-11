@@ -77,7 +77,7 @@ return (
 
         </div>
             </div>
-        <button disabled={disabled}>Submit</button>
+        <button id='submitBtn' disabled={disabled}>Submit</button>
         </div>
     </form>
 
