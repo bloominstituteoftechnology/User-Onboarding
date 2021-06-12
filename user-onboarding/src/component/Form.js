@@ -1,22 +1,41 @@
 import React from 'react';
+import '../App.css';
 
-export default function Form() {
+export default function Form(props) {
+    const {values,submit, change, disabled, errors} = props
+
+    const onSubmit = evt => {
+        evt.preventDefault()
+        submit()
+    }
+
+    const onChange = evt => {
+        const { name, value } = evt.target
+        change(name, value)
+    }
+
     return (
-        <div className='formComponent'>
-            <form>
+        <form className='formComponents' onSubmit={onSubmit}>
+            <div className='errorsDiv'>
+                <div>{errors.name}</div>
+                <div>{errors.email}</div>
+                <div>{errors.password}</div>
+                <div>{errors.term}</div>
+            </div>
+            <div className='formInputs'>
                 <label>
                     Name
-                    <input type='text' name='name'/>
+                    <input type='text' name='name' onChange={onChange}/>
                 </label>
 
                 <label>
                     Email
-                    <input type='email' name='email'/>
+                    <input type='email' name='email' onChange={onChange}/>
                 </label>
 
                 <label>
                     Password
-                    <input type='password' name='password'/>
+                    <input type='password' name='password'onChange={onChange}/>
                 </label>
 
                 <label>
@@ -24,8 +43,9 @@ export default function Form() {
                     <input type='checkbox' name='term'/>
                 </label>
 
-                <button>Submit</button>
-            </form>
-        </div>
+                <button disabled={buttonDisabled}>Submit</button>
+            </div>
+        </form>
+        
     )
 }
