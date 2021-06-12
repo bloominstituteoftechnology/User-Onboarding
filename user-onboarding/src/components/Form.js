@@ -120,22 +120,20 @@ const Form = (props) => {
 
       <div className="row">
         <div className="input-field col s6">
-          <label htmlFor="tosCheck">
-            <input
-              id="tosCheck"
-              type="checkbox"
-              name="tosCheck"
-              checked={formData.tosCheck}
-              onChange={handleChange}
-              className={formData.tosCheck ? "filled-in" : "unChecked"}
-            />
-            <small>
-              I have read and agree to the{" "}
-              <a href="#" onClick={(e) => e.preventDefault()}>
-                Terms of Service
-              </a>
-            </small>
-          </label>
+          <input
+            id="tosCheck"
+            type="checkbox"
+            name="tosCheck"
+            checked={formData.tosCheck}
+            onChange={handleChange}
+            className={formData.tosCheck ? "filled-in" : "unChecked"}
+          />
+          <small>
+            I have read and agree to the{" "}
+            <a href="#" onClick={(e) => e.preventDefault()}>
+              Terms of Service
+            </a>
+          </small>
         </div>
         <div className="input-field col s6">
           <button

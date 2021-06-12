@@ -142,3 +142,6 @@ label[for="tosCheck"] {
 select {
   display: block;
 }
+#tosCheck {
+  pointer-events: all !important;
+}

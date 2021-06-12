@@ -8,14 +8,15 @@ context("Form Test", () => {
 
   const inputs = {
     name: () => cy.get("#name"),
-    email: () => cy.get('#email'),
-    password: () => cy.get('#password')
+    email: () => cy.get("#email"),
+    password: () => cy.get("#password"),
+    tosCheck: () => cy.get("#tosCheck"),
   };
 
   const labels = {
     name: () => cy.get('label[for="name"]'),
     email: () => cy.get('label[for="email"'),
-    password: () => cy.get('label[for="password"]')
+    password: () => cy.get('label[for="password"]'),
   };
 
   describe("MVP Tests", () => {
@@ -30,25 +31,28 @@ context("Form Test", () => {
     });
 
     it("email input exists and accepts input", () => {
-        //click on label for input to reveal input or Cypress will throw an error
-        labels.email().should("exist").click();
-        inputs
-          .email()
-          .should("exist")
-          .type("foo@bar.com")
-          .should("have.value", "foo@bar.com");
-      });
+      //click on label for input to reveal input or Cypress will throw an error
+      labels.email().should("exist").click();
+      inputs
+        .email()
+        .should("exist")
+        .type("foo@bar.com")
+        .should("have.value", "foo@bar.com");
+    });
 
-      
     it("password input exists and accepts input", () => {
-        //click on label for input to reveal input or Cypress will throw an error
-        labels.password().should("exist").click();
-        inputs
-          .password()
-          .should("exist")
-          .type("password")
-          .should("have.value", "password");
-      });
+      //click on label for input to reveal input or Cypress will throw an error
+      labels.password().should("exist").click();
+      inputs
+        .password()
+        .should("exist")
+        .type("password")
+        .should("have.value", "password");
+    });
 
+    it("can check Terms of Service box", () => {
+      inputs.tosCheck().click();
+      inputs.tosCheck().should("have.class", "filled-in");
+    });
   });
 });
