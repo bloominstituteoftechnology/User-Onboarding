@@ -8,12 +8,14 @@ context("Form Test", () => {
 
   const inputs = {
     name: () => cy.get("#name"),
-    email: () => cy.get('#email')
+    email: () => cy.get('#email'),
+    password: () => cy.get('#password')
   };
 
   const labels = {
     name: () => cy.get('label[for="name"]'),
-    email: () => cy.get('label[for="email"')
+    email: () => cy.get('label[for="email"'),
+    password: () => cy.get('label[for="password"]')
   };
 
   describe("MVP Tests", () => {
@@ -35,6 +37,17 @@ context("Form Test", () => {
           .should("exist")
           .type("foo@bar.com")
           .should("have.value", "foo@bar.com");
+      });
+
+      
+    it("password input exists and accepts input", () => {
+        //click on label for input to reveal input or Cypress will throw an error
+        labels.password().should("exist").click();
+        inputs
+          .password()
+          .should("exist")
+          .type("password")
+          .should("have.value", "password");
       });
 
   });
