@@ -8,6 +8,7 @@ import User from './User'
 import schema from './Schema/schema'
 import * as yup from 'yup'
 import './App.css'
+import {v4 as uuid} from 'uuid'
 
 // initial state //
 const initialFormValues = {
@@ -70,7 +71,8 @@ export default function App() {
       email: formValues.email.trim(),
       password: formValues.password.trim(),
       role: formValues.role.trim(),
-      terms: formValues.terms // will return a bool
+      terms: formValues.terms, // will return a bool
+      id: uuid(),
     }
     postNewUser(newUser)
 
