@@ -1,17 +1,20 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import * as yup from 'yup';
+import schema from './schema_validation/formSchema';
 
 import Form from './component/Form';
 
 const initialFormValues = {
-  name: '',
+  username: '',
   email: '',
   password: '',
   term: false,
 }
 
 const initialFormErrors = {
-  name: '',
+  username: '',
   email: '',
   password: '',
   term: '',
@@ -27,15 +30,32 @@ export default function App() {
   const [disabled, setDisabled] = useState(initialDisabled)
   const [users, setUsers] = useState(initialUsers)
 
-  const getUsers = () => {
-
-  }
 
   const postNewUser = newUser => {
-
+    axios
+    .post('https://reqres.in/api/users')
+    .then(response => {
+      setUsers([...users, newUser]);
+    })
+    .catch(error => {
+      console.log('Error posting user', error)
+    })
+    .finally(() => {
+      setFormValues(formValues)
+    })
   }
 
   const inputChange = (name, value) => {
+
+    yup.reach(schema, name)
+    .validate(value)
+    .then(() => {
+      setFormErrors({...formErrors, [name]: ""})
+    })
+    .catch(error => {
+      setFormErrors({...formErrors, [name]: error.message})
+    })
+
     setFormValues({
       ...formValues, [name]: value
     })
@@ -43,20 +63,22 @@ export default function App() {
 
   const formSubmit = () => {
     const newUser = {
-      name: formValues.name.trim(),
-      email: formValues.email.trim(),
+      username: formValues.username.trim(),
+      email: formValues.email,
       password: formValues.password.trim(),
-      //put here for checkbox
+      term: formValues.term,
     }
-
-  useEffect(() => {
-    getUsers()
-  }, [])
-
-  useEffect(() => {
-
-  }, [])
+    postNewUser(newUser)
 }
+
+  useEffect(() => {
+    schema.isValid(formValues)
+    .then(valid => {
+      setDisabled(!valid)
+    })
+  }, [formValues])
+
+
   return (
     <div className="App">
       <Form 

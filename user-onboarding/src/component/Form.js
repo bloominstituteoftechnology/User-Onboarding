@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 
 export default function Form(props) {
-    const {values,submit, change, disabled, errors} = props
+    const {values, submit, change, disabled, errors} = props
 
     const onSubmit = evt => {
         evt.preventDefault()
@@ -10,40 +10,48 @@ export default function Form(props) {
     }
 
     const onChange = evt => {
-        const { name, value } = evt.target
-        change(name, value)
+        const { name, value, type, checked } = evt.target
+        const valueToUse = type === "checkbox" ? checked : value
+        change(name, valueToUse)
     }
 
     return (
         <form className='formComponents' onSubmit={onSubmit}>
+            <h1>Sign Up Form</h1>
+
             <div className='errorsDiv'>
-                <div>{errors.name}</div>
+                <div>{errors.username}</div>
                 <div>{errors.email}</div>
                 <div>{errors.password}</div>
                 <div>{errors.term}</div>
             </div>
+
             <div className='formInputs'>
                 <label>
                     Name
-                    <input type='text' name='name' onChange={onChange}/>
+                    <input value={values.username} type='text' name='username' onChange={onChange}/>
                 </label>
+                <br/>
 
                 <label>
                     Email
-                    <input type='email' name='email' onChange={onChange}/>
+                    <input value={values.email} type='email' name='email' onChange={onChange}/>
                 </label>
+                <br/>
 
                 <label>
                     Password
-                    <input type='password' name='password'onChange={onChange}/>
+                    <input value={values.password} type='password' name='password'onChange={onChange}/>
                 </label>
+                <br/>
 
                 <label>
                     Terms of Service
                     <input type='checkbox' name='term'/>
                 </label>
+                <br/>
 
-                <button disabled={buttonDisabled}>Submit</button>
+                <button disabled={disabled} type='submit'>Submit</button>
             </div>
         </form>
         
