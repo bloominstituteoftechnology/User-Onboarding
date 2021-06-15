@@ -1,7 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import * as Yup from 'yup'
+const schema = Yup.object().shape({
+    user: Yup.string().required("User is required").min(6,"user need to be 6 chars"),
+    star: Yup.string().oneOf(['wars', 'trek'], 'you must select wars or trek'),
+    language: Yup.string().oneOf(['1','2','3'], 'you must choose a language'),
+    agree: Yup.boolean().oneOf([true],'Pick one'),
+    password: Yup.string().required("password").min(4,"four min")
+})
 function Form (){
    const [form, setForm ] = useState({
-       name: '',
+       user:"",
        email:'',
        password: '',
        agree: false,
@@ -9,17 +17,24 @@ function Form (){
        star:""
       
    })
-   const [ disabled, setDisabled ] = useState(true)
+ const [ disabled, setDisabled ] = useState(true)
  const change = event=>{
      const {name, value, checked, type} = event.target;
      const valueToUse = type === 'checkbox' ? checked : value;
      setForm({...form, [name]: valueToUse})
     
  }
+ useEffect(() =>{
+     console.log(form)
+     schema.isValid(form).then(valid =>  setDisabled(!valid))
+ }, [form])
     return (
         <div className="App">
+            <form>
+
+           
             <label htmlFor="firstName">First Name:
-            <input onChange={change} type="text" value={form.name} name="user" placeholder="First Name" />
+            <input onChange={change} type="text" value={form.user} name="user" placeholder="First Name" />
             </label>< br/>
             <label htmlFor="email">Email:
             <input onChange={change} type="email" value={form.email} name="email" placeholder="Email" />
@@ -42,7 +57,8 @@ function Form (){
                 <option value="2">Python</option>
                 <option value="3">Node</option>
             </select>< br/>
-            <button type="submit" disabled={disabled}>Submit</button>
+            <button  disabled={disabled}>Submit</button>
+            </form>
         </div>
     )
 }
