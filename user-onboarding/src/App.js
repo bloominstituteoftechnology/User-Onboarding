@@ -41,7 +41,7 @@ export default function App() {
       console.log('Error posting user', error)
     })
     .finally(() => {
-      setFormValues(formValues)
+      setFormValues(initialFormValues)
     })
   }
 

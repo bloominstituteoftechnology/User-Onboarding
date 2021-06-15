@@ -29,29 +29,29 @@ export default function Form(props) {
             <div className='formInputs'>
                 <label>
                     Name
-                    <input value={values.username} type='text' name='username' onChange={onChange}/>
+                    <input id='name-input' value={values.username} type='text' name='username' onChange={onChange}/>
                 </label>
                 <br/>
 
                 <label>
                     Email
-                    <input value={values.email} type='email' name='email' onChange={onChange}/>
+                    <input id='email-input' value={values.email} type='email' name='email' onChange={onChange}/>
                 </label>
                 <br/>
 
                 <label>
                     Password
-                    <input value={values.password} type='password' name='password'onChange={onChange}/>
+                    <input id='password-input' value={values.password} type='password' name='password'onChange={onChange}/>
                 </label>
                 <br/>
 
                 <label>
                     Terms of Service
-                    <input type='checkbox' name='term'/>
+                    <input id='terms-cb' type='checkbox' name='term'/>
                 </label>
                 <br/>
 
-                <button disabled={disabled} type='submit'>Submit</button>
+                <button id='submit-button' disabled={disabled} type='submit'>Submit</button>
             </div>
         </form>
         
