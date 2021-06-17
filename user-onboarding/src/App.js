@@ -15,7 +15,7 @@ const schema = Yup.object().shape({
 
 function App (){
   
-    const initial = {  
+    const initial = {
     user:"",
     email:'',
     password: '',
@@ -55,8 +55,9 @@ const setForErrors = (name, value) => {
   axios
     .post("https://reqres.in/api/users", form)
     .then(res => {
-      setPost([...post, res.data]); // get just the form data from the REST api
-      console.log("success", res);
+      console.log(res.data,"this is res.data")
+      setPost([...post,res.data]); // get just the form data from the REST api
+  
 
     })
     .catch(err => console.log(err.response))
@@ -67,14 +68,15 @@ const setForErrors = (name, value) => {
      axios.get("https://reqres.in/api/users")
      .then(res=>{
          console.log(res.data.data)
-        setPost(res.data.data);
+       setPost(res.data.data);
        
      })
-   
+
    .catch(err=> console.log("error"))
-  schema.isValid(form).then(valid=>setDisabled(!valid))
-  
-}, [form])
+    },[])
+   useEffect(()=>{
+    schema.isValid(form).then(valid=>setDisabled(!valid))
+   },[form])
     return (
         <div className="App">
             <form onSubmit={onsubmit}>
