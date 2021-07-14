@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import * as yup from 'yup'
 import axios from 'axios'
-import User from './components/User.js'
+import UserComponent from './UserComponent.js'
 
 const initialFormValues = {
     name: '',
@@ -47,7 +47,13 @@ export default function FormComponent(props){
         .then(res => {
             setForm(initialFormValues)
             console.log(res.data)
-            setUsers(newUser)
+            const { name, email, password, tos } = form
+            setUsers([ ...users, {
+                name: form.name.trim(),
+                email: form.email,
+                password: form.password,
+                tos: form.tos
+            }])
         })
         .catch(err => {
             console.log(err)
@@ -85,8 +91,8 @@ export default function FormComponent(props){
             </div>
 
             <div className="userList">
-            {users.map((name, email, password, index) => {
-            return <User key={index} name={users.name} email={users.email} role={users.password} />
+            {users.map((user, index) => {
+            return <UserComponent key={index} name={user.name} email={user.email} password={user.password} />
         }
       )}
             </div>
