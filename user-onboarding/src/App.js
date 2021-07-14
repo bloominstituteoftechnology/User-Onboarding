@@ -1,6 +1,4 @@
 import React from 'react';
-import * as Yup from "yup";
-import Axios from 'axios';
 import './App.css';
 import Form from './Form'
 
