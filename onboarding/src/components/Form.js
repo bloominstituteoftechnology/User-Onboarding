@@ -54,6 +54,7 @@ export default function Form(props) {
     const handleChange = (e) => {
         const { value, name, checked, type } = e.target;
         const trueValue = type === 'checkbox' ? checked : value;
+        setErrors(name, trueValue)
         setFormData(
             {
                 ...formData, [name]: trueValue
@@ -86,29 +87,29 @@ export default function Form(props) {
                 <label htmlFor="name">Name:
                     <input onChange={handleChange} type="text" name='name' value={formData.name} />
                 </label>
-                <div style={{ color: "red" }}>
+                <div className='validation' style={{ color: "red" }}>
                     <div>{formErrors.name}</div>
                 </div>
                 <label htmlFor="email">
                     Email:
                     <input onChange={handleChange} type="email" name='email' value={formData.email} />
                 </label>
-                <div style={{ color: "red" }}>
+                <div className='validation' style={{ color: "red" }}>
                     <div>{formErrors.email}</div>
                 </div>
                 <label htmlFor="password">Password:
                     <input onChange={handleChange} type="password" name='password' value={formData.password} />
                 </label>
-                <div style={{ color: "red" }}>
+                <div className='validation' style={{ color: "red" }}>
                     <div>{formErrors.password}</div>
                 </div>
                 <label htmlFor="terms">Agree To Terms
                     <input onChange={handleChange} type="checkbox" checked={formData.terms} name='terms' />
                 </label>
-                <div style={{ color: "red" }}>
+                <div className='validation' style={{ color: "red" }}>
                     <div>{formErrors.terms}</div>
                 </div>
-                <button disabled={buttonDisable}>Submit</button>
+                <button name='submit' disabled={buttonDisable}>Submit</button>
             </form>
         </div>
     )
