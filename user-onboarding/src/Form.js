@@ -63,49 +63,52 @@ export default function Form() {
             schema.isValid(form).then((valid) => setDisabled(!valid));
           }, [form]);
 
-         
-    
+          
 
     return (
         <form className='form container' onSubmit={submitHandler}>
-          <div className='form-group inputs'>
+          <div className='form-div'>
 
-            <label>Name
-              <input type="text" onChange={onChange} name="name" values={form.name}/>
-            </label>
-            <div style={{ color: "red" }}>
-                <div>{errors.name}</div>
-            </div>
-    
-            <label>Email
-              <input type="email" onChange={onChange} name="email" values={form.email}/>
-            </label>
-            <div style={{ color: "red" }}>
-                <div>{errors.email}</div>
+            <div class='name'>
+              <label>Name
+                <input type="text" onChange={onChange} name="name" values={form.name}/>
+              </label>
+              <div style={{ color: "red" }}>
+                  <div>{errors.name}</div>
+              </div>
             </div>
 
-            <label>Password
-              <input onChange={onChange} name="password" type="password" values={form.password}/>
-            </label>
-            <div style={{ color: "red" }}>
-                <div>{errors.password}</div>
-            </div>
+              <label>Email
+                <input type="email" onChange={onChange} name="email" values={form.email}/>
+              </label>
+              <div style={{ color: "red" }}>
+                  <div>{errors.email}</div>
+              </div>
 
-            <label htmlFor="termsInput">
-        Do you agree to the terms and conditions?
-                <input id="termsInput" type="checkbox" name="terms" />
-            </label>
-            <div style={{ color: "red" }}>
-                <div>{errors.termsInput}</div>
-            </div>
-    
-            <div className='submit'>
-              <button disabled={disabled}>Submit</button>
-            </div>
+              <label>Password
+                <input onChange={onChange} name="password" type="password" values={form.password}/>
+              </label>
+              <div style={{ color: "red" }}>
+                  <div>{errors.password}</div>
+              </div>
 
-            <div>{JSON.stringify(user)}</div>
+              <label htmlFor="termsInput">
+          Do you agree to the terms and conditions?
+                  <input id="termsInput" type="checkbox" name="terms" />
+              </label>
+              <div style={{ color: "red" }}>
+                  <div>{errors.termsInput}</div>
+              </div>
+      
+              <div className='submit'>
+                <button disabled={disabled}>Submit</button>
+              </div>
+
+              <div>{JSON.stringify(user)}</div>
 
           </div>
         </form>
       )
     }
+
+
