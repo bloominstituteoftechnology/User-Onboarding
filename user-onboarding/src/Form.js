@@ -78,12 +78,14 @@ export default function Form() {
               </div>
             </div>
 
+            <div class='email'>
               <label>Email
                 <input type="email" onChange={onChange} name="email" values={form.email}/>
               </label>
               <div style={{ color: "red" }}>
                   <div>{errors.email}</div>
               </div>
+            </div>
 
               <label>Password
                 <input onChange={onChange} name="password" type="password" values={form.password}/>
