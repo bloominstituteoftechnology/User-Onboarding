@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import * as yup from 'yup'
 
 function Form() {
 
@@ -7,7 +8,33 @@ function Form() {
 		name: "",
 		email: "",
 		password: "",
+		passwordConfirm:"",
 		terms:""
+	})
+
+	const [errors, setErrors] = useState({
+		name: "",
+		email: "",
+		password: "",
+		passwordConfirm:"",
+		terms:""
+	})
+	const [disableButton, setDisableButton] = useState(true)
+
+	//this schema handles the validation for my form
+	const formSchema = yup.object().shape({
+		name: yup.string().required("Please enter your name"),
+		email: yup.string().email("Please enter a valid Email").required(),
+		password: yup.string().required(),
+		passwordConfirm: yup.string().oneOf([yup.ref("password"),null],"Passwords must match"),
+		terms:yup.bool().oneOf([true],"Please Agree to Terms and Conditions").required()
+	})
+
+	useEffect(() => {
+		formSchema.isValid(formState).then((valid) => {
+			console.log("valid?", valid)
+			setDisableButton(!valid)
+		})
 	})
 
 	//this controls the inputchange based on the type of input
@@ -26,6 +53,8 @@ function Form() {
 	const formSubmit = (e) => {
 		e.preventDefault()
 	}
+
+
 
 	return (
 		<form onSubmit={formSubmit}>
@@ -56,6 +85,18 @@ function Form() {
 					value={formState.password} />
 			</label>
 
+			<label htmlfor="passwordConfirm">Confirm Password
+				<input
+					onChange={inputChange}
+					type="password"
+					name="passwordConfirm"
+					id="password"
+					value={formState.passwordConfirm}
+				
+				/>
+					
+			</label>
+
 			<label htmlFor="terms" className="terms">
 				<input 
 					onChange={inputChange}
@@ -65,7 +106,7 @@ function Form() {
 					checked={formState.terms} />
 					Terms of Service
 			</label>
-			<button type="submit">Submit</button>
+			<button disabled={disableButton} type="submit">Enroll</button>
 			
 		</form>
 	)
