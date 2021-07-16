@@ -3,6 +3,7 @@ import * as yup from 'yup'
 import axios from 'axios'
 
 export default function Form () {
+    
     // managing state for form inputs
     const defaultState = {
         name: '',
@@ -74,6 +75,7 @@ export default function Form () {
             <label htmlFor='email'>
                 Email:
                 <input
+                 data-cy='email-error-msg'
                  type='text'
                  name='email'
                  onChange={inputChange}
@@ -104,13 +106,14 @@ export default function Form () {
             <label htmlFor='terms'>
                 Agree to Terms and Conditions:
                 <input
+                data-cy='terms'
                  type='checkbox'
                  name='terms'
                  onChange={inputChange}
                  value={formState.terms}
                 />
             </label><br/>
-            <button disabled={disableButton}>Submit</button>
+            <button id='submit' disabled={disableButton}>Submit</button>
         </form>
     );
 }
