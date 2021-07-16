@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
 
 function Form() {
+
+	const [formState, setFormState] = useState({
+		//this takes into account the 'name' of every input
+		name: "",
+		email: "",
+		password: "",
+		terms:""
+	})
 	return (
 		<form>
 			<label htmlFor="name">Name:
