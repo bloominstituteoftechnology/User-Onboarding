@@ -86,8 +86,8 @@ export default function FormComponent(props){
                 <button disabled={disabled}>Submit</button>
 
             </form>
-            <div style={{ color: 'red' }}>
-                <div>{errors.name}</div><div>{errors.email}</div><div>{errors.password}</div><div>{errors.tos}</div>
+            <div className="errors" style={{ color: 'red' }}>
+                <div className="nameError">{errors.name}</div><div>{errors.email}</div><div>{errors.password}</div><div>{errors.tos}</div>
             </div>
 
             <div className="userList">
