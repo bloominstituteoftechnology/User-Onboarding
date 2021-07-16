@@ -100,7 +100,7 @@ export default function Form() {
                   <div>{errors.termsInput}</div>
               </div>
       
-              <div className='submit'>
+              <div className='submit' name="submit">
                 <button disabled={disabled}>Submit</button>
               </div>
 

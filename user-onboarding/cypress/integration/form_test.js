@@ -27,13 +27,15 @@ describe('Password Form', function() {
 
 describe('Terms Input', function() {
     it('clicks the Terms button and confirms it works', function() {
-        cy.get('[name=terms]').click()
+        cy.get('[name="terms"]').click()
     })
 });
 
 describe('Submit Button', function() {
     it('clicks the submit button and confirms it works', function() {
-        cy.get('[name=submit]').click()
+        cy.get('[name="submit"]').click()
     })
 });
+
+
 
