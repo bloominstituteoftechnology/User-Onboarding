@@ -4,6 +4,8 @@ import axios from 'axios'
 
 function Form() {
 
+	const [user, setUser] = useState([])
+
 	const [formState, setFormState] = useState({
 		//this takes into account the 'name' of every input
 		name: "",
@@ -68,12 +70,13 @@ function Form() {
 		setFormState(newFormData)
 	}
 
+	//this makes a POST request to a test server and then saves that data into user state
 	const formSubmit = (e) => {
 		e.preventDefault()
 		axios
 			.post("https://reqres.in/api/users", formState)
 			.then((res) => {
-				console.log(res)
+				setUser(res.data)
 				setFormState({
 					name: "",
 					email: "",
@@ -139,7 +142,7 @@ function Form() {
 				Terms of Service
 			</label>
 			<button disabled={disableButton} type="submit">Enroll</button>
-			
+			<pre>{JSON.stringify(user, null, 2)}</pre>
 		</form>
 	)
 }
