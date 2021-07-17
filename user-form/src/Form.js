@@ -61,6 +61,7 @@ function Form() {
 		//newformdata takes in what we type into input
 		//then makes a copy of formstate and makes a new state. 
 		//then we make setformstate into that new state we made and tada! 
+		event.persist()
 		const newFormData = {
 			...formState,
 			[event.target.name]:
