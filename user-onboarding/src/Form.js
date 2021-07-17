@@ -86,6 +86,7 @@ const Form = () => {
 					name="name"
 					onChange={handleChange}
 					value={formState.name}
+					data-cy="name"
 				/>
 				{errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
 			</label>
@@ -94,6 +95,7 @@ const Form = () => {
 				<input
 					type="text"
 					name="email"
+					data-cy="email"
 					onChange={handleChange}
 					value={formState.email}
 				/>
@@ -106,6 +108,7 @@ const Form = () => {
 				<input
 					type="text"
 					name="password"
+					data-cy="password"
 					onChange={handleChange}
 					value={formState.password}
 				/>
@@ -118,6 +121,7 @@ const Form = () => {
 				<input
 					type="checkbox"
 					name="terms"
+					data-cy="terms"
 					onChange={handleChange}
 					value={formState.terms}
 				/>
@@ -130,6 +134,7 @@ const Form = () => {
 				<input
 					type="submit"
 					name="submit"
+					data-cy="submit"
 					onChange={handleChange}
 					disabled={isButtonDisabled}
 				/>
