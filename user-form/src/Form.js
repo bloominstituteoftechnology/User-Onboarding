@@ -26,7 +26,7 @@ function Form() {
 		name: yup.string().required("Please enter your name"),
 		email: yup.string().email("Please enter a valid Email").required(),
 		password: yup.string().required(),
-		passwordConfirm: yup.string().oneOf([yup.ref("password"),null],"Passwords must match"),
+		passwordConfirm: yup.string().oneOf([yup.ref("password"), null],"Passwords must match"),
 		terms:yup.bool().oneOf([true],"Please Agree to Terms and Conditions").required()
 	})
 
@@ -37,6 +37,19 @@ function Form() {
 		})
 	})
 
+	//this function validates input and displays errors
+	const validateData = (event) => {
+		yup
+			.reach(formSchema, event.target.name)
+			.validate(event.target.value)
+			.then((valid) => {
+				setErrors({...errors, [event.target.name]: ""})
+			})
+			.catch((err) => {
+				setErrors({...errors, [event.target.name]: err.errors[0]})
+			})
+	}
+
 	//this controls the inputchange based on the type of input
 	const inputChange = event => {
 		//newformdata takes in what we type into input
@@ -46,7 +59,8 @@ function Form() {
 			...formState,
 			[event.target.name]:
 				event.target.type === "checkbox" ? event.target.checked : event.target.value
-		}
+		};
+		validateData(event)
 		setFormState(newFormData)
 	}
 
@@ -65,6 +79,7 @@ function Form() {
 					name="name"
 					id="name"
 					value={formState.name} />
+			{errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
 			</label>
 
 			<label htmlFor="email">Email
@@ -74,6 +89,7 @@ function Form() {
 					name="email"
 					id="email"
 					value={formState.email} />
+			{errors.email.length > 0 ? <p className="error">{errors.email}</p> : null}
 			</label>
 
 			<label htmlFor="password">Password
@@ -83,6 +99,7 @@ function Form() {
 					name="password"
 					id="password"
 					value={formState.password} />
+			{errors.password.length > 0 ? <p className="error">{errors.password}</p> : null}
 			</label>
 
 			<label htmlfor="passwordConfirm">Confirm Password
@@ -91,10 +108,8 @@ function Form() {
 					type="password"
 					name="passwordConfirm"
 					id="password"
-					value={formState.passwordConfirm}
-				
-				/>
-					
+					value={formState.passwordConfirm} />
+				{formState.passwordConfirm.match(formState.password) ? null : errors.passwordConfirm}
 			</label>
 
 			<label htmlFor="terms" className="terms">
