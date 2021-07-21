@@ -32,14 +32,29 @@ export default function App() {
     axios.get('https://reqres.in/api/users')
     .then(res => {
       setUsers(res.data)
+      console.log(`HERE IS setUsers`, setUsers)
     })
     .catch(err => {
       debugger 
       console.log(err);
     });
   }
+
+  const postNewUser = newUser => {
+    axios.post('https://reqres.in/api/users', newUser)
+    .then(res => {
+      setUsers([...users, res.data])
+      setFormValues(initialFormValues)
+    })
+    .catch(err => {
+      debugger
+      console.log(err);
+    })
+    .finally(() =>{})
+  }
   return (
   <div className="App"> 
+  <header><h1>User Onboarding</h1></header>
             {/* <Form
         values={formValues} 
         update={updateForm} 
