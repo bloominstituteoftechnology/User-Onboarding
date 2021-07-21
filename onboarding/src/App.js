@@ -99,12 +99,12 @@ export default function App() {
 
   useEffect(() => {}, []);
 
-  // useEffect(() => {
-  //   schema.isValid(formValues)
-  //   .then(valid => {
-  //     setDisabled(!valid);
-  //   });
-  // }, [formValues]);
+  useEffect(() => {
+    schema.isValid(formValues)
+    .then(valid => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
 
   return (
     <div className="App">
