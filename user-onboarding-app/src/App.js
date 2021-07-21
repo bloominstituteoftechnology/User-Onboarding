@@ -4,10 +4,10 @@ import logo from './logo.svg';
 import './App.css';
 
 const initialFormValues = {
-  name: "",
+  username: "",
   email: "",
   password: "",
-  terms: "?",
+  terms: false,
 }
 
 function App() {
