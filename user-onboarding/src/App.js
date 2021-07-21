@@ -1,11 +1,11 @@
-import logo from './logo.svg';
+
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import * as yup from 'yup'
-import {reach} from 'yup'
 import schema from './validation.js'
 import Form from './components/Form'
 import Users from './components/Users';
+import "./styles.css";
 
 import './App.css';
 
@@ -71,7 +71,8 @@ function App() {
   }
 
   const validate = (name, value) => {
-    reach(schema, name)
+    yup
+    .reach(schema, name)
     .validate(value)
     .then(()=> setErrors({...errors, [name]: "",}))
     .catch(err => setErrors({...errors, [name]: err.errors[0]}))
@@ -85,7 +86,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header"></header>
+            <header>
+        <h1>User Onboarding</h1>
+      </header>
       <Form
       values={values}
       change={inputChange}

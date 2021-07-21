@@ -15,18 +15,18 @@ const onChange = evt => {
 }
 
 return (
-    <form classname = 'form container' onSubmit={onSubmit}>
-        <div classname = 'form-group submit'>
+    <form className = 'form container' onSubmit={onSubmit}>
+        <div className = 'form-group submit'>
             <h2>Add User</h2>
             <button disabled={disabled}>SUBMIT</button>
-            <div classname = 'errors'>
+            <div className = 'errors'>
                 <div>{errors.username}</div>
                 <div>{errors.email}</div>
                 <div>{errors.password}</div>
             </div>
         </div>
         
-        <div classname = "form-group inputs">
+        <div className = "form-group inputs">
             <h4>General Information</h4>
             <label>Username
                 <input
