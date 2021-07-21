@@ -34,7 +34,7 @@ export default function Form(props){
            </div> 
         
             <div className= 'inputs'>
-                <label htmlFor='name'>
+                <label htmlFor='name'>Name
                     <input
                         id= 'name'
                         value= {values.name}
@@ -43,13 +43,30 @@ export default function Form(props){
                         onChange= {onChange}
                     />
                 </label>
-                <label htmlFor= 'email'>
+                <label htmlFor= 'email'>E-mail
                     <input
                         id= 'email'
                         value= {values.email}
                         name= 'email'
                         type= 'text'
                         onChange= {onChange}
+                    />
+                </label>
+                <label htmlFor='password'>Password
+                    <input
+                        id= 'password'
+                        value= {values.password}
+                        name= 'password'
+                        type= 'password'
+                        onChange= {onChange}
+                    />
+                </label>
+                <label htmlFor= 'Terms of Service'>Terms of Service
+                    <input
+                        id= 'Terms of Service'
+                        type= 'checkbox'
+                        onChange= {onChange}
+                        checked={values.tos}
                     />
                 </label>
             </div>
