@@ -13,7 +13,13 @@ const initialFormValues = {
 function App() {
   return (
     <div className="App">
-      <Form/>
+      <Form
+        values={formValues}
+        change={inputChange}
+        submit={formSubmit}
+        disabled={disabled}
+        errors={formErrors}
+      />
     </div>
   );
 }
