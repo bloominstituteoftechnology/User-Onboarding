@@ -1,10 +1,11 @@
-import "./App.css";
+import "./styles.css";
+import "./";
 import React, { useState, useEffect } from "react";
 import Form from "./components/Form";
 import User from "./components/User";
 import axios from "axios";
 import * as yup from "yup";
-import schema from './validation/formSchema'
+import schema from "./validation/formSchema";
 
 const initialFormValues = {
   username: "",
@@ -75,30 +76,28 @@ export default function App() {
   };
 
   const inputChange = (name, value) => {
-    validate(name, value)
+    validate(name, value);
     setFormValues({
       ...formValues,
-      [name]: value // NOT AN ARRAY
-    })
-  }
+      [name]: value, // NOT AN ARRAY
+    });
+  };
 
-  const formSubmit = () =>{
+  const formSubmit = () => {
     const newUser = {
       username: formValues.username.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
       // 🔥 terms
-    }
-    postNewUser(newUser)
-  }
+    };
+    postNewUser(newUser);
+  };
 
   useEffect(() => {
-    getUsers()
-  }, [])
+    getUsers();
+  }, []);
 
-  useEffect(() => {
-    
-  }, [])
+  useEffect(() => {}, []);
 
   // useEffect(() => {
   //   schema.isValid(formValues)
@@ -107,15 +106,14 @@ export default function App() {
   //   });
   // }, [formValues]);
 
-
   return (
     <div className="App">
       <header>
         <h1>User Onboarding</h1>
       </header>
       <Form
-        // values={formValues} 
-        // update={updateForm} 
+        values={formValues}
+        // update={updateForm}
         // submit={submitForm}
       />
     </div>
