@@ -31,7 +31,8 @@ function App() {
   const getUsers = () => {
     axios.get('https://reqres.in/api/users')
       .then(res => {
-        setUsers([res.data, ...users])
+        setUsers(res.data.data)
+        console.log(res.data.data)
       })
       .catch(err => {
         console.log(err)
