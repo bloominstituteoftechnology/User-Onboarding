@@ -114,7 +114,7 @@ export default function App() {
       <Form
         values={formValues}
         // update={updateForm}
-        // submit={submitForm}
+        submit={formSubmit}
       />
     </div>
   );
