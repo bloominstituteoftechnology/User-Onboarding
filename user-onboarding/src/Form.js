@@ -23,7 +23,7 @@ export default function Form(props){
     return (
         <form className='form-container' onSubmit={onSubmit}>
            <div className ='form-submit'>
-            <button disabled={disabled}>submit</button>
+            <button disabled={disabled} >submit</button>
 
             <div className='errors'>
                 <div>{errors.name}</div>
@@ -66,7 +66,7 @@ export default function Form(props){
                         id= 'Terms of Service'
                         type= 'checkbox'
                         onChange= {onChange}
-                        checked={values.tos}
+                        // checked={values.tos}
                     />
                 </label>
             </div>

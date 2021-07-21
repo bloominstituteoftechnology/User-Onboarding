@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import './Form'
+import Form from './Form'
+import User from './User'
 import axios from 'axios'
 import schema from './validation/formSchema'
 import { reach } from 'yup'
@@ -30,7 +31,7 @@ function App() {
   const getUsers = () => {
     axios.get('https://reqres.in/api/users')
       .then(res => {
-        setUsers(res.data)
+        setUsers([res.data, ...users])
       })
       .catch(err => {
         console.log(err)
@@ -69,22 +70,40 @@ function App() {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      tos: formValues.tos.trim(),
+     
     }
     postNewUser(newUser)
   }
   useEffect(() => {
     getUsers()
   },[])
-
-  useEffect(() => {
+console.log(users)
+  
+useEffect(() => {
     schema.isValid(formValues).then(valid => setDisabled(!valid))
   },[formValues])
   
+  
+
   return (
     <div className="App">
-     
+     <h1>User-Onboarding</h1>
+
+     <Form
+     values={formValues}
+     change={inputChange}
+     submit={formSubmit}
+     disabled={disabled}
+     errors={formErrors}
+     />
       
+    {
+      users.map(user => {
+        return (
+          <User key={user.id} details={user}/>
+        )
+      })
+    }
     </div>
   );
 }
