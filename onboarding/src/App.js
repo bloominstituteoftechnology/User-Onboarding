@@ -113,7 +113,7 @@ export default function App() {
       </header>
       <Form
         values={formValues}
-        // update={updateForm}
+        change={inputChange}
         submit={formSubmit}
         disabled={disabled}
         errors={formErrors}
