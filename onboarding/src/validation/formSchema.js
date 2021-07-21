@@ -13,9 +13,9 @@ export default yup.object().shape({
         .string()
         .min(8).max(16)
         .required('Must provide password'),
-    terms: yup
-        .string()
-        .required('Must agree to terms')
+    // terms: yup
+    //     .string()
+    //     .required('Must agree to terms')
 
     //checkboxes are complete
     // hiking: yup.boolean(),

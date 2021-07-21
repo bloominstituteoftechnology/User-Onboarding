@@ -15,11 +15,14 @@ export default function OnboardingForm(props) {
         <form className="form container" onSubmit={onSubmit}>
             <div className="form-group submit">
                 <h2>Add a User</h2>
+
                 <button disabled={disabled}>submit</button>
+
                 <div className="errors">
                     <div>{errors.username}</div>
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
+                    {/* <div>{errors.terms}</div> */}
 
                 </div>
             </div>
