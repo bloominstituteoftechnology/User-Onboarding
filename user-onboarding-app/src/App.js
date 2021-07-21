@@ -8,15 +8,22 @@ const initialFormValues = {
   email: "",
   password: "",
   terms: false,
-}
+};
 const initialFormErrors = {
   username: "",
   email: "",
   password: "",
   terms: "",
-}
+};
+const initialUser = [];
+const initialDisabled = true;
 
 function App() {
+  const [user, setUser] = useState(initialUser);
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [disabled, setDisabled] = useState(initialDisabled);
+
   return (
     <div className="App">
       <Form
