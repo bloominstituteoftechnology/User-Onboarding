@@ -9,6 +9,12 @@ const initialFormValues = {
   password: "",
   terms: false,
 }
+const initialFormErrors = {
+  username: "",
+  email: "",
+  password: "",
+  terms: "",
+}
 
 function App() {
   return (
