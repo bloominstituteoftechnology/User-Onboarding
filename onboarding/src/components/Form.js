@@ -24,7 +24,7 @@ export default function OnboardingForm(props) {
                     <div>{errors.username}</div>
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
-                    {/* <div>{errors.terms}</div> */}
+                    <div>{errors.terms}</div>
 
                 </div>
             </div>
@@ -59,6 +59,9 @@ export default function OnboardingForm(props) {
                 <label>Terms
                     <input
                     type='checkbox'
+                    onChange={onChange}
+                    name='terms'
+                    checked={values.terms}
                     />
                     </label>
             </div>
