@@ -17,9 +17,10 @@ export default function OnboardingForm(props) {
                 <h2>Add a User</h2>
                 <button disabled={disabled}>submit</button>
                 <div className="errors">
-                    {/* <div>{errors.username}</div> */}
-                    {/* <div>{errors.email}</div>
-          <div>{errors.password}</div> */}
+                    {/* <div>{errors.username}</div>
+                    <div>{errors.email}</div>
+                    <div>{errors.password}</div> */}
+
                 </div>
             </div>
             <div className="form-group inputs">
