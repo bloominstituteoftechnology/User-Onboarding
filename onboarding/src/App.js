@@ -115,6 +115,8 @@ export default function App() {
         values={formValues}
         // update={updateForm}
         submit={formSubmit}
+        disabled={disabled}
+        errors={formErrors}
       />
       {
         users.map(user => {
