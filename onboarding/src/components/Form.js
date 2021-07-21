@@ -14,7 +14,9 @@ export default function OnboardingForm(props) {
     return (
         <form className="form container" onSubmit={onSubmit}>
             <div className="form-group submit">
+                <div>
                 <h2>Add a User</h2>
+                </div>
 
                 <button disabled={disabled}>submit</button>
 
