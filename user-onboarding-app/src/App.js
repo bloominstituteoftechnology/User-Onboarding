@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Form from "./Form";
+import schema from "./formSchema";
 import logo from './logo.svg';
 import './App.css';
 
@@ -15,14 +16,16 @@ const initialFormErrors = {
   password: "",
   terms: "",
 };
-const initialUser = [];
+const initialUsers = [];
 const initialDisabled = true;
 
 function App() {
-  const [user, setUser] = useState(initialUser);
+  const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
+
+  // setUsers([newUser, ...users]);
 
   return (
     <div className="App">
