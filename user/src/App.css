@@ -1,11 +1,26 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
+.form
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.container
+{
+  display: flex;
+  flex-direction: column;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

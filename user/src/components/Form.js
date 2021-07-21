@@ -45,20 +45,20 @@ export default function Form(props)
             <div className='form-group submit'>
                 <h1>Project 2.3.3 Onboarding </h1>
 
-                <div> User information area
-                    <div>Name field errors: {errors.name}</div>
-                    <div>Password field errors: {errors.password}</div>
-                    <div>Email errors: {errors.email}</div>
-                    <div>TOS errors {errors.terms}</div>
+                <div className = "error"> User information area
+                    <div className = "error" >Name field errors: {errors.name}</div>
+                    <div className = "error" >Password field errors: {errors.password}</div>
+                    <div className = "error">Email errors: {errors.email}</div>
+                    <div className = "error">TOS errors {errors.terms}</div>
                 </div>
             </div>   
             <div className = 'form-group inputs'>
                 <h2> Please Enter Your information</h2>
 
                 {/* Name Label */}
-                <label htmlFor = "name"> Name&nbsp; 
+                <label className = "label" htmlFor = "name"> Name&nbsp; 
                     {/* Input takes 5 attributes */}
-                    <input
+                    <input className = "label"
                         value = {values.name}
                         name = "name"
                         placeholder = "name"
@@ -68,9 +68,9 @@ export default function Form(props)
                 </label>
 
                 {/* Password Label */}
-                <label htmlFor = "password"> Password&nbsp; 
+                <label className = "label" htmlFor = "password"> Password&nbsp; 
                     {/* Input takes 5 attributes */}
-                    <input
+                    <input className = "label"
                         value = {values.password}
                         name = "password"
                         placeholder = "password"
@@ -80,9 +80,9 @@ export default function Form(props)
                 </label>
 
                 {/* Email Label */}
-                <label htmlFor = "email"> Email&nbsp; 
+                <label className = "label" htmlFor = "email"> Email&nbsp; 
                     {/* Input takes 5 attributes */}
-                    <input
+                    <input className = "label"
                         values = {values.email}
                         name = "email"
                         placeholder = "email"
@@ -92,8 +92,8 @@ export default function Form(props)
                 </label>
 
                 {/* TOS checkbox label */}
-                <label htmlFor = "terms"> Terms of Service&nbsp; 
-                    <input 
+                <label className = "label" htmlFor = "terms"> Terms of Service&nbsp; 
+                    <input className = "label"
                     type = "checkbox"
                     name = "terms"
                     onChange={onChange}
