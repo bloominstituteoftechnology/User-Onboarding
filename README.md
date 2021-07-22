@@ -76,4 +76,4 @@ The following are stretch goals that you should attempt _after_ you meet MVP for
 * [ ] Submit a Pull-Request to merge `<firstName-lastName>` Branch into `main` (student's  Repo). **Please don't merge your own pull request**
 
 ## Rick's Pull request
-[- Link for convenience](https://github.com/LambdaSchool/User-Onboarding/pull/392)
+- [Link for convenience](https://github.com/LambdaSchool/User-Onboarding/pull/392)
