@@ -27,7 +27,7 @@ return (
         </div>
         
         <div className = "form-group inputs">
-            <h4>General Information</h4>
+            <h4 style={{marginLeft: '30px'}}>General Information </h4>
             <label>Username
                 <input
                 value={values.username}
