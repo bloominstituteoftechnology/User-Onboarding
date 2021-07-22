@@ -29,6 +29,8 @@ export default function UserForm(props){
                     <div>{errors.first_name}</div>
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
+                    <div>{errors.agree}</div>
+
                 </div>
             </div>
 
@@ -70,14 +72,7 @@ export default function UserForm(props){
           checked={values.agree}
           />
     </label>
-    <label>Disagree
-    <input
-          type='checkbox'
-          name='disagree'
-          onChange={onChange}
-          checked={values.disagree}
-          />
-    </label>
+    
 </div>
         </form>
     )

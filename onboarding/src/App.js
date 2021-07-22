@@ -18,6 +18,7 @@ const initialFormErrors = {
   first_name: '',
   email:'',
   password:'',
+  terms:false,
 }
 
 const initialUsers = []
@@ -56,7 +57,7 @@ function App() {
   }
   const validate =( name, value) =>{
   
-    reach(schema,name)
+     reach(schema,name)
     .validate(value)
     .then(() => setFormErrors({...formErrors, [name]:''}))
     .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
@@ -73,7 +74,7 @@ function App() {
       first_name:formValues.first_name.trim(),
       email:formValues.email.trim(),
       password:formValues.password.trim(),
-      Terms:['agree','disagree'].filter(terms => formValues[terms] === true)
+      Terms:['agree'].filter(terms => formValues[terms] === true)
     }
     postNewUser(newUser)
   }
