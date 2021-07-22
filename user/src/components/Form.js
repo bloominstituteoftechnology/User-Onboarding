@@ -61,7 +61,7 @@ export default function Form(props)
                     <input className = "label"
                         value = {values.name}
                         name = "name"
-                        placeholder = "name"
+                        //placeholder = "name"
                         type = "text"
                         onChange = {onChange}
                     />
@@ -73,7 +73,7 @@ export default function Form(props)
                     <input className = "label"
                         value = {values.password}
                         name = "password"
-                        placeholder = "password"
+                        //placeholder = "password"
                         type = "text"
                         onChange = {onChange}
                     />
@@ -85,7 +85,7 @@ export default function Form(props)
                     <input className = "label"
                         values = {values.email}
                         name = "email"
-                        placeholder = "email"
+                        //placeholder = "email"
                         type = "text"
                         onChange = {onChange}
                     />
