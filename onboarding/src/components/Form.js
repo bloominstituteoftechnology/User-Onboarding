@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../App.css'
 export default function UserForm(props){
     const{
       values,
@@ -20,10 +20,10 @@ export default function UserForm(props){
     }
 
     return(
-        <form onSubmit={onSubmit}>
-            <div>
+        <form className='form-container' onSubmit={onSubmit}>
+            <div className='form-group'>
                 <h2>Add User</h2>
-                <button disabled={disabled}>Submit</button>
+                <button className='submit' disabled={disabled}>Submit</button>
 
                 <div>
                     <div>{errors.first_name}</div>
@@ -32,26 +32,26 @@ export default function UserForm(props){
                 </div>
             </div>
 
-<div>
+<div className='form-group'>
     <h4>General Info about User</h4>
     <label>Name&nbsp;
-        <input
+        <input className='input'
         value={values.first_name}
         onChange={onChange}
         name='first_name'
         type='text'
         />
     </label>
-    <label>email
-        <input
+    <label >email&nbsp;
+        <input className='input'
         value={values.email}
         onChange={onChange}
         name='email'
         type='text'
         />
     </label>
-    <label>Password
-    <input
+    <label >Password&nbsp;
+    <input className='input'
         value={values.password}
         onChange={onChange}
         name='password'

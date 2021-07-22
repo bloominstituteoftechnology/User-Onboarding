@@ -86,7 +86,7 @@ function App() {
   }, [formValues])
 
   return (
-    <div className="App">
+    <div className="container">
       <header className="App-header"><h1>User Onboarding</h1></header>
       <UserForm
       values={formValues}

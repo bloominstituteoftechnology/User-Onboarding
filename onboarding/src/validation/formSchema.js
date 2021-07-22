@@ -15,6 +15,6 @@ const formSchema = yup.object().shape({
     .min(8).max(16)
     .required('Password is required'),
     agree:yup.boolean(),
-    disagree: yup.boolean(),
+    disagree:yup.boolean(),
 })
 export default formSchema;
