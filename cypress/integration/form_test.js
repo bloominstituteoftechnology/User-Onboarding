@@ -12,4 +12,15 @@ describe('Onboarding App', () => {
         expect({}).to.not.equal({}); // can use "equal" here// and not strict i.e. (==)
         expect({}).to.eql({}); //can't use equal here// and deeply strick i.e. (===)
       });
+
+      const usernameInput = () => cy.get('input[name="username"]');
+      it('Gets the name and adds text', () => {
+        usernameInput()
+        .should("exist")
+        .should("have.value", "")
+        .type("Rick Mansfield")
+        .should("have.value", "Rick Mansfield");
+        
+      });
+      
 });
