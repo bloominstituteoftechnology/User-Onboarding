@@ -89,18 +89,19 @@ describe("Form", () =>
         submitBtn()
           .should("exist")
           .should('be.disabled')
-          //Attempt to type in TEXT field 
-          nameInput().type("TEXT INPUT");
-          //Should still be disabled
-          submitBtn().should("be.disabled");
-          //Clear the field
-          nameInput().clear();
+
+          //Attempt to type in Name field 
+          nameInput().type("name")
+        
+          //Attempt to type the password
+          passwordInput().type("password")
+
           //Attempt to type in email field 
-          emailInput().type("email@email.com");
-          //Should still be disabled
-          submitBtn().should("be.disabled");
-          //Attempt to type in name field again
-          nameInput().type("TEXT INPUT");
+          emailInput().type("email@email.com")
+
+          //Click the TOS box
+          termsInput().click()
+
           //Should no longer be disabled
           submitBtn().should("not.be.disabled");
     });
