@@ -1,0 +1,89 @@
+.App {
+	text-align: center;
+}
+* {
+	box-sizing: border-box;
+}
+.form {
+	display: grid;
+	justify-content: center;
+}
+.form form {
+	display: grid;
+	gap: 1em;
+	grid-template-rows: auto auto;
+	justify-content: center;
+	width: fit-content;
+	text-align: end;
+	padding: 1em;
+	border: 1px solid grey;
+	border-radius: 0.8em;
+	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.088);
+}
+.form form input {
+	width: 20em;
+	height: 2.5em;
+	margin-left: 1em;
+	border-radius: 0.5em;
+	border: 1px solid grey;
+}
+.form form input[type='checkbox'] {
+	width: 1.5em;
+	height: 1.5em;
+	grid-column: 2;
+}
+/* .form form label {
+	padding-bottom: 1em;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.253);
+} */
+.submitBox {
+	display: grid;
+	align-content: center;
+	grid-template-columns: 1fr 1fr;
+}
+.submitBox label {
+	display: grid;
+	align-items: center;
+	grid-template-rows: 1fr;
+}
+.submitBox button {
+	width: fit-content;
+	justify-self: end;
+}
+.tos {
+	justify-self: flex-start;
+}
+.App-logo {
+	height: 40vmin;
+	pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
+}
+
+.App-header {
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+
+.App-link {
+	color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
