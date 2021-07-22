@@ -52,6 +52,13 @@ describe("User Onboarding app",()=>{
         userInput().should("have.value","")
         emailInput().should("have.value","")
         passwordInput().should("have.value","")
+    });
+
+    it("check for form validation if an input is left empty",() => {
+        userInput().should("have.value","")
+        emailInput().should("have.value","")
+        passwordInput().should("have.value","")
+        submitBtn().click()
     })
 
 })
