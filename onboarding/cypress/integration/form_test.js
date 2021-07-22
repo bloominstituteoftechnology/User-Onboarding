@@ -1,6 +1,6 @@
 describe('Onboarding App', () => {
     beforeEach(() => {
-        cy.visit("http://localhost:1234");
+        cy.visit("http://localhost:3000");
       });
     
     
