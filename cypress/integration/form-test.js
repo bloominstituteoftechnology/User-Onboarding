@@ -20,6 +20,7 @@ describe("Form", () =>
     const emailInput = () => cy.get('input[name="email"]');
     const passwordInput = () => cy.get('input[name="password"]');
     const termsInput = () => cy.get('input[name="terms"]');
+    const submitBtn = () => cy.get('button[id="submitBtn"]');
 
 
     //Sanity testing
@@ -80,5 +81,28 @@ describe("Form", () =>
           //Can double-click
           .dblclick();
     });
- 
+
+    //Submit form data
+    it("Submit button", () =>
+    {
+        //Should exist
+        submitBtn()
+          .should("exist")
+          .should('be.disabled')
+          //Attempt to type in TEXT field 
+          nameInput().type("TEXT INPUT");
+          //Should still be disabled
+          submitBtn().should("be.disabled");
+          //Clear the field
+          nameInput().clear();
+          //Attempt to type in email field 
+          emailInput().type("email@email.com");
+          //Should still be disabled
+          submitBtn().should("be.disabled");
+          //Attempt to type in name field again
+          nameInput().type("TEXT INPUT");
+          //Should no longer be disabled
+          submitBtn().should("not.be.disabled");
+    });
+
 });

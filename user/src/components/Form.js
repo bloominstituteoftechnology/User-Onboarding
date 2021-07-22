@@ -100,7 +100,10 @@ export default function Form(props)
                     checked={values.terms}
                        />
                 </label>
-                <button disabled={disabled}>SUBMIT THIS!</button>        
+                <button 
+                id = "submitBtn" 
+                disabled={disabled}>SUBMIT THIS!
+                </button>        
             </div>
         </form>
     )
