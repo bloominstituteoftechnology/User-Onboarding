@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-
-export default function App() {
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import schema from './validation/formSchema'
+export default function App({ submit }) {
     const initial = {
         name: '',
         email: '',
@@ -17,16 +18,26 @@ export default function App() {
 
     const handleSubmit = (evt) => {
         evt.preventDefault()
+        axios.post(`https://reqres.in/api/users`, formValues)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => console.log(err))
+        submit(formValues)
+        setFormValues(initial)
     }
+    useEffect(() =>{
+        schema.isValid(formValues).then(valid => console.log(valid))
+    }, [formValues])
     return(
         
-        <form>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="name">Name
             <input type="text" id='name' name='name'  onChange = {handleChange} />
             </label>
 
             <label htmlFor="email">Email
-            <input type="email" id='email' name='email' onChange = {handleChange} />
+             <input type="email" id='email' name='email' onChange = {handleChange} />
             </label>
 
             <label htmlFor="password">Password
