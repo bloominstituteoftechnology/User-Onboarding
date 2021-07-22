@@ -11,7 +11,7 @@ We've seen many different styles of form management by now -- simple to complex.
 - [ ] Start off by installing a blank React app by running `npx create-react-app <app-name> --use-npm`.
 - [ ] Using `npm`, add the following as dependencies inside your React app:
   - `yup`
-  - `axios`
+  - `axios`injbjkb
 - [ ] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
 
 ### Task 2: MVP
@@ -60,4 +60,4 @@ The following are stretch goals that you should attempt _after_ you meet MVP for
 
 ## Submission Format
 
-* [ ] Submit a Pull-Request to merge `<firstName-lastName>` Branch into `main` (student's  Repo). **Please don't merge your own pull request**
+- [ ] Submit a Pull-Request to merge `<firstName-lastName>` Branch into `main` (student's Repo). **Please don't merge your own pull request**
