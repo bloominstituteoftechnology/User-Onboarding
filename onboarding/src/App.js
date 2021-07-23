@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, } from 'react'
 
 
 import './App.css';
@@ -7,11 +7,6 @@ import Form from './Form'
 function App() {
   const [users, setUsers] = useState([])
 
-  const submit = (user) => {
-    setUsers([...users, user ])
-  }
-
-  
   return (
     <div className="App">
       {users.map((user, idx) => {
@@ -19,11 +14,12 @@ function App() {
           <React.Fragment key ={idx}>
             <p>{user.name}</p>
             <p>{user.email}</p>
+            
           </React.Fragment>
         )
       })}
 
-      <Form submit={submit}/>
+      <Form users={users} setUsers={setUsers} />
     </div>
     
   );
