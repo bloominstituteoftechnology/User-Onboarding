@@ -38,13 +38,13 @@ export default function OnboardingForm(props) {
     return (
         <StyledForm className="form-container" onSubmit={onSubmit}>
             <div className="form-submit">
+
+                <div className="errors">
                 <div>
                     <h2>Submit New User</h2>
                 </div>
 
-                <button disabled={disabled}>submit</button>
-
-                <div className="errors">
+                <button id='submitBtn' disabled={disabled}>submit</button>
                     <div>
                         {errors.username}
                     </div>
@@ -91,6 +91,9 @@ export default function OnboardingForm(props) {
                 <label>Terms
                     <input
                     type='checkbox'
+                    name='terms' 
+                    onChange={onChange} 
+                    checked={values.terms}
                     />
                     </label>
             </Styledinput>
