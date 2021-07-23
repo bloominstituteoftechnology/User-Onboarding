@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 export default function OnboardingForm(props) {
     const { values, submit, change, disabled, errors } = props;
@@ -15,7 +16,7 @@ export default function OnboardingForm(props) {
         <form className="form container" onSubmit={onSubmit}>
             <div className="form-group submit">
                 <div>
-                <h2>Add a User</h2>
+                    <h2>Add a User</h2>
                 </div>
 
                 <button disabled={disabled}>submit</button>
@@ -25,7 +26,6 @@ export default function OnboardingForm(props) {
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
                     <div>{errors.terms}</div>
-
                 </div>
             </div>
             <div className="form-group inputs">
@@ -37,6 +37,7 @@ export default function OnboardingForm(props) {
                         onChange={onChange}
                         name="username"
                         type="text"
+                        id="name-input"
                     />
                 </label>
                 <label>
@@ -48,22 +49,25 @@ export default function OnboardingForm(props) {
                         type="text"
                     />
                 </label>
-                <label>Password
+                <label>
+                    Password
                     <input
-                    value={values.password}
-                    onChange={onChange}
-                    name="password"
-                    type="text"
+                        value={values.password}
+                        onChange={onChange}
+                        name="password"
+                        type="text"
                     />
-                    </label>
-                <label>Terms
+                </label>
+                <label>
+                    Terms
                     <input
-                    type='checkbox'
-                    onChange={onChange}
-                    name='terms'
-                    checked={values.terms}
+                        type="checkbox"
+                        onChange={onChange}
+                        name="terms"
+                        checked={values.terms}
                     />
-                    </label>
+                </label>
+
             </div>
         </form>
     );
