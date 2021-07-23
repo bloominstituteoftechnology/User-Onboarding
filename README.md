@@ -1,5 +1,18 @@
 # Module Project: Advanced Form Management - User Onboarding
 
+- [Module Project: Advanced Form Management - User Onboarding](#module-project-advanced-form-management---user-onboarding)
+  - [Project Description](#project-description)
+  - [Instructions](#instructions)
+    - [Task 1: Set Up The Project](#task-1-set-up-the-project)
+    - [Task 2: MVP](#task-2-mvp)
+      - [Create Your Advanced Form](#create-your-advanced-form)
+      - [Implement Form Validation and Error Messaging](#implement-form-validation-and-error-messaging)
+      - [Make a POST Request](#make-a-post-request)
+      - [Display Returned Data to Screen](#display-returned-data-to-screen)
+    - [Task 3: Stretch Goals](#task-3-stretch-goals)
+  - [Submission Format](#submission-format)
+  - [Rick's Pull request](#ricks-pull-request)
+
 ## Project Description
 
 We've seen many different styles of form management by now -- simple to complex. Today we are going to unleash your inner form-wizard! 🧙
@@ -61,3 +74,6 @@ The following are stretch goals that you should attempt _after_ you meet MVP for
 ## Submission Format
 
 * [ ] Submit a Pull-Request to merge `<firstName-lastName>` Branch into `main` (student's  Repo). **Please don't merge your own pull request**
+
+## Rick's Pull request
+- [Link for convenience](https://github.com/LambdaSchool/User-Onboarding/pull/392)
