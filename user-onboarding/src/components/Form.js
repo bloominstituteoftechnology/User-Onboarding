@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const Form = (props) => {
-    const { formValues, forErrors, disabled, inputChange, submitForm } = props;
+    const { formValues, formErrors, disabled, inputChange, submitForm } = props;
 
     const onChange = (event) => {
         const { name, value, checked, type } = event.target;
@@ -18,6 +18,15 @@ const Form = (props) => {
         <div>
             <form onSubmit={onSubmit}>
             <h3>Add a Team Member</h3>
+
+            <div className="errors">
+                <p>{formErrors.first_name}</p>
+                <p>{formErrors.last_name}</p>
+                <p>{formErrors.email}</p>
+                <p>{formErrors.password}</p>
+                <p>{formErrors.termsOfService}</p>
+                
+            </div>
                 <label> First Name: 
                     <input
                         type="text"
