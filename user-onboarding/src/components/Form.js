@@ -2,14 +2,18 @@ import React from 'react';
 
 
 const Form = (props) => {
-    const { formValues, disabled } = props;
+    const { formValues, disabled, inputChange, submitForm } = props;
 
     const onChange = (event) => {
-        console.log(event.target.name);
+        const name = event.target.name;
+        const value = event.target.value;
+        inputChange(name,value);
     }
 
     const onSubmit = (event) => {
+        event.preventDefault();
         console.log("You hit submit")
+        submitForm();
     }
     return (
         <div>
