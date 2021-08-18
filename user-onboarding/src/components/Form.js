@@ -12,18 +12,26 @@ const Form = (props) => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        console.log("You hit submit")
         submitForm();
     }
     return (
         <div>
             <form onSubmit={onSubmit}>
             <h3>Add a Team Member</h3>
-                <label> Username: 
+                <label> First Name: 
                     <input
                         type="text"
-                        name="name"
-                        value={formValues.name}
+                        name="first_name"
+                        value={formValues.first_name}
+                        onChange={onChange}
+                    />
+                </label>
+
+                <label> Last Name: 
+                    <input
+                        type="text"
+                        name="last_name"
+                        value={formValues.last_name}
                         onChange={onChange}
                     />
                 </label>
@@ -49,10 +57,10 @@ const Form = (props) => {
                 <label> Role: 
                     <select name="role" value={formValues.role} onChange={onChange}>
                         <option value="">-- Select a Role --</option>
-                        <option value="teamLead">Team Lead</option>
-                        <option value="frontend">Frontend Developer</option>
-                        <option value="backend">Backend Developer</option>
-                        <option value="designer">Designer</option>
+                        <option value="Team Lead">Team Lead</option>
+                        <option value="Frontend Developer">Frontend Developer</option>
+                        <option value="Backend Developer">Backend Developer</option>
+                        <option value="Designer">Designer</option>
                     </select>
                 </label>
                 <label> Terms of Service:  

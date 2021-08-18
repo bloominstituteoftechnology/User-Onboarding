@@ -9,7 +9,8 @@ import Team from './components/Team';
 //initial form values
 const initialFormValues = {
   //text input
-  name: '',
+  first_name: '',
+  last_name: '',
   email: '',
   password: '',
   //dropdown
@@ -19,7 +20,8 @@ const initialFormValues = {
 }
 
 const initialErrors = {
-  name: '',
+  first_name: '',
+  last_name: '',
   email: '',
   password: '',
   role: '',
@@ -27,7 +29,7 @@ const initialErrors = {
 }
 
 const initialTeamMembers = [];
-const initialDisabled = true;
+const initialDisabled = false;
 
 
 function App() {
@@ -55,26 +57,33 @@ const inputChange = (name, value) => {
   setFormValues({...formValues,[name]:value});
 }
 
-const postNewMember = () => {
-  
+const postNewMember = (newMember) => {
+  axios.post('https://reqres.in/api/users', newMember)
+    .then(response => {
+      setTeamMembers([response.data, ...teamMembers])
+    })
+    .catch(err => {
+      console.error(err);
+    })
+
 }
 
 const submitForm = () => {
   const newMember = {
-    name: formValues.name.trim(),
+    first_name: formValues.first_name.trim(),
+    last_name: formValues.last_name.trim(),
     email: formValues.email.trim(),
     password: formValues.password.trim(),
     role: formValues.role,
     termsOfService: ["termsOfService"].filter(term => !!formValues[term])
   }
-
+  postNewMember(newMember);
 }
 
 //side effects 
 
 useEffect(()=>{
   getTeamMembers();
-  console.log(teamMembers);
 },[])
 
 
