@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import axios from 'axios';
+
+// Importing component 
+import Form from './Component/Form';
+
+////////// INITIAL STATES ///////////
+const initialFormValues = {
+      //text inputs//
+    name: '',
+    email: '',
+    password: '',
+
+      //check button//
+    termsofservice: false
+}
+
+const initialFormErrors = {
+  name: '',
+  email: '',
+  password: ''
+}
 
 function App() {
+      ///////////STATES///////////////
+  const [user, setUser] = 
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
     </div>
   );
 }
