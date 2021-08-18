@@ -5,7 +5,7 @@ const Schema = yup.object().shape({
         .string()
         .trim()
         .required('Name is required')
-        .min(1, 'Name must be at least 1 character long'),
+        .min(3, 'Name must be at least 3 characters long'),
     email: yup
         .string()
         .trim()
@@ -15,7 +15,7 @@ const Schema = yup.object().shape({
         .string()
         .trim()
         .required('Password is required')
-        .min(1, 'Password must be at least 1 character long'),
+        .min(3, 'Password must be at least 3 characters long'),
     termsOfService: yup.boolean()
 })
 

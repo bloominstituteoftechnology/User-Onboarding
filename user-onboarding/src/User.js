@@ -7,17 +7,20 @@ function User({ details }) {
 
     return (
         <div className='user container'>
-            <h2>{details.name}</h2>
+            <h2>Name: {details.name ? details.name : details.first_name + ' ' + details.last_name}</h2>
             <p>Email: {details.email}</p>
-            <p>Password: {details.password}</p>
-            <p>Terms Agreed: {details.termsOfService}</p>
+            <p>{details.password ? 'Password: ' + details.password : null}</p>
+            <p>{details.termsOfService ? 'Terms Agreed: ' + details.termsOfService : null}</p>
 
-            {
+            {/* {
                 !!details.termsOfService && !!details.termsOfService.length &&
                 <div>
                     Terms Of Service: 
+                    <ul>
+                        {details.termsOfService.map((agreed, idx) => <li key={idx}>{agreed}</li>)}
+                    </ul>
                 </div>
-            }
+            } */}
         </div>
     )
 }

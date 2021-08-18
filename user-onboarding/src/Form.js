@@ -21,7 +21,7 @@ export default function Form(props){
     }
 
     return (
-        <form className='form container' onSumbit={onSubmit}>
+        <form className='form container' onSubmit={onSubmit}>
             <div className='form-group submit'>
                 <h2>Add a User</h2>
 
