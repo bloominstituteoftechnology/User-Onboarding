@@ -2,6 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
+import schema from '../src/validation/formSchema';
+import * as yup from 'yup';
+
 //components
 import Form from './components/Form';
 import Team from './components/Team';
@@ -29,7 +32,7 @@ const initialErrors = {
 }
 
 const initialTeamMembers = [];
-const initialDisabled = false;
+const initialDisabled = true;
 
 
 function App() {
@@ -52,8 +55,15 @@ const getTeamMembers = () => {
     })
 }
 
+const validate = (name, value) => {
+  yup.reach(schema, name)
+    .validate(value)
+    .then( () => setFormErrors({...formErrors,[name]: ""}))
+    .catch( err => setFormErrors({...formErrors, [name]:err.errors[0]}))
+}
+
 const inputChange = (name, value) => {
-  console.log(name, value);
+  validate(name, value);
   setFormValues({...formValues,[name]:value});
 }
 
@@ -86,11 +96,18 @@ useEffect(()=>{
   getTeamMembers();
 },[])
 
+useEffect (()=> {
+  schema.isValid(formValues)
+    .then(valid => {
+      setDisabled(!valid);
+    })
+},[formValues])
+
 
   return (
     <div className="App">
       <h1>Team Onboarding</h1>
-      <Form formValues={formValues} disabled={disabled} inputChange={inputChange} submitForm={submitForm}/>
+      <Form formValues={formValues} formErrors={formErrors} disabled={disabled} inputChange={inputChange} submitForm={submitForm}/>
       <Team teamMembers={teamMembers} />
     </div>
   );

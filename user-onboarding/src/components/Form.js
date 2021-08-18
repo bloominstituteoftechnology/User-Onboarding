@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const Form = (props) => {
-    const { formValues, disabled, inputChange, submitForm } = props;
+    const { formValues, forErrors, disabled, inputChange, submitForm } = props;
 
     const onChange = (event) => {
         const { name, value, checked, type } = event.target;
