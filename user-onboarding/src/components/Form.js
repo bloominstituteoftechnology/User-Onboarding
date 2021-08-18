@@ -5,9 +5,9 @@ const Form = (props) => {
     const { formValues, disabled, inputChange, submitForm } = props;
 
     const onChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        inputChange(name,value);
+        const { name, value, checked, type } = event.target;
+        const valueToUse = type === "checkbox" ? checked : value;
+        inputChange(name,valueToUse);
     }
 
     const onSubmit = (event) => {
@@ -54,6 +54,14 @@ const Form = (props) => {
                         <option value="backend">Backend Developer</option>
                         <option value="designer">Designer</option>
                     </select>
+                </label>
+                <label> Terms of Service:  
+                    <input 
+                        type="checkbox"
+                        name="termsOfService"
+                        checked={formValues.termsOfService}
+                        onChange={onChange}
+                    />
                 </label>
                 <button disabled={disabled}>Submit</button>
             </form>

@@ -50,14 +50,23 @@ const getTeamMembers = () => {
     })
 }
 
-
-
 const inputChange = (name, value) => {
   console.log(name, value);
   setFormValues({...formValues,[name]:value});
 }
 
+const postNewMember = () => {
+  
+}
+
 const submitForm = () => {
+  const newMember = {
+    name: formValues.name.trim(),
+    email: formValues.email.trim(),
+    password: formValues.password.trim(),
+    role: formValues.role,
+    termsOfService: ["termsOfService"].filter(term => !!formValues[term])
+  }
 
 }
 
