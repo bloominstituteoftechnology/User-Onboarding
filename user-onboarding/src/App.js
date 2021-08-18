@@ -42,7 +42,7 @@ const [disabled, setDisabled] = useState(initialDisabled);
   return (
     <div className="App">
       <h1>Team Onboarding</h1>
-      <Form />
+      <Form formValues={formValues} disabled={disabled} />
     </div>
   );
 }
