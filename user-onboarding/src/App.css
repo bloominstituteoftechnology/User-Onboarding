@@ -1,18 +1,36 @@
+body {
+  background-color: lightblue;
+}
+
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form .form-group button {
+  width: 30%;
+  border-radius: 10px;
+  background-color: lightgreen;
+  color: #282c34;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+label {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
 }
-
+input {
+  border-radius: 10px;
+}
+.friend-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 50vw;
+  margin-left: 25%;
+  background-color: lightgreen;
+  border-radius: 15px;
+  border: lightslategrey 1px solid;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -22,17 +40,4 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
