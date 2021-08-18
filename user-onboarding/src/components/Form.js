@@ -7,10 +7,14 @@ const Form = (props) => {
     const onChange = (event) => {
         console.log(event.target.name);
     }
+
+    const onSubmit = (event) => {
+        console.log("You hit submit")
+    }
     return (
         <div>
-            <h3>This is a Form! </h3>
-            <form>
+            <form onSubmit={onSubmit}>
+            <h3>Add a Team Member</h3>
                 <label> Username: 
                     <input
                         type="text"

@@ -3,6 +3,7 @@ import './App.css';
 
 //components
 import Form from './components/Form';
+import Team from './components/Team';
 
 //initial form values
 const initialFormValues = {
@@ -43,6 +44,7 @@ const [disabled, setDisabled] = useState(initialDisabled);
     <div className="App">
       <h1>Team Onboarding</h1>
       <Form formValues={formValues} disabled={disabled} />
+      <Team />
     </div>
   );
 }
