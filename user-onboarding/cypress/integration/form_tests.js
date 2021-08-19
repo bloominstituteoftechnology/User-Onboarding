@@ -60,6 +60,27 @@ describe('Team Onboarding App', ()=> {
             submitButton().should('be.disabled')
        })
 
+       it('Can click terms of service box', ()=> {
+           tosCheckbox().should('be.not.checked')
+           tosCheckbox().click()
+           tosCheckbox().should('be.checked')
+       })
+
+    })
+
+    describe('Can submit the data from the form', ()=> {
+        it('Can submit the form', ()=> {
+            firstNameInput().should('have.value', '')
+            firstNameInput().type('Brent')
+            lastNameInput().type('Besselievre')
+            emailInput().type('brent@gmail.com')
+            passwordInput().type('booger')
+            tosCheckbox().click()
+            submitButton().should('be.not.disabled')
+            submitButton().click()
+            cy.contains('Brent Besselievre')
+
+        })
     })
 })
 

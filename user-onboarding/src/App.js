@@ -87,6 +87,7 @@ const submitForm = () => {
     role: formValues.role,
     termsOfService: ["termsOfService"].filter(term => !!formValues[term])
   }
+  setFormValues(initialFormValues);
   postNewMember(newMember);
 }
 
