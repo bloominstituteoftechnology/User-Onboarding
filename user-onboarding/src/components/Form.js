@@ -1,68 +1,126 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
 
-export default function Form(props){
-    const {value, update, submit, disabled, errors} = props
+const StyledForm = styled.form `
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
 
-    const onChange = evt => {
-        const {name, value, type, checked }= evt.target
-        const valueToUse = type === 'checkbox' ? checked : value
-        update(name,valueToUse)
+    color: slategray;
+    background-color: lavender;
+
+    border: 3px solid black;
+    border-radius: 8px;
+    
+    padding: 2%;
+    width: 45%;
+
+    h4 {
+        color: darkcyan;
+        font-size: 1.5rem;
     }
+`
 
-    const onSubmit = evt => {
-        evt.preventDefault()
-        submit()
+const StyledInput = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 50%;
+    margin: 2%;
+    padding: 10%;
+
+    .input-label {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: baseline;
+
+        color: darkblue;
+        font-size: .8rem;
     }
-    return(
-        <form onSubmit={onSubmit}>
-        <div className='errors'>
-          <div>{errors.name}</div>
-          <div>{errors.email}</div>
-          <div>{errors.password}</div>
-          <div>{errors.tos}</div>
-        </div>
-        <div>
-            <label htmlFor='name'>Name: 
-                <input 
-                    id='name' 
-                    type='text' 
-                    name='name' 
-                    onChange={onChange} 
-                    value={value.name}
-                />
-            </label>
-            <label htmlFor='email'>Email: 
-                <input 
-                    id='email' 
-                    type='email' 
-                    name='email' 
-                    onChange={onChange} 
-                    value={value.email}
-                />
-            </label>
-            <label htmlFor='password'>Password: 
-                <input 
-                    id='password' 
-                    type='password' 
-                    name='password' 
-                    onChange={onChange} 
-                    value={value.password}
-                />
-            </label>
-            <label htmlFor='tos'>Terms Of Service: 
-                <input 
-                    type='checkbox' 
-                    name='tos' 
-                    onChange={onChange} 
-                    checked={value.tos}
-                />
-            </label>
+`
 
-            
-        <div className='submit'>
-          <button id='submitBtn' disabled={disabled}>submit</button>
-        </div>
-    </div>
-    </form>
-    )
+export default function OnboardingForm(props) {
+
+    const { values, submit, change, disabled, errors } = props;
+
+    const onSubmit = (evt) => {
+        evt.preventDefault();
+        submit();
+    };
+
+    const onChange = (evt) => {
+        const { name, value, type, checked } = evt.target;
+        const valueToUse = type === "checkbox" ? checked : value
+        change(name, valueToUse);
+    };
+
+    return (
+        <StyledForm className="form-container" onSubmit={onSubmit}>
+            <StyledInput className="form-group inputs">
+                <h4>General information</h4>
+                <label className="input-label">
+                    <p>Username: </p>
+                    <input
+                        value={values.username}
+                        onChange={onChange}
+                        name="username"
+                        type="text"
+                    />
+                </label>
+                <label className="input-label">
+                <p>Email: </p>
+                    <input
+                        value={values.email}
+                        onChange={onChange}
+                        name="email"
+                        type="text"
+                    />
+                </label>
+                <label className="input-label">
+                    <p>Password: </p>
+                    <input
+                        value={values.password}
+                        onChange={onChange}
+                        name="password"
+                        type="text"
+                    />
+                </label>
+                <label className="tos">
+                    Terms of Service
+                    <input
+                        type='checkbox'
+                        name='terms' 
+                        onChange={onChange} 
+                        checked={values.terms}
+                    />
+                </label>
+            </StyledInput>
+            <div className="form-submit">
+
+                <div className="errors">
+                <div>
+                    <h3>Submit New User</h3>
+                </div>
+
+                <button id='submitBtn' disabled={disabled}>submit</button>
+                    <div>
+                        {errors.username}
+                    </div>
+                    <div>
+                        {errors.email}
+                    </div>
+                    <div>
+                        {errors.password}
+                    </div>
+                    <div>
+                        {errors.terms}
+                    </div>
+
+                </div>
+            </div>
+        </StyledForm>
+    );
 }
