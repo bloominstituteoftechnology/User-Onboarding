@@ -1,0 +1,55 @@
+.formSubmit{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.errors{
+    color: red;
+    font-size: 20px;
+}
+
+
+
+
+.teamInputs{
+    border: 2px solid #FFE8D6;
+    background-color: #CB997E;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 19px;
+   
+  }
+
+  .teamInputs h4 {
+      text-align: center;
+  }
+
+  .teamInfo {
+      display: flex;
+      justify-content: space-evenly;
+  }
+
+  .pref {
+      display: flex;
+      justify-content: space-evenly;
+      text-align: center;
+      padding-bottom: 15px;
+  }
+
+  .teamCheckbox {
+    border: 2px solid #FFE8D6;
+    background-color: #CB997E;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 19px;
+    margin-top: 15px;
+    
+  }
+
+  .hobbies {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    padding-bottom: 15px;
+  }
