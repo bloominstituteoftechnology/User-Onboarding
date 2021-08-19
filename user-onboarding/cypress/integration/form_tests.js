@@ -27,8 +27,39 @@ describe('Team Onboarding App', ()=> {
         submitButton().should('exist');
     })
 
+    it('Can navigate to the site', ()=> {
+        cy.url().should('include', 'localhost')
+    })
+
     describe('Test if input fields can be filled out', ()=> {
-        
+
+       it('The Submit button is originally disabled', ()=> {
+           submitButton().should('be.disabled')
+       })
+
+       it('Can type in the text input fields', ()=> {
+            firstNameInput()
+                .should('have.value', '')
+                .type('Brent')
+                .should('have.value', 'Brent')
+            submitButton().should('be.disabled');
+            lastNameInput()
+                .should('have.value', '')
+                .type('Besselievre')
+                .should('have.value', 'Besselievre')
+            submitButton().should('be.disabled')
+            emailInput()
+                .should('have.value','')
+                .type('brent@gmail.com')
+                .should('have.value', 'brent@gmail.com')
+            submitButton().should('be.disabled')
+            passwordInput()
+                .should('have.value', '')
+                .type('booger')
+                .should('have.value', 'booger')
+            submitButton().should('be.disabled')
+       })
+
     })
 })
 
