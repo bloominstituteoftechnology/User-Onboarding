@@ -25,6 +25,7 @@ const formSchema = yup.object().shape({
         .trim()
         .email('Must be a valid email address')
         .required('Email is required'), // "email" property is mandatory
-    terms: yup.boolean(), // "terms" property should be of type boolean
+    terms: yup.boolean() // "terms" property should be of type boolean
+        .oneOf([true], 'Terms of Services must be accepted')
 });
 export default formSchema;

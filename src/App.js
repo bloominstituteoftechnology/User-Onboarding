@@ -14,13 +14,14 @@ const initialFormValues = {
     last_name: '',
     email: '',
     ///// CHECKBOXES /////
-    terms: false,
+    terms: false
 };
 
 const initialFormErrors = {
     first_name: '',
     last_name: '',
     email: '',
+    terms: false
 };
 
 const initialUsers = [];
