@@ -16,7 +16,7 @@ const Schema = yup.object().shape({
         .trim()
         .required('Password is required')
         .min(3, 'Password must be at least 3 characters long'),
-    termsOfService: yup.boolean()
+    termsOfService: yup.boolean().oneOf([true])
 })
 
 export default Schema

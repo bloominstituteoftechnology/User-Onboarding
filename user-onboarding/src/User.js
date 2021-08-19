@@ -5,12 +5,14 @@ function User({ details }) {
         return <h3>Working on fetching details...</h3>
     }
 
+    const termsAgreedMsg = details.termsOfService ? 'Yes' : 'No'
+
     return (
         <div className='user container'>
             <h2>Name: {details.name ? details.name : details.first_name + ' ' + details.last_name}</h2>
             <p>Email: {details.email}</p>
             <p>{details.password ? 'Password: ' + details.password : null}</p>
-            <p>{details.termsOfService ? 'Terms Agreed: ' + details.termsOfService : null}</p>
+            <p>{details.termsOfService ? 'Terms Agreed: ' + termsAgreedMsg : null}</p>
 
             {/* {
                 !!details.termsOfService && !!details.termsOfService.length &&
