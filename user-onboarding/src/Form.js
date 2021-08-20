@@ -15,7 +15,7 @@ export default function Form(props) {
     }
 
     const onChange = event => {
-        const { name, value } = event.target
+        const { name, value, checked } = event.target
         change(name, value) 
     }
 
@@ -24,7 +24,7 @@ export default function Form(props) {
             <div>
                 <h2>Add a User</h2>
 
-                <button>submit</button>
+                <button disabled={disabled}>submit</button>
 
                 <div>
                     <div>{errors.name}</div>

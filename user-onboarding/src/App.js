@@ -4,7 +4,9 @@ import './App.css';
 
 import axios from 'axios';
 import * as yup from 'yup';
+
 import Form from './Form';
+import User from './User';
 import formSchema from './formSchema';
 
 const initialFormValues = {
@@ -41,29 +43,56 @@ function App() {
   const postNewUser = newUser => {
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
-        console.log(res)
         setUsers([res.data, ...users])
       }).catch(err => console.error(err))
 
       setFormValues(initialFormValues)
   }
 
+  const inputChange = (name, value) => {
+    setFormValues({
+      ...formValues,
+      [name]: value
+    })
+  }
+
+  const formSubmit = () => {
+    const newUser = {
+      name: formValues.name.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim(),
+      terms: formValues.terms.trim()
+    }
+    postNewUser(newUser)
+  }
+
+  useEffect(() => {
+    getUsers()
+  }, [])
+
+  useEffect(() => {
+    formSchema.isValid(formValues).then(valid => setDisabled(!valid))
+  }, [formValues])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div><h1>User App</h1></div>
+
+      <Form
+        values={formValues}
+        change={inputChange}
+        submit={formSubmit}
+        disabled={disabled}
+        errors={formErrors}
+      />
+
+      {
+        users.map(user => {
+          return (
+            <User key={user.id} details={user} />
+          )
+        })
+      }
     </div>
   );
 }
