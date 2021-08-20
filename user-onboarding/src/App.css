@@ -51,11 +51,8 @@ h2 {
 }
 
 
-.mapTitle {
-  margin-bottom: 50px;
-}
-
-.map {
+.map{
+  border: 2px solid #FFE8D6;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -66,4 +63,10 @@ h2 {
   margin: 0 auto;
   font-size: 19px;
 
+}
+
+.mapTitle {
+ 
+  margin: 0 auto;
+  text-align: center;
 }

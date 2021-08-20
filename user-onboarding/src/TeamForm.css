@@ -1,12 +1,20 @@
 .formSubmit{
     text-align: center;
     margin-bottom: 15px;
+    border: 2px solid #FFE8D6;
+    background-color: #CB997E;
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 15px;
 }
 
 .errors{
     color: red;
     font-size: 20px;
+    text-align: center;
+    margin-bottom: 15px;
 }
+
 
 
 
@@ -52,4 +60,25 @@
     justify-content: space-evenly;
     text-align: center;
     padding-bottom: 15px;
+  }
+
+  .terms {
+    border: 2px solid #FFE8D6;
+    background-color: #CB997E;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 19px;
+    margin-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .termsPara {
+      background-color: white;
+      width: 70%;
+      margin: 0 auto;
+  }
+
+  .termsBox {
+      font-weight: bold;
   }

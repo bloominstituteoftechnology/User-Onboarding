@@ -10,7 +10,7 @@ import Member from './Member';
 
 
 const initialFormValues = {
-  name: '',
+  username: '',
   email: '',
   password: '',
   role: '',
@@ -18,10 +18,11 @@ const initialFormValues = {
   gaming: '',
   photography: '',
   coding: '',
+  tos: '',
 }
 
 const initialFormErrors = {
-  name: '',
+  username: '',
   email: '',
   password: '',
   role: '',
@@ -74,7 +75,7 @@ function App() {
   const formSubmit = () => {
 
     const newMember = {
-      name: formValues.name.trim(),
+      name: formValues.username.trim(),
       email: formValues.email.trim(),
       role: formValues.role.trim(),
       preference: formValues.preference.trim(),
@@ -94,8 +95,13 @@ function App() {
 
 console.log(members);
   return (
-    <div className="form container">
-      <header><h1>Team Member Form</h1></header>
+    <>
+    <div classname="formTitle">
+    <header><h1>Team Member Form</h1></header>
+    </div> 
+
+    <div className="formContainer">
+      
 
       <TeamForm
         values={formValues}
@@ -105,11 +111,15 @@ console.log(members);
         errors={formErrors}
       />
       
+      
       <div className="mapTitle">
-      <h2>Current Team Members</h2>
+      <h1>Current Team Members</h1>
       </div>
 
       <div className="map">
+
+     
+
       {
         members.map(member => {
           return (
@@ -119,6 +129,7 @@ console.log(members);
       }
       </div>
     </div>
+    </>
   );
 
 }

@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const teamSchema = yup.object().shape({
-    name: yup
+    username: yup
         .string()
         .trim()
         .required('Name is required')
@@ -25,11 +25,12 @@ const teamSchema = yup.object().shape({
 
     preference: yup
         .string()
-        .oneOf(['In person', 'Remote'], 'Preference is required'),
+        .oneOf(['In Person', 'Remote'], 'Preference is required'),
 
     gaming: yup.boolean(),
     photography: yup.boolean(),
-    coding: yup.boolean()
+    coding: yup.boolean(),
+    tos: yup.boolean()
 
 })
 
