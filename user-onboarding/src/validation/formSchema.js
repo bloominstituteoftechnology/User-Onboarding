@@ -20,8 +20,8 @@ const formSchema = yup.object().shape({
         .oneOf(['partTime', 'fullTime'], 'Select your work preference.'),
     terms: yup
         .boolean()
-        .required()
-        .oneOf([true], 'Please agree to the terms of service.')
+        .required('Please agree to the terms of service. 1')
+        .oneOf([true], 'Please agree to the terms of service. 2')
 })
 
 export default formSchema;

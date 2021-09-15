@@ -24,7 +24,7 @@ const initialErrors = {
 }
 
 const initialWorkers = [];
-const initialDisabled = false;
+const initialDisabled = true;
 
 function App() {
   const [values, setValues] = useState(initialValues);
