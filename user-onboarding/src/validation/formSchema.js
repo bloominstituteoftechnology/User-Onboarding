@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const formSchema = yup.object.shape({
+const formSchema = yup.object().shape({
     username: yup
         .string()
         .trim()
@@ -20,7 +20,8 @@ const formSchema = yup.object.shape({
         .oneOf(['partTime', 'fullTime'], 'Select your work preference.'),
     terms: yup
         .boolean()
-        .required('Accept terms to apply.')
+        .required()
+        .oneOf([true], 'Please agree to the terms of service.')
 })
 
 export default formSchema;

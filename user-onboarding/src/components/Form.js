@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Form(props) {
-    const { values, update, submit } = props;
+    const { values, update, submit, errors, disabled } = props;
     
     const onChange = (event) => {
         const { name, value, type, checkbox } = event.target;
@@ -18,8 +18,13 @@ export default function Form(props) {
         <div className="Form">
             <div className="Form-header">
                 <h1>Worker Application</h1>
+                <div>{errors.username}</div>
+                <div>{errors.email}</div>
+                <div>{errors.password}</div>
+                <div>{errors.wrkPref}</div>
+                <div>{errors.terms}</div>
             </div>
-            
+
             <form onSubmit={onSubmit}>
 {/* TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX  */}
                 <label> Username&nbsp;
@@ -82,6 +87,7 @@ export default function Form(props) {
                         <input 
                             type="submit"
                             value="Apply"
+                            disabled={disabled}
                         />
                     </label>
                 </div>
