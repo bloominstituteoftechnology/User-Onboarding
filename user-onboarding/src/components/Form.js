@@ -1,18 +1,24 @@
 import React from 'react'
 
 export default function Form(props) {
-    const { values } = props;
+    const { values, update, submit } = props;
     
     const onChange = (event) => {
-        const { name, value } = event.target;
-        console.log(event.target.value);
+        const { name, value, type, checkbox } = event.target;
+        const valueToUse = type === 'checkbox' ? checkbox : value;
+        update(name, valueToUse);
+    }
+
+    const onSubmit = (event) => {
+        event.preventDefault();
+        submit();
     }
 
     return (
         <div>
-            <form>
+            <form onSubmit={onSubmit}>
 {/* TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX  */}
-                <label>Username&nbsp;
+                <label> Username&nbsp;
                     <input 
                         type="text"
                         name="username"
@@ -20,7 +26,7 @@ export default function Form(props) {
                         onChange={onChange}
                     />
                 </label>
-                <label>Email&nbsp;
+                <label> Email&nbsp;
                     <input 
                         type="text"
                         name="email"
@@ -28,7 +34,7 @@ export default function Form(props) {
                         onChange={onChange}
                     />
                 </label>
-                <label>Password&nbsp;
+                <label> Password&nbsp;
                     <input 
                         type="text"
                         name="password"
@@ -37,8 +43,8 @@ export default function Form(props) {
                     />
                 </label>
 {/* RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO  */}
-                <div>Preference
-                    <label>Part Time&nbsp;
+                <div> Preference&nbsp;
+                    <label> Part Time&nbsp;
                         <input 
                             type="radio"
                             name="wrkPref"
@@ -47,7 +53,7 @@ export default function Form(props) {
                             onChange={onChange}
                         />
                     </label>
-                    <label>Full Time&nbsp;
+                    <label> Full Time&nbsp;
                         <input 
                             type="radio"
                             name="wrkPref"
@@ -58,7 +64,7 @@ export default function Form(props) {
                     </label>
                 </div>
 {/*CHECKBOX CHECKBOX CHECKBOX CHECKBOX CHECKBOX CHECKBOX CHECKBOX CHECKBOX CHECKBOX CHECKBOX */}
-                <label>Terms&nbsp;
+                <label> Terms&nbsp;
                     <input 
                         type="checkbox"
                         name="terms"
@@ -66,6 +72,15 @@ export default function Form(props) {
                         onChange={onChange}
                     />
                 </label>
+{/* SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT  */}
+                <div>
+                    <label>
+                        <input 
+                            type="submit"
+                            value="Apply"
+                        />
+                    </label>
+                </div>
             </form>
         </div>
     )
