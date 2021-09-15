@@ -1,9 +1,17 @@
 import React from 'react';
+import Worker from './Worker';
 
-export default function WorkersList () {
+export default function WorkersList ({workers}) {
     return (
         <div>
-            Workers List
+            <h2>Workers:</h2>
+            {
+                workers.map(worker => {
+                    return(
+                        <Worker key={worker.id} worker={worker}/>
+                    )
+                })
+            }
         </div>
     )
 }

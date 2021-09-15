@@ -15,7 +15,11 @@ export default function Form(props) {
     }
 
     return (
-        <div>
+        <div className="Form">
+            <div className="Form-header">
+                <h1>Worker Application</h1>
+            </div>
+            
             <form onSubmit={onSubmit}>
 {/* TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX TEXTBOX  */}
                 <label> Username&nbsp;
