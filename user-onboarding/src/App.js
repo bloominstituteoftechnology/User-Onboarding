@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
 import schema from './validation/formSchema';
-import './styles/App.less';
+import './styles/app.less';
 
 import Form from './components/Form';
 import WorkersList from './components/WorkersList';
@@ -46,8 +46,33 @@ function App() {
       wrkPref: values.wrkPref,
       terms: values.terms
     }
+    postWorker(newWorker);
     setWorkers([ ...workers, newWorker ]);
   }
+
+  const getWorkers = () => {
+    axios.get(`https://reqres.in/api/users`)
+      .then(res => {
+        console.log(res.data);
+        // setWorkers(res.data);
+      }).catch(err => {console.error(err)});
+  }
+
+  const postWorker = (newWorker) => {
+    axios.post(`https://reqres.in/api/users`, newWorker)
+      .then(res => {
+        setWorkers([ ...workers, res.data])
+        setValues(initialValues);
+      }).catch(err => {
+        console.error(err);
+        setValues(initialValues);
+      })
+  }
+
+
+
+
+
 
   const validate = (name, value) => {
     yup.reach(schema, name)
@@ -57,8 +82,12 @@ function App() {
   }
 
   useEffect(() => {
+    getWorkers();
+  }, [])
+
+  useEffect(() => {
     schema.isValid(values).then(valid => setDisabled(!valid))
-  }, [values])
+  }, [values]);
 
   return (
     <div className="App">
