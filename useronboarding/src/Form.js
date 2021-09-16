@@ -26,22 +26,20 @@ export default function Form(props) {
             </p>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            {/* <form onSubmit={onSubmit}> */}
             <form action="#" method="POST" onSubmit={onSubmit}>
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-4">
                   <label className="block text-sm font-medium text-gray-700">
                     Username
                   </label>
-                  <div className="mt-1">
-                    <input
-                      name="username"
-                      type="text"
-                      value={values.username}
-                      onChange={onChange}
-                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                    />
-                  </div>
+                  <input
+                    name="username"
+                    type="text"
+                    value={values.username}
+                    onChange={onChange}
+                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  />
+
                   <div className="mt-3 text-red-500">{errors.username}</div>
                 </div>
 

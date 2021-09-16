@@ -5,9 +5,9 @@ import schema from "./validation/formSchema";
 import axios from "axios";
 import * as yup from "yup";
 import { Fragment } from "react";
-import { Menu, Popover, Transition, Disclosure } from "@headlessui/react";
+import { Menu, Transition, Disclosure } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { SearchIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
+import { SearchIcon } from "@heroicons/react/solid";
 
 const initialFormValues = {
   username: "",
@@ -47,7 +47,6 @@ const userNavigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-// new stuff
 
 function App() {
   const [users, getUsers] = useState(initialUsers);
