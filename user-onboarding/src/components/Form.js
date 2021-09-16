@@ -84,12 +84,13 @@ export default function Form(props) {
 {/* SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT SUBMIT  */}
                 <div>
                     <label>
-                        <input 
+                        {/* <input 
                             name="submit"
                             type="submit"
                             value="Apply"
                             disabled={disabled}
-                        />
+                        /> */}
+                        <button id="submit" disabled={disabled}>Apply</button>
                     </label>
                 </div>
             </form>
