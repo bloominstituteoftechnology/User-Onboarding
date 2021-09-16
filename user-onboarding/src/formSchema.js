@@ -15,7 +15,7 @@ const formSchema = yup.object().shape({
         .trim()
         .required('what be yer password landlubber??')
         .min(7, 'aye! yer password best be longer than that!'),
-    termsOfService: yup.boolean(true),
+    termsOfService: yup.boolean(),
 })
 
 export default formSchema;
