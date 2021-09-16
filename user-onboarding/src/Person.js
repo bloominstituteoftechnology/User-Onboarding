@@ -10,14 +10,16 @@ function Person({ details }) {
       <h2>{details.name}</h2>
       <p>Email: {details.email}</p>
       <p>Password: {details.password}</p>
-      <p>Terms of Service: {details.terms}</p>
+
+      
+      <p>Your Hobbies: {details.hobbies}</p>
 
       {
-        !!details.accept === true &&
-        <div>
+        !!details.hobbies && !!details.hobbies.length &&
+        <div className='terms-conditional'>
           Terms of Service:
           <ul>
-            {details.accept.map((x, idx) => <li key={idx}>{x}</li>)}
+            {details.hobbies.map((likes, idx) => <li key={idx}>{likes}</li>)}
           </ul>
         </div>
       }

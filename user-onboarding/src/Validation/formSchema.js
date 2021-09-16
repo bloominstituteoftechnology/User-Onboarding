@@ -15,8 +15,9 @@ const formSchema = yup.object().shape({
         .max(14, 'your password is way too long, choose wisely'),
     
     
-    terms: yup.boolean(),
-      
+    terms: yup
+        .boolean(true, 'you need to check this to move forward'),
+
 })
 
 export default formSchema

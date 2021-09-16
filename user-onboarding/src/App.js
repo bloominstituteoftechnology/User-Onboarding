@@ -8,7 +8,7 @@ import schema from '../src/Validation/formSchema';
 import axios from 'axios';
 import * as yup from 'yup';
 
-const initialFormValues = {
+const initialFormVals = {
   name: '',
   email: '',
   password: '',
@@ -16,10 +16,47 @@ const initialFormValues = {
   //submit: '' -- dont think you need this one
 }
 //do the errors here
+const initialFormErrors = {
+  name: '',
+  email: '',
+  password: '',
+  terms: '',
+}
+
+const initialPerson =[]
+const initialDisabled = true;
 
 
 
 function App() {
+  const [people, setPeople] = useState(initialPerson);
+  const [formVals, setFormVals] = useState(initialFormVals);
+  const [formErrs, setFormErrs] = useState(initialFormErrors);
+  const [disabled, setDisabled] = useState(initialDisabled);
+
+
+
+
+
+  //Axios here
+
+
+
+
+
+
+
+
+  
+  const formSubmit = () => {
+    const newPerson = {
+      name: formVals.name.trim(),
+      email: formVals.email.trim(),
+      password: formVals.password.trim(), // ----- this should probably not be shown the more i think about it
+      //maybe add some of the hobbies here?
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -40,6 +77,7 @@ function App() {
       <Form
          values=''
          errors=''
+         submit={formSubmit}
          /> {/* will need to pass in the props? */}
     </div>
   );

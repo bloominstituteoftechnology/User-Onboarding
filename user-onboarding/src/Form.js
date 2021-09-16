@@ -22,7 +22,7 @@ export default function Form(props) {
     return (
       <form className='form container' onSubmit={onSubmit}>
           <div className='form-grouping submit'> 
-              <h2> add someone here: </h2>
+              <h2> Add Someone Here: </h2>
           
           
               <button disabled={disabled}> Submit </button>  {/* we will need to disable this?? øøøø */}
