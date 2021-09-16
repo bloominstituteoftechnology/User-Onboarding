@@ -33,13 +33,16 @@ export default function Form(props) {
                   <label className="block text-sm font-medium text-gray-700">
                     Username
                   </label>
-                  <input
-                    name="username"
-                    type="text"
-                    value={values.username}
-                    onChange={onChange}
-                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                  />
+                  <div className="mt-1">
+                    <input
+                      name="username"
+                      type="text"
+                      value={values.username}
+                      onChange={onChange}
+                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    />
+                  </div>
+                  <div className="mt-3 text-red-500">{errors.username}</div>
                 </div>
 
                 <div className="col-span-6 sm:col-span-4">
@@ -53,6 +56,7 @@ export default function Form(props) {
                     onChange={onChange}
                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   />
+                  <div className="mt-3 text-red-500">{errors.email}</div>
                 </div>
                 <div className="col-span-6 sm:col-span-4">
                   <label className="block text-sm font-medium text-gray-700">
@@ -65,6 +69,7 @@ export default function Form(props) {
                     onChange={onChange}
                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   />
+                  <div className="mt-3 text-red-500">{errors.password}</div>
                 </div>
               </div>
               <div className="relative flex items-start mt-6">
@@ -92,6 +97,7 @@ export default function Form(props) {
                   </span>
                 </div>
               </div>
+              <div className="mt-3 text-red-500">{errors.terms}</div>
               <button
                 disabled={disabled}
                 className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-6"

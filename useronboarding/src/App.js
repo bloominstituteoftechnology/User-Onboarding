@@ -7,8 +7,7 @@ import * as yup from "yup";
 import { Fragment } from "react";
 import { Menu, Popover, Transition, Disclosure } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { SearchIcon } from "@heroicons/react/solid";
-import { DotsVerticalIcon } from "@heroicons/react/solid";
+import { SearchIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 
 const initialFormValues = {
   username: "",
@@ -25,39 +24,6 @@ const initialFormErrors = {
 
 const initialUsers = [];
 const initialDisabled = true;
-
-// new stuff
-
-const projects = [
-  {
-    name: "Graph API",
-    initials: "GA",
-    href: "#",
-    members: 16,
-    bgColor: "bg-pink-600",
-  },
-  {
-    name: "Component Design",
-    initials: "CD",
-    href: "#",
-    members: 12,
-    bgColor: "bg-purple-600",
-  },
-  {
-    name: "Templates",
-    initials: "T",
-    href: "#",
-    members: 16,
-    bgColor: "bg-yellow-500",
-  },
-  {
-    name: "React Components",
-    initials: "RC",
-    href: "#",
-    members: 8,
-    bgColor: "bg-green-500",
-  },
-];
 
 const user = {
   name: "Tom Cook",
