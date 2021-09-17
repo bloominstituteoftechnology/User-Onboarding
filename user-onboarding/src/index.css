@@ -13,7 +13,6 @@ body {
   border: 2px solid grey;
   height: auto;
   width: fit-content;
-
 }
 label{
   display: flex;
