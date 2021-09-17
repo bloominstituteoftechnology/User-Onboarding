@@ -2,9 +2,14 @@
 
 import React from 'react';
 
-
 export default function Form(props) {
-    const { values, submit, errors, disabled, change } = props
+    const { 
+        values, 
+        submit, 
+        change,
+        disabled, 
+        errors,
+     } = props
 
     //prevent default when submitting
     const onSubmit = evt => {
@@ -14,13 +19,13 @@ export default function Form(props) {
 
     //target values to use when change is made
     const onChange = evt => {
-        const {type, name, value, checked } = evt.target;
-        const valueToUse = type === 'checkbox' ?  checked: value;
+        const { name, value, checked, type } = evt.target;
+        const valueToUse = type === 'checkbox' ?  checked : value;
         change (name, valueToUse);
     }
 
     return (
-      <form className='form container' onSubmit={onSubmit}>
+      <form className='form container' onSubmit = {onSubmit}>
           <div className='form-grouping submit'> 
               <h2> Add Someone Here: </h2>
           
@@ -28,20 +33,29 @@ export default function Form(props) {
               <button disabled={disabled}> Submit </button>  {/* we will need to disable this?? øøøø */}
 
              <div className='errors'>
-                <div> {errors.name}</div>
+                <div> {errors.first_name}</div>
+                <div> {errors.last_name}</div>
                 <div> {errors.email}</div>
                 <div> {errors.password}</div>
                 <div> {errors.terms}</div>
              </div>
           </div>
         
-        <div className='inputs form-grouping'>
-        <label> Name: 
+      <div className='inputs form-grouping'>
+        <label> First Name: 
             <input 
                 type='text'
-                name='nameio'
-                value={values.name}
-                change={onChange}
+                name='first_name'
+                value={values.first_name}
+                onChange={onChange}
+            />
+        </label>  
+        <label> Last Name: 
+            <input 
+                type='text'
+                name='last_name'
+                value={values.last_name}
+                onChange={onChange}
             />
         </label>  
         <label className='email'> Email: 
@@ -49,7 +63,7 @@ export default function Form(props) {
                type='text'
                name='email'
                value={values.email}
-               change={onChange}
+               onChange={onChange}
 
             />
         </label>
@@ -58,11 +72,12 @@ export default function Form(props) {
                 type='text'
                 name='password'
                 value={values.password}
-                change={onChange}
+                onChange={onChange}
 
             />
         </label>
-        </div>
+      </div>
+
         {/* CHECKBOX  CHECKBOX */}
         <div className='checkboxes form-grouping'>
         <label className='terms'> Terms of Use:
@@ -70,12 +85,12 @@ export default function Form(props) {
                 type='checkbox'
                 name='terms'
                 checked={values.terms}
-                change={onChange}
+                onChange={onChange}
 
             />
         </label>
        </div>
-      </form>
+    </form>
     )
 }
 

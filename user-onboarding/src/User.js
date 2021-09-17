@@ -1,17 +1,17 @@
 import React from 'react';
 
-function Person({ details }) {
+function User({ details }) {
   if (!details) {
-    return <h3>Working fetching the Person&apos;s details...</h3>
+    return <h3>Working fetching the User&apos;s details...</h3>
   }
 
   return (
-    <div className='person container'>
-      <h2>{details.name}</h2>
+    <div className='user container'>
+      <h2>Name: {details.first_name} {details.last_name} </h2>
       <p>Email: {details.email}</p>
-      <p>Password: {details.password}</p>
+      <p>Password: confidential </p>
 
-      
+{/*       
       <p>Your Hobbies: {details.hobbies}</p>
 
       {
@@ -22,10 +22,10 @@ function Person({ details }) {
             {details.hobbies.map((likes, idx) => <li key={idx}>{likes}</li>)}
           </ul>
         </div>
-      }
+      } */}
 
     </div>
   )
 }
 
-export default Person
+export default User
