@@ -47,6 +47,7 @@ function App() {
   const postNewUser = newUser => {
     axios.post(`https://reqres.in/api/users`, newUser)
       .then(res => {
+        console.log(res.data)
          setUsers([res.data, ...users])
          setFormVals(initialFormVals);
       }).catch (err => {
@@ -102,9 +103,9 @@ function App() {
          /> 
       </div>
   {
-       users.map(user => {
+       users.map((user, idx) => {
           return (
-            <User key={users.id} details={user} />
+            <User key={idx} details={user} />
           )
         })
       } 
