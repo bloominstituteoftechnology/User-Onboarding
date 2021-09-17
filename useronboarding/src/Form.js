@@ -97,6 +97,7 @@ export default function Form(props) {
               </div>
               <div className="mt-3 text-red-500">{errors.terms}</div>
               <button
+                id="submitBtn"
                 disabled={disabled}
                 className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-6"
               >
