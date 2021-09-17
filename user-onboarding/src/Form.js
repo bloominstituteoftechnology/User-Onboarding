@@ -25,13 +25,10 @@ export default function Form(props) {
     }
 
     return (
-      <form className='form container' onSubmit = {onSubmit}>
+      <form className='form' onSubmit = {onSubmit}>
           <div className='form-grouping submit'> 
               <h2> Add Someone Here: </h2>
-          
-          
-              <button disabled={disabled}> Submit </button>  {/* we will need to disable this?? øøøø */}
-
+        
              <div className='errors'>
                 <div> {errors.first_name}</div>
                 <div> {errors.last_name}</div>
@@ -42,6 +39,7 @@ export default function Form(props) {
           </div>
         
       <div className='inputs form-grouping'>
+          <div className='names'>
         <label> First Name: 
             <input 
                 type='text'
@@ -56,8 +54,9 @@ export default function Form(props) {
                 name='last_name'
                 value={values.last_name}
                 onChange={onChange}
-            />
-        </label>  
+            /> 
+        </label>
+        </div>  
         <label className='email'> Email: 
             <input
                type='text'
@@ -79,7 +78,7 @@ export default function Form(props) {
       </div>
 
         {/* CHECKBOX  CHECKBOX */}
-        <div className='checkboxes form-grouping'>
+    <div className='checkboxes form-grouping'>
         <label className='terms'> Terms of Use:
             <input 
                 type='checkbox'
@@ -90,6 +89,9 @@ export default function Form(props) {
             />
         </label>
        </div>
+
+       <button disabled={disabled}> Submit </button>  {/* we will need to disable this?? øøøø */}
+
     </form>
     )
 }
