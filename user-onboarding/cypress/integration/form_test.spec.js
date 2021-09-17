@@ -21,11 +21,40 @@ describe('quotes app', () =>{
         emailInput().should('exist');
         passInput().should('exist');
         termsCheck().should('exist');
-        submitBtn().should('not.exist');
+        submitBtn().should('exist');
         cy.contains('Name').should('exist');
     })
 
-    
+    describe('inputs can be filled from empty', () => {
+
+        // it('navigates well', () => {
+        //     cy.url().should('include', 'localhost');
+        // })
+
+        it('submit button starts disabled', () => {
+            submitBtn().should('be.disabled');
+        })
+        
+        it('should be able to type in all fields', () => {
+            firstNameInput().should('have.value', '')
+            .type('something here')
+            .should('have.value', 'something here')
+
+            lastNameInput().should('have.value', '')
+            .type('something here')
+            .should('have.value', 'something here')
+
+            emailInput().should('have.value', '')
+            .type('something here')
+            .should('have.value', 'something here')
+
+            passInput().should('have.value', '')
+            .type('something here')
+            .should('have.value', 'something here')
+        })
+
+    //     it('should not be able to submit without all fields filled', ())
+     })
 
 
 })
