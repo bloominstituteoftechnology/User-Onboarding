@@ -2,7 +2,7 @@
 
 export default function Form(props) {
 
-    const { values, update, submit } = props
+    const { values, update, submit, disabled, errors } = props
 
 
     const onChange = evt => {
@@ -62,7 +62,13 @@ export default function Form(props) {
                         onChange={onChange}
                     />
                 </label>
-                <button>submit</button>
+                <button disabled={disabled}>submit</button>
+                <div className="errors">
+                    <div>{errors.first_name}</div>
+                    <div>{errors.last_name}</div>
+                    <div>{errors.password}</div>
+                    <div>{errors.email}</div>
+                </div>
             </div>
         </form>
             
