@@ -11,7 +11,6 @@ const formSchema = yup.object().shape({
         .required('Email is required'),
     password: yup
         .string()
-        .password()
         .required('Password is required'),
     tos: yup
         .boolean()
