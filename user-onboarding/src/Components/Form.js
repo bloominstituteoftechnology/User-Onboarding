@@ -53,13 +53,13 @@ export default function Form (){
                     <h4>Terms of Service: please read prior before submitting:</h4>
                     <label>I agree: 
                         <input 
-                        name='terms'
+                        name='agree'
                         type='checkbox'
                         />
                     </label>
                     <label>I Disagree:
                     <input 
-                        name='terms'
+                        name='disagree'
                         type='checkbox'
                         />
                     </label>
