@@ -49,13 +49,21 @@ export default function Form (){
                     type='password'
                     />
                 </label>
-
-                <label>Terms of Service 
+                <div className='form-group checkboxes'>
+                    <h4>Terms of Service: please read prior before submitting:</h4>
+                    <label>I agree: 
+                        <input 
+                        name='terms'
+                        type='checkbox'
+                        />
+                    </label>
+                    <label>I Disagree:
                     <input 
-                    name='terms'
-                    type='checkbox'
-                    />
-                </label>
+                        name='terms'
+                        type='checkbox'
+                        />
+                    </label>
+                </div>
             </div>
 
         </form>
