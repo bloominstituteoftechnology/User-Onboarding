@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react'
 import Form from './components/Form';
 import axios from 'axios';
 import * as yup from 'yup';
@@ -12,9 +12,13 @@ const initialFormValues = {
   termsOfService: false,
 }
 
+const initialUsers = []
+const initialDisabled = true
+
 export default function App() {
-  const [user, setUser ] = useState([]);
+  const [user, setUser ] = useState(initialUsers)
   const [formValues, setFormValues] = useState(initialFormValues)
+  const [disabled, setDisabled] = useState(initialDisabled)
 
   const updateForm = (inputName, inputValue) => {
     setFormValues({ ...formValues, [inputName]: inputValue})

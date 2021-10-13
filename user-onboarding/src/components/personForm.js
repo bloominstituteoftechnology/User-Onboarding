@@ -19,7 +19,7 @@ export default function personForm(props) {
             <div className='form inputs'>
                 <h4>Blah Blah Blah</h4>
                 <div className='name'>
-                <h3>Name</h3>
+                    <h3>Name</h3>
                     <label> First Name: 
                         <input 
                             type='text'
@@ -33,6 +33,36 @@ export default function personForm(props) {
                             type='text'
                             name='lastName'
                             value={formValues.lastName}
+                            onChange={onChange}
+                        />
+                    </label>
+                </div>
+                <div className='email'>
+                    <label> Email: 
+                        <input 
+                            type='email'
+                            name='email'
+                            value={formValues.email}
+                            onChange={onChange}
+                        />
+                    </label>
+                </div>
+                <div className='password'>
+                    <label> Password: 
+                        <input 
+                            type='password'
+                            name='password'
+                            value={formValues.password}
+                            onChange={onChange}
+                        />
+                    </label>
+                </div>
+                <div className='email'>
+                    <label> Terms of Service: 
+                        <input 
+                            type='checkbox'
+                            name='termsOfService'
+                            value={formValues.termsOfService}
                             onChange={onChange}
                         />
                     </label>
