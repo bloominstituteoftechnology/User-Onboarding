@@ -1,4 +1,4 @@
-import * as yup from 'yup'
+import * as yup from 'yup';
 
 const formSchema = yup.object().shape({
     first_name: yup
@@ -8,23 +8,19 @@ const formSchema = yup.object().shape({
     last_name: yup
         .string()
         .trim()
-        .required('First name is required'),
+        .required('Last Name is required'),
     email: yup
         .string()
         .trim()
-        .required('First name is required'),
+        .required('Email is required'),
     password: yup
         .string()
         .trim()
-        .required('First name is required'),
+        .required('Password is required'),
     termsOfService: yup
         .string()
-        .trim()
-        .required('First name is required'),
+        .required('Terms of Service is required')
 });
-
-
-
 
 
 export default formSchema

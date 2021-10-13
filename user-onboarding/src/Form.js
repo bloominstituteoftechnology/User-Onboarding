@@ -6,10 +6,9 @@ export default function Form(props) {
 
 
     const onChange = evt => {
-        const name = evt.target.name;
-        const value = evt.target.value;
-
-        update(name, value)
+        const { name, value, checked, type } = evt.target
+        const valueToUse = type==='checkbox' ? checked : value
+        update(name, valueToUse)
     }
     const onSubmit = e => {
         e.preventDefault();
@@ -60,6 +59,7 @@ export default function Form(props) {
                         name="termsOfService"
                         value={values.termsOfService}
                         onChange={onChange}
+                        checked={values.termsOfService}
                     />
                 </label>
                 <button disabled={disabled}>submit</button>
