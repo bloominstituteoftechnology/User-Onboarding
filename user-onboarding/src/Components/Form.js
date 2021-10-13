@@ -2,7 +2,10 @@ import React from 'react'
 
 export default function Form (){
     
-    
+    const onChange = event => {
+        const {name, value, checked, type} = event.target
+        
+    }
     
     return (
 
