@@ -12,14 +12,22 @@
   padding: 5%;
   background-color: #70B5F9;
   border: black 1px solid;
-  display: flex;
-  justify-content: center;
+  
 
 }
 
 .User-List h1 {
+  text-align: center;
   border-top: 3px solid black;
   border-bottom: 3px solid black;
   width: 200px;
   padding: 2%;
+}
+
+.user {
+  background-color: white;
+  border: black 5px solid;
+  padding: 5%;
+  margin: 2% 0%;
+  text-align: left;
 }
