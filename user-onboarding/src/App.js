@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Form from './Form'
 import React, { useState, useEffect } from 'react'
@@ -20,7 +19,7 @@ const initialFormErrors = {
 }
 const initialUsers=[]
 const initialDisabled = true
-const initialUsersLength = 0
+
 export default function App() {
 
   const [users, setUsers]=useState(initialUsers)
