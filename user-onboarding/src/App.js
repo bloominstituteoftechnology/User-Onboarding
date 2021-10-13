@@ -34,13 +34,25 @@ export default function App() {
   const [disabled, setDisabled] = useState(initialDisabled); //state for our disabled which is a boolean
 
 
+  const postNewUser = newUser => {
+    axios.post('https://reqres.in/api/users', newUser)
+      .then(resp => {
+        setUsers([resp.data, ...users])
+      })
+      .catch(err => {
+        console.error(err);
+      })
+      .finally(()=> {
+        setFormValues(initialFormValues)
+      })
+  }
+
 
   return (
     <div className="App">
       <header><h1>Hello World!</h1></header>
       <Form 
-        values={formValues}
-        change={inputChange}
+        
       />
     </div>
   )
