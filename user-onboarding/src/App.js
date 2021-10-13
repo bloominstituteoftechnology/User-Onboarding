@@ -87,12 +87,8 @@ function App() {
       useEffect(() => {
         // 🔥 STEP 9- ADJUST THE STATUS OF `disabled` EVERY TIME `formValues` CHANGES
 
-   
-        formValues.termsOfService && schema
-                                      .isValid(formValues)
-                                      .then(valid => setDisabled(!valid))
-        
-        
+      formValues.termsOfService ? schema.isValid(formValues).then(valid => setDisabled(!valid)) : setDisabled(true)
+      
         }, [formValues])
 
   
