@@ -13,6 +13,7 @@ const formSchema = yup.object().shape({
         .string()
         .email('must  be a valid email address')
         .required('Email is required'),
-    agree: yup.boolean(),
-    disagree: yup.boolean()
-})
+    terms: yup.boolean(),
+});
+
+export default formSchema;

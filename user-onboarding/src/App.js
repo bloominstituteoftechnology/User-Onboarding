@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Form from './Components/Form'
 import './App.css';
 import axios from 'axios'
-// import schema from '../src/Components/formSchema'
+import schema from '../src/Components/formSchema'
 import * as yup from 'yup'
 
 
@@ -12,8 +12,7 @@ const initialFormValues = { // object for our users
   lname: '',
   email: '',
   password: '',
-  agree:'false',
-  disagree:'false',
+  terms:'false'
 }
 
 const initialFormErrors ={ //object for our errors
@@ -29,12 +28,25 @@ const initialDisabled = true
 export default function App() {
 
 
-const [users, setUsers] = useState(initialFormValues); //state for our users
-const [formErrors, setFormErrors] = useState(initialFormErrors); //state for our errors
-const [disabled, setDisabled] = useState(initialDisabled);
+  const [users, setUsers] = useState(initialUsers); //state for our users
+  const [formValues, setFormValues] = useState(initialFormValues); //state for the form values
+  const [formErrors, setFormErrors] = useState(initialFormErrors); //state for our errors
+  const [disabled, setDisabled] = useState(initialDisabled); //state for our disabled which is a boolean
 
 
-
+  const postNewUser = newUser => {
+    axios.post('https://reqres.in/api/users', newUser)
+      .then(resp => {
+        setUsers(resp.data)
+        console.log(resp.data);
+      })
+      .catch(err => {
+        console.error(err);
+      }) 
+      .finally(()=> {
+        setFormValues(initialFormValues)
+      })
+  }
 
 
   return (

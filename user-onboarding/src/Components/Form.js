@@ -50,16 +50,9 @@ export default function Form (){
                     />
                 </label>
                 <div className='form-group checkboxes'>
-                    <h4>Terms of Service: please read prior before submitting:</h4>
-                    <label>I agree: 
+                    <label>Terms of service: 
                         <input 
-                        name='agree'
-                        type='checkbox'
-                        />
-                    </label>
-                    <label>I Disagree:
-                    <input 
-                        name='disagree'
+                        name='terms'
                         type='checkbox'
                         />
                     </label>
