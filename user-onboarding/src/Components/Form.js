@@ -4,7 +4,7 @@ export default function Form (){
     
     const onChange = event => {
         const {name, value, checked, type} = event.target
-        
+
     }
     
     return (
@@ -57,6 +57,7 @@ export default function Form (){
                         <input 
                         name='terms'
                         type='checkbox'
+                        // checked={values.term}
                         />
                     </label>
                 </div>

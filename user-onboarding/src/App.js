@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Form from './Components/Form'
 import './App.css';
 import axios from 'axios'
-import schema from '../src/Components/formSchema'
+import schema from './Components/formSchema'
 import * as yup from 'yup'
 
 
@@ -22,8 +22,8 @@ const initialFormErrors ={ //object for our errors
   password: '',
 }
 
-const initialUsers = []
-const initialDisabled = true
+const initialUsers = [] //we'll map our users from api from axios later down in App
+const initialDisabled = true //this is for the submit button
 
 export default function App() {
 
@@ -34,25 +34,14 @@ export default function App() {
   const [disabled, setDisabled] = useState(initialDisabled); //state for our disabled which is a boolean
 
 
-  const postNewUser = newUser => {
-    axios.post('https://reqres.in/api/users', newUser)
-      .then(resp => {
-        setUsers(resp.data)
-        console.log(resp.data);
-      })
-      .catch(err => {
-        console.error(err);
-      }) 
-      .finally(()=> {
-        setFormValues(initialFormValues)
-      })
-  }
-
 
   return (
     <div className="App">
       <header><h1>Hello World!</h1></header>
-      <Form />
+      <Form 
+        values={formValues}
+        change={inputChange}
+      />
     </div>
   )
 }
