@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import Form from "./Components/Form";
-import Validate from "./Validator/Validate";
+import schema from "./Validator/Validate";
 import * as yup from "yup";
 
 const initialFormValues = {
@@ -37,7 +37,18 @@ export default function App() {
     }).catch(err => {
       console.error(err)
     })
-  } 
+  }
+
+  const postNewEmp = newEmp => {
+    axios.post('https://reqres.in/api/users', newEmp)
+    .then(res => {
+      setEmp([res.data, ...emp])
+      setFormValues(initialFormValues)
+    }).catch(err => {
+      console.error(err)
+      setFormValues(initialFormValues)
+    })
+  }
 
   return (
     <div className="App">
