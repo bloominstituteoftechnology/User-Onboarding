@@ -8,7 +8,7 @@ function UserList (props) {
 
     return (
         <div className='User-List'>
-            <h1>Users</h1>
+            <center><h1>Users</h1></center>
             <div>
             { users.map((user) => <User 
             name={user.name} 

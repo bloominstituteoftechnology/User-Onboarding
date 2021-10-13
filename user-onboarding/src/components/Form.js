@@ -3,7 +3,7 @@ function Form (props) {
  const { change } = props
 
     return(
-        <form>
+        <form className='form'>
             <label>Name: 
                 <input 
                 type='text'

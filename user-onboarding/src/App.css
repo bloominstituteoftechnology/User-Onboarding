@@ -12,16 +12,14 @@
   padding: 5%;
   background-color: #70B5F9;
   border: black 1px solid;
-  
-
 }
 
 .User-List h1 {
   text-align: center;
   border-top: 3px solid black;
   border-bottom: 3px solid black;
-  width: 200px;
   padding: 2%;
+  margin: 0% 35%;
 }
 
 .user {
@@ -30,4 +28,21 @@
   padding: 5%;
   margin: 2% 0%;
   text-align: left;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form label {
+  width: 100%;
+  margin: 1%;
+}
+
+.form button {
+  width: 20%;
+  margin: 1%;
+  padding: 1%;
 }
