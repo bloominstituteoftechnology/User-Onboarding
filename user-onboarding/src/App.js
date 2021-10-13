@@ -1,24 +1,53 @@
 import logo from './logo.svg';
 import './App.css';
 import Form from './components/Form'
+import axios from 'axios'
+import React, { useState } from 'react'
+
+const initialUsers = [
+
+  {
+    name: 'Peter Conley',
+    email: 'peter@gmail.com',
+    password: 'banana',
+    tos: true,
+  },
+  { 
+    name: 'Casey Harding',
+    email: 'yachump@gmail.com',
+    password: 'facebooklover',
+    tos: true,
+}
+]
+
+const initialFormValues = {
+    name: '',
+    email: '',
+    password: '',
+    tos: false,
+}
+
+const initialErrors = {
+    name: '',
+    email: '',
+    password: '',
+    tos: '',
+}
 
 function App() {
+
+  const [ users, setUsers ] = useState(initialUsers);
+  const [ formValues, setFormValues ] = useState(initialFormValues);
+  const [ formErrors, setFormErrors ] = useState(initialErrors);
+
+  const onChange = evt => {
+    const { name, value } = evt.target;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>User Onboarding Form</h1>
+      <Form change={onChange}/>
     </div>
   );
 }
