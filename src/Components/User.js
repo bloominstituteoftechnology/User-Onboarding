@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Emp(details) {
+function User(details) {
     if (!details) {
-        return <h3>Finding new employees details!</h3>
+        return <h3>Finding new users details!</h3>
     }
 
     return (
@@ -12,3 +12,5 @@ export default function Emp(details) {
         </div>
     )
 }
+
+export default User

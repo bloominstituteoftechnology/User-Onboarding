@@ -1,17 +1,17 @@
 import React from "react";
 
-export default function Form(props) {
+export default function FriendForm(props) {
     const {
-        values,
-        submit,
-        change,
-        disabled,
-        errors,
+      values,
+      submit,
+      change,
+      disabled,
+      errors,
     } = props
-
+  
     const onSubmit = evt => {
-        evt.preventDefault()
-        submit()
+      evt.preventDefault()
+      submit()
     }
 
     const onChange = evt => {
@@ -23,7 +23,7 @@ export default function Form(props) {
     return (
         <form onSubmit={onSubmit}>
             <div>
-                <h2>Add an employee to the roster!</h2>
+                <h2>Add a user to the roster!</h2>
 
                 <button disabled={disabled}>Submit!</button>
 
