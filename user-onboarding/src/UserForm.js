@@ -21,7 +21,7 @@ import './App.css';
 
             <form className='form container' onSubmit={onSubmit}>
                 <div className='form-group submit'>
-                    <h2>Input New User </h2>
+                    <h2 className="new_user">Enter User Information </h2>
     
                     
                    
@@ -34,7 +34,7 @@ import './App.css';
                         <div>{errors.terms}</div>
                     </div>
                 </div>
-                <label> First Name </label>
+                <label className="lab1"> First Name </label>
                     <input
                         value={values.first_name}
                         id="first_name"                       
@@ -44,20 +44,20 @@ import './App.css';
                     />
                 
 
-                <label> Last Name </label>
+                <label className="lab1"> Last Name </label>
                     <input
                         value={values.last_name}
-                        id="last_name"
+                        id="name"
                         onChange={onChange}
                         name='last_name'
                         type='text'
                     />
                 
 
-                <label> Email </label>
+                <label className="lab1"> Email </label>
                     <input
                         value={values.email}
-                        id="email"
+                        id="name"
                         onChange={onChange}
                         name='email'
                         type='text'
@@ -72,13 +72,16 @@ import './App.css';
                 <label> Service Terms </label>
                     <input
                         type="checkbox"
-                        id="service-terms"
+                        id="name"
                         name="terms"
                         checked={values.terms}
                         onChange={onChange}
                     />
                 <br/>
+                <br/>
+                <div>
                 <button className="btn_disable" disable={disabled}>submit</button>
+                </div>
             </div>
         </form>
     );

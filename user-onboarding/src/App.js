@@ -5,13 +5,14 @@ import schema from './validation/formSchema';
 import axios from 'axios';
 import * as yup from 'yup';
 import './App.css';
+import { validate } from 'uuid';
+
 const initialFormValues = {
-  ///// TEXT INPUTS /////
+ 
   first_name: '',
   last_name: '',
   email: '',
-  ///// CHECKBOXES /////
-  terms: false
+   terms: false
 };
 
 const initialFormErrors = {
@@ -26,14 +27,14 @@ const initialDisabled = true;
 
 function App() {
 
-  const [users, setUsers] = useState(initialUsers);          // array of user objects
-  const [formValues, setFormValues] = useState(initialFormValues); // object
-  const [formErrors, setFormErrors] = useState(initialFormErrors); // object
-  const [disabled, setDisabled] = useState(initialDisabled);       // boolean
+  const [users, setUsers] = useState(initialUsers);          
+  const [formValues, setFormValues] = useState(initialFormValues); 
+  const [formErrors, setFormErrors] = useState(initialFormErrors); 
+  const [disabled, setDisabled] = useState(initialDisabled);       
 
   const getUsers = () =>
   {
-      // 🔥 STEP 5- IMPLEMENT! ON SUCCESS PUT USERS IN STATE
+      
 
       axios.get("https://reqres.in/api/users")
           .then(response =>
@@ -65,12 +66,8 @@ const validate = (name, value) =>
     };
     const inputChange = (name, value) =>
     {
-        // 🔥 STEP 10- RUN VALIDATION WITH YUP
         validate(name, value);
-        setFormValues({
-            ...formValues,
-            [name]: value // NOT AN ARRAY
-        });
+        setFormValues({ ...formValues,[name]: value });
     };
 
     const formSubmit = () =>
@@ -82,27 +79,25 @@ const validate = (name, value) =>
             terms: formValues.terms
         };
 
-        // 🔥 STEP 8- POST NEW USER USING HELPER
+        
         postNewUser(newUser);
     };
 
-    //////////////// SIDE EFFECTS ////////////////
-    //////////////// SIDE EFFECTS ////////////////
-    //////////////// SIDE EFFECTS ////////////////
-    useEffect(() =>
+        useEffect(() =>
     {
         getUsers();
     }, []);
 
     useEffect(() =>
-    {
-        // 🔥 STEP 9- ADJUST THE STATUS OF `disabled` EVERY TIME `formValues` CHANGES
+    {        
         schema.isValid(formValues).then(valid => setDisabled(!valid));
     }, [formValues]);
 
     return (
         <div className='container'>
-            <header><h1>Users Onboarding</h1></header>
+            <header className="head">
+                <h1 className="user_onboard">Users Onboarding</h1>
+            </header>
 
             <UserForm
                 values={formValues}
