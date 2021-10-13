@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+  background-color: salmon;
+  border: black 1px solid;
+  margin: 3% 10%;
+  padding: 5%;
+}
+
+.User-List {
+  text-align: center;
+  margin: 3% 10%;
+  padding: 5%;
+  background-color: #70B5F9;
+  border: black 1px solid;
+}
+
+.User-List h1 {
+  text-align: center;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  padding: 2%;
+  margin: 0% 35%;
+}
+
+.user {
+  background-color: white;
+  border: black 5px solid;
+  padding: 5%;
+  margin: 2% 0%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form label {
+  width: 100%;
+  margin: 1%;
+}
+
+.form button {
+  width: 20%;
+  margin: 1%;
+  padding: 1%;
+}
+
+.errors {
+  color: blue
+}
