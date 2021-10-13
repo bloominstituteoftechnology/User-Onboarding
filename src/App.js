@@ -4,6 +4,7 @@ import axios from "axios";
 import Form from "./Components/Form";
 import schema from "./Validator/Validate";
 import * as yup from "yup";
+import Emp from './Components/Emp'
 
 const initialFormValues = {
   name: "",
@@ -24,7 +25,7 @@ const initialEmp = [];
 const initialDisabled = true;
 
 export default function App() {
-  const [emp, setEmp] = useState(initialEmp);
+  const [emps, setEmp] = useState(initialEmp);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
@@ -44,7 +45,7 @@ export default function App() {
     axios
       .post("https://reqres.in/api/users", newEmp)
       .then((res) => {
-        setEmp([res.data, ...emp]);
+        setEmp([res.data, ...emps]);
         setFormValues(initialFormValues);
       })
       .catch((err) => {
@@ -87,7 +88,23 @@ export default function App() {
 
   return (
     <div className="App">
-      <header className="App-header"></header>
+      <header className="App-header"><h1>New Employees at Smith Co.</h1></header>
+
+      <Form
+        values={formValues}
+        change={inputChange}
+        submit={formSubmit}
+        disabled={disabled}
+        errors={formErrors}
+      />
+
+{
+        emps.map(emp => {
+          return (
+            <Emp key={emp.id} details={emp} />
+          )
+        })
+      }
     </div>
   );
 }
