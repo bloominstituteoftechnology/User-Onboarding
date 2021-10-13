@@ -1,4 +1,6 @@
 import React from 'react';
+import App from '../App';
+import personForm from './personForm';
 
 export default function Form(props) {
     const {
