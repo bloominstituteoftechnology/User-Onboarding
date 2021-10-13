@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import Form from './components/Form';
-import axios from 'axios';
-import * as yup from 'yup';
+import React,{ useState, useEffect } from 'react';
+import axios from 'axios'
+import formSchema from './validation/formSchema';
 import './App.css';
-import personForm from './components/personForm';
+import Form from './components/Form';
+// import {reach} from 'yup/lib'
+// import User from './components/User';
 
 const initialFormValues = {
   name: '',
@@ -12,16 +13,23 @@ const initialFormValues = {
   termsOfService: false,
 }
 
+const initialFormErrors = {
+  name: '',
+  email: '',
+  password: '',
+}
+
 const initialUsers = []
 const initialDisabled = true
 
 export default function App() {
-  const [user, setUser ] = useState(initialUsers)
-  const [formValues, setFormValues] = useState(initialFormValues)
-  const [disabled, setDisabled] = useState(initialDisabled)
+  const [user, setUser ] = useState(initialUsers);
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [disabled, setDisabled] = useState(initialDisabled);
 
   const updateForm = (inputName, inputValue) => {
-    setFormValues({ ...formValues, [inputName]: inputValue})
+    setFormValues({ ...formValues, [inputName]: inputValue});
   }
 
   const submitForm = () => {
@@ -36,8 +44,7 @@ export default function App() {
   return (
     <div className="App">
       <h1>Welcome to my App. Now give me all of your info! Muahahahaha 😈</h1>
-
-      <personForm 
+      <Form 
         formValues={formValues}
         updateForm={updateForm}
         submitForm={submitForm}
