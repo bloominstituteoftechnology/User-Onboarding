@@ -6,3 +6,20 @@
   padding: 5%;
 }
 
+.User-List {
+  text-align: center;
+  margin: 3% 10%;
+  padding: 5%;
+  background-color: #70B5F9;
+  border: black 1px solid;
+  display: flex;
+  justify-content: center;
+
+}
+
+.User-List h1 {
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  width: 200px;
+  padding: 2%;
+}

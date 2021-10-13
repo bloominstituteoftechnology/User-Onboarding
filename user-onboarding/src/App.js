@@ -3,6 +3,8 @@ import './App.css';
 import Form from './components/Form'
 import axios from 'axios'
 import React, { useState } from 'react'
+import schema from './validations/FormSchema'
+import UserList from './components/UserList'
 
 const initialUsers = [
 
@@ -45,9 +47,12 @@ function App() {
   }
 
   return (
+    <div>
     <div className="App">
       <h1>User Onboarding Form</h1>
       <Form change={onChange}/>
+    </div>
+    <UserList users={users}/>
     </div>
   );
 }
