@@ -20,13 +20,14 @@ const initialFormErrors = {
 }
 const initialUsers=[]
 const initialDisabled = true
-
+const initialUsersLength = 0
 export default function App() {
 
   const [users, setUsers]=useState(initialUsers)
   const [formValues, setFormValues]=useState(initialFormValues)
   const [formErrors, setFormErrors]=useState(initialFormErrors)
   const [disabled, setDisabled]=useState(initialDisabled)
+  
 
   const postNewUser = newUser =>{
     axios.post('https://reqres.in/api/users', newUser)
@@ -39,7 +40,7 @@ export default function App() {
         setFormValues(initialFormValues)
       })
   }
-
+  
   const validate= (name, value) =>{
     yup.reach(formSchema, name)
     .validate(value)
@@ -62,6 +63,7 @@ export default function App() {
     console.log(newUser)
     postNewUser(newUser)
   }
+  const userAmount = users.length
 
   useEffect(() => {
     formSchema.isValid(formValues).then(valid => setDisabled(!valid))
@@ -75,6 +77,7 @@ export default function App() {
         disabled={disabled}
         change={inputChange}
         submit={formSubmit}
+        usersLength={userAmount}
       />
     </div>
   );

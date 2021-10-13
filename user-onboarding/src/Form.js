@@ -9,6 +9,7 @@ export default function Form(props){
         errors,
         change,
         submit,
+        usersLength
     } = props
 
     const onChange = evt => {
@@ -22,11 +23,16 @@ export default function Form(props){
         submit()
     }
     
+    let button = 'regularButton'
+    if(disabled===false){
+        button='greenButton'
+      }
+
     return(
-        <form className='form container' onSubmit={onSubmit}>
+        <form className='container' onSubmit={onSubmit}>
             <div className='form-group submit'>
                 <h2>Add New User</h2>
-                <button disabled={disabled} onClick={onSubmit} >submit</button>
+                <button disabled={disabled} onClick={onSubmit} className={button}>submit</button>
                 <div className='errors'>
                     <div>{errors.name}</div>
                     <div>{errors.email}</div>
@@ -36,8 +42,8 @@ export default function Form(props){
             </div>
 
             <div className='form-group inputs'>
-                <h2>User Information</h2>
-                <label>Name&nbsp;
+                <h3>User Information</h3>
+                <label>Name &nbsp;
                     <input
                         value={values.name}
                         onChange={onChange}
@@ -45,7 +51,7 @@ export default function Form(props){
                         type='text'
                     />
                 </label>
-                <label>Email&nbsp;
+                <label>Email &nbsp;
                     <input
                         value={values.email}
                         onChange={onChange}
@@ -53,7 +59,7 @@ export default function Form(props){
                         type='text'
                     />
                 </label>
-                <label>Password&nbsp;
+                <label>Password &nbsp;
                     <input
                         value={values.password}
                         onChange={onChange}
@@ -61,7 +67,7 @@ export default function Form(props){
                         type='text'
                     />
                 </label>
-                <label>Please indicate that you've read the terms of service:&nbsp;
+                <label>I agree to the terms of service: &nbsp;
                     <input
                         type="checkbox"
                         onChange={onChange}
@@ -70,6 +76,7 @@ export default function Form(props){
                     />
                 </label>
             </div>
+            <h4>Number of users: {usersLength}</h4>
         </form>
     )
 

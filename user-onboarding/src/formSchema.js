@@ -16,7 +16,7 @@ const formSchema= yup.object().shape({
         .min(8, 'Password must be 8 or more characters long!'),
     terms: yup
         .bool()
-        .oneOf([true],'Please read the terms of service and check the box when you are done!')
+        .oneOf([true],'Please read the terms of service and check the box when you are done!')  
 });
 
 export default formSchema;
