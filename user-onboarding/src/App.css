@@ -1,38 +1,102 @@
-.App {
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(244, 244, 244);
+  color: rgb(65, 75, 60);
+  font-family: 'Bitter', serif;
+}
+.container {
+  border: 1px solid rgb(210, 210, 210);
+  border-radius: 6px;
+  box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
+  margin: 16px 8px;
+  padding: 16px;
+  background-color: white;
+}
+.container.form {
+  display: flex;
+  align-items: baseline;
+
+  @media (max-width: 650px) {
+    flex-direction: column;
+  }
+
+  .form-group {
+    padding: 0 24px 0 24px;
+    display: flex;
+    flex-direction: column;
+
+    &.submit {
+      flex: 2;
+      align-items: flex-start;
+    }
+    &.inputs {
+      flex: 2;
+    }
+    &.checkboxes {
+      flex: 1;
+    }
+  }
+
+
+}
+a {
+  font-size: 0.75em;
+}
+
+header {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1, h2, h3, h4 {
+  color: rgb(40, 40, 43);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+form {
+  h2, h4, h4 {
+    color: darkblue;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+label {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 16px;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+input[type=text], select {
+  height: 1.5rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+button {
+  height: 2rem;
+  width: 6rem;
+  border-radius: 8px;
+  color: rgb(54, 69, 79);
+  background-color: white;
+  border: 2px solid rgb(54, 69, 79);
+  &:hover {
+    cursor: pointer;
   }
-  to {
-    transform: rotate(360deg);
+  &:disabled {
+    color: rgb(25, 25, 112);
+    background-color: white;
+    border: 2px solid rgb(25, 25, 112);
+    cursor: not-allowed;
   }
 }
+
+.errors {
+  margin: 8px;
+  font-size: 0.7em;
+  color: rgb(99, 0, 57);
+
+
+  div {
+    display: block;
+    margin-top: 4px;
+  }
+}
+
+
