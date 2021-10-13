@@ -1,10 +1,17 @@
 import React from 'react'
 
-export default function Form (){
+export default function Form(props) {
+    const {
+        values, 
+        submit,
+        change,
+        disabled,
+        errors,
+    } = props
     
     const onChange = event => {
         const {name, value, checked, type} = event.target
-
+            submit()
     }
     
     return (
@@ -12,7 +19,7 @@ export default function Form (){
         <form className='form container'>
             <div className='form-group submit'>
                 <h2>Add A New User</h2>
-                <button disabled>SUBMIT</button>
+                <button disabled={disabled}>SUBMIT</button>
 
                 <div className='errors'>
                     {/* <div> fname </div>  */}
