@@ -15,18 +15,31 @@ const onChange = evt => {
 
     return(
         <div>
-        <h2>{errors.name}</h2>
-        <h2>{errors.email}</h2>
-        <h2>{errors.password}</h2>
-        <h2>{errors.tos}</h2>
+            <div className='errors'>
+                <h2>{errors.first_name}</h2>
+                <h2>{errors.last_name}</h2>
+                <h2>{errors.email}</h2>
+                <h2>{errors.password}</h2>
+                <h2>{errors.tos}</h2>
+            </div>
         <form className='form' onSubmit={onSubmit}>
-            <label>Name: 
+            <label>First Name: 
                 <input 
                 type='text'
                 placeholder='Enter a name'
-                name='name'
+                name='first_name'
                 onChange={onChange}
-                value={values.name}
+                value={values.first_name}
+                />
+            </label>
+            <br/>
+            <label>Last Name: 
+                <input 
+                type='text'
+                placeholder='Enter a name'
+                name='last_name'
+                onChange={onChange}
+                value={values.last_name}
                 />
             </label>
             <br/>
@@ -47,6 +60,16 @@ const onChange = evt => {
                 name='password'
                 onChange={onChange}
                 value={values.password}
+                />
+            </label>
+            <br/>
+            <label>Profile Picture URL: 
+                <input 
+                type='text'
+                placeholder='Enter an image URL'
+                name='img'
+                onChange={onChange}
+                value={values.avatar}
                 />
             </label>
             <br/>

@@ -2,12 +2,17 @@ import React from 'react'
 
 function User (props) {
 
-    const { name, email } = props
+    const { firstname, lastname, email, img } = props
 
 return (
     <div className='user'>
-        <h3>Name: {name}</h3>
+        <div>
+        <h3>Name: {firstname} {lastname}</h3>
         <p>Email: {email}</p>
+        </div>
+        <div>
+            <img src={img} />
+        </div>
     </div>
 )
 
