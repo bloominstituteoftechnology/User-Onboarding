@@ -1,8 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+
+import '../App.css';
 import React, {useState, useEffect} from "react";
 import * as yup from 'yup' ;
-import schema from '../validation/form_schema';
+import schema from '../form_schema';
 import Axios from "axios";
 
 const initial_form_values = {
@@ -44,8 +44,26 @@ function App() {
   const validate = (name, value) => {
     yup.reach(schema, name)
         .validate(value)
-        .then(() => set_forms_errors)
+        .then(() => set_forms_errors({...form_errors,[name]: ""}))
+        .catch(err => set_forms_errors({...form_errors, [name]: err.errors[0]}))
+  }
+  const input_change = (name, value) => {
+    validate(name, value);
+    set_form_values({
+      ...form_values,
+      [name]: value
+    })
+  }
 
+  const form_submit = () => {
+    const new_person ={
+      username: form_values.username.trim(),
+      email: form_values.email.trim(),
+      password: form_values.password.trim(),
+    }
+    console.log(new_person);
+    post_new_persons(new_person);
+  }
 
 
 
