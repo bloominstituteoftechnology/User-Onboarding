@@ -1,0 +1,48 @@
+.App {
+  text-align: center;
+}
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.head {
+  background-color: blue;
+  min-height: 25vh;
+  text-align:  center;
+  font-size: 24px;
+  color: white;
+  padding-top: 20px;
+}
+.user_onboard {
+  font-style:italic;
+  font-size: 75px;
+
+
+}
+.form-group {
+text-align: center;
+border: 1px solid black;
+padding:5px 0;
+background: royalblue;
+color:white;
+}
+
+.lab1{
+ 
+  font-size: 25px;
+  font-style: italic;
+  border:1px solid black;
+  border-radius: 50px;
+  background-color: skyblue;
+   color:white;
+}
+
+.name {
+border:1px solid red;
+  margin-left: 5px;
+}
