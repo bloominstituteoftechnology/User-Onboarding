@@ -16,3 +16,5 @@ const formSchema = yup.object().shape({
     tos: yup
         .boolean()
 })
+
+export default formSchema
