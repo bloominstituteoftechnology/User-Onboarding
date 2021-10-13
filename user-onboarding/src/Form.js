@@ -8,7 +8,7 @@ export default function Form(props){
         disabled,
         errors,
         change,
-        submit
+        submit,
     } = props
 
     const onChange = evt => {
@@ -20,14 +20,13 @@ export default function Form(props){
     const onSubmit = evt => {
         evt.preventDefault()
         submit()
-        console.log('hello')
     }
     
     return(
         <form className='form container' onSubmit={onSubmit}>
             <div className='form-group submit'>
                 <h2>Add New User</h2>
-                <button onClick={onSubmit} disabled={disabled}>submit</button>
+                <button disabled={disabled} onClick={onSubmit} >submit</button>
                 <div className='errors'>
                     <div>{errors.name}</div>
                     <div>{errors.email}</div>
