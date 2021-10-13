@@ -6,22 +6,6 @@ import schema from './validations/FormSchema'
 import UserList from './components/UserList'
 import * as yup from 'yup'
 
-const initialUsers = [
-
-  {
-    name: 'Peter Conley',
-    email: 'peter@gmail.com',
-    password: 'banana',
-    tos: true,
-  },
-  { 
-    name: 'Casey Harding',
-    email: 'yachump@gmail.com',
-    password: 'facebooklover',
-    tos: true,
-}
-]
-
 const initialFormValues = {
     name: '',
     email: '',
@@ -38,7 +22,7 @@ const initialErrors = {
 
 function App() {
 
-  const [ users, setUsers ] = useState(initialUsers);
+  const [ users, setUsers ] = useState([]);
   const [ formValues, setFormValues ] = useState(initialFormValues);
   const [ formErrors, setFormErrors ] = useState(initialErrors);
   const [ disabled, setDisabled ] =useState(true)
