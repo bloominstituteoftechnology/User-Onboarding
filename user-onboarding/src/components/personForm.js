@@ -1,9 +1,4 @@
-import React from 'react'
-import App from '../App'
-// import Form from 'Form';
-import axios from 'axios';
-// import * as yup from 'yup';
-// import personForm from './components/personForm';
+import React from 'react';
 
 export default function personForm(props) {
     const { formValues, submitForm, updateForm } = props;

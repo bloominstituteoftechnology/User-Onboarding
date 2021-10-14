@@ -10,7 +10,6 @@ const formSchema = yup.object().shape({
         .string()
         .email('A valid email is required')
         .required('An email is required'),
-    
 })
 
 export default formSchema;

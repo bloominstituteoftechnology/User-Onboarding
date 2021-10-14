@@ -3,7 +3,9 @@ import axios from 'axios'
 import schema from './validation/formSchema';
 import './App.css';
 import UserForm from './components/Form';
-import {reach} from 'yup/lib'
+// import Form from './components/Form';
+// import {reach} from 'yup/lib'
+import * as yup from 'yup'
 
 const initialFormValues = {
   name:'',
@@ -21,7 +23,7 @@ const initialFormErrors = {
 const initialUsers = [];
 const initialDisabled = true;
 
-export default function App() {
+function App() {
   const [users, setUsers] = useState(initialUsers)
   const [formValues, setFormValues] = useState(initialFormValues)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
@@ -29,35 +31,35 @@ export default function App() {
 
   const getUsers =  () => {
     axios.get('https://reqres.in/api/users')
-        .then(response=>{
+        .then(response => {
           // console.log(response.data.data)
-          setUsers(response.data.data)
+          setUsers(response.data)
           // console.log(users)
         })
-        .catch(err =>{
+        .catch(err => {
           console.error(err)
         })
   }
 
   const postNewUser = newUser => {
     axios.post('https://reqres.in/api/users', newUser)
-        .then(res =>{
-          setUsers([res.data, ...users])
+        .then(response => {
+          setUsers([response.data, ...users])
           // console.log(users)
         })
         .catch(err => {
           console.error(err)
         })
         .finally(() => {
-          setFormValues(initialFormErrors)
+          setFormValues(initialFormValues)
         })
   }
 
   const validate = (name, value) => { 
-    reach(schema, name)
+    yup.reach(schema, name)
       .validate(value)
-      .then(() => setFormErrors({...formErrors, [name]:''}))
-      .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
+      .then(() => setFormErrors({ ...formErrors, [name]: '' }))
+      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
   }
 
   const inputChange =(name, value) => {
@@ -67,10 +69,10 @@ export default function App() {
 
   const formSubmit = ()=> {
     const newUser = {
-      first_name:formValues.first_name.trim(),
-      email:formValues.email.trim(),
-      password:formValues.password.trim(),
-      Terms:['agree','disagree'].filter(terms => formValues[terms] === true)
+      name: formValues.name.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim(),
+      termsOfService: ['agree','disagree'].filter(terms => formValues[terms] === true)
     }
     postNewUser(newUser)
   }
@@ -84,8 +86,9 @@ export default function App() {
   }, [formValues])
 
   return (
-      <div className="App">
-        <header className="App-header"><h1>Welcome to my App. Now give me all of your info! Muahahahaha 😈</h1></header>
+      <div className='container'>
+        <header><h1>Welcome to my App. Now give me all of your info! Muahahahaha 😈</h1></header>
+
         <UserForm
             values={formValues}
             change={inputChange}
@@ -96,10 +99,12 @@ export default function App() {
         {
           users.map(user =>{
             return(
-                <UserForm key={user.id} details={user}/>
+              <UserForm key={user.id} details={user}/>
             )
           })
         }
       </div>
   )
 }
+
+export default App;
