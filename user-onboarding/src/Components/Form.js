@@ -9,24 +9,34 @@ export default function Form(props) {
         errors,
     } = props
     
+
+    const onSubmit = event => {
+        event.preventDefault()
+        submit()
+    }
+
+
+
     const onChange = event => {
-        const {name, value, checked, type} = event.target
-            submit()
+        const {name, value, checked, type} = event.target;
+        const valueToUse = type === 'checkbox' ? checked : value;
+            change(name, valueToUse)
     }
     
+
+
     return (
 
-        <form className='form container'>
+        <form className='form container' onSubmit={onSubmit}>
             <div className='form-group submit'>
                 <h2>Add A New User</h2>
                 <button disabled={disabled}>SUBMIT</button>
 
                 <div className='errors'>
-                    {/* <div> fname </div>  */}
-                    {/* <div> lname </div> */}
-                    {/* <div> email </div> */}
-                    {/* <div> password </div> */}
-                    {/* <div> terms </div> */}
+                    <div> {errors.fname} </div> 
+                    <div> {errors.lname} </div>
+                    <div> {errors.email} </div>
+                    <div> {errors.password} </div>
                 </div>
             </div>
 
@@ -34,6 +44,8 @@ export default function Form(props) {
                 <h4>General Information:</h4>
                 <label>First Name: 
                     <input 
+                    value={values.fname}
+                    onChange={onChange}
                     name='fname'
                     type='text'
                     />
@@ -41,6 +53,8 @@ export default function Form(props) {
                     
                 <label>Last Name: 
                 <input 
+                    value={values.lname}
+                    onChange={onChange}
                     name='lname'
                     type='text'
                     />
@@ -48,23 +62,28 @@ export default function Form(props) {
 
                 <label>Email: 
                 <input 
-                    name='fname'
+                    value={values.email}
+                    onChange={onChange}
+                    name='email'
                     type='text'
                     />
                 </label>
 
                 <label>Password: 
                 <input 
-                    name='fname'
+                    value={values.password}
+                    onChange={onChange}
+                    name='password'
                     type='password'
                     />
                 </label>
                 <div className='form-group checkboxes'>
                     <label>Terms of service: 
                         <input 
-                        name='terms'
-                        type='checkbox'
-                        // checked={values.term}
+                            onChange={onChange}
+                            checked={values.terms}
+                            name='terms'
+                            type='checkbox'
                         />
                     </label>
                 </div>
