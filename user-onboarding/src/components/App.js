@@ -6,6 +6,7 @@ import schema from '../form_schema';
 import Axios from "axios";
 import Person from './Person'
 
+
 const initial_form_values = {
   username: "",
   email: "",
@@ -62,7 +63,7 @@ function App() {
       email: form_values.email.trim(),
       password: form_values.password.trim(),
     }
-    console.log(new_person);
+
     post_new_persons(new_person);
   }
 
@@ -93,11 +94,6 @@ function App() {
     </div>
   );
 }
-
-
-
-
-
 
 
 export default App;

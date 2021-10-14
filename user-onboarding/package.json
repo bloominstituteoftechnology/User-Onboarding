@@ -6,13 +6,15 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.23.0",
+    "components": "^0.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "styled": "^1.0.0",
+    "styled-components": "^5.3.1",
     "web-vitals": "^1.1.2",
-    "axios": "^0.23.0",
-    "yup": "^0.32.11",
-    "styled-components": "^5.3.1"
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^8.6.0"
   }
 }
