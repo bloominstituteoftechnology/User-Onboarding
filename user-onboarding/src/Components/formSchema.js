@@ -11,9 +11,13 @@ const formSchema = yup.object().shape({
         .min(2, 'Last name must be 2 or more characters'),
     email: yup
         .string()
-        .email('must  be a valid email address')
+        .email('must be a valid email address')
         .required('Email is required'),
-    terms: yup.boolean(),
+    password: yup
+        .string()
+        .required('A password is required'),
+    terms: yup.boolean()
+        .oneOf([true], 'Must agree to terms of service')
 });
 
 export default formSchema;

@@ -10,13 +10,15 @@ body {
   border: 1px solid rgb(210, 210, 210);
   border-radius: 6px;
   box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
-  margin: 16px 8px;
+  margin: 16px 16px;
   padding: 16px;
   background-color: white;
 }
+
+
 .container.form {
   display: flex;
-  align-items: baseline;
+  justify-content: space-between;
 
   @media (max-width: 650px) {
     flex-direction: column;
@@ -38,8 +40,6 @@ body {
       flex: 1;
     }
   }
-
-
 }
 
 a {
@@ -63,7 +63,7 @@ form {
 label {
   display: flex;
   margin-bottom: 16px;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 input[type=text], select {
