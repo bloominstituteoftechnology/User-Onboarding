@@ -27,10 +27,8 @@ export default function Form(props) {
             <h2>Add a Friend</h2>   
 
             {/* 🔥 DISABLE THE BUTTON */}
-            <button disabled = {disabled}>submit</button>
-            
-             <p> {console.log('disabled in Form:', disabled)} </p>
-
+            <button disabled = {disabled}>submit</button>            
+             
             <div className='errors'>
             {/* 🔥 RENDER THE VALIDATION ERRORS HERE */}
               <div>{errors.firstname}</div>
@@ -66,7 +64,7 @@ export default function Form(props) {
                   </label>
             {/* </label> */}
 
-            <label>Password:
+            {/* <label>Password:
             <input
                 type="password"
                 name="password"
@@ -74,7 +72,7 @@ export default function Form(props) {
                 onChange={onChange}
                 placeholder="Enter an password ya chump"
               />
-            </label>
+            </label> */}
 
             <label>Email:
             <input
@@ -87,12 +85,16 @@ export default function Form(props) {
             </label>
 
             <label>Role:          
-              <select value={values.role} name="role" onChange={onChange}>
+              <select 
+                value={values.role} 
+                name="role" 
+                onChange={onChange}
+              >
                 <option value="">-- Select a role --</option>
-                <option value="Front End">Front End</option>
-                <option value="Back End">Back End</option>
-                <option value="Designer">UI Designer</option>
-                <option value="Team Leader">Team Leader</option>
+                <option value="frontend">Front End</option>
+                <option value="backend">Back End</option>
+                <option value="designer">UI Designer</option>
+                <option value="teamleader">Team Leader</option>
               </select>
             </label>
 
@@ -115,40 +117,39 @@ export default function Form(props) {
                     onChange={onChange}
                     checked={values.civil === "single"}
                   />
-                </label>                
+                </label>      
+            <div className='form-group checkboxes'>
+                <label>Full
+                  <input
+                    type="checkbox"
+                    name="full"
+                    onChange={onChange}
+                    checked={values.full}
+                  />
+                </label>
+
+                <label>Half
+                  <input
+                    type="checkbox"
+                    name="half"
+                    onChange={onChange}
+                    checked={values.half}
+                  />
+                </label>
+
+                <label>Contract
+                  <input
+                    type="checkbox"
+                    name="contract"
+                    onChange={onChange}
+                    checked={values.contract}
+                  />
+                </label>  
+            </div>            
             {/* </label>             */}
           </div>
 
-          <div className='form-group checkboxes'>
-            <h4>TOS</h4>
-            {/* ////////// CHECKBOXES ////////// */}
-            <label>Full
-              <input
-                type="checkbox"
-                name="full"
-                onChange={onChange}
-                checked={values.full}
-              />
-            </label>
-
-            <label>Half
-              <input
-                type="checkbox"
-                name="half"
-                onChange={onChange}
-                checked={values.half}
-              />
-            </label>
-
-            <label>Contract
-              <input
-                type="checkbox"
-                name="constract"
-                onChange={onChange}
-                checked={values.constract}
-              />
-            </label>
-          </div>
+          
 
         </form>
       )

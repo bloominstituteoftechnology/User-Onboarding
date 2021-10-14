@@ -1,52 +1,101 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Card from './components/Card'
 import Form from './components/Form'
+import axios from 'axios';
+import schema from './validation/formSchema';
+import * as yup from 'yup';
 
-
-const initialTeamsList = [
+const initialDisabled = false
+const initialUsersList = [
   {
     id: 1, 
-    username: 'John',
+    firstname: 'John',
+    lastname: 'Harding',
+    password: '',
     email: 'john.harding@somecompany.com',
-    role: 'Designer',
+    civil: 'married',
+    role: 'designer',
+    tos: ['full', 'half','contract']
   },
 ]
 
 const initialFormValues = {
   ///// TEXT INPUTS /////
-  username: '',
-  email: '',
+    firstname: '',
+    lastname: '',
+    password: '',
+    email: '',
+  //// Radio Buttons
+    civil: '',
+  //// Checkbox
+    tos: '',
   ///// DROPDOWN /////
-  role: '',
+    role: ''
+}
+
+const initialFormErrors = {
+    firstname: '',
+    lastname: '',
+    password: '',
+    email: '',
+    civil: '',
+    tos: '',
+    role: ''  
 }
 
 function App() {
-  const [teams, setTeams] = useState(initialTeamsList);
-  const [formValues, setFormValues] = useState(initialFormValues);
-  const [errorText, setErrorText] = useState("")
+  const [users, setUsers] = useState(initialUsersList); // array of friend objects
+  const [formValues, setFormValues] = useState(initialFormValues) // object
+  const [formErrors, setFormErrors] = useState(initialFormErrors) // object
+  const [disabled, setDisabled] = useState(initialDisabled)       // boolean
 
-  console.log('teams', teams);
+  const updateForm = (name, value) => {
+    validate (name, value)
+    setFormValues({ ...formValues, [name]: value });
+  }
 
-  const updateForm = (inputName, inputValue) => {
-    setFormValues({ ...formValues, [inputName]: inputValue });
+  const postNewUser = newUser => {
+    
+    axios.post('https://reqres.in/api/users', newUser)
+      .then(res => {
+        console.log('res.data: ', res.data);
+        setUsers([res.data, ...users]);
+        
+      }).catch(err => {
+        console.error(err);
+      }).finally(() => {
+        setFormValues(initialFormValues);
+      })
+  }
+
+  const validate = (name, value) => {
+    yup.reach(schema, name)
+      .validate(value)
+      .then(() => setFormErrors({ ...formErrors, [name]: '' }))
+      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
   }
 
   const submitForm = () => {
-    const newTeam = {
-      username: formValues.username.trim(),
+    const newUser = {
+      firstname: formValues.firstname.trim(),
+      lastname: formValues.lastname.trim(),
+      // password: formValues.password.trim(),
       email: formValues.email.trim(),
-      role: formValues.role
-    }
-  
-    if (!newTeam.username || !newTeam.email || !newTeam.role) {
-      setErrorText("You've gotta enter in all the fields, ya chump!");
-      return;
-    }
+      role: formValues.role,
+      civil: formValues.civil.trim(),
+      tos: ['full', 'half', 'contract'].filter(item => !!formValues[item])
+    }    
           
-      setTeams([newTeam, ...teams]);
+      setUsers([newUser, ...users]);
       setFormValues(initialFormValues);
-      setErrorText("");      
+      setFormErrors("");      
+      console.log('users: ',users);      
+      postNewUser(newUser);
   }
+
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => setDisabled(!valid))
+  }, [formValues])
 
   return (
     <div className="container">
@@ -54,14 +103,16 @@ function App() {
 
       <Form
         values={formValues}
-        update={updateForm}
+        change={updateForm}
         submit={submitForm}
-        errorText={errorText}
+        disabled={disabled}
+        errors={formErrors}
       />
+
       {
-        teams.map(team => {
+        users.map(user => {
           return (
-            <Card key={team.id} details={team} />
+            <Card key={user.id} details={user} />
           )
         })
       }
