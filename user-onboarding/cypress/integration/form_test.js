@@ -9,6 +9,7 @@ describe('User App', () =>{
     const termsInput=()=>cy.get('input[name=terms]')
     const submitButtonDisabled=()=>cy.get('button[class=regularButton]')
     const submitButtonEnabled=()=>cy.get('button[class=greenButton]')
+    const errors=()=>cy.get('div[class=errors]')
 
     it('The proper elements are showing:', () =>{
         nameInput().should('exist');
@@ -16,6 +17,7 @@ describe('User App', () =>{
         passwordInput().should('exist');
         termsInput().should('exist');
         submitButtonDisabled().should('exist');
+        errors().should('exist');
     })
 
     describe("Text inputs are functioning correctly",()=>{
@@ -65,5 +67,26 @@ describe('User App', () =>{
             termsInput().check();
             submitButtonEnabled().should('not.be.disabled');
         })
+    })
+
+    describe("Error messages populate after validation",()=>{
+
+        it('Error populates if name field is too short', () => {
+            nameInput().type('Al');
+            cy.contains('Name must be 3 or more characters long!');
+        })
+        it('Error populates if password field is too short', () => {
+            passwordInput().type('1234567');
+            cy.contains('Password must be 8 or more characters long!');
+        })
+        it('Error populates if their is not an appropriate email', () => {
+            emailInput().type('alex@alex');
+            cy.contains('Must be a valid email address!');
+        })
+        it('Error populates if terms field is unchecked', () => {
+            termsInput().uncheck();
+            cy.contains('Please read the terms of service and check the box when you are done!');
+        })
+       
     })
 })
