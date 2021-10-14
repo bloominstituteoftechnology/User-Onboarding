@@ -18,6 +18,7 @@ const initialFormErrors = {
   username: '',
   email: '',
   password: '',
+  tos: false
 }
 
 const initialForm = []
@@ -58,7 +59,7 @@ export default function App() {
       .catch(err => setFormErrors({...formErrors, [name]: err.errors[0] }))
   }
 
-  const inputChange = (name, value) => {
+  const change = (name, value) => {
     validate(name, value);
     setFormsValues({
       ...formsValues,
@@ -66,7 +67,7 @@ export default function App() {
     })
   }
 
-  const formSubmit = () => {
+  const submit = () => {
     const newForm = {
       username: formsValues.username.trim(),
       email: formsValues.email.trim(),
@@ -104,8 +105,8 @@ export default function App() {
 
       <OnBoardingForm 
         values={formsValues}
-        change={inputChange}
-        submit={formSubmit}
+        change={change}
+        submit={submit}
         disabled={disabled}
         errors={formErrors}
       />

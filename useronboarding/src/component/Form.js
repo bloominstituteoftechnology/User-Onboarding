@@ -116,7 +116,7 @@ export default function OnBoardingForm(props) {
                     </label>
 
                 <div className='form-group submit'>
-                    <button disabled={disabled}>submit</button>
+                    <button id='submitBtn' disabled={disabled}>submit</button>
 
                     <div className='errors'>
                         <div>{errors.username}</div>
