@@ -27,10 +27,10 @@ const initialDisabled = true
 
 function App() {
 
-  const [users, setUsers] = useState(initialUsers)
-  const [formValues, setFormValues] = useState(initialFormValues)
-  const [formErrors, setFormErrors] = useState(initialFormErrors)
-  const [disabled, setDisabled] = useState(initialDisabled)
+  const [users, setUsers] = useState(initialUsers);
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [disabled, setDisabled] = useState(initialDisabled);
 
   const getUsers = () => {
     axios.get('https://reqres.in/api/users')

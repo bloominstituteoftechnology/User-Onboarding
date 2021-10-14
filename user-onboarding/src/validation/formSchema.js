@@ -15,10 +15,11 @@ const formSchema = yup.object().shape({
         .string()
         .required('Password is required')
         .min(6, 'Enter your PASSWORD HERE (must be 6 characters or more)')
-        .matches(/^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/, 'Password must contain at least 8 characters, one uppercase, one number and one special case character'),
+        .matches(/[a-zA-Z]/, "Password can only contain letters"),
 
-    termsOfServices: yup
-    .boolean(),
+    terms: yup
+    .boolean()
+    .oneOf([true], "Must Accept the Terms of Service")
 })
 
 export default formSchema;

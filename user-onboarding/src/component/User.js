@@ -8,8 +8,8 @@ function User({ details }) {
   return (
     <div className='user-container'>
       <h2>{details.name}</h2>
-      <h3>Email: {details.email}</h3>
-      <h3>Password: {details.Password}</h3>
+      <h3>{details.email}</h3>
+      <h3>{details.Password}</h3>
     </div>
   )
 }
