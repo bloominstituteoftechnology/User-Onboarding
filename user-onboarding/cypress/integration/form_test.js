@@ -34,6 +34,21 @@ describe("Persons App", () => {
             tos_check().check();
             submitBtn().click();
         })
+    describe("Check text in fields ", () => {
+        it("Just checking", () => {
+        nameInput().type("Vern");
+        emailInput().type("tbengtson82@gmail.com");
+        passwordInput().type("Vern82");
+        nameInput().should("have.value", "Vern");
+        emailInput().should("have.value", "tbengtson82@gmail.com");
+        passwordInput().should("have.value", "Vern82");
+            })
+        it("Empty text fields", () =>{
+            nameInput().type("Vern").clear();
+            emailInput().type("Vern").clear();
+            passwordInput().type("Vern").clear();
+        })
+        })
     })
 })
 
