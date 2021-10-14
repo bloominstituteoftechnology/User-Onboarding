@@ -4,6 +4,7 @@ import React, {useState, useEffect} from "react";
 import * as yup from 'yup' ;
 import schema from '../form_schema';
 import Axios from "axios";
+import Person from './Person'
 
 const initial_form_values = {
   username: "",
@@ -65,29 +66,33 @@ function App() {
     post_new_persons(new_person);
   }
 
+  useEffect(() => {
+    schema.isValid(form_values).then(valid=> set_disabled(!valid))
+  }, [form_values])
 
 
   return (
     <div className="App">
+      <header><h1>Persons App</h1></header>
+
+      <Form
+        values={form_values}
+        change={input_change}
+        submit={form_submit}
+        disabled={disabled}
+        errors={form_errors}
+      />
+      {
+        persons.map(person => {
+          return (
+              <Person key={person.id} details={person}/>
+          )
+        })
+      }
 
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

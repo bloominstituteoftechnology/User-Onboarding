@@ -17,7 +17,7 @@ function Person ({details}) {
 
 
 
-
+export default Person
 
 
 

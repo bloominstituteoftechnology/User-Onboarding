@@ -63,6 +63,7 @@ export default function person_form(props) {
                     <input
                         type="checkbox"
                         name="terms_of_service"
+                        onChange={onChange}
                         checked={values.terms_of_service}
                     />
                 </label>

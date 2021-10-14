@@ -12,7 +12,9 @@ const form_schema = yup.object().shape({
         .required("Email is required"),
     password: yup
         .string(),
-    terms_of_service: yup.boolean(),
+    terms_of_service: yup.boolean()
+        .oneOf([true],"You must click"),
+
 })
 
 
