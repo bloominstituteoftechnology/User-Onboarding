@@ -63,9 +63,53 @@ describe('User Form Tests', () => {
             submitBtn().click()
 
         })
-        it('Check for form validation if an input is left empty', () => {
+        
+    })
 
+    describe('Check for form validation if an input is left empty', () => {
+
+        it('Leaving first name blank and attempting to submit', () => {
+
+            lastNameInput().type('Conley')
+            emailInput().type('peterpan@gmail.com')
+            passwordInput().type('123abc')
+            tos().check()
+            submitBtn().click()
         })
+
+        it('Leaving last name blank and attempting to submit', () => {
+
+            firstNameInput().type('Conley')
+            emailInput().type('peterpan@gmail.com')
+            passwordInput().type('123abc')
+            tos().check()
+            submitBtn().click()
+        })
+
+        it('Leaving email blank and attempting to submit', () => {
+            firstNameInput().type('Peter')
+            lastNameInput().type('Conley')
+            passwordInput().type('123abc')
+            tos().check()
+            submitBtn().click()
+        })
+
+        it('Leaving password blank and attempting to submit', () => {
+            firstNameInput().type('Peter')
+            lastNameInput().type('Conley')
+            emailInput().type('peterpan@gmail.com')
+            tos().check()
+            submitBtn().click()
+        })
+
+        it('Leaving terms of service unchecked and attempting to submit', () => {
+            firstNameInput().type('Peter')
+            lastNameInput().type('Conley')
+            emailInput().type('peterpan@gmail.com')
+            passwordInput().type('123abc')
+            submitBtn().click()
+        })
+
     })
 
 
