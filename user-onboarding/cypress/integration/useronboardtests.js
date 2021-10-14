@@ -30,15 +30,20 @@ describe('User Form Tests', () => {
     describe('Testing input fields', () => {
 
         it('Type name & check if the text inputted contains the name you provided', () => {
-
+            firstNameInput().type('Peter')
+            firstNameInput().should('have.value', 'Peter')
+            lastNameInput().type('Conley')
+            lastNameInput().should('have.value', 'Conley')
         })
 
         it('Get the Email input and type an email address in it', () => {
-
+            emailInput().type('peterpan@gmail.com')
+            emailInput().should('have.value', 'peterpan@gmail.com')
         })
 
         it('Get the password input and type a password in it', () => {
-
+            passwordInput().type('123abc')
+            passwordInput().should('have.value', '123abc')
         })
 
     })
