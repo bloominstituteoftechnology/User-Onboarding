@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import formSchema from '../formSchema'
 import './styles.css'
 
-export default function Form({ post, users }){
-    const [showNewForm, setShowNewForm] = useState(false)
+export default function Form({ post, users, showNew }){
+    const [showNewForm, setShowNewForm] = useState(showNew)
     const [error, setError] = useState({})
 
       const onSubmit = evt => {
@@ -127,7 +127,7 @@ export default function Form({ post, users }){
                       <div className="error">{error.message}</div> : null
                     }
                     </label>
-                     <input type="submit" value="Submit" />
+                     <input type="submit" name="submit" value="Submit" />
                  </main>
          </div>
        </form> :

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Form from './form/Form'
 import axios from 'axios';
 import './App.css'
+import { Switch, Route  } from "react-router-dom";
 import schema from './formSchema';
 import * as yup from 'yup';
 
@@ -48,7 +49,14 @@ const [formErrors, setFormErrors] = useState(initialFormErrors)
 
   return (
     <div className="App" >
-      <Form post={postNewUser} users={users} values={formValues} />
+      <Switch>
+        <Route exact path='/'>
+          <Form post={postNewUser} users={users} values={formValues} showNew={false} />
+        </Route>
+        <Route exact path='/new'>
+          <Form post={postNewUser} users={users} values={formValues} showNew={true} />
+        </Route>
+      </Switch>
     </div>
   );
 }
