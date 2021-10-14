@@ -22,7 +22,6 @@ export default function UserForm(props) {
 
     return (
         <form className='form container' onSubmit={onSubmit}>
-            <h2>Blah Blah Blah</h2>
             <div className='form inputs'>
                 <div className='name'>
                     <label> First Name: 
