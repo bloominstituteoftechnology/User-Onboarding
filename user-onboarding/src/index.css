@@ -15,11 +15,13 @@ code {
 * {
   box-sizing: border-box;
 }
+
 body {
   background-color: rgb(244, 244, 244);
   color: rgb(65, 75, 60);
   font-family: "Bitter", serif;
 }
+
 .container {
   border: 1px solid rgb(210, 210, 210);
   border-radius: 6px;
@@ -28,6 +30,7 @@ body {
   padding: 16px;
   background-color: white;
 }
+
 .container.form {
   display: flex;
   align-items: baseline;
@@ -53,21 +56,25 @@ body {
     }
   }
 }
+
 a {
   font-size: 0.75em;
 }
+
 header {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
 }
+
 h1,
 h2,
 h3,
 h4 {
   color: crimson;
 }
+
 form {
   h2,
   h4,
@@ -75,11 +82,13 @@ form {
     color: darkblue;
   }
 }
+
 label {
   display: flex;
   margin-bottom: 16px;
   justify-content: space-between;
 }
+
 input[type="text"],
 select {
   height: 1.5rem;
@@ -105,9 +114,4 @@ button:disabled {
   margin: 8px;
   font-size: 0.7em;
   color: red;
-
-  /* div {
-    display: block;
-    margin-top: 4px;
-  } */
 }
