@@ -2,9 +2,7 @@ import React,{ useState, useEffect } from 'react';
 import axios from 'axios'
 import schema from './validation/formSchema';
 import './App.css';
-import UserForm from './components/Form';
-// import Form from './components/Form';
-// import {reach} from 'yup/lib'
+import UserForm from './components/userForm';
 import * as yup from 'yup'
 
 const initialFormValues = {
@@ -31,10 +29,9 @@ function App() {
 
   const getUsers =  () => {
     axios.get('https://reqres.in/api/users')
-        .then(response => {
-          // console.log(response.data.data)
-          setUsers(response.data)
-          // console.log(users)
+        .then(res => {
+          console.log(res.data)
+          // setUsers(res.data)
         })
         .catch(err => {
           console.error(err)
@@ -43,8 +40,8 @@ function App() {
 
   const postNewUser = newUser => {
     axios.post('https://reqres.in/api/users', newUser)
-        .then(response => {
-          setUsers([response.data, ...users])
+        .then(res => {
+          setUsers([res.data, ...users])
           // console.log(users)
         })
         .catch(err => {
@@ -87,8 +84,7 @@ function App() {
 
   return (
       <div className='container'>
-        <header><h1>Welcome to my App. Now give me all of your info! Muahahahaha 😈</h1></header>
-
+        <header><h1>Give me all of your info Muahahahaha 😈</h1></header>
         <UserForm
             values={formValues}
             change={inputChange}
@@ -98,12 +94,12 @@ function App() {
         />
         {
           users.map(user =>{
-            return(
+            return (
               <UserForm key={user.id} details={user}/>
             )
           })
         }
-      </div>
+    </div>
   )
 }
 
