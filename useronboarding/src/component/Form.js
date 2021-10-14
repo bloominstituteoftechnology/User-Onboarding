@@ -4,23 +4,11 @@ import styled from 'styled-components';
 const StyledDiv = styled.div`
  width: 100%;
  height:25rem;
+ background: black;
  display: flex;
 
-
-@media ${props => props.theme.breakpointMobile} {
-    width: 100%
-    display: flex;
-    background: black;
-}
-
 .container {
-    border: 1px solid red;
-    position: relative;
-}
-.inputs {
-    border: 1px green solid;
-    position: absolute;
-    margin-left: 16rem;
+    width: 100%;
 }
 
 h2 {
@@ -29,23 +17,33 @@ h2 {
 
 h4 {
     color: red;
+    font-size: 1.5rem;
 }
 
 .user {
     color: white;
+    font-size:1.5rem;
 }
 
 .email {
     color: white;
+    font-size:1.5rem;
 }
 
 .pw {
     color: white;
+    font-size:1.5rem;
 }
 
 .tos {
     color: red;
+    font-size:1.5rem;
 }
+
+.errors {
+    color: red;
+}
+
 `
 
 
@@ -119,10 +117,12 @@ export default function OnBoardingForm(props) {
 
                 <div className='form-group submit'>
                     <button disabled={disabled}>submit</button>
+
                     <div className='errors'>
                         <div>{errors.username}</div>
                         <div>{errors.email}</div>
-                        {/* <div>{errors.password}</div> */}
+                        <div>{errors.password}</div>
+                        <div>{errors.tos}</div>
                     </div>
                 </div>
 

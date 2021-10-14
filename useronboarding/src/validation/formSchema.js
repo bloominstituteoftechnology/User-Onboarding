@@ -5,7 +5,7 @@ const formSchema = yup.object().shape({
         .string()
         .trim()
         .required('Usename is required!')
-        .min(5, 'Username must be 3 or more characters long!'),
+        .min(5, 'Username must be 5 or more characters long!'),
     email: yup
         .string()
         .email('Must be a valid email address')
@@ -16,6 +16,7 @@ const formSchema = yup.object().shape({
         .required('Password must be more than 6 characters long')
         .min(6, 'Password must be 6 or more characters long'),
     tos: yup.boolean()
+        .required('You must accept the Terms Of Service!')
 })
 
 export default formSchema;

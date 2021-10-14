@@ -23,11 +23,11 @@ const initialFormErrors = {
 const initialForm = []
 const initialDisabled = true
 
-function App() {
+export default function App() {
 
   const [forms, setForms] = useState(initialForm)
   const [formsValues, setFormsValues] = useState(initialFormValues)
-  const[formsErrors, setFormsErrors] = useState(initialFormErrors)
+  const[formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
 
   const getUsers = () =>{
@@ -37,8 +37,6 @@ function App() {
       setForms=(res.data);
     }).catch(err => {
       console.log(err);
-    }).finally(() => {
-      setFormsValues(initialFormValues);
     })
   }
 
@@ -56,8 +54,8 @@ function App() {
   const validate = (name, value) => {
     yup.reach(schema, name)
       .validate(value)
-      .then(() => setFormsErrors({...formsErrors, [name]: ''}))
-      .catch(err => setFormsErrors({...formsErrors, [name]: err.errors[0] }))
+      .then(() => setFormErrors({...formErrors, [name]: ''}))
+      .catch(err => setFormErrors({...formErrors, [name]: err.errors[0] }))
   }
 
   const inputChange = (name, value) => {
@@ -73,7 +71,7 @@ function App() {
       username: formsValues.username.trim(),
       email: formsValues.email.trim(),
       password: formsValues.password.trim(),
-      tos: ['tos'].filter(terms => !!formsValues[terms])
+      tos: ['tos'].filter(tos => !!formsValues[tos])
     }
   console.log(newForm);
   postNewForm(newForm);
@@ -109,7 +107,7 @@ function App() {
         change={inputChange}
         submit={formSubmit}
         disabled={disabled}
-        errors={formsErrors}
+        errors={formErrors}
       />
       {forms.map(form => {
         return (
@@ -120,4 +118,3 @@ function App() {
   );
 }
 
-export default App;
