@@ -22,47 +22,56 @@ export default function UserForm(props) {
 
     return (
         <form className='form container' onSubmit={onSubmit}>
-            <div className='form-group submit'>
-                <h2>Add a friend</h2>
-
-                {/* Submit button */}
-                <button disabled={disabled}>SUMBIT</button>
-
-                <div className='errors'>
-                    <div>{errors.name}</div>
-                    <div>{errors.email}</div>
+            <h2>Blah Blah Blah</h2>
+            <div className='form inputs'>
+                <div className='name'>
+                    <label> First Name: 
+                        <input 
+                            type='text'
+                            name='firstName'
+                            value={values.firstName}
+                            onChange={onChange}
+                        />
+                    </label>
+                    <label> Last Name:
+                        <input 
+                            type='text'
+                            name='lastName'
+                            value={values.lastName}
+                            onChange={onChange}
+                        />
+                    </label>
                 </div>
-            </div>
-
-            <div className='form-group inputs'>
-                <h4>General Information</h4>
-
-                <label>Name:
-                    <input 
-                        type='text'
-                        name='username'
-                        value={values.name}
-                        onChange={onChange}
-                    />
-                </label>
-
-                <label>Email:
-                    <input
-                        type='text'
-                        name='email'
-                        value={values.email}
-                        onChange={onChange}
-                    />
-                </label>
-                
-                <label>Password:
-                    <input
-                        type='password'
-                        name='password'
-                        value={values.password}
-                        onChange={onChange}
-                    />
-                </label>
+                <div className='email'>
+                    <label> Email: 
+                        <input 
+                            type='email'
+                            name='email'
+                            value={values.email}
+                            onChange={onChange}
+                        />
+                    </label>
+                </div>
+                <div className='password'>
+                    <label> Password: 
+                        <input 
+                            type='password'
+                            name='password'
+                            value={values.password}
+                            onChange={onChange}
+                        />
+                    </label>
+                </div>
+                <div className='email'>
+                    <label> Terms of Service: 
+                        <input 
+                            type='checkbox'
+                            name='termsOfService'
+                            value={values.termsOfService}
+                            onChange={onChange}
+                        />
+                    </label>
+                </div>
             </div>
         </form>
     )

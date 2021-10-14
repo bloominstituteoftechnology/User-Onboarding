@@ -4,6 +4,7 @@ import schema from './validation/formSchema';
 import './App.css';
 import UserForm from './components/userForm';
 import * as yup from 'yup'
+// import personForm from './components/personForm';
 
 const initialFormValues = {
   name:'',
