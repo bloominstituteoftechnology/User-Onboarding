@@ -10,7 +10,7 @@ function User({ details }) {
       <h2>First Name{details.first_name}</h2>
       <h2>Last Name{details.last_name}</h2>
       <p>Email: {details.email}</p>
-      <p>Terms of Service</p>
+      
     </div>
   )}
 

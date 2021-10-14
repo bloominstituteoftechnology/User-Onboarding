@@ -4,7 +4,10 @@ export default function Form(props) {
     const {
         values,
         change, 
-        submit
+        submit,
+        disabled,
+        errors
+
     } = props
 
     const onSubmit = evt => {
@@ -24,6 +27,19 @@ return (
 <form className="form container" onSubmit={onSubmit}> 
         <div className='form-group submit'>
         <h2>Add a User</h2>
+
+
+
+<div className='errors'>
+  
+  <div>{errors.first_name}</div>
+  <div>{errors.last_name}</div>
+  <div>{errors.email}</div>
+
+</div>
+
+
+
     <label>First Name
         <input
         value={values.first_name}
@@ -51,11 +67,13 @@ return (
      <label>Terms of Service
         <input
         type="checkbox"
-        name="terms"
-        checked={values.terms}
+        name="termsOfService"
+        checked={values.termsOfService}
         onChange={onChange}
         /> 
     </label> 
+
+    <button disabled={disabled}>submit</button>
     </div>
 </form> 
 
