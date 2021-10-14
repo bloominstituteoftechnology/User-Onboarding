@@ -10,7 +10,7 @@ describe('User Form Tests', () => {
     const lastNameInput = () => cy.get('input[name=last_name]')
     const emailInput = () => cy.get('input[name=email]')
     const passwordInput = () => cy.get('input[name=password]')
-    const termsOfService = () => cy.get('input[name=tos]')
+    const tos = () => cy.get('input[name=tos]')
     const submitBtn = () => cy.get('button[id=submit]')
 
     it('Sanity Check', () => {
@@ -23,7 +23,7 @@ describe('User Form Tests', () => {
         lastNameInput().should('exist');
         emailInput().should('exist');
         passwordInput().should('exist');
-        termsOfService().should('exist');
+        tos().should('exist');
         submitBtn().should('exist');
     })
 
@@ -49,10 +49,18 @@ describe('User Form Tests', () => {
     })
 
     describe('Testing checkbox, submission, and validation', () => {
-        it('Set up a test that will check to see if a user can check the terms of service box', () => {
-
+        it('Check to see if a user can check the terms of service box', () => {
+            tos().check()
+            tos().should('have.value', 'true')
         })
         it('Check to see if a user can submit the form data', () => {
+
+            firstNameInput().type('Peter')
+            lastNameInput().type('Conley')
+            emailInput().type('peterpan@gmail.com')
+            passwordInput().type('123abc')
+            tos().check()
+            submitBtn().click()
 
         })
         it('Check for form validation if an input is left empty', () => {
