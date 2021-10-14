@@ -5,41 +5,87 @@ import OnBoardingForm from './component/Form';
 import axios from 'axios';
 import schema from './validation/formSchema';
 import * as yup from 'yup';
-import { validate } from 'uuid';
 
 
-const intialFormValues = {
+const initialFormValues = {
   username: '',
   email: '',
   password: '',
   tos: false,
 }
 
-const intialFormErrors = {
+const initialFormErrors = {
   username: '',
   email: '',
   password: '',
 }
 
 const initialForm = []
-const instialDisabled = true
+const initialDisabled = true
 
 function App() {
 
-  const [form, setForm] = useState(initialForm)
-  const [formValues, setFormValues] = useState(intialFormValues)
-  const[formErrors, setFormErrors] = useState(initialFormErrors)
-  const [disabled, setDisabled] = useState(instialDisabled)
+  const [forms, setForms] = useState(initialForm)
+  const [formsValues, setFormsValues] = useState(initialFormValues)
+  const[formsErrors, setFormsErrors] = useState(initialFormErrors)
+  const [disabled, setDisabled] = useState(initialDisabled)
 
+  const getUsers = () =>{
 
-  axios.get('https://reqres.in')
+  axios.get(`https://reqres.in/api/users`)
     .then(res => {
-      setForm=(res.data);
+      setForms=(res.data);
     }).catch(err => {
       console.log(err);
     }).finally(() => {
-      setFormValues(intialFormValues);
+      setFormsValues(initialFormValues);
     })
+  }
+
+  const postNewForm = newForm => {
+    axios.post(`https://reqres.in/api/users`, newForm)
+      .then(res => {
+        setForms([res.data, ...forms]);
+      }).catch(err => {
+        console.error(err)
+      }).finally(() => {
+        setFormsValues(initialFormValues);
+      })
+  }
+
+  const validate = (name, value) => {
+    yup.reach(schema, name)
+      .validate(value)
+      .then(() => setFormsErrors({...formsErrors, [name]: ''}))
+      .catch(err => setFormsErrors({...formsErrors, [name]: err.errors[0] }))
+  }
+
+  const inputChange = (name, value) => {
+    validate(name, value);
+    setFormsValues({
+      ...formsValues,
+      [name]: value
+    })
+  }
+
+  const formSubmit = () => {
+    const newForm = {
+      username: formsValues.username.trim(),
+      email: formsValues.email.trim(),
+      password: formsValues.password.trim(),
+      tos: ['tos'].filter(terms => !!formsValues[terms])
+    }
+  console.log(newForm);
+  postNewForm(newForm);
+  }
+
+  useEffect(() => {
+    getUsers()
+  }, [])
+
+  useEffect(() => {
+    schema.isValid(formsValues).then(valid => setDisabled(!valid))
+  }, [formsValues])
 
   return (
     <div className="App">
@@ -57,6 +103,19 @@ function App() {
           Learn React
         </a>
       </header>
+
+      <OnBoardingForm 
+        values={formsValues}
+        change={inputChange}
+        submit={formSubmit}
+        disabled={disabled}
+        errors={formsErrors}
+      />
+      {forms.map(form => {
+        return (
+          <OnBoardingForm key={forms.id} details={forms} />
+        )
+      })}
     </div>
   );
 }

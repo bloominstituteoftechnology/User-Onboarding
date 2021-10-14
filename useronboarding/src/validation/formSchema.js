@@ -10,6 +10,11 @@ const formSchema = yup.object().shape({
         .string()
         .email('Must be a valid email address')
         .required('Email is required'),
+    password: yup
+        .string()
+        .trim()
+        .required('Password must be more than 6 characters long')
+        .min(6, 'Password must be 6 or more characters long'),
     tos: yup.boolean()
 })
 
