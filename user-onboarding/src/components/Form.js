@@ -24,7 +24,7 @@ export default function SubForm(props) {
     <form className='form container' onSubmit={onSubmit}>
       <div className='form-group submit'>
         <h2>Add member</h2>
-        <button disabled={disabled}>submit</button>
+        <button disabled={disabled} id='submit'>submit</button>
 
         <div className='errors'>
           <div>{errors.username}</div>

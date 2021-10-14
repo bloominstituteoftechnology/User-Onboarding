@@ -101,7 +101,6 @@ export default function App() {
         values={formValues}
         change={inputChange}
         submit={formSubmit}
-        disabled={disabled}
         errors={formErrors}
       />
       <h2>List of Members</h2>
