@@ -51,5 +51,13 @@ describe('User Onboarding App', () => {
                 .should('have.value', '')
                 .type('blahblahblah');
         })
+
+        it('Empty fields', () => {
+            firstNameInput().type('Joe').clear();
+            lastNameInput().type('Shmoe').clear();
+            emailInput().type('joeshmoe@gmail.com').clear();
+            passwordInput().type('joeshmoe').clear();
+            termsOfService().check().uncheck();
+        }) 
     })
 })
