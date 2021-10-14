@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "axios": "^0.23.0",
+    "cypress": "^8.6.0",
     "yup": "^0.32.11"
   }
 }
