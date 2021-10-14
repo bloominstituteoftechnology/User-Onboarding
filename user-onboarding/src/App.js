@@ -1,20 +1,22 @@
 import React,{ useState, useEffect } from 'react';
 import axios from 'axios'
-import schema from './validation/formSchema';
+import schema from './formSchema';
 import './App.css';
-import UserForm from './components/userForm';
+import UserForm from './userForm';
 import * as yup from 'yup'
-// import personForm from './components/personForm';
+import User from './user'
 
 const initialFormValues = {
-  name:'',
+  firstName:'',
+  lastName: '',
   email:'',
   password:'',
   termsOfService: false
 }
 
 const initialFormErrors = {
-  name: '',
+  firstName: '',
+  lastName: '',
   email:'',
   password:'',
 }
@@ -28,29 +30,29 @@ function App() {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
 
-  const getUsers =  () => {
+  const getUsers = () => {
     axios.get('https://reqres.in/api/users')
-        .then(res => {
-          console.log(res.data)
-          // setUsers(res.data)
-        })
-        .catch(err => {
-          console.error(err)
-        })
+      .then(res => {
+        console.log(res.data)
+        // setUsers(res.data)
+    })
+      .catch(err => {
+        console.error(err)
+    })
   }
 
   const postNewUser = newUser => {
     axios.post('https://reqres.in/api/users', newUser)
-        .then(res => {
-          setUsers([res.data, ...users])
-          // console.log(users)
-        })
-        .catch(err => {
-          console.error(err)
-        })
-        .finally(() => {
-          setFormValues(initialFormValues)
-        })
+      .then(res => {
+        setUsers([res.data, ...users])
+        // console.log(users)
+    })
+      .catch(err => {
+        console.error(err)
+    })
+      .finally(() => {
+        setFormValues(initialFormValues)
+    })
   }
 
   const validate = (name, value) => { 
@@ -67,7 +69,8 @@ function App() {
 
   const formSubmit = ()=> {
     const newUser = {
-      name: formValues.name.trim(),
+      firstName: formValues.firstName.trim(),
+      lastName: formValues.lastName.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
       termsOfService: ['agree','disagree'].filter(terms => formValues[terms] === true)
@@ -96,7 +99,7 @@ function App() {
         {
           users.map(user =>{
             return (
-              <UserForm key={user.id} details={user}/>
+              <User key={user.id} details={user}/>
             )
           })
         }

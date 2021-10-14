@@ -70,6 +70,11 @@ export default function UserForm(props) {
                             onChange={onChange}
                         />
                     </label>
+                    <label>
+                        <div className='button'>
+                            <button>SUMBIT</button>
+                        </div>
+                    </label>
                 </div>
             </div>
         </form>
