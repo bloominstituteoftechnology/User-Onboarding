@@ -22,7 +22,9 @@ const formSchema = yup.object().shape({
         .trim()
         .required('Password is required')
         .min(4, 'Must be 4 or more characters'),    
-    termsOfService: yup.boolean(),
+    termsOfService: yup
+        .boolean()
+        .oneOf([true], 'Must agree to TOS')
 
 });
 

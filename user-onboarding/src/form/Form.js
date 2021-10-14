@@ -9,10 +9,12 @@ export default function Form({ post, users }){
       const onSubmit = evt => {
         evt.preventDefault()
         const user = {}
+        
         for (let i = 0; i < evt.target.length; i++) {
             const name = evt.target.elements[i].getAttribute("name")
             if (name) {
               if (name === 'termsOfService') {
+                console.log('user', evt.target.elements[i].value)
                 const value = evt.target.elements[i].checked
                 user[name] = value 
             } else {
@@ -22,7 +24,7 @@ export default function Form({ post, users }){
             }       
         }
         formSchema.validate(user).then(value => {
-          console.log('Valid', value)
+          console.log('WHAT?', user)
          if (value) {
           evt.target.reset()
           post(user)
@@ -35,6 +37,7 @@ export default function Form({ post, users }){
           }
           setError(errorObj)
         })
+        setError({})
       }
       console.log('error', error)
 
