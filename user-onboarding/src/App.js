@@ -107,9 +107,11 @@ function App() {
       disabled={disabled}
       errors={formErrors}
       />
-      <hr></hr>
-      <h2>Users</h2>
-      <hr></hr>
+      <div id='users-header'>
+        <hr></hr>
+          <h2>Users</h2>
+        <hr></hr>
+      </div>
       {
         users.map(user => {
             return(

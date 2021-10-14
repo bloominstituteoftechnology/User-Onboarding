@@ -19,7 +19,7 @@ export default function Form(props) {
     return (
         <form onSubmit={onSubmit}>
             <div className="form-container">
-                <h1>User Onboarding</h1>
+                <h1 className="title">User Onboarding</h1>
                 <h2>Add User</h2>
                 <label>First name:
                     <input
@@ -62,7 +62,7 @@ export default function Form(props) {
                         checked={values.termsOfService}
                     />
                 </label>
-                <button disabled={disabled}>submit</button>
+                <button id='submitBtn' disabled={disabled}>submit</button>
                 <div className="errors">
                     <div>{errors.first_name}</div>
                     <div>{errors.last_name}</div>
