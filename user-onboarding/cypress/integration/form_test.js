@@ -7,8 +7,8 @@ describe('User Onboarding App', () => {
     const lastNameInput = () => cy.get('input[name=lastName]');
     const emailInput = () => cy.get('input[name=email]');
     const passwordInput = () => cy.get('input[name=password]');
-    const termsOfService = () => cy.get('input[name=termsOfService');
-    const submitButton = () => cy.get('button[name="button"]');
+    const termsOfService = () => cy.get('[type=checkBox');
+    const submitButton = () => cy.get("button[id=submitButton]");
 
     it('sanity check to make sure tests work', () => {
         expect(2 + 2).to.equal(4);
@@ -35,6 +35,21 @@ describe('User Onboarding App', () => {
             submitButton().should('be.disabled');
         })
 
-
+        it('can type in the inputs', () => {
+            firstNameInput()
+                .should('have.value', '')
+                .type('Ryan')
+                .should('have.value', 'Ryan');
+            lastNameInput()
+                .should('have.value', '')
+                .type('Howard')
+                .should('have.value', 'Howard');
+            emailInput()
+                .should('have.value', '')
+                .type('ryan12howard@gmail.com');
+            passwordInput()
+                .should('have.value', '')
+                .type('blahblahblah');
+        })
     })
 })
