@@ -9,7 +9,8 @@ describe('User-Onboarding App', () => {
     const lnameInput = () => cy.get('input[name=lname]');
     const submitButton = () => cy.get("button[id='button']");
     const passwordInput = () => cy.get('input[name=password]');
-    const termBox = () => cy.get('input[name=terms]');
+    const emailInput = () => cy.get('input[name=email]')
+    const termBox = () => cy.get('[type="checkbox"]');
 
     //sanity check
     it('sanity check to make sure tests work', () => {
@@ -24,6 +25,7 @@ describe('User-Onboarding App', () => {
         passwordInput().should('exist');
         submitButton().should('exist');
         termBox().should('exist');
+        emailInput().should('exist');
     })
 
     describe('filling out the inputs and submitting', () => {
@@ -39,7 +41,7 @@ describe('User-Onboarding App', () => {
         })
 
         //ability to type in the inputs
-        it('can be typed in the inputs', () => {
+        it('stuff can be typed in the inputs', () => {
             fnameInput()
                 .should('have.value', '')
                 .type('Redd')
@@ -47,7 +49,28 @@ describe('User-Onboarding App', () => {
             lnameInput()
                 .should('have.value', '')
                 .type('Mama')
-                .should('have.value', 'mama');
+                .should('have.value', 'Mama');
+            passwordInput()
+                .should('have.value', '')
+                .type('password')
+                .should('have.value', 'password');
+            emailInput()
+                .should('have.value', '')
+                .type('moua0061@yahoo.com')
+                .should('have.value', 'moua0061@yahoo.com')
+            termBox()
+                .check({force:true})
+                .should('be.checked');
+        })
+
+        //submit button should not be disabled after filling out fields & terms of service box is checked
+        it('submit button should work after all fields are entered and checked', () => {
+            fnameInput().type('Redd');
+            lnameInput().type('Mama');
+            emailInput().type('moua0061@yahoo.com');
+            passwordInput().type('password');
+            termBox().should('be.checked');
+            submitButton().should('not.be.disabled');
         })
     })
 
