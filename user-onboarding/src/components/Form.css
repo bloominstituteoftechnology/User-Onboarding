@@ -1,0 +1,125 @@
+body {
+    background-color: lightslategray;
+    font: 1em Helvetica;
+}
+
+.container {
+    width: 840px;
+    margin: 25px auto;
+}
+
+.signbox {
+    float: left;
+    background-color: white;
+    width: 300px;
+    height: 528px;
+    border-radius: 0 5px 5px 0;
+    padding-top: 2rem;
+    padding-right: 2rem;
+    background-color: white;
+    text-align: left;
+}
+
+.signup {
+    float: left;
+    width: 300px;
+    height: 500px;
+    padding: 30px 20px;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px 0 0 5px;
+}
+
+[type='text'] {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    height: 45px;
+    line-height: 45px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    color: rgba(0, 0, 0, 0.4);
+}
+[type='email'] {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    height: 45px;
+    line-height: 45px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    color: rgba(0, 0, 0, 0.4);
+}
+[type='password'] {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    height: 45px;
+    line-height: 45px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    color: rgba(0, 0, 0, 0.4);
+}
+[type='submit'] {
+    margin-top: 25px;
+    width: 80%;
+    border: 0;
+    background-color: grey;
+    border-radius: 5px;
+    height: 50px;
+    color: white;
+    font-weight: 400;
+    font-size: 1em;
+}
+[type='checkbox'] {
+    margin-top: 5px;
+    width: 80%;
+    border: 0;
+    background-color: grey;
+    border-radius: 5px;
+    height: 50px;
+    color: white;
+    font-weight: 400;
+    font-size: 1em;
+}
+[type='text']:focus {
+    outline: none;
+    border-color: grey;
+}
+
+h1 {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 900;
+    font-size: 2.5em;
+}
+
+p {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 1.2em;
+    margin: 50px 0 50px 0;
+}
+span {
+    font-size: 0.75em;
+    background-color: white;
+    padding: 2px 5px;
+    color: rgba(0, 0, 0, 0.6);
+    border-radius: 2px;
+    margin: 5px;
+}
+span:hover {
+    color: grey;
+}
+p:nth-of-type(2) {
+    font-size: 1em;
+}
+.errors {
+    font-size: 1rem;
+    color: red;
+    padding: 0 0 0 0;
+}
