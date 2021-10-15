@@ -7,6 +7,8 @@ describe('User Onboarding App', () => {
     const emailInput = () => cy.get('input[name=email]');
     const submitBtn = () => cy.get("button[id='submitBtn']");
     const termsOfService =() => cy.get('input[name=termsOfService')
+    const termsOfServiceType =() => cy.get('[type=checkBox]')
+    
 
 
 it('sanity check to make sure tests work', () => {
@@ -24,6 +26,32 @@ it('sanity check to make sure tests work', () => {
         emailInput().should('exist');
         submitBtn().should('exist');
         
+    })
+
+
+    it('can navigate to the url', () => {
+        cy.url().should('include', 'localhost');
+    })
+
+
+    it('submit button starts out disabled', () => {
+        submitBtn().should('be.disabled');
+    })
+
+    it('can type in the inputs', () => {
+        firstNameInput()
+            .should('have.value', '')
+            .type('Love is love!')
+            .should('have.value', 'Love is love!');
+            lastNameInput()
+            .should('have.value', '')
+            .type('May be Not')
+            .should('have.value', 'May be Not');
+            emailInput()
+            .should('have.value', '')
+            .type('123@123.com')
+            .should('have.value', '123@123.com');
+            termsOfServiceType().check() 
     })
 
 })
