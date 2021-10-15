@@ -1,96 +1,88 @@
-describe('User-Onboarding', () => {
+describe('New User Application', () => {
     beforeEach(() => {
-      cy.visit('http://localhost:3001');
-    });
+        cy.visit('http://localhost:3001')
+    })
   
-    const name = () => cy.get('input[name="name"]');
-    const email = () => cy.get('input[name="email"]');
-    const password = () => cy.get('input[name="password"]');
-    const role = () => cy.get('select[name="role"]');
-    const terms = () => cy.get('input[name="terms"]');
-    const button = () => cy.get('button').contains('Submit');
+    const nameInput = () => cy.get('input[name=name]');
+    const emailInput = () => cy.get('input[name=email]');
+    const passwordInput = () => cy.get('input[name=password]');
+    const termsBox = () => cy.get('[type="checkbox"]');
+    const submitBtn = () => cy.get('button[id="submitBtn"]')
   
-    it('Sanity Test', () => {
-      expect(1 + 2).to.equal(3);
-      expect(2 + 2).not.to.equal(5);
-    });
+    it('Sanity test', () => {
+        expect(1 + 2).to.equal(3);
+        expect(2 + 2).not.to.equal(5);
+        expect({}).not.to.equal({});
+        expect({}).to.eql({});
+    })
   
-    it('Element Test', () => {
-      name();
-      email();
-      password();
-      role();
-      terms();
-      button();
-      // cy.contains(/^(Submit)$/i);
-    });
+    it('Elements are showing?', () => {
+        nameInput()
+            .should('exist');
+        emailInput()
+            .should('exist');
+        passwordInput()
+            .should('exist');
+        termsBox()
+            .should('exist');
+        submitBtn()
+            .should('exist');
+    })
   
-    it('Chain Test', () => {
+    describe('Can you fill in inputs on empty?', () => {
+        it('Can inputs be filled in?', () => {
+            nameInput()
+                .should('have.value', '')
+                .type('Name')
+                .should('have.value', 'Name')
+            emailInput()
+                .should('have.value', '')
+                .type('Email@gmail.com')
+                .should('have.value', 'Email@gmail.com')
+            passwordInput()
+                .should('have.value', '')
+                .type('Cypress!')
+                .should('have.value', 'Cypress!')
+            termsBox()
+                .check()
+                .uncheck()
+        })
   
-      name()
-        .should('have.value', '')
-        .type('Test')
-        .should('have.value', 'Test');
-      button().should('be.disabled');
+        it('Submit button starts out disabled?', () => {
+            submitBtn().should('be.disabled');
+        })
   
-      email()
-        .should('have.value', '')
-        .type('email@gmail.com')
-        .should('have.value', 'email@gmail.com');
-      button().should('be.disabled');
+        it('Submit button enables when all fields are filled?', () => {
+            nameInput()
+                .type('Name')
+            emailInput()
+                .type('Email@gmail.com')
+            passwordInput()
+                .type('Cypress!')
+            termsBox()
+                .check()
+            submitBtn().should('not.be.disabled')
+        })
+    })
   
-      password()
-        .should('have.value', '')
-        .type('Password123')
-        .should('have.value', 'Password123');
-      button().should('be.disabled');
+    describe('Adding a new user', () => {
+        it('Can submit a new user?', () => {
+            nameInput()
+                .type('Name')
+            emailInput()
+                .type('Email@gmail.com')
+            passwordInput()
+                .type('Cypress!')
+            termsBox()
+                .check()
+            submitBtn()
+                .click()
+            cy.contains('Name')
+            cy.contains('Email@gmail.com')
+            cy.contains('Cypress!')
+        })
+    })
   
-      role()
-        .should('have.value', '')
-        .select('Engineer')
-        .should('have.value', 'Engineer');
-      button().should('be.disabled');
+  })
   
-      terms()
-        .should('have.value', 'false')
-        .check()
-        .should('have.value', 'true');
-      button().should('not.be.disabled');
   
-    });
-  
-    it('Validation Test', () => {
-  
-      name()
-        .should('have.value', '')
-        .type('Name')
-        .should('not.have.value', '');
-      button().should('be.disabled');
-  
-      email()
-        .should('have.value', '')
-        .type('Email@Email.Email')
-        .should('not.have.value', '');
-      button().should('be.disabled');
-  
-      password()
-        .should('have.value', '')
-        .type('Password')
-        .should('not.have.value', '');
-      button().should('be.disabled');
-  
-      role()
-        .should('have.value', '')
-        .select('Role')
-        .should('not.have.value', '');
-      button().should('be.disabled');
-  
-      terms()
-        .should('have.value', 'false')
-        .check()
-        .should('not.have.value', 'false');
-      button().should('not.be.disabled');
-  
-    });
-  
-  });
