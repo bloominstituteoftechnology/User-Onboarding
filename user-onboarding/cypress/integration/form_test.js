@@ -43,15 +43,51 @@ it('sanity check to make sure tests work', () => {
             .should('have.value', '')
             .type('Love is love!')
             .should('have.value', 'Love is love!');
-            lastNameInput()
+        lastNameInput()
             .should('have.value', '')
             .type('May be Not')
             .should('have.value', 'May be Not');
-            emailInput()
+        emailInput()
             .should('have.value', '')
             .type('123@123.com')
             .should('have.value', '123@123.com');
-            termsOfServiceType().check() 
+        termsOfServiceType().check() 
+
+    })
+    it('the submit button enables when all inputs are filled out', () => {
+    firstNameInput()
+        .should('have.value', '')
+        .type('Love is love!')
+        .should('have.value', 'Love is love!');
+    lastNameInput()
+        .should('have.value', '')
+        .type('May be Not')
+        .should('have.value', 'May be Not');
+    emailInput()
+        .should('have.value', '')
+        .type('123@123.com')
+        .should('have.value', '123@123.com');
+        submitBtn().should('be.enabled');
     })
 
+    it('Form validation if an input is left empty', () => {
+    firstNameInput().type('Ksu').clear();
+    lastNameInput().type('ksu').clear();
+    emailInput().type('123@123.123').clear();
+    termsOfService().check().uncheck();
+    }) 
+
+
+describe('check filling out a new forms', () => {
+    it('fill out form', () => {
+        firstNameInput().type('ksu');
+        lastNameInput().type('plat')
+        emailInput().type('123xc@234.234');
+        termsOfServiceType().click();
+        submitBtn().click();
+        cy.contains('ksu').should('exist');
+        cy.contains('plat').should('exist');
+        cy.contains('123xc@234.234').should('exist');
+    })
+})
 })
