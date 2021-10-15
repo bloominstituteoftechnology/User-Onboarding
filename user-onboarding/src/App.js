@@ -65,7 +65,7 @@ function App() {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      service: [`Terms of Service`].filter(item => !!formValues[item])
+      service: formValues.service
     }
     console.log(newValues);
     postNewValues(newValues)

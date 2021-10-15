@@ -12,9 +12,10 @@ const Schema = yup.object().shape({
     .required('email is required'),
     password:yup
     .string()
-    .min(8, 'password must be 8 chars')
+    .min(5, 'password must be 5 chars')
     .required('must have a password'),
     service:yup.boolean()
+    .oneOf([true], 'Field must be checked')
 })
 
 export default Schema

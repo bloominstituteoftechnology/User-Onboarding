@@ -34,7 +34,6 @@ export default function Form(props){
                 </div>
             </div>
             <div>
-                <h4>Add your info</h4>
                 <label>Name
                     <input
                     value={values.name}
