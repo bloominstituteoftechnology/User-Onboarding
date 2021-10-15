@@ -85,4 +85,3 @@ describe('New User Application', () => {
   
   })
   
-  
