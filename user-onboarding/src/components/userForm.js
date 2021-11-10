@@ -5,7 +5,7 @@ const onChange = (evt) => {
   const valueToUse = type === "checkbox" ? checked : value;
 };
 
-function userForm(props) {
+export default function userForm(props) {
   const { values, submit, change, disabled, errors } = props;
 
   return (
@@ -79,5 +79,3 @@ function userForm(props) {
     </form>
   );
 }
-
-export default userForm;
