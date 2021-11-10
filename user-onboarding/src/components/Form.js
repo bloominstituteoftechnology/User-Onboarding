@@ -14,7 +14,8 @@ export default function Form(props){
     }
     
     return(
-       <form onSubmit={onSubmit}>
+       <form className = "form-container" onSubmit={onSubmit}>
+           <div className="name">
            <label>First Name:</label>
            <input 
             type="text"
@@ -23,7 +24,7 @@ export default function Form(props){
             onChange={onChange}
             />
             <div className="errors">{errors.first_name}</div>
-            <br/>
+            
            <label>Last Name:</label>
            <input 
             type="text"
@@ -32,8 +33,9 @@ export default function Form(props){
             onChange={onChange}
             />
             <div className="errors">{errors.last_name}</div>
-            <br/>
-           <label>Email:</label>
+            </div>
+            <div className="form-item">
+           <label>Email: </label>
            <input 
             type="email"
             value={values.email}
@@ -41,15 +43,17 @@ export default function Form(props){
             onChange={onChange}
             />
             <div className="errors">{errors.email}</div>
-            <br/>
-           <label>Password:</label>
+            </div>
+            <div className="form-item">
+           <label>Password: </label>
            <input 
             type="password"
             value={values.password}
             name="password"
             onChange={onChange}
             />
-            <br/>
+            </div>
+            <div className="form-item">
            <label>Terms of Service:</label>
            <input 
             type="checkbox"
@@ -57,7 +61,7 @@ export default function Form(props){
             name="terms_of_service"
             onChange={onChange}
             />
-            <br/>
+            </div>
             <button disabled={disabled}>Submit</button>
 
             

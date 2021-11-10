@@ -63,6 +63,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Please enter your information:</h1>
       <Form 
         values = {formValues}
         submit={inputSubmit} 
@@ -70,6 +71,7 @@ function App() {
         disabled = {disabled}
         errors={formErrors}
       />
+      <h2>Users Avaliable:</h2>
       {
         users.map(user => <User key={user.id} details={user}/>)
         // console.log(users)
