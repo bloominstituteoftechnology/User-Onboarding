@@ -48,7 +48,7 @@ function App() {
   const validate = (name, values) => {
     yup
       .reach(schema, name)
-      .validate(value)
+      // .validate(value)
       .then(() => setFormErrors({ ...formErrors, [name]: "" }))
       .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
   };
@@ -71,9 +71,9 @@ function App() {
     postNewUser(newUser);
   };
 
-  useEffect(() => {
-    getUsers();
-  }, []);
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
 
   useEffect(() => {
     schema.isValid(formValues).then((valid) => setDisabled(!valid));
