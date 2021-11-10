@@ -1,7 +1,13 @@
 import React from 'react';
 
 export default function UserForm(props) {
-	const { values, submit, change } = props;
+	const { 
+		values, 
+		submit, 
+		change,
+		disabled,
+		errors,
+		} = props
 
 	const onChange = evt => {
 		const { name, value, checked, type } = evt.target;
@@ -13,8 +19,13 @@ export default function UserForm(props) {
 		submit();
 	}
 	return (
-		<div>
-			<h3>Please give us all of your personal information</h3>
+		<form onSubmit={onSubmit}>
+			<div>
+			<div className='errors'>
+          		<div>{errors.username}</div>
+          		<div>{errors.email}</div>
+          		<div>{errors.termsOfService}</div>
+        	</div>
 			<label>First name
 				<input
 					value={values.first_name}
@@ -31,7 +42,7 @@ export default function UserForm(props) {
 					type='text'
 				/>
 			</label>
-			<label>email
+			<label>Email
 				<input
 					value={values.email}
 					onChange={onChange}
@@ -39,16 +50,25 @@ export default function UserForm(props) {
 					type='email'
 				/>
 			</label>
+			<label>Password
+				<input
+					value={values.password}
+					onChange={onChange}
+					name='password'
+					type='password'
+				/>
+			</label>
 			<label>Terms of Service
 				<input
 					type='checkbox'
 					name='termsOfService'
 					onChange={onChange}
-					checked={values.service}
+					checked={values.termsOfService}
 				/>
 			</label>
 			<br />
-			<button>submit</button>
-		</div>
+			<button disabled={disabled}>submit</button>
+			</div>
+		</form>
 	);
 }
