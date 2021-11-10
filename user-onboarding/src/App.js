@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./App.css";
 import userForm from "./components/userForm";
 
@@ -20,9 +21,20 @@ const initialUsers = [];
 const initialDisabled = true;
 
 function App() {
+  const [users, setUsers] = useState(initialUsers);
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [disabled, setDisabled] = useState(initialDisabled);
+
   return (
     <div className='App'>
-      <userForm />
+      <userForm
+        values={formValues}
+        change={inputChange}
+        submit={formSubmit}
+        disabled={disabled}
+        errors={formErrors}
+      />
     </div>
   );
 }
