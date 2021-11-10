@@ -5,7 +5,7 @@ const onChange = (evt) => {
   const valueToUse = type === "checkbox" ? checked : value;
 };
 
-export default function userForm(props) {
+export default function UserForm(props) {
   const { values, submit, change, disabled, errors } = props;
 
   return (

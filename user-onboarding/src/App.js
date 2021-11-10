@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import userForm from "./components/userForm";
+import UserForm from "./components/userForm";
 import * as yup from "yup";
 import schema from "./formSchema";
+import User from "./components/user";
 
 const initialFormValues = {
   firstName: "",
@@ -33,7 +34,7 @@ function App() {
     axios
       .get("https://reqres.in/api/users", newUser)
       .then((res) => {
-        console.log(users);
+        // console.log(users);
         setUsers([res.data, ...users]);
       })
       .catch((err) => {
@@ -79,14 +80,20 @@ function App() {
   }, [formValues]);
 
   return (
-    <div className='App'>
-      <userForm
+    <div className='container'>
+      <header>
+        <h1>Enter yo info</h1>
+      </header>
+      <UserForm
         values={formValues}
         change={inputChange}
         submit={formSubmit}
         disabled={disabled}
         errors={formErrors}
       />
+      {users.map((user) => {
+        return <User key={user.id} details={user} />;
+      })}
     </div>
   );
 }
