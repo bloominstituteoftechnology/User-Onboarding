@@ -12,6 +12,11 @@ const formSchema = yup.object().shape({
         .trim()
         .required('Give your email so we can sell it to Facebook'),
 
+
+    password: yup
+    .string()
+    .required('we want to sell your password to Google'),
+    
     tos: yup
     .boolean()
     .required('Let us sell your data'),

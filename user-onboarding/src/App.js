@@ -36,7 +36,16 @@ function App() {
 
   const [disabled, setDisabled] = useState(initialDisabled) 
   
+
+  const validate = (name, value) =>{
+    yup.reach(schema, name).validate(value)
+      .then(() => setFormErrors({...formErrors, [name]: ''}))
+      .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
+  }
+
+
   const inputChange = (name, value) => {
+    validate(name, value);
     setFormValues({
       ...formValues,
       [name]: value 
@@ -66,12 +75,6 @@ const getUsers = () => {
         }) 
   }
 
-  //value or validate on the next line?
-  const validate = (name, value) =>{
-    yup.reach(schema, name).validate(value)
-      .then(() => setFormErrors({...formErrors, [name]: ''}))
-      .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
-  }
 
   const formSubmit = () => {
     const newUser = {
