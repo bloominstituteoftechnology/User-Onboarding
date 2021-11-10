@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import * as yup from 'yup';
+import Form from '../component/Form'
 
 function App() {
   return (
