@@ -1,11 +1,13 @@
 
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import Form from './Components/Form';
 import User from './Components/User';
 import schema from './Validation/formSchema';
 import * as yup from 'yup';
+import YupPassword from 'yup-password';
+
 
 const initialFormValues = {
 
@@ -18,7 +20,7 @@ const initialFormValues = {
 const initialFormErrors = {
   name: '',
   email: '',
-  password: ''
+  password: '',
 }
 
 const initialUsers = [];
@@ -63,17 +65,45 @@ export default function App() {
     setFormValues({...formValues, [name]:value})
   }
 
-  // const formSubmit = () => {
-  //   const newUser {
-      
-  //   }
-  // }
+  const formSubmit = () => {
+    const newUser = {
+      name: formValues.name.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim(),
+      termsOfService: formValues.termsOfService.trim()
+    }
+    postNewUsers(newUser)
+  }
 
+
+  useEffect(() => {
+    getUsers()
+  }, [])
+
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => setDisabled(!valid))
+  }, [formValues])
 
 
 
   return (
     <div className="App">
+      <header><h1>Club sign in!</h1></header>
+
+      <Form 
+        values={formValues}
+        change={inputChange}
+        submit={formSubmit}
+        disabled={disabled}
+        errors={formErrors}
+      />
+
+      {/* {
+        // users.map(user => {
+          return (
+            <User key={user.id} details={user} />
+          )
+        }) */}
 
     </div>
   );

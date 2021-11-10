@@ -67,7 +67,7 @@ return (
                 <label>Terms of Serice
                     <input 
                     type='checkbox'
-                    name='terms of serice'
+                    name='terms of service'
                     value={values.termsOfService}
                     onChange={onChange}
                     />
