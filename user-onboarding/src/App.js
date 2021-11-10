@@ -71,10 +71,6 @@ function App() {
     postNewUser(newUser);
   };
 
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
-
   useEffect(() => {
     schema.isValid(formValues).then((valid) => setDisabled(!valid));
   }, [formValues]);

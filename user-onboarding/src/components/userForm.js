@@ -1,15 +1,21 @@
 import React from "react";
 
-const onChange = (evt) => {
-  const { name, value, checked, type } = evt.target;
-  const valueToUse = type === "checkbox" ? checked : value;
-};
-
 export default function UserForm(props) {
   const { values, submit, change, disabled, errors } = props;
 
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    submit();
+  };
+
+  const onChange = (evt) => {
+    const { name, value, checked, type } = evt.target;
+    const valueToUse = type === "checkbox" ? checked : value;
+    change(name, valueToUse);
+  };
+
   return (
-    <form className='form-container'>
+    <form className='form-container' onSubmit={onSubmit}>
       <div className='form-inputs'>
         <div className='name'>
           <div className='errors'>
