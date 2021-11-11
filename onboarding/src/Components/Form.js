@@ -1,7 +1,7 @@
 import React from "react";
 
 const Form = (props) => {
-  const { change, submit } = props;
+  const { change, submit, errors } = props;
   const { username, email, password, tos } = props.values;
 
   const onChange = (e) => {
@@ -18,6 +18,10 @@ const Form = (props) => {
   return (
     <div>
       <h1>My form</h1>
+      <p>{errors.username}</p>
+      <p>{errors.password}</p>
+      <p>{errors.email}</p>
+      <p>{errors.tos}</p>
       <form onSubmit={onSubmit}>
         <label>
           Name:
@@ -55,24 +59,3 @@ const Form = (props) => {
 };
 
 export default Form;
-
-// import * as yup from "yup";
-
-// const formSchema = yup.object().shape({
-//   username: yup
-//     .string()
-//     .trim()
-//     .required("Username is required!")
-//     .min(3, "Username must be 3 characters long!"),
-//   email: yup
-//     .string()
-//     .email("Must be a valid email address")
-//     .required("Email is required"),
-//   password: yup
-//     .string()
-//     .required("Password is required!")
-//     .min(6, "Password must be 6 characters long!"),
-//   tos: yup.boolean().oneOf([true], "Must accept the terms and conditions."),
-// });
-
-// export default formSchema;
