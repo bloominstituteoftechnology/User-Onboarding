@@ -10,8 +10,6 @@ const Form =(props) => {
         change(name, newValue)
     }
 
-
-    
         const onSubmit = evt => {
             evt.preventDefault()
             submit()
