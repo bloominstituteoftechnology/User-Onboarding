@@ -1,54 +1,56 @@
-import React from "react";
+import React from 'react'
 
-const Form = () => {
-  return (
-    <form className="formBox">
-      <div className="form-inputs">
-        <h3> Alien Initiation </h3>
-        <label>
-          {" "}
-          Username
-          <input
-            value={values.username}
-            onChange={onChange}
-            name="username"
-            text="text"
-          />
-        </label>
+function Form (props) {
 
-        <label>
-          Email
-          <input
-            value={values.email}
-            onChange={onChange}
-            name="email"
+    const { handleUser, handleEmail, handleButton, handlePassword, tofService } = props
+    console.log(props)
+
+
+
+    return (
+
+        <div className="formInfo">
+
+       
+        <label>Username
+            <input
             type="text"
-          />
+            name="username"
+            onChange={handleUser}
+            />
         </label>
 
-        <label>
-          Password
-          <input
-            value={password}
-            onChange={onChange}
-            name="password"
+        <label> Email
+            <input
+            type="email"
+            name="email"
+            onChange={handleEmail}
+            />
+            
+        </label>
+
+        <label>Passwords
+            <input
+            type="text"
+            name="passwords"
             minLength="8"
-            required
-          />
-        </label>
+            onChange={handlePassword}
+            />
+            </label>
 
-        <label>
-          Terms of Service
-          <input
-            type="checkbox"
-            checked={values[terms - of - service]}
-            onChange={onChange}
-            name="terms-of-of-service"
-          />
-        </label>
-      </div>
-    </form>
-  );
-};
+           <label> Terms of Service
+               <input
+               type="checkbox"
+               name="checkbox"
+               onChange={tofService} 
+               />
+               </label>
 
-export default Form;
+        <button onClick={handleButton}>Add Alien</button>
+
+        
+        </div>
+    )
+}
+
+export default Form
