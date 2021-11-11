@@ -39,7 +39,7 @@ body {
     flex-direction: column;
   }
 
-  .form-group {
+  /* .form-group {
     padding: 0 24px 0 24px;
     display: flex;
     flex-direction: column;
@@ -54,7 +54,7 @@ body {
     &.checkboxes {
       flex: 1;
     }
-  }
+  } */
 }
 
 a {

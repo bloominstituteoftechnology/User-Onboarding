@@ -78,7 +78,7 @@ export default function UserForm(props) {
           <label>
             <div className='button'>
               <button id='submitButton' disabled={disabled}>
-                SUBMIT
+                S U B M I T
               </button>
             </div>
           </label>

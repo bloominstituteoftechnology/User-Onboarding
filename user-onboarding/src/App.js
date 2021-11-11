@@ -77,7 +77,7 @@ function App() {
   return (
     <div className='container'>
       <header>
-        <h1>Enter yo info</h1>
+        <h1>Enter yo info plz</h1>
       </header>
       <UserForm
         values={formValues}
