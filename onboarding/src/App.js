@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import "./App.css";
 import Form from "./Components/Form";
 
+import schema from "./validation/formSchema";
+
 const initialFormValues = {
   username: "",
   password: "",
   email: "",
-  checked: false,
+  tos: false,
 };
 
 function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
+
+  const handleSubmit = () => {};
 
   const handleChange = (name, value) => {
     setFormValues({ ...formValues, [name]: value });

@@ -2,7 +2,7 @@ import React from "react";
 
 const Form = (props) => {
   const { change, submit } = props;
-  const { username, email, password, checked } = props.values;
+  const { username, email, password, tos } = props.values;
 
   const onChange = (e) => {
     const { name, value, checked, type } = e.target;
@@ -46,12 +46,7 @@ const Form = (props) => {
 
         <label>
           Terms of services:
-          <input
-            type="checkbox"
-            name="tos"
-            checked={checked}
-            onChange={onChange}
-          />
+          <input type="checkbox" name="tos" checked={tos} onChange={onChange} />
         </label>
         <input type="submit" value="Create a Friend!" />
       </form>
@@ -60,3 +55,24 @@ const Form = (props) => {
 };
 
 export default Form;
+
+// import * as yup from "yup";
+
+// const formSchema = yup.object().shape({
+//   username: yup
+//     .string()
+//     .trim()
+//     .required("Username is required!")
+//     .min(3, "Username must be 3 characters long!"),
+//   email: yup
+//     .string()
+//     .email("Must be a valid email address")
+//     .required("Email is required"),
+//   password: yup
+//     .string()
+//     .required("Password is required!")
+//     .min(6, "Password must be 6 characters long!"),
+//   tos: yup.boolean().oneOf([true], "Must accept the terms and conditions."),
+// });
+
+// export default formSchema;
