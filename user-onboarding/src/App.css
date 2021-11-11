@@ -1,0 +1,89 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.form-container{
+  display:flex;
+  flex-direction: column;
+  border: 1px solid pink;
+  color:rgb(251, 152, 168);
+  border-radius: 10px;
+  box-shadow:7px 7px 2px 1px rgb(250, 222, 226);
+  width:50%;
+  margin:2% 23%;
+  padding: 2%;
+  font-size: 1.2rem;
+  
+}
+.name{
+  display: flex;
+  justify-content: space-around;
+}
+.form-item{
+  padding: 2% 0%;
+  text-align: center;
+}
+
+input{
+  height:1.4rem;
+  width: 40%;
+  border:1px solid rgb(224, 224, 224);
+  vertical-align:middle;
+  
+}
+input:focus{
+  outline: none;
+  border:1px solid rgb(241, 152, 167);
+  box-shadow: 4px 4px 2px rgb(214, 162, 170);
+}
+button{
+  background-color: pink;
+  color:white;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight:bold;
+  height: 40px;
+  margin: 1% 30%;
+}
+.user-container{
+  border-radius: 20px;
+  padding: 2%;
+  width: 20%;
+  margin: 2% 38%;
+  background-color: pink;
+  color: white;
+}
