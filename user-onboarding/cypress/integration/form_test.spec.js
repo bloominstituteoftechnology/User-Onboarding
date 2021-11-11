@@ -44,6 +44,8 @@ describe("User Onboarding App", () => {
         .should("have.value", "")
         .type("Howard")
         .should("have.value", "Howard");
+      emailInput().should("have.value", "").type("ryan12howard@gmail.com");
+      passwordInput().should("have.value", "").type("djkfhkjdsv");
     });
   });
 });
