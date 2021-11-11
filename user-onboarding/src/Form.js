@@ -70,7 +70,7 @@ export default function Form(props) {
             </div>
 
 
-            <button disabled={disabled}>submit</button>
+            <button id='submitBtn' disabled={disabled}>submit</button>
 
             <div>
           <div>{errors.name}</div>
