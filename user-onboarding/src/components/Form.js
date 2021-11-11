@@ -10,9 +10,14 @@ const Form = (props) => {
         change(name, realValue);
     }
 
+    const onSubmit = evt => {
+        evt.preventDefault();
+        submit();
+    }
+
 
     return (
-        <form>
+        <form onSubmit={onSubmit}>
             <h2>Add user</h2>
             <label> Name 
                 <input

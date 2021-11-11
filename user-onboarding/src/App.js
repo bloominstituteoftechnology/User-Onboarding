@@ -3,6 +3,7 @@ import Form from './components/Form.js';
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+import User from './components/User';
 
 const initialFormValues = {
   username: '',
@@ -31,9 +32,12 @@ function App() {
   const postNewUser = newUser => {
     axios.post('https://reqres.in/api/users')
       .then(res => {
-        console.log(res);
+        // console.log(res);
+        setUsers([res.data, ...users]);
       })
-      .catch(err => console.error(err))
+      .catch(err => console.error(err)).finally(() => {
+        setFormValues(initialFormValues);
+      })
   }
 
   const submitForm = () => {
@@ -43,12 +47,32 @@ function App() {
       password: formValues.password,
       terms: formValues.terms
     }
-    postNewUser(newUser)
+    postNewUser(newUser);
+    setFormValues(initialFormValues);
   }
+
+  useEffect(() => {
+    axios.get('https://reqres.in/api/users')
+      .then(res => {
+        // console.log(res.data.data);
+        setUsers(res.data.data);
+        console.log(users)
+      })
+      .catch(err => console.error(err))
+  }, [])
 
   return (
     <div className="App">
-      <Form values={formValues} change={inputChange}/>
+      <Form values={formValues} change={inputChange} submit={submitForm} />
+      {users.map(user => {
+        return (
+          <User
+            name={user.first_name}
+            email={user.email}
+            id={user.id}
+          />
+        )
+      })}
     </div>
   );
 }
