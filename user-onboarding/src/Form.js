@@ -59,7 +59,7 @@ const Form =(props) => {
               
           />
           </label> 
-         <button type= 'Submit'>Submit</button>
+         <button disabled={disabled}>Submit</button>
         </div>
       </form>
     )

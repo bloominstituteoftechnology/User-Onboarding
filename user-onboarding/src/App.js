@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css';
 import Form from './Form';
 import * as yup from 'yup';
@@ -19,12 +19,16 @@ const initialFormErrors = {
   tos:''
 }
 
+const initialUsers = [];
+const initialDisabled = true;
+
 
 function App() {
   
   const [formValues, setFormValues] = useState(intialFormValues)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
-  const [users, setUsers]=useState([]);
+  const [users, setUsers]=useState(initialUsers);
+  const [disabled, setDisabled] = useState(initialDisabled);
   
 
   
@@ -35,9 +39,17 @@ function App() {
           }).catch(err => {
           console.error(err)
       })
-      .finally(()=> {setFormValues(intialFormValues)}  
-      )
-
+     
+      const postNewHandle= newHandle => {
+        axios.post('https://reqres.in/api/users', newHandle)
+            .then(res => {
+                setUsers([res.data, ...request]);
+            }).catch(err => {
+            console.error(err)
+        }).finally(()=>{
+            setFormValues(intialFormValues)
+        })
+    }
   const validate = (name, value) => {
       yup.reach(schema, name)
           .validate(value)
@@ -53,6 +65,23 @@ function App() {
       })
   }
 
+  const formSubmit = () => {
+    const newHandle = {
+        name: formValues.name.trim(),
+        email: formValues.email.trim(),
+        password: formValues.password.trim(),
+        terms: ['terms']
+    }
+    postNewHandle(newHandle)
+}
+useEffect(() => {
+  handleSubmit()
+}, [])
+
+useEffect(() => {
+  schema.isValid(formValues).then(valid => setDisabled(!valid))
+}, [formValues])
+
   return (
       <div className="App">
           <h1>User On-Boarding</h1>
@@ -60,8 +89,9 @@ function App() {
           <Form
               values={formValues}
               change={inputChange}
-              submit={handleSubmit}
+              submit={formSubmit}
               errors={formErrors}
+              disabled={disabled}
           />
           {users.map(user => {
             <div> key={users.id}

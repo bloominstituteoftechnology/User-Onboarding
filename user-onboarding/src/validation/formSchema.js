@@ -14,7 +14,10 @@ const formSchema = yup.object().shape({
         .string()
         .trim()
         .required('must have a password'),
-    terms: yup.boolean(),
+       // .min gives me an error
+    terms: yup
+    .boolean()
+    .required('Must agree with Terms of service')
     
 
 });
