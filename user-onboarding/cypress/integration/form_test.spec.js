@@ -30,5 +30,20 @@ describe("User Onboarding App", () => {
     it("the submit button starts out disabled", () => {
       submitButton().should("be.disabled");
     });
+
+    it("can navigate to the url", () => {
+      cy.url().should("include", "localhost");
+    });
+
+    it("can type in the inputs", () => {
+      firstNameInput()
+        .should("have.value", "")
+        .type("Ryan")
+        .should("have.value", "Ryan");
+      lastNameInput()
+        .should("have.value", "")
+        .type("Howard")
+        .should("have.value", "Howard");
+    });
   });
 });
