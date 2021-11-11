@@ -29,7 +29,7 @@ function App() {
 
   
   const handleSubmit = () => {
-      axios.get(`https://reqres.in/api/users`)
+      axios.get(`https://reqres.in/api/users`, formValues)
           .then(res => {
               setUsers(res.data)
           }).catch(err => {
@@ -37,7 +37,7 @@ function App() {
       })
       .finally(()=> {setFormValues(intialFormValues)}  
       )
-      
+
   const validate = (name, value) => {
       yup.reach(schema, name)
           .validate(value)
@@ -62,7 +62,6 @@ function App() {
               change={inputChange}
               submit={handleSubmit}
               errors={formErrors}
-              
           />
           {users.map(user => {
             <div> key={users.id}
