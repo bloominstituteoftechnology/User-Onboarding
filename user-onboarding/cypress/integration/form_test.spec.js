@@ -4,6 +4,7 @@ describe("User Onboarding App", () => {
   });
 
   const firstNameInput = () => cy.get("input[name=firstName]");
+  const lastNameInput = () => cy.get("input[name=lastName]");
 
   it("Sanity check to make sure tests are working", () => {
     expect(2 + 2).to.equal(4);
@@ -11,5 +12,6 @@ describe("User Onboarding App", () => {
 
   it("the proper elements are showing", () => {
     firstNameInput().should("exist");
+    lastNameInput().should("exist");
   });
 });
