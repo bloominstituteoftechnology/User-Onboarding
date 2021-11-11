@@ -85,6 +85,24 @@ describe('Form Test', () => {
 
     })
 
+    //Check for form validation if an input is left empty
+    it('Check if user can submit form if an input is left empty',()=> {
+        firstNameInput().should('exist'); 
+        lastNameInput().should('exist');
+        emailInput().should('exist');
+        passwordInput().should('exist');
+        tosInput().should('exist');
+        submitBtn().should('be.disabled');
+
+        
+        lastNameInput().type('Sullivan');
+        emailInput().type('mikesullivan@monster.inc');
+        passwordInput().type('MikeIsTheBest');
+        tosInput().check();
+
+        submitBtn().should('be.disabled')
+    })
+
 
 
 })
