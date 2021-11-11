@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Form = (props) => {
-    const { change, submit } = props;
+    const { change, submit, errors } = props;
     const { username, email, password, checked } = props.value;
 
     const onChange = (e) => {
@@ -15,44 +15,54 @@ const Form = (props) => {
         submit();
     }
 
-    
+
     return(
+        <>
         <div>
-        <h1>my cool form!</h1>
-        <form onSubmit={onSubmit}>
-            <label>Name:
+            <h1>Welcome Aboard!</h1>
+            <p>{errors.username}</p>
+            <p>{errors.password}</p>
+            <p>{errors.email}</p>
+            <p>{errors.tos}</p>
+        </div>
+        <form onSubmit={onSubmit} >
+            <label data-cy='username-label'>Name:
                 <input
                     type='text'
                     name='username'
                     value={username}
                     onChange={onChange}
                 />
-            <label>Email:
+                </label>
+            <label data-cy='email'>Email:
                 <input
                     type='email'
                     name='email'
                     value={email}
                     onChange={onChange}
                     />
-            <label>Password:
+                </label>
+            <label data-cy='password'>Password:
                 <input 
                     type='password'
                     name='password'
                     value={password}
                     onChange={onChange}
                 />
-            <label>Terms of Service:
+            </label>
+            <label data-cy='tos'>Terms of Service:
                 <input
                     type='checkbox'
                     name='tos'
                     checked={checked}
                     onChange={onChange}
                 />
-            <input type='submit' value='Create a friend!' />
-            </label>
+            </label>     
+
+            <button>Submit</button>
         </form>
-        </div>
+        </>
     )
 }
 
-export default Form;
+export default Form

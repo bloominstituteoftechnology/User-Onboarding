@@ -1,32 +1,45 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
-import form from './Components/Form'
-import formSchema from './Validation/formSchema'
+import React, { useState } from 'react';
+import Form from './Components/Form';
+import schema from './Validation/formSchema';
 import axios from 'axios';
+import * as yup from 'yup';
+
 
 const initialFormValues = {
   username: '',
   password: '',
   email: '', 
-  checked: false
+  tos: false
 }
 
+const initialFormErrors = {
+  username: '',
+  password: '',
+  email: '',
+  tos: ''
+}
 
 function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [users, setUsers] = useState([]);
  
   const handleSubmit = () => {
-    axios.post('https://reqres.in/api/users'), formValues)
+    axios.post('https://reqres.in/api/users', formValues)
       .then(res=> {
-        setUsers
+        setUsers( [ res.data, ...users ])
       })
+      .catch(err => console.error(err))
+      .finally(() => setFormValues(initialFormValues))
     
   }
 
   const validate = (name, value) => {
-    yup.reach(value).then(() => setFormErrors({...formErrors, [name]: ''}))
-    .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0]}))
+    yup.reach(schema, value)
+      .validate(value)
+      .then(() => setFormErrors({...formErrors, [name]: ''}))
+      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0]}))
   }
 
   const handleChange = (name, value) => {
@@ -35,16 +48,25 @@ function App() {
   }
 
   return (
-    <form className="form container" >
       <div className="on-board submit">
-        <h2>Welcome Aboard!</h2>
-        <Form values={formValues} />
-
-        <button>Submit</button>
+        <Form 
+        value={formValues} 
+        change={handleChange}
+        errors={formErrors}
+        submit={handleSubmit}
+        />
+        {users.map(user => {
+          return(
+          <div key={user.id}>
+              <p>{user.createdAt}</p>
+              <p>{user.email}</p>
+          </div>
+          )
+        })}
 
         
+        
       </div>
-    </form>
   );
 }
 
