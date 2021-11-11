@@ -25,11 +25,9 @@ return(
       <div className='form-group submit'>
         <h2>Add a User</h2>
 
-        {/* 🔥 DISABLE THE BUTTON */}
-        <button disabled={disabled}>submit</button>
+        <button id='buttonx' disabled={disabled}>submit</button>
 
         <div className='errors'>
-          {/* 🔥 RENDER THE VALIDATION ERRORS HERE */}
           <div>{errors.first_name}</div>
           <div>{errors.last_name}</div>
           <div>{errors.email}</div>
@@ -40,9 +38,6 @@ return(
       <div className='form-group inputs'>
         <h4>General information</h4>
 
-        {/* ////////// TEXT INPUTS ////////// */}
-        {/* ////////// TEXT INPUTS ////////// */}
-        {/* ////////// TEXT INPUTS ////////// */}
         <label>first_name&nbsp;
           <input
             value={values.first_name}
