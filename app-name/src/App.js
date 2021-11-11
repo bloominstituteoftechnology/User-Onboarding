@@ -41,6 +41,7 @@ const validate = (name, value) => {
   .validate(value)
   .then(() => setFormErrors({...formErrors, [name]: ''}))
   .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0]}))
+  .finally(() => setFormValues(initialValues))
 }
 
 const handleChange = (name, value) => {
