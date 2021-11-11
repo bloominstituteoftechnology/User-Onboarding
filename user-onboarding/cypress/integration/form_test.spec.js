@@ -25,4 +25,10 @@ describe("User Onboarding App", () => {
     termsOfService().should("exist");
     submitButton().should("exist");
   });
+
+  describe("Filling out the inputs and cancelling", () => {
+    it("the submit button starts out disabled", () => {
+      submitButton().should("be.disabled");
+    });
+  });
 });
