@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import UserForm from "./components/userForm";
 import * as yup from "yup";
 import schema from "./formSchema";

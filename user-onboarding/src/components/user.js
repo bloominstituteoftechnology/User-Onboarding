@@ -2,13 +2,13 @@ import React from "react";
 
 function User({ details }) {
   if (!details) {
-    return <h3>Working on fetching those use details for you...</h3>;
+    return <h3>Working on fetching those user details for you...</h3>;
   }
 
   return (
-    <div className='user-container'>
+    <div className='user container'>
       <h2>
-        Welcome, {details.firstName} {details.lastName}
+        Welcome {details.firstName} {details.lastName}
       </h2>
       <p>Contact at {details.email}</p>
       {!!details.tos && !!details.tos.length && (
