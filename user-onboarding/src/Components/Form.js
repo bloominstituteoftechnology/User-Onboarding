@@ -26,7 +26,7 @@ return (
     <form className='form container' onSubmit={onSubmit}>
         <div className='form-group submit'>
             <h2>Please be sure to fill out the following</h2>
-            <button disabled={disabled}>submit</button>
+            <button id="submitBtn" disabled={disabled}>submit</button>
             <div className='errors'>
                 <div>{errors.name}</div>
                 <div>{errors.email}</div>
