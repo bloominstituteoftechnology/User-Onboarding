@@ -1,74 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import * as Yup from 'yup';
-import Axios from 'axios';
+import React from 'react';
 
-
-
-const [users, setUsers] = useState([]);
-
-    useEffect(() => {
-        if(props.status) {
-            setUsers([...users, props.status])
-        }
-    }, [props.status])
-   
-   
+const Form =(props) => {
+    const { change, submit , errors } = props;
+    const {name, email ,password, tos,} = props.value;
+  
     const onChange = evt => {
-        const { name, value, checked, type } = evt.target
-        const realValue = type === 'checkbox' ? checked : value;
-        change(name, realValue)
-      }
+        const { name,  value, checked, type } = evt.target
+        const newValue = type === 'checkbox' ? checked : value;
+        change(name, newValue)
+    }
+
+
     
-    
-      return (
+        const onSubmit = evt => {
+            evt.preventDefault()
+            submit()
+        }
         
-            <div className='form'>
-                <Form>
-                    <div>
-                        <Field
-                            type='text'
-                            name='name'
-                            placeholder='Name'
-                        />
-                    </div>
-                    
-                    <div>
-                        <Field
-                            type='email'
-                            name='email'
-                            placeholder='Email address'                        
-                        />
-                        
-                    </div>
-                    
-                    <div>
-                        <Field
-                            type='password'
-                            name='password'
-                            placeholder='Password'
-                        />
-                    </div>
-                    
-                    <div>
-                        <label className='terms'>
-                        <Field
-                            type='checkbox'
-                            name='terms'
-                            checked={values.terms}
-                            onChange={onChange}
-                        />
-                        <p>Terms of Service</p>
-                        </label>
-                        
-                    </div>
-    
-                    <button type='submit'>Submit</button>
-                </Form>
-                {users.map(user => {
-                    return (
-                        <p>{user.name}, {user.email}</p>
-                    )
-                })}
-            </div>
-        )
-    
+        return(
+        <form onSubmit={onSubmit}>
+        <div>
+          <h1>Welcome to the form!</h1>
+          <p>{errors.name}</p>
+          <p>{errors.password}</p>
+          <p>{errors.email}</p>
+          <p>{errors.tos}</p>
+
+          <label> Name
+          <input
+              type='text'
+              name='name'
+              value={name} 
+              onChange={onChange}
+          />
+          </label> 
+          <label> Email
+          <input
+              type='text'
+              name='email'
+              value={email} 
+              onChange={onChange}
+             
+          />
+        
+          </label> 
+          <label> Password
+          <input
+              type='text'
+              name='password'
+              value={password}
+              onChange={onChange} 
+          />
+          </label> 
+          <label> Terms of Service
+          <input
+              type='checkbox'
+              name='tos'
+              checked={tos}
+              onChange={onChange}
+              
+          />
+          </label> 
+         <button type= 'Submit'>Submit</button>
+        </div>
+      </form>
+    )
+  }
+               
+    export default Form;
