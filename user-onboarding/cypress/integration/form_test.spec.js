@@ -47,5 +47,13 @@ describe("User Onboarding App", () => {
       emailInput().should("have.value", "").type("ryan12howard@gmail.com");
       passwordInput().should("have.value", "").type("djkfhkjdsv");
     });
+
+    it("Empty Fields", () => {
+      firstNameInput().type("Joe").clear();
+      lastNameInput().type("Shmoe").clear();
+      emailInput().type("joeshmoe@joe.com").clear();
+      passwordInput().type("joeshmoe").clear();
+      termsOfService().check().uncheck();
+    });
   });
 });
