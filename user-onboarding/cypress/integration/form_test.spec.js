@@ -5,6 +5,10 @@ describe("User Onboarding App", () => {
 
   const firstNameInput = () => cy.get("input[name=firstName]");
   const lastNameInput = () => cy.get("input[name=lastName]");
+  const emailInput = () => cy.get("input[name=email]");
+  const passwordInput = () => cy.get("input[name=password]");
+  const termsOfService = () => cy.get("[type=checkbox]");
+  const submitButton = () => cy.get("button[id=submitButton]");
 
   it("Sanity check to make sure tests are working", () => {
     expect(2 + 2).to.equal(4);
@@ -16,5 +20,9 @@ describe("User Onboarding App", () => {
   it("the proper elements are showing", () => {
     firstNameInput().should("exist");
     lastNameInput().should("exist");
+    emailInput().should("exist");
+    passwordInput().should("exist");
+    termsOfService().should("exist");
+    submitButton().should("exist");
   });
 });
