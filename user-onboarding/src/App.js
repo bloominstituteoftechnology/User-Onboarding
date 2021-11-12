@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
+
+import schema from './Validation/formSchema';
+import * as yup from 'yup';
 import Form from './Components/Form';
 
 const initialFormValues = {
   username: '',
   password: '',
   email: '',
-  checked: false
+  tos: false
 }
 
 
@@ -15,6 +18,9 @@ function App() {
 
   const handleSubmit = () => {
 
+  }
+  const validate = (name, value) => {
+  
   }
 
   const handleChange = (name, value) => {
