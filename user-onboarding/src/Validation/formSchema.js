@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 
 const formSchema = yup.object().shape({
-    name: yup
+    username: yup
     .string()
     .trim()
     .required('Username is required')
