@@ -12,6 +12,7 @@ const  passwordInput = () => cy.get('input[name=password]');
 const tosInput = () => cy.get('input[name=tos]');
 const submitBtn = () => cy.get('button[id="submitBtn"]');
 const foobarInput = () => cy.get('input[name=foobar]');
+const valErrors =() => cy.get('*[data-cy^="valErrors"]')
 //end helpers
 
 //sanity checks
@@ -30,6 +31,7 @@ it('make sure all my elements are showing', () =>{
     tosInput().should('exist');
     submitBtn().should('exist');
     foobarInput().should('not.exist');
+    valErrors().should('exist')
 
     cy.contains('Sell my data to Facebook').should('exist');
     cy.contains(/sell my data to Facebook/i).should('exist');
@@ -44,11 +46,34 @@ it('Does some inputs, checks name email and password', () =>{
         submitBtn().should('be.disabled');
     })
 
-    it('can type inputs',() =>{
+    it('checks if we can type inputs, then tries to submit',() =>{
         nameInput()
-            .should('have.value', '');
+            .should('have.value', '')
+            .type('jifodajf')
+            .should('have.value', 'jifodajf')
+        
+        emailInput()
+            .should('have.value', '')
+            .type('blahblah@gmail.com')
+            .should('have.value', 'blahblah@gmail.com');
+            
+        passwordInput()
+            .should('have.value'), ''
+            .type('fjaasidfsd')
+            .should('have.value', 'fjaasidfsd');
+
+        tosInput()
+            .click()
+            .should('be.checked');
     })
 
+    it('checks for validation errors', () =>{
+        nameInput()
+            .type('f');
+
+        valErrors()
+            .should('exist')
+    })
 
 })
 
