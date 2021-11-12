@@ -33,7 +33,7 @@ function App() {
 
   
   const handleSubmit = () => {
-      axios.get(`https://reqres.in/api/users`, formValues)
+      axios.get(`https://reqres.in/api/users`)
           .then(res => {
               setUsers(res.data)
           }).catch(err => {
@@ -43,7 +43,7 @@ function App() {
       const postNewHandle= newHandle => {
         axios.post('https://reqres.in/api/users', newHandle)
             .then(res => {
-                setUsers([res.data, ...request]);
+                setUsers([res.data]);
             }).catch(err => {
             console.error(err)
         }).finally(()=>{
