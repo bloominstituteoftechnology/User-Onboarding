@@ -16,7 +16,7 @@ const initialFormErrors = {
   username: '',
   email: '',
   password: '',
-  tos: ''
+  tos: false
 }
 
 function App() {
@@ -34,6 +34,7 @@ function App() {
     axios.post('https://reqres.in/api/users', formValues)
       .then(res => {
         setUsers([res.data, ...users])
+        console.log(res.data)
       })
       .catch(err => console.error(err))
       .finally(() => setFormValues(initialFormValues))
@@ -45,9 +46,9 @@ function App() {
     yup.reach(schema, name)
     .validate(value)
     .then(() => setFormErrors({...formErrors, [name]: '' }))
-    .catch(err => setFormErrors(err))
+    .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
   }
-
+console.log('errorrr', formErrors)
   return (
     <div className="App">
       <Form 
@@ -57,6 +58,7 @@ function App() {
       submit={makeSubmit}
       />
       {users.map(user => {
+        return (
         <div className='usercard' key={user.id}> 
           <p>
             {user.email}
@@ -65,6 +67,7 @@ function App() {
             {user.createdAt}
           </p>
         </div>
+        )
       })}
     </div>
   );

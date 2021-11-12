@@ -21,10 +21,10 @@ export default function Form(props) {
     return (
         <div>
              <h1>Enter your information Below</h1>
-             <p>{errors.username}</p>
-             <p>{errors.email}</p>
-             <p>{errors.password}</p>
-             <p>{errors.tos}</p>
+             <p className='userError'>{errors.username}</p>
+             <p className='emailError'>{errors.email}</p>
+             <p className='passError'>{errors.password}</p>
+             <p className='tosError'>{errors.tos}</p>
             <form className='form container' onSubmit={onSubmit}>
                    
               
@@ -61,7 +61,7 @@ export default function Form(props) {
                             onChange={onChange}
                         />
                 </label>
-                <input type='submit' value='Make A User' />
+                <input id='submitBtn' type='submit' value='Make A User' />
 
             </form>
         </div>
