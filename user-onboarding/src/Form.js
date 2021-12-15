@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function Form(props) {
     const {
         values,
@@ -5,7 +7,7 @@ export default function Form(props) {
         change,
         disabled,
         errors,
-    } = props;
+    } = props
 
     const onSubmit = evt => {
         evt.preventDefault()
@@ -19,7 +21,7 @@ export default function Form(props) {
     }
 
     return (
-        <form className="form container" onSubmit={onChange}>
+        <form className='form container' onSubmit={onChange}>
             <div className='form-group submit'>
                 <h3>User SignUp</h3>
                 <button disabled={disabled}>submit</button>
@@ -27,7 +29,6 @@ export default function Form(props) {
                 <div className='errors'>
                     <div>{errors.firstname}</div>
                     <div>{errors.lastname}</div>
-                    <div>{errors.username}</div>
                     <div>{errors.password}</div>
                     <div>{errors.termsofservice}</div>
                 </div>
@@ -35,7 +36,7 @@ export default function Form(props) {
 
             <div className='form-group inputs'>
                 <h4>User Information</h4>
-                <label>First Name
+                <label>First Name:
                     <input
                         value={values.firstname}
                         onChange={onChange}
@@ -43,7 +44,7 @@ export default function Form(props) {
                         type='text'
                     />
                 </label>
-                <label>Last Name
+                <label>Last Name:
                     <input
                         value={values.lastname}
                         onChange={onChange}
@@ -51,15 +52,7 @@ export default function Form(props) {
                         type='text'
                     />
                 </label>
-                <label>Username&nbsp;
-                    <input
-                        value={values.username}
-                        onChange={onChange}
-                        name='username'
-                        type='text'
-                    />
-                </label>
-                <label>Email
+                <label>Email:
                     <input
                         value={values.email}
                         onChange={onChange}
@@ -67,7 +60,7 @@ export default function Form(props) {
                         type='text'
                     />
                 </label>
-                <label>Password
+                <label>Password:
                     <input
                         value={values.password}
                         onChange={onChange}
@@ -75,7 +68,7 @@ export default function Form(props) {
                         type='text'
                     />
                 </label>
-                <label>Terms of Servive
+                <label>Terms of Service
                     <input
                         type='checkbox'
                         name='termsofservice'

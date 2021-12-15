@@ -9,7 +9,6 @@ import schema from './validation/formSchema'
 const initialFormValues = {
   firstname: '',
   lastname: '',
-  username: '',
   email: '',
   password: '',
   termsofservice: false,
@@ -18,7 +17,6 @@ const initialFormValues = {
 const initialFormErrors = {
   firstname: '',
   lastname: '',
-  username: '',
   email: '',
   password: '',
   termsofservice: '',
@@ -36,8 +34,8 @@ export default function App() {
   const getUsers = () => {
     axios.get('https://reqres.in/api/users')
       .then(res => {
-        console.log(res)
-        setUsers(res.data);
+        console.log(res.data.data)
+        setUsers(res.data.data);
       }).catch(err => console.error(err))
   }
 
@@ -49,7 +47,7 @@ export default function App() {
     .finally(() => setFormValues(initialFormValues))
   }
 
-  const validate = ( name, value ) => {
+  const validate = (name, value) => {
     yup.reach(schema, name)
     .validate(value)
     .then(() => setFormErrors({ ...formErrors, [name]: '' }))
@@ -58,17 +56,14 @@ export default function App() {
 
   const inputChange = (name, value) => {
     validate(name, value);
-    setFormValues({
-      ...formValues,
-      [name]: value
-    })
+    setFormValues({...formValues, [name]: value
+})
   }
 
   const formSubmit = () => {
     const newUser = {
       firstname: formValues.firstname.trim(),
       lastname: formValues.lastname.trim(),
-      username: formValues.username.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
       termsofservice: formValues.termsofservice.trim()
@@ -98,13 +93,13 @@ export default function App() {
         errors={formErrors}
       />
 
-      {/* {
+{
         users.map(user => {
           return (
             <User key={user.id} details={user} />
           )
         })
-      } */}
+      }
       </div>
     </div>
   );
