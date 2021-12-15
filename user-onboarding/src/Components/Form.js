@@ -11,18 +11,19 @@ const Form = (props) => {
         change(name, newVal);
     }
 
-    const onsubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         submit();
     }
+
     return (
         <div>
-        <h1>My Radtastic Form</h1>
+        <h1>My Fantastic Form</h1>
         <form>
             <label>Name:
                 <input
                 type="text"
-                name="user"
+                name="username"
                 value={username}
                 onChange={onChange}
             />
