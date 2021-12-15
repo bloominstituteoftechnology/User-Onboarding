@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const formSchema = yup.object().shape({
-    name: yup
+    first_name: yup
         .string()
         .trim()
         .required('Name is required!')
@@ -11,13 +11,13 @@ const formSchema = yup.object().shape({
         .string()
         .email('Must be a valid email')
         .required('Email is required!'),
-
     password: yup
         .string()
-        .password()
+        .min(5, 'Password has to be at least 5 characters!')
         .required('Email is required!'),
 
-    terms: yup.boolean().required('Checkbox is required'),
+    terms: yup
+        .boolean()
 
 })
 

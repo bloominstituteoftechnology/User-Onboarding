@@ -11,13 +11,13 @@ import * as yup from 'yup';
 const initialUsers = [];
 const initialDisabled = true;
 const initialFormValues = {
-  name: '',
+  first_name: '',
   email: '',
   password: '',
   terms: false,
 }
 const initialFormErrors = {
-  name: '',
+  first_name: '',
   email: '',
   role: '',
   terms: '',
@@ -30,6 +30,13 @@ function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
+  const getUsers = () => {
+    axios.get(`https://reqres.in/api/users`)
+      .then(resp => {
+        console.log(resp);
+        setUsers(resp.data.data);
+      }).catch(err => console.error(err))
+  }
   const postUser = newUser => {
     axios.post(`https://reqres.in/api/users`, newUser)
       .then(resp => {
@@ -44,15 +51,40 @@ function App() {
       .then(() => setFormErrors({ ...formErrors, [name]: ''}))
       .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
   }
-  
+  const inputChange = (name, value) => {
+    validate(name, value);
+    setFormValues({
+      ...formValues,
+      [name]: value
+    })
+  }
+
+  const formSubmit = () => {
+    const newUser = {
+      first_name: formValues.first_name.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim(),
+      terms: formValues.terms
+    }
+    postUser(newUser);
+  }
+
+  //SIDE EFFECTS//
+  useEffect(() => {
+    getUsers()
+  }, [])
+
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => setDisabled(!valid))
+  }, [formValues])
+
   return (
     <div className="App">
-    
        <h1>User Onboarding</h1>
        <Form 
        values={formValues}
-      //  change={inputChange}
-      //  submit={formSubmit}
+       change={inputChange}
+       submit={formSubmit}
        disabled={disabled}
        errors={formErrors}
        />
@@ -64,7 +96,6 @@ function App() {
            )
          })
        }
-    
     </div>
   );
 }

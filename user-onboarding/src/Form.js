@@ -9,7 +9,7 @@ export default function Form(props) {
         submit();
     }
     const onChange = evt => {
-        console.log(evt.target.checked, evt.target.type);
+        // console.log(evt.target.checked, evt.target.type);
         const { name, value, type, checked } = evt.target;
         const valueToUse = type === 'checkbox' ? checked : value;
         change(name, valueToUse);
@@ -17,20 +17,18 @@ export default function Form(props) {
 
     return (
 
-    <form className='form' onSubmit={onSubmit}>
+    <form className='form container' onSubmit={onSubmit}>
         <div className='input'>
-            <h3>Onboarding Information</h3>
-
-            <label>Name
+            <h3>Information</h3>
+            <label>Name: 
                 <input
-                    value={values.name}
+                    value={values.first_name}
                     onChange={onChange}
-                    name='name'
+                    name='first_name'
                     type='text'
                 />
             </label>
-
-            <label>Email
+            <label>Email: 
                 <input 
                     value={values.email}
                     onChange={onChange}
@@ -38,8 +36,7 @@ export default function Form(props) {
                     type='text'
                 />
             </label>
-
-            <label>Password
+            <label>Password: 
                 <input 
                     value={values.password}
                     onChange={onChange}
@@ -47,10 +44,10 @@ export default function Form(props) {
                     type='password'
                 />
             </label>
-
+        </div>
         <div className='checkbox'>
             {/* <h3>Terms of Service</h3> */}
-            <label>Terms of Service
+            <label>Terms of Service: 
                 <input 
                     type='checkbox'
                     name='terms'
@@ -59,21 +56,18 @@ export default function Form(props) {
                 />
             </label>
         </div>
-            <h3>Click to Submit</h3> 
-        </div>
 
         <div className='submit'>
-            <h3>Click to submit</h3>
-            <button disabled={disabled}>Submit</button>
-        </div>
+            <button disabled={disabled}>Submit</button>    
+            <div className='errors'>
+                <div>{errors.first_name}</div>
+                <div>{errors.email}</div>
+                <div>{errors.password}</div>
+                <div>{errors.terms}</div>
+            </div>
 
-        <div className='errors'>
-            <div>{errors.name}</div>
-            <div>{errors.email}</div>
-            <div>{errors.password}</div>
-            <div>{errors.terms}</div>
-        </div>
 
+        </div>
     </form>
 
     )
