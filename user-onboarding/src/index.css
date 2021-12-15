@@ -22,6 +22,9 @@ code {
   margin: 16px 8px;
   padding: 16px;
   background-color: rgb(236, 186, 186);
+  width: 50%;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
 .input {
@@ -44,10 +47,6 @@ label{
   margin: 10px;
 }
 
-/* .checkbox{
-  display: flex;
-  margin: px;
-} */
 
 button {
   margin: 20px;
