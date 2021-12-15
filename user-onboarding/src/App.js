@@ -5,9 +5,7 @@ function App() {
     <div className="container">
       <header><h1>User App</h1></header>
 
-    <User>
-
-    </User>
+    <User/>
     </div>
   )
 }
