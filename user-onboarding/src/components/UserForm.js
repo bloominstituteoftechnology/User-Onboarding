@@ -15,10 +15,8 @@ export default function UserForm({values, submit, change, disabled, errors}) {
 
     return (
     <form className='form container' onSubmit={onSubmit}>
-        <div className='form submits'>
+        <div className='form'>
             <h2>Add a new User</h2>
-
-            <button disabled={disabled}>Add Me!</button>
 
             <div className='errors'>
                 <div>{errors.name}</div>
@@ -29,7 +27,6 @@ export default function UserForm({values, submit, change, disabled, errors}) {
         </div>
 
         <div className='form inputs'>
-            <h4>Enter your Info Below!</h4>
 
             <label>Name
                 <input 
@@ -49,6 +46,7 @@ export default function UserForm({values, submit, change, disabled, errors}) {
                 />
             </label>
 
+        <div className='password'>
             <label>Password 
                 <input 
                 value={values.password}
@@ -57,9 +55,11 @@ export default function UserForm({values, submit, change, disabled, errors}) {
                 type='password'
                 />
             </label>
-
+        </div>
+        
             <div className='form checkbox'>
                 <h4>Terms and Conditions</h4>
+                <p>You agree to give away all your data and let it be sold to a third party.</p>
 
                 <label>I Agree 
                     <input 
@@ -79,6 +79,9 @@ export default function UserForm({values, submit, change, disabled, errors}) {
                     onChange={onChange}
                     />
                 </label>
+            </div>
+            <div className='submits'>
+                <button disabled={disabled}>Add Me!</button>
             </div>
         </div>
     </form>

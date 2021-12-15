@@ -6,10 +6,9 @@ export default function User({ details }) {
    }
     return (
         <div className='user container'>
-            <h2>{details.name}</h2>
+            <h2>{details.first_name} {details.last_name}</h2>
             <p>Email: {details.email}</p>
-            <p>Password: ********(add toggle to show password?)</p>
-            <p>Terms of Service: You agree to give away all your data and let it be sold to a third party. You will then be bombarded with calls, texts, emails, and even advertising to obtain more information and money from you.</p>
+            <p>Password: {details.password}</p>
 
             {
                 !!details.terms && !! details.terms.length && 

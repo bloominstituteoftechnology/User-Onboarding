@@ -1,38 +1,61 @@
-.App {
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("../public/Stargaze\ app\ background.png");
+  background-repeat: no-repeat;
+  color: #696969;
+  font-family: "Comfortaa", serif;
+}
+
+h1,
+h2 {
+  color: #9370db;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  border: 1px solid rgb(210, 210, 210);
+  border-radius: 6px;
+  box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
+  margin: 16px 8px;
+  padding: 16px;
+  background-color: #ffe4b5;
+  opacity: 75%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.password {
+  margin-right: 5%;
+}
+
+.submits {
+  margin: 1%;
+}
+
+button {
+  width: 30%;
+  padding: 2%;
+  color: #9370db;
+  background-color: aquamarine;
+}
+
+input {
+  margin-left: 3%;
+}
+
+.form,
+.user {
+  padding: 0 24px 0 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  text-align: center;
 }

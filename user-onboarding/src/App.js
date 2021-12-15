@@ -1,9 +1,9 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import UserForm from './UserForm';
-import User from './User';
+import UserForm from './components/UserForm';
+import User from './components/User';
 import axios from 'axios';
-import schema from './schema';
+import schema from './components/schema';
 import * as yup from 'yup';
 
 const initialFormValues = {
@@ -30,14 +30,14 @@ function App() {
   const getUsers = () => {
     axios.get('https://reqres.in/api/users')
     .then(res => {
-      console.log(res);
-      setUsers(res.data);
+      setUsers(res.data.data);
     }).catch(err => console.error(err))
   }
 
   const postNewUser = newUser => {
-    axios.post('https://reqres.in/api/users')
+    axios.post('https://reqres.in/api/users', newUser)
     .then(res => {
+      console.log(res);
       setUsers([ res.data, ...users]);
     }).catch(err => console.error(err))
     .finally(() => setFormValues(initialFormValues))
@@ -57,10 +57,9 @@ function App() {
 
   const formSubmit = () => {
     const newUser = {
-      name: formValues.name.trim(),
+      first_name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(), 
-      terms: ['agree', 'disagree'].filter(term => !!formValues[term])
     }
     postNewUser(newUser);
   }
