@@ -3,11 +3,9 @@ import * as yup from 'yup';
 const userFormSchema = yup.object().shape({
     first_name: yup
         .string()
-        .trim()
         .required('First Name is required'),
     last_name: yup
         .string()
-        .trim()
         .required('Last Name is required'),
     email: yup
         .string()
@@ -17,7 +15,8 @@ const userFormSchema = yup.object().shape({
         .string()
         .min(8, 'Password must be 8 or more characters')
         .required('Please enter your password'),
-    terms: yup.boolean(),
+    terms: yup.boolean()
+        .oneOf([true], 'Must accept the terms.'),
 
 })
 

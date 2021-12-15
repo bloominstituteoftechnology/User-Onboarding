@@ -41,9 +41,9 @@ export default function App() {
   }
 
   const addNewUser = newUser => {
-    axios.post('https://reqres.in/api/users')
+    axios.post('https://reqres.in/api/users', newUser)
       .then(response => {
-        setUsers([ response.data.data, ...users])
+        setUsers([ response.data, ...users ])
       }).catch(err => console.log(err))
       .finally(() => setFormValues(initialValues))
   }
@@ -58,7 +58,7 @@ export default function App() {
 
   const changeValues = (name, value) => {
     validate(name, value);
-    setFormValues({ ...setFormValues, [name]: value})
+    setFormValues({ ...formValues, [name]: value})
   }
 
   const submitUser = () => {
@@ -67,7 +67,7 @@ export default function App() {
       last_name: formValues.last_name.trim(),
       email: formValues.email.trim(),
       password: formValues.password,
-      terms: ['terms']
+      terms: ['terms'].filter(agree => !!formValues[agree])
     }
     addNewUser(newUser);
   }

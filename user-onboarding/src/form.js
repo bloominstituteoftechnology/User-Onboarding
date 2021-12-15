@@ -1,11 +1,17 @@
 import React from "react";
 
 export default function UserForm(props) {
-    const { values, change, submit } = props;
+    const { values, change, submit, errors, disabled } = props;
 
     const onSubmit = event => {
         event.preventDefault()
         submit()
+    }
+
+    const onChange = event => {
+        const { name, value, checked, type } = event.target;
+        const valueToUse = type === 'checkbox' ? checked : value;
+        change(name, valueToUse)
     }
 
   return (
@@ -13,14 +19,21 @@ export default function UserForm(props) {
       <div>
         <h2>Add New User</h2>
         {/**DISABLE BUTTON IF NEEDED */}
-        
+        <button disabled={disabled}>Submit</button>
+        <div className='errors'>
+            <div>{errors.first_name}</div>
+            <div>{errors.last_name}</div>
+            <div>{errors.email}</div>
+            <div>{errors.password}</div>
+            <div>{errors.terms}</div>
+        </div>
 
         <div className="form-input">
           <label>
             First Name:
             <input
               value={values.first_name}
-              onChange={change}
+              onChange={onChange}
               name="first_name"
               type="text"
             />
@@ -29,7 +42,7 @@ export default function UserForm(props) {
             Last Name:
             <input
               value={values.last_name}
-              onChange={change}
+              onChange={onChange}
               name="last_name"
               type="text"
             />
@@ -37,7 +50,7 @@ export default function UserForm(props) {
           <label>Email:
             <input 
               value={values.email}
-              onChange={change}
+              onChange={onChange}
               name='email'
               type='email'
             />
@@ -46,7 +59,7 @@ export default function UserForm(props) {
             <input 
               type='password'
               name='password'
-              onChange={change}
+              onChange={onChange}
             />
           </label>
           <label>Do you agree to the terms?
@@ -54,11 +67,11 @@ export default function UserForm(props) {
               type='checkbox'
               name='terms'
               checked={values.terms}
-              onChange={change}
+              onChange={onChange}
             />
           </label>
 
-          <button>Submit</button>
+
         </div>
       </div>
     </form>
