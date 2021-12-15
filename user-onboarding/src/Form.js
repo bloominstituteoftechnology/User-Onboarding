@@ -60,7 +60,7 @@ export default function App() {
     // 🔥 STEP 6- IMPLEMENT! ON SUCCESS ADD NEWLY CREATED FRIEND TO STATE
     //    helper to [POST] `newFriend` to `http://buddies.com/api/friends`
     //    and regardless of success or failure, the form should reset
-    axios.post('https://reqres.in/api/users', newFriend)
+    axios.post('http://buddies.com/api/friends', newFriend)
       .then(resp => {
         setFriends([ resp.data, ...friends ]);
       }).catch(err => console.error(err))
