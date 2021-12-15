@@ -1,63 +1,63 @@
-import React from 'react';
+import React from 'react'
+
+
 
 export default function Form (props) {
-    const {change, submit} = props;
-    const {username, email, password, tos} = props.value;
+    const { change } = props;
+    const { username, email, password, tos, checked } = props;
     const onChange = e => {
-        const {name, value, checked, type} = e.target;
-        const newVal = type === 'checkbox' ? checked : value;
-        change(name, newVal);
-}
-const onSubmit = e => {
-    e.preventDefault();
-    onSubmit();
-}
+        const { name, value, checked, type } = e.target;
+        const newValue = type === 'checkbox' ? checked : value;
+        change(name, newValue);
+        
+    }
+    const onSubmit = e => {
+        e.preventDefault();
+        onSubmit();
+    }
 
-return (
-<div className='form'>
-  <form onSubmit={onSubmit}>
+    return(
+    <div className='form'>
+    <form onSubmit={onSubmit}> 
     <label htmlFor='username'>Name:</label>
-      <input
+        <input 
         type='text'
-        id='username'
+        id='username' 
         name='username'
         placeholder='John Doe'
-        value={props.username}
-        onChange={onChange}
-        />
-      <br/> 
-    <label htmlFor='password'>Password:</label>
-      <input
-        type='password'
-        id='password'
-        name='password'
-        placeholder='Password'
-        value={props.password}
-        />
-      <br/>
+        value={username}
+        onChange={onChange}/>
+            <br/>
     <label htmlFor='email'>Email:</label>
-      <input
-        type='email'
+        <input 
+        type='email' 
+        name='email' 
         id='email'
-        name='email'
         placeholder='JohnDoe1234@gmail.com'
-        value={props.email}
+        value={email}/>
+            <br/>
+    <label htmlFor='password'>Password:</label>
+        <input 
+        type='password'
+        name='password'
+        id='password'
+        placeholder='Password'
+        value={password}
         />
-      <br/>
+            <br/>
     <label htmlFor='terms'>Terms of Service</label>
-      <input
+        <input 
         type='checkbox'
+        name='tof'
         id='terms'
-        name='tos'
         checked={checked}
-        value={props.terms}
-        />
-      <br/>
-      <input
-      type='submit'
-      value='Create a Friend!'
-      />
-  </form>
-</div>
-  )
+        value={tos}/>
+            <br/>
+    <input
+     type='submit' 
+     value='Create a friend!'
+     />
+    </form>
+    </div>
+    )
 }
