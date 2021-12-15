@@ -20,6 +20,7 @@ export default function Form(props) {
     <form className='form' onSubmit={onSubmit}>
         <div className='input'>
             <h3>Onboarding Information</h3>
+
             <label>Name
                 <input
                     value={values.name}
@@ -46,21 +47,14 @@ export default function Form(props) {
                     type='password'
                 />
             </label>
+
         <div className='checkbox'>
-            <h3>Terms of Service</h3>
-            <label>ABC
+            {/* <h3>Terms of Service</h3> */}
+            <label>Terms of Service
                 <input 
                     type='checkbox'
-                    name='abc'
-                    checked={values.abc}
-                    onChange={onChange}
-                />
-            </label>
-            <label>DEF
-                <input 
-                    type='checkbox'
-                    name='def'
-                    checked={values.def}
+                    name='terms'
+                    checked={values.terms}
                     onChange={onChange}
                 />
             </label>
@@ -77,8 +71,7 @@ export default function Form(props) {
             <div>{errors.name}</div>
             <div>{errors.email}</div>
             <div>{errors.password}</div>
-            <div>{errors.abc}</div>
-            <div>{errors.def}</div>
+            <div>{errors.terms}</div>
         </div>
 
     </form>

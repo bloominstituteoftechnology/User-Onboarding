@@ -17,8 +17,7 @@ const formSchema = yup.object().shape({
         .password()
         .required('Email is required!'),
 
-    abd: yup.boolean().required('Checkbox is required'),
-    def: yup.boolean().required('Checkbox is required'),
+    terms: yup.boolean().required('Checkbox is required'),
 
 })
 

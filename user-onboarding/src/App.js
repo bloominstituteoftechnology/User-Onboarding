@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Form from './Form';
-import formSchema from './validation/formSchema';
+import User from './User';
+import schema from './validation/formSchema';
 import './App.css';
 import axios from 'axios';
 import * as yup from 'yup';
@@ -13,15 +14,13 @@ const initialFormValues = {
   name: '',
   email: '',
   password: '',
-  abc: false,
-  def: false,
+  terms: false,
 }
 const initialFormErrors = {
   name: '',
   email: '',
   role: '',
-  abc: '',
-  def: '',
+  terms: '',
 }
 
 function App() {
@@ -39,6 +38,12 @@ function App() {
       }).catch(err => console.error(err))
       .finally(() => setFormValues(initialFormValues))
   }
+  const validate = (name, value) => {
+    yup.reach(schema, name)
+      .validate(value)
+      .then(() => setFormErrors({ ...formErrors, [name]: ''}))
+      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
+  }
   
   return (
     <div className="App">
@@ -51,6 +56,14 @@ function App() {
        disabled={disabled}
        errors={formErrors}
        />
+
+       {
+         users.map(user => {
+           return (
+             <User key={user.id} details={user} />
+           )
+         })
+       }
     
     </div>
   );
