@@ -28,6 +28,7 @@ export default function UserForm({values, submit, change, disabled, errors}) {
 
         <div className='form inputs'>
 
+        <div className='name'>
             <label>Name
                 <input 
                 value={values.name}
@@ -36,7 +37,7 @@ export default function UserForm({values, submit, change, disabled, errors}) {
                 type='text'
                 />
             </label>
-
+        </div>
             <label>Email 
                 <input 
                 value={values.email}
