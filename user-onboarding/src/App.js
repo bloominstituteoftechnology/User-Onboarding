@@ -1,7 +1,15 @@
-
-
+import React, { useState, useEffect } from "react";
+import User from './Form';
 function App() {
-  return ()
+  return (
+    <div className="container">
+      <header><h1>User App</h1></header>
+
+    <User>
+
+    </User>
+    </div>
+  )
 }
 
 export default App;
