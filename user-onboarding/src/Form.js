@@ -1,17 +1,26 @@
-import React from "React";
+import React from "react";
 
-export default function Form({ newUser }) {
-  const handleChange = () => {};
+export default function Form({ user, change, submit, disabled }) {
+  const handleChange = (evt) => {
+    const { name, value, checked, type } = evt.target;
+    const valueProvided = "checkbox" === type ? checked : value;
+    change(name, valueProvided);
+  };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    submit();
+  };
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           First Name:
           <input
             type="text"
             name="first_name"
-            value={newUser.first_Name}
+            value={user.first_Name}
             onChange={handleChange}
           />
         </label>
@@ -20,7 +29,7 @@ export default function Form({ newUser }) {
           <input
             type="text"
             name="last_name"
-            value={newUser.first_Name}
+            value={user.first_Name}
             onChange={handleChange}
           />
         </label>
@@ -29,7 +38,7 @@ export default function Form({ newUser }) {
           <input
             type="email"
             name="email"
-            value={newUser.email}
+            value={user.email}
             onChange={handleChange}
           />
         </label>
@@ -38,20 +47,22 @@ export default function Form({ newUser }) {
           <input
             type="text"
             name="password"
-            value={newUser.password}
+            value={user.password}
             onChange={handleChange}
           />
         </label>
         <label>
+          {" "}
+          Check, if you agree to Terms of Service
           <input
             type="checkbox"
             name="termsOfService"
-            checked={newUser.termsOfService}
+            checked={user.termsOfService}
             onChange={handleChange}
           />
         </label>
       </form>
-      <button>Submit</button>
+      <button disabled={disabled}>Submit</button>
     </div>
   );
 }
