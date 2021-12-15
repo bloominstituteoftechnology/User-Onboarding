@@ -2,8 +2,8 @@ import React from 'react';
 
 
 const Form = (props) => {
-    const { change, submit } = props;
-    const { username, email, password, checked } = props.values;
+    const { change, submit, errors } = props;
+    const { username, email, password, tos } = props.values;
 
     const onChange = (e) => {
         const {name, value, checked, type }= e.target;
@@ -19,7 +19,11 @@ const Form = (props) => {
     return (
         <div>
         <h1>My Fantastic Form</h1>
-        <form>
+        <p>{errors.username}</p>
+        <p>{errors.password}</p>
+        <p>{errors.email}</p>
+        <p>{errors.tos}</p>
+        <form onSubmit={onSubmit}>
             <label>Name:
                 <input
                 type="text"
@@ -48,7 +52,7 @@ const Form = (props) => {
                 <input 
                 type="checkbox"
                 name="tos"
-                checked={checked}
+                checked={tos}
                 onChange={onChange}
                 />
             </label>
