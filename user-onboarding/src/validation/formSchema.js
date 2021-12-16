@@ -18,6 +18,7 @@ const formSchema = yup.object().shape({
 
     terms: yup
         .boolean()
+        .oneOf([true], 'Please accept the Terms of Service!'),
 
 })
 
