@@ -18,7 +18,6 @@ export default function UserForm(props) {
     <form className="form-container" onSubmit={onSubmit}>
       <div>
         
-        {/**DISABLE BUTTON IF NEEDED */}
         <div className='inputSection'>
         <h2>Add New User</h2>
         <div className="form-input">
