@@ -8,13 +8,13 @@ import * as yup from 'yup';
 import User from './User'
 
 const initialFormValues = {
-  username: '',
+  first_name: '',
   email: '',
   password: '',
   tos: false,
 }
 const initialFormErrors = {
-  username: '',
+  first_name: '',
   email: '',
   password: '',
 }
@@ -31,7 +31,8 @@ function App() {
   const getUsers = () => {
     axios.get(`https://reqres.in/api/users`)
       .then(resp => {
-        setUsers(resp.data);
+        console.log(resp.data.data, 'testing')
+        setUsers(resp.data.data);
       }).catch(err => console.error(err))
   }
 
@@ -61,7 +62,7 @@ function App() {
 
   const formSubmit = () => {
     const newUser = {
-      username: formValues.username.trim(),
+      first_name: formValues.first_name.trim(),
       email: formValues.email.trim(),
       tos: !!formValues.tos,
       password: formValues.password
@@ -69,9 +70,9 @@ function App() {
     postNewUser(newUser);
   }
 
-  // useEffect(() => {
-  //   getUsers()
-  // }, [])
+  useEffect(() => {
+    getUsers()
+  }, [])
 
   useEffect(() => {
     formSchema.isValid(formValues).then(valid => setDisabled(!valid))
