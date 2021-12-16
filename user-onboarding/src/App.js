@@ -92,14 +92,16 @@ export default function App() {
         disabled={disabled}
         errors={formErrors}
       />
-
-{
-        users.map(user => {
-          return (
-            <User key={user.id} details={user} />
-          )
-        })
-      }
+        <div className='user-details'>
+          <h4>User Details</h4>
+        {
+          users.map(user => {
+            return (
+              <User key={user.id} details={user} />
+            )
+          })
+        }
+        </div>
       </div>
     </div>
   );

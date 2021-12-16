@@ -22,20 +22,8 @@ export default function Form(props) {
 
     return (
         <form className='form container' onSubmit={onChange}>
-            <div className='form-group submit'>
-                <h3>User SignUp</h3>
-                <button disabled={disabled}>submit</button>
-            
-                <div className='errors'>
-                    <div>{errors.firstname}</div>
-                    <div>{errors.lastname}</div>
-                    <div>{errors.password}</div>
-                    <div>{errors.termsofservice}</div>
-                </div>
-            </div>
-
             <div className='form-group inputs'>
-                <h4>User Information</h4>
+                <h4>User Sign Up</h4>
                 <label>First Name:
                     <input
                         value={values.firstname}
@@ -76,6 +64,15 @@ export default function Form(props) {
                         onChange={onChange}
                     />
                 </label>
+                <div className='form-group submit'>
+                <button disabled={disabled}>submit</button>
+                <div className='errors'>
+                    <div>{errors.firstname}</div>
+                    <div>{errors.lastname}</div>
+                    <div>{errors.password}</div>
+                    <div>{errors.termsofservice}</div>
+                </div>
+            </div>
             </div> 
         </form>
     )
