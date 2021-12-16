@@ -29,7 +29,7 @@ describe('User Onboarding', () => {
         testInput().should('not.exist');
     })
 
-describe('Inputting Text and Submit', () => {
+describe('Inputting Text and Checkbox', () => {
     it('can navigate to the site', () => {
         cy.url().should('include', 'localhost');
     })
@@ -52,9 +52,19 @@ describe('Inputting Text and Submit', () => {
         .type('123abc')
         .should('have.value', '123abc')
     })
-    it('terms is unchecked', () => {
+    it('terms can be checked and unchecked', () => {
         termsInput()
+        .check()
         .uncheck()
+    })
+  
+describe('Validation of when an input field is empty', () => {
+    it('submit button disabled with missing inputs', () => {
+        // nameInput().type('k');
+        emailInput().type('kim@kim.com');
+        pwInput().type('abc123');
+        termsInput().check();
+        submit().should('be.disabled');
     })
     it('submit button enabled when all inputs filled out', () => {
         nameInput().type('Kim Nguyen');
@@ -63,6 +73,7 @@ describe('Inputting Text and Submit', () => {
         termsInput().check();
         submit().should('not.be.disabled');
     })
+})
 
    
    
