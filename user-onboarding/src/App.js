@@ -16,18 +16,22 @@ function App() {
   }, [])
 
   const change = (name, value) => {
-    console.log(name, value);
     setFormValues({...formValues, [name]: value})
   }
 
   const postUser = newUser => {
     axios.post('https://reqres.in/api/users', newUser)
     .then(resp => {
-      console.log(resp);
-    }
-    )
+      const idk = [...users];
+      idk.push(newUser);
+      setUsers(idk);
+    })
     .catch(error => {
       console.error(error);
+    })
+    .finally(() => {
+      console.log(users);
+      setFormValues(initialFormValues);
     })
   }
 
@@ -41,24 +45,13 @@ function App() {
     postUser(newUser);
   }
   return (
-
+    <>
     <Form formValues={formValues} setFormValues={setFormValues} users={users} setUsers={setUsers} change={change} submitUser={submitUser}/>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
+    
+    {
+      users.map((item) => (<h1>{item.name}</h1>))
+    }
+    </>
   );
 }
 
