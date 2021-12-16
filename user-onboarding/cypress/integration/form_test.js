@@ -57,10 +57,10 @@ describe('Inputting Text and Checkbox', () => {
         .check()
         .uncheck()
     })
-  
+})
 describe('Validation of when an input field is empty', () => {
     it('submit button disabled with missing inputs', () => {
-        // nameInput().type('k');
+        // nameInput().type('k'); missing input here
         emailInput().type('kim@kim.com');
         pwInput().type('abc123');
         termsInput().check();
@@ -72,11 +72,7 @@ describe('Validation of when an input field is empty', () => {
         pwInput().type('abc123');
         termsInput().check();
         submit().should('not.be.disabled');
-    })
-})
-
-   
-   
+    })   
 })
 
 
