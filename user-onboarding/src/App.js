@@ -66,7 +66,7 @@ export default function App() {
       first_name: formValues.first_name.trim(),
       last_name: formValues.last_name.trim(),
       email: formValues.email.trim(),
-      password: formValues.password,
+      password: formValues.password.trim(),
       terms: ['terms'].filter(agree => !!formValues[agree])
     }
     addNewUser(newUser);
@@ -83,7 +83,7 @@ useEffect(() => {
 
 return (
   <div className='container'>
-    <header><h1>List of Users</h1></header>
+    <h1>Users App</h1>
 
     <Form 
       values={formValues}
@@ -100,7 +100,6 @@ return (
         )
       })
     }
-
   </div>
 )
 }

@@ -17,9 +17,11 @@ export default function UserForm(props) {
   return (
     <form className="form-container" onSubmit={onSubmit}>
       <div>
-        <h2>Add New User</h2>
+        
         {/**DISABLE BUTTON IF NEEDED */}
-        <button disabled={disabled}>Submit</button>
+        <div className='inputSection'>
+        <h2>Add New User</h2>
+        <div className="form-input">
         <div className='errors'>
             <div>{errors.first_name}</div>
             <div>{errors.last_name}</div>
@@ -27,8 +29,6 @@ export default function UserForm(props) {
             <div>{errors.password}</div>
             <div>{errors.terms}</div>
         </div>
-
-        <div className="form-input">
           <label>
             First Name:
             <input
@@ -55,10 +55,11 @@ export default function UserForm(props) {
               type='email'
             />
           </label>
-          <label>Password: (8 characters minimum)
+          <label>Password: 
             <input 
               type='password'
               name='password'
+              value={values.password}
               onChange={onChange}
             />
           </label>
@@ -71,6 +72,8 @@ export default function UserForm(props) {
             />
           </label>
 
+          <button disabled={disabled}>Submit</button>
+        </div>
 
         </div>
       </div>
