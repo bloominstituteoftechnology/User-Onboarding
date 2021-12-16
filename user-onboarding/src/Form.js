@@ -26,20 +26,22 @@ export default function Form(props) {
                 <h4>User Sign Up</h4>
                 <label>First Name:
                     <input
-                        value={values.firstname}
+                        value={values.first_name}
                         onChange={onChange}
-                        name='firstname'
+                        name='first_name'
                         type='text'
                     />
                 </label>
+
                 <label>Last Name:
                     <input
-                        value={values.lastname}
+                        value={values.last_name}
                         onChange={onChange}
-                        name='lastname'
+                        name='last_name'
                         type='text'
                     />
                 </label>
+
                 <label>Email:
                     <input
                         value={values.email}
@@ -48,6 +50,7 @@ export default function Form(props) {
                         type='text'
                     />
                 </label>
+
                 <label>Password:
                     <input
                         value={values.password}
@@ -56,6 +59,7 @@ export default function Form(props) {
                         type='text'
                     />
                 </label>
+
                 <label>Terms of Service
                     <input
                         type='checkbox'
@@ -67,8 +71,8 @@ export default function Form(props) {
 
                 <button disabled={disabled}>submit</button>
                 <div className='errors'>
-                    <div>{errors.firstname}</div>
-                    <div>{errors.lastname}</div>
+                    <div>{errors.first_name}</div>
+                    <div>{errors.last_name}</div>
                     <div>{errors.password}</div>
                     <div>{errors.termsofservice}</div>
                 </div>

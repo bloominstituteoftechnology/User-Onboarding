@@ -7,16 +7,16 @@ import axios from 'axios'
 import schema from './validation/formSchema'
 
 const initialFormValues = {
-  firstname: '',
-  lastname: '',
+  first_name: '',
+  last_name: '',
   email: '',
   password: '',
   termsofservice: false,
 }
 
 const initialFormErrors = {
-  firstname: '',
-  lastname: '',
+  first_name: '',
+  last_name: '',
   email: '',
   password: '',
   termsofservice: '',
@@ -62,11 +62,11 @@ export default function App() {
 
   const formSubmit = () => {
     const newUser = {
-      firstname: formValues.firstname.trim(),
-      lastname: formValues.lastname.trim(),
+      first_name: formValues.first_name.trim(),
+      last_name: formValues.last_name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      termsofservice: formValues.termsofservice.trim()
+      termsofservice: formValues.termsofservice
     }
     postNewUser(newUser);
   }
