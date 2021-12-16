@@ -3,13 +3,15 @@ describe('Initiate User Onboarding App Test', () => {
         cy.visit('http://localhost:3000')
     })
 
-    const firstnameInput = () => cy.get('input[name=firstname]');
-    const lastnameInput = () => cy.get('input[name=lastname]');
+    const firstnameInput = () => cy.get('input[name=first_name]');
+    const lastnameInput = () => cy.get('input[name=last_name]');
     const emailInput = () => cy.get('input[name=email]');
     const passwordInput = () => cy.get('input[name=password]');
     const termsOfServiceBox = () => cy.get('input[type="checkbox"]');
     const submitBtn = () => cy.get('button');
-    const foobarInput = () => cy.get('input[name=foobar]');
+    const userCard = () => cy.get('div[class=user container]')
+    const userCardName = () => cy.get('p')
+    const userCardEmail = () => cy.get('p')
 
     it('the proper elements are showing', () => {
         firstnameInput().should('exist');
@@ -18,7 +20,7 @@ describe('Initiate User Onboarding App Test', () => {
         passwordInput().should('exist');
         termsOfServiceBox().should('exist')
         submitBtn().should('exist');
-        foobarInput().should('not.exist');
+    
     })
 
     describe('Fill Out User Text Boxes and CheckBoxes', () => {
@@ -56,6 +58,26 @@ describe('Initiate User Onboarding App Test', () => {
             passwordInput().type('MyAmazingPassword')
             termsOfServiceBox().check().should('be.checked')
             submitBtn().should('not.be.disabled');
+        })
+
+        it('can submit form data when required inputs are filled in', () => {
+            firstnameInput().type('First Name')
+            lastnameInput().type('Last Name')
+            emailInput().type('myemail@email.com')
+            passwordInput().type('MyAmazingPassword')
+            termsOfServiceBox().check().should('be.checked')
+            submitBtn().should('not.be.disabled');
+            submitBtn().click()
+        })
+
+        it('can show errors without required inputs', () => {
+            // firstnameInput().type('First Name')
+            lastnameInput().type('Last Name')
+            emailInput().type('myemail@email.com')
+            passwordInput().type('MyAmazingPassword')
+            termsOfServiceBox().check().should('be.checked')
+            submitBtn().should('be.disabled');
+            submitBtn().click()
         })
 
     })
