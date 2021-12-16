@@ -40,3 +40,7 @@
 body{
   background-color: #B34E4C;
 }
+
+#root{
+  height: 100vh;
+}

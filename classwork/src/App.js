@@ -24,7 +24,16 @@ color: whitesmoke;
   display: flex;
   justify-content: space-evenly;
   height: 50vh;
+  width: 90%;
+  margin: auto;
+  padding-top: 5%;
   text-align: center;
+  border-left: 1px solid whitesmoke;
+  border-right: 1px solid whitesmoke;
+  border-top: 1px solid whitesmoke;
+  border-radius: 10px;
+  box-shadow: whitesmoke 1px 1px 10px;
+  flex-wrap: wrap;
 }
 
 .divOne {
@@ -39,18 +48,24 @@ color: whitesmoke;
   flex-direction: column;
   justify-content: space-evenly;
 }
-.musicChoice{
-  display:
+
+.lastDiv{
+  display: flex;
+  flex-direction: column;
+  padding-top: 5%;
+  
+}
+.generalInfo{
+  text-align: center;
 }
 `
 
 function App() {
   return (
     <StyledForm>
-      <h1 className='title'> Welcome To Hoo! </h1>
-      <h3 className='musicChoice'>General Information</h3>
-      <h3 className='musicChoice'>Pick a Genre of music</h3>
-
+      <h1 className='title'> Welcome To The Hoo! </h1>
+      <h3 className='generalInfo'>Create your profile below.</h3>
+  
       <form>
         <div className='content'>
 
@@ -81,7 +96,18 @@ function App() {
           <label>Number
             <input type='number' name='number'/>
           </label>
+          <label>
+            <input type='number' name='number'/>
+          </label>
        </div>
+
+       <div className='lastDiv'>
+         <label> Have you read the terms and conditions!?
+           <input type='checkbox' />
+         </label>
+         <input type='submit'/>
+       </div>
+
         </div>
       </form>
     </StyledForm>
