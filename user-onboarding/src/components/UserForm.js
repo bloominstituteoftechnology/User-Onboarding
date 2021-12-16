@@ -82,7 +82,7 @@ export default function UserForm({values, submit, change, disabled, errors}) {
                 </label>
             </div>
             <div className='submits'>
-                <button disabled={disabled}>Add Me!</button>
+                <button id='submitBtn' disabled={disabled}>Add Me!</button>
             </div>
         </div>
     </form>
