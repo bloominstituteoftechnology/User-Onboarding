@@ -99,6 +99,7 @@ const formSubmit = () => {
         <h1>User Onboarding</h1>
       </header>
       
+      <h4>New User</h4>
       <Form
       values={formValues}
       change={inputChange}
@@ -107,6 +108,7 @@ const formSubmit = () => {
       errors={formErrors}
       />
 
+      <div className='users'>
       {
         users.map((user, idx) => {
           return (
@@ -114,6 +116,7 @@ const formSubmit = () => {
           )
         })
       }
+      </div>
     </div>
   );
 }

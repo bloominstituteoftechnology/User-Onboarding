@@ -21,7 +21,6 @@ const formSchema = yup.object().shape({
     .boolean()
     .oneOf([true], 'Please agree to terms')
     .required()
-
 })
 
 export default formSchema;
