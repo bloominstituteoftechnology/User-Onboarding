@@ -33,6 +33,46 @@ export default function Userform(props) {
                   <div>{errors.termsOfService}</div>
               </div>
           </div>
+
+          <div className="form-group inputs">
+              <h4>General information</h4>
+              <label>
+                  <input
+                    value={values.username}
+                    onChange={onChange}
+                    name='username'
+                    type='text'
+                  />
+              </label>
+
+              <label>Email
+                  <input
+                    value={values.email}
+                    onChange={onChange}
+                    name='username'
+                    type='text'
+                  />
+              </label>
+
+              <label>
+                  <input
+                  value={values.password}
+                  onChange={onChange}
+                  name='password'
+                  type='text'
+                  />
+              </label>
+
+              <label>
+                  <input
+                    type='checkbox'
+                    name='terms of service'
+                    checked={values.termsOfService}
+                    onChange={onChange}
+                  />
+              </label>
+
+          </div>
       </form>  
     )
 }
