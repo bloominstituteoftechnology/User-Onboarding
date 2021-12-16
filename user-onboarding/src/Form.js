@@ -3,18 +3,23 @@ import React from 'react';
 //************************************ */
 //Fill this out once you know what values you need
 //************************************ */
-const initialFormValues = {};
 //************************************ */
 //************************************ */
 
-export default function Form(){
+export default function Form(props){
 
-    const change = evt => {
-        /* 🔥 FIX THIS SO IT ALSO WORKS WITH CHECKBOXES */
-        const { name, value, checked, type } = evt.target
-        const valueToUse = type === 'checkbox' ? checked : value;
-        change(name, valueToUse)
-      }
+    const { formValues, setFormValues, users, setUsers, change, submitUser} = props;
+
+    const onChange = event => {
+        const {name, value, checked, type} = event.target
+        const valueToUse = type === 'checkbox' ? checked : value
+        change(name, valueToUse);
+    }
+
+    const onSubmit = event => {
+        event.preventDefault();
+        submitUser()
+    }
 
     return (
         <>
@@ -25,18 +30,19 @@ export default function Form(){
             name='username'
             type='text'
           /> */}
+          <form onSubmit={onSubmit}>
             <label>Name:
                 <input 
-                    value={values.name}
-                    onChange={change}
+                    value={formValues.name}
+                    onChange={onChange}
                     type='text'
                     name='name'
                 />  
             </label>
-            <label>Email::
+            <label>Email:
                 <input 
-                    value={values.name}
-                    onChange={change}
+                    value={formValues.email}
+                    onChange={onChange}
                     type='text'
                     name='email'
                 />  
@@ -45,20 +51,23 @@ export default function Form(){
                 <input 
                     type='password'
                     name='password'
-                    // onChange={change}
+                    value={formValues.password}
+                    onChange={onChange}
                 />  
             </label>
+            <label>Please read our<a>User Agreement</a>
+                <input 
+                    type='checkbox'
+                    name='userAgreement'
+                    value={formValues.userAgreement}
+                    onChange={onChange}
+                />
+            </label>
+            <button>
+                Submit Form
+            </button>
 
-            <div class='checkboxs'>
-                <label>Agree
-                    <input
-                        type='checkbox'
-                        name='agree'
-                        checked={values.hiking}
-                        onChange={onChange}
-                    />
-                </label>
-            </div>
+        </form>
         </>
     )
 }
