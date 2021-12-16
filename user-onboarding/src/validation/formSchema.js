@@ -17,7 +17,7 @@ const formSchema = yup.object().shape({
         .required('Email is a required field!'),
     password: yup
         .string()
-        .required('Please enter your password')
+        .required('Password is a required field!')
         .min(8, 'Password must be at least 8 characters.'),
     termsofservice: yup
         .boolean()

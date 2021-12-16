@@ -9,9 +9,6 @@ describe('Initiate User Onboarding App Test', () => {
     const passwordInput = () => cy.get('input[name=password]');
     const termsOfServiceBox = () => cy.get('input[type="checkbox"]');
     const submitBtn = () => cy.get('button');
-    const userCard = () => cy.get('div[class=user container]')
-    const userCardName = () => cy.get('p')
-    const userCardEmail = () => cy.get('p')
 
     it('the proper elements are showing', () => {
         firstnameInput().should('exist');
@@ -57,7 +54,7 @@ describe('Initiate User Onboarding App Test', () => {
             emailInput().type('myemail@email.com')
             passwordInput().type('MyAmazingPassword')
             termsOfServiceBox().check().should('be.checked')
-            submitBtn().should('not.be.disabled');
+            submitBtn().should('not.be.disabled')
         })
 
         it('can submit form data when required inputs are filled in', () => {
@@ -70,14 +67,28 @@ describe('Initiate User Onboarding App Test', () => {
             submitBtn().click()
         })
 
-        it('can show errors without required inputs', () => {
-            // firstnameInput().type('First Name')
+        it('can show errors when missing required inputs', () => {
+            firstnameInput().type('First Name')
             lastnameInput().type('Last Name')
             emailInput().type('myemail@email.com')
             passwordInput().type('MyAmazingPassword')
             termsOfServiceBox().check().should('be.checked')
+            submitBtn().should('not.be.disabled')
+            termsOfServiceBox().uncheck().should('not.be.checked')
             submitBtn().should('be.disabled');
-            submitBtn().click()
+            cy.get('.termsofservice-error')
+            firstnameInput().clear()
+            cy.get('.firstname-error')
+            submitBtn().should('be.disabled');
+            lastnameInput().clear()
+            cy.get('.lastname-error')
+            submitBtn().should('be.disabled');
+            emailInput().clear()
+            cy.get('.email-error')
+            submitBtn().should('be.disabled');
+            passwordInput().clear()
+            cy.get('.password-error')
+            submitBtn().should('be.disabled');
         })
 
     })
