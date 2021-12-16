@@ -68,6 +68,13 @@ export default function InitialForm(props) {
           </label>
         </div>
         <button disabled={disabled}>Create an account</button>
+        <div className="errors">
+          <div>{errors.firstName}</div>
+          <div>{errors.lastName}</div>
+          <div>{errors.email}</div>
+          <div>{errors.password}</div>
+          <div>{errors.service}</div>
+        </div>
       </div>
     </form>
   );

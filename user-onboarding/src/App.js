@@ -5,6 +5,7 @@ import axios from "axios";
 import InitialForm from "./components/InitialForm";
 import React, { useState, useEffect } from "react";
 import scheme from "../src/validation/formScheme";
+import User from "./components/user";
 
 const initialFormValues = {
   firstName: "",
@@ -30,23 +31,22 @@ function App() {
   const [disabled, setDisabled] = useState(initialDisabled);
 
   const getUsers = () => {
-    axios
-      .get("https://reqres.in/api/users")
-      .then((resp) => {
-        setUsers(resp.data);
-      })
-      .catch((err) => console.error(err));
+    axios.get("https://reqres.in/api/users").then((resp) => {
+      setUsers(resp.data.data);
+    });
   };
 
   const postNewUser = (newUser) => {
     axios
       .post("https://reqres.in/api/users", newUser)
       .then((resp) => {
-        setUsers(resp.data, ...users);
+        console.log(resp.data);
+        setUsers([{ ...resp.data }, ...users]);
       })
       .catch((err) => console.error(err))
       .finally(() => setFormValues(initialFormValues));
   };
+
   const validate = (name, value) => {
     yup
       .reach(scheme, name)
@@ -66,7 +66,7 @@ function App() {
       lastName: formValues.lastName.trim(),
       email: formValues.email.trim(),
 
-      service: ["service"].filter((service) => !!formValues[service]),
+      agreement: ["service"].filter((service) => !!formValues[service]),
     };
     postNewUser(newUser);
   };
@@ -92,6 +92,9 @@ function App() {
         disabled={disabled}
         errors={formErrors}
       />
+      {users.map((user) => {
+        return <User key={user.id} details={user} />;
+      })}
     </div>
   );
 }

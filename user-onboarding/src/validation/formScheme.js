@@ -11,7 +11,7 @@ const formScheme = yup.object().shape({
     .string()
     .required("No password provided")
     .min(6, "password should should contain minimum 6 character"),
-  service: yup.boolean(),
+  service: yup.boolean().required("Inclompete form"),
 });
 
 export default formScheme;
