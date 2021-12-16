@@ -64,7 +64,7 @@ export default function Form(props) {
                         onChange={onChange}
                     />
                 </label>
-                <div className='form-group submit'>
+
                 <button disabled={disabled}>submit</button>
                 <div className='errors'>
                     <div>{errors.firstname}</div>
@@ -72,7 +72,6 @@ export default function Form(props) {
                     <div>{errors.password}</div>
                     <div>{errors.termsofservice}</div>
                 </div>
-            </div>
             </div> 
         </form>
     )
