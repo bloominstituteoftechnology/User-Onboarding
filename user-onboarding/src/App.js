@@ -14,17 +14,28 @@ const newUserInfo = {
   termsOfService: false,
 };
 
+const initialUsers = [];
+const initialDisabled = true;
+
+const initialFormErrors = {
+  first_name: "",
+  last_name: "",
+  email: "",
+  password: "",
+};
+
 function App() {
   const [newUser, setNewUser] = useState(newUserInfo);
-  const [users, setUsers] = useState([]);
-  const [disabled, setDisabled] = useState();
-  const [formErrors, setFormErrors] = useState();
+  const [users, setUsers] = useState(initialUsers);
+  const [disabled, setDisabled] = useState(initialDisabled);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
 
   const postUser = (newUsers) => {
     axios
       .post("https://reqres.in/api/users", newUsers)
       .then((response) => {
-        setUsers(response, ...users);
+        console.log(response);
+        setUsers([response.data, ...users]);
       })
       .catch((error) => console.log(error))
       .finally(() => setNewUser(newUserInfo));
@@ -49,8 +60,9 @@ function App() {
       last_name: newUser.last_name.trim(),
       email: newUser.email.trim(),
       password: newUser.password.trim(),
-      termsOfService: !!newUser.termsOfService,
+      termsOfService: newUser.termsOfService,
     };
+    console.log("work");
     postUser(newUsers);
   };
 
@@ -60,11 +72,13 @@ function App() {
 
   return (
     <div className="App">
+      <h1>User Onboarding</h1>
       <Form
         user={newUser}
         change={change}
         submit={submit}
         disabled={disabled}
+        errors={formErrors}
       />
       <User users={users} />
     </div>

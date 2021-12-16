@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Form({ user, change, submit, disabled }) {
+export default function Form({ user, change, submit, disabled, errors }) {
   const handleChange = (evt) => {
     const { name, value, checked, type } = evt.target;
     const valueProvided = "checkbox" === type ? checked : value;
@@ -20,7 +20,7 @@ export default function Form({ user, change, submit, disabled }) {
           <input
             type="text"
             name="first_name"
-            value={user.first_Name}
+            value={user.first_name}
             onChange={handleChange}
           />
         </label>
@@ -29,7 +29,7 @@ export default function Form({ user, change, submit, disabled }) {
           <input
             type="text"
             name="last_name"
-            value={user.first_Name}
+            value={user.last_name}
             onChange={handleChange}
           />
         </label>
@@ -61,8 +61,14 @@ export default function Form({ user, change, submit, disabled }) {
             onChange={handleChange}
           />
         </label>
+        <button disabled={disabled}>Submit</button>
       </form>
-      <button disabled={disabled}>Submit</button>
+      <div className="errors">
+        <div>{errors.first_name}</div>
+        <div>{errors.last_name}</div>
+        <div>{errors.email}</div>
+        <div>{errors.password}</div>
+      </div>
     </div>
   );
 }
