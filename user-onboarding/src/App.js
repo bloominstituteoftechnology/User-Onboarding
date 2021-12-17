@@ -5,6 +5,22 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import schema from './formSchema.js';
 import * as yup from 'yup';
+import User from './User.js';
+import styled from 'styled-components';
+
+const StyledUsers = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid grey;
+
+  div{
+    border: solid grey 2px;
+    width: 50%;
+    height 10vh;
+  }
+`
 
 const initialFormValues = { name: '', email: '', password: '', userAgreement: false};
 const initialFormErrors = { name: '', email: '', password: '', userAgreement: false};
@@ -74,9 +90,11 @@ function App() {
     <>
     <Form formErrors={formErrors} formValues={formValues} setFormValues={setFormValues} users={users} setUsers={setUsers} change={change} submitUser={submitUser} disabled={disabled}/>
     
-    {
-      users.map((item) => (<h1>{item.name}</h1>))
-    }
+    <StyledUsers>
+      {users.map(user => {
+        return <User user={user}/>
+      })}
+    </StyledUsers>
     </>
   );
 }

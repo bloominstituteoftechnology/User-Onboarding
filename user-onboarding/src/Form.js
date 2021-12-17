@@ -31,7 +31,7 @@ export default function Form(props){
             name='username'
             type='text'
           /> */}
-          <div class='form-container'>
+          <div className='form-container'>
           <form onSubmit={onSubmit}>
             <label>Name:
                 <input 
