@@ -25,12 +25,12 @@ return (
     <form onSubmit={onSubmit}>
         <div>
             <h2> Create a new user </h2>
-            <button disabled={disabled}>Submit</button>
+            <button id='submitBtn' disabled={disabled}>Submit</button>
 
             <div>
                 <div>{errors.first_name}</div>
                 <div>{errors.last_name}</div>
-                <div>{errors.email}</div>
+                <div id='emailerr'>{errors.email}</div>
                 <div>{errors.password}</div>
                 <div>{errors.termsofservice}</div>
             </div>
