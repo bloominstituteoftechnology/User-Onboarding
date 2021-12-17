@@ -1,22 +1,14 @@
 import React from 'react'
 
-export default function MemberForm(props) {
-    const {
-        values,
-        submit,
-        update,
-        disabled,
-        errors,
-      } = props
+export default function Form(props) {
+
+  const { change, submit, errors } = props;
+  const { username, email, password, tos } = props.values;
 
   const onChange = evt => {
-    // const name = evt.target.name;
-    // const { value } = evt.target;
-    // update(name, value);
-
-    const { name, value, checked, type } = evt.target
-    const valueToUse = type === 'checkbox' ? checked : value;
-    update(name, valueToUse)
+    const { name, value, checked, type } = evt.target;
+    const newValue = type === 'checkbox' ? checked : value;
+    change(name, newValue);
   }
 
   const onSubmit = evt => {
@@ -25,56 +17,56 @@ export default function MemberForm(props) {
   }
 
   return (
-    <form className='form container' onSubmit={onSubmit}>
-      <div className='form-group inputs'>
+      <div>
+        <p>{errors.username}</p>
+        <p>{errors.email}</p>
+        <p>{errors.password}</p>
+        <p>{errors.tos}</p>
+      
+        <form onSubmit={onSubmit}>
+          <label>Username: 
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Wasss yer name"
+                  value={username}
+                  onChange={onChange}
+                />
+          </label>
 
-        <label>Username
+          <label>Email: 
               <input
-                name="username"
-                type="text"
-                placeholder="Wasss yer name"
-                maxLength='30'
-                value={values.username}
-                onChange={onChange}
+                  name="email"
+                  type="email"
+                  placeholder="Wass yer hhmail"
+                  maxLength='30'
+                  value={email}
+                  onChange={onChange}
               />
-        </label>
+          </label>
 
-        <label>Email
+          <label>password: 
+              <input
+                  name="password"
+                  type="password"
+                  placeholder="hhhm password pls"
+                  maxLength='30'
+                  value={password}
+                  onChange={onChange}
+              />
+          </label>
+
+          <label>Terms of Service
             <input
-                name="email"
-                type="text"
-                placeholder="Wass yer hhmail"
-                maxLength='30'
-                value={values.email}
-                onChange={onChange}
+              type='checkbox'
+              name='tos'
+              checked={tos}
+              onChange={onChange}            
             />
-        </label>
+          </label>
 
-        <label>password
-            <input
-                name="password"
-                type="password"
-                placeholder="hhhm password pls"
-                maxLength='30'
-                value={values.password}
-                onChange={onChange}
-            />
-        </label>
-
-        <label>Terms of Service
-          <input
-            type='radio'
-            name='terms'
-            onChange={onChange}
-            checked={values.civil === 'agree'}
-          />
-        </label>
-
-        <div className='submit'>
-          <button>submit</button>
-        </div>
-        
-      </div>
-    </form>
+          <input type='submit' value='Become a Member!' />
+        </form>
+      </div>    
   )
 }
