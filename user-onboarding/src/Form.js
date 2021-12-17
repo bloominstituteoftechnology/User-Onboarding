@@ -64,7 +64,7 @@ export default function Form({ user, change, submit, disabled, errors }) {
         <button disabled={disabled}>Submit</button>
       </form>
       <div className="errors">
-        <div>{errors.first_name}</div>
+        <div className="firstnameError">{errors.first_name}</div>
         <div>{errors.last_name}</div>
         <div>{errors.email}</div>
         <div>{errors.password}</div>
