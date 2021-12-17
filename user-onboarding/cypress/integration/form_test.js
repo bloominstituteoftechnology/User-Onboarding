@@ -9,6 +9,7 @@ describe('User Onboarding', () => {
     const passwordInput = () =>  cy.get('input[name=password]');
     const termsInput = () => cy.get('input[name=terms]');
     const submitBtn = () => cy.get('button[id=submitBtn]');
+    const errorsDiv = () => cy.get('div[id=errors]')
 
     it('sanity check to ensure tests are working', () =>{
         expect(true).to.equal(true);
@@ -72,6 +73,28 @@ describe('User Onboarding', () => {
         })
 
         it('validation appears if an input is missing', () => {
+            firstNameInput().type('f{backspace}');
+            errorsDiv().contains('First name required');
+            
+            lastNameInput().type('l{backspace}');
+            errorsDiv().contains('Last name required');
+
+            emailInput().type('e{backspace}');
+            errorsDiv().contains('Email is required');
+
+            passwordInput().type('1234');
+            errorsDiv().contains('Password must be at least 8 characters');
+            passwordInput().clear()
+            passwordInput().type('1{backspace}');
+            errorsDiv().contains('Password is required');
+
+
+            termsInput().check().uncheck()
+            errorsDiv().contains('Please agree to terms');
+
+
+
+
 
         })
     })

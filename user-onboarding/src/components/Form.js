@@ -65,9 +65,9 @@ const handleChange = evt =>{
         <form className='formContainer' onSubmit={onSubmit}>
             <div className='formDiv'>
                 {/* <div className='topOfForm'> */}
-                    <div className='errors'>
+                    <div id='errors'>
                     {/* validation errors here */}
-                    <div>{errors.firstName}</div>
+                    <div id='firstNameError'>{errors.firstName}</div>
                     <div>{errors.lastName}</div>
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
