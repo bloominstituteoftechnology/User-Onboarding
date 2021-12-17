@@ -23,9 +23,7 @@ export default function Form(props) {
     return (
         <form className='form container' onSubmit={onSubmit}>
             <div className='form-group submit'>
-                <h2>Add a User</h2>
-
-                <button disabled={disabled}>Submit</button>
+                
 
                 <div className='errors'>
                     <div>{errors.username}</div>
@@ -38,6 +36,7 @@ export default function Form(props) {
             <div className='form-group inputs'>
                 <h4>General Information</h4>
                 <label>Username
+                                <br/>
                     <input
                     value={values.username}
                     onChange={onChange}
@@ -45,7 +44,9 @@ export default function Form(props) {
                     type='text'
                     />
                 </label>
+                                <br/>
                 <label>Password
+                                <br/>   
                     <input
                     value={values.password}
                     onChange={onChange}
@@ -53,7 +54,9 @@ export default function Form(props) {
                     type='password'
                     />
                 </label>
+                            <br/>
                 <label>Email
+                            <br/>
                     <input
                     value={values.email}
                     onChange={onChange}
@@ -61,24 +64,17 @@ export default function Form(props) {
                     type='text'
                     />
                 </label>
-                <label>Agree to Terms of Service
+                            <br/>
+                <label>Agree with Terms of Service
                     <input
-                    type='radio'
+                    type='checkbox'
                     name='terms'
-                    value='yes'
                     onChange={onChange}
-                    checked={values.terms === 'yes'}
+                    checked={values.term}
                     />
                 </label>
-                <label>Disagree to Terms of Service
-                    <input
-                    type='radio'
-                    name='terms'
-                    value='no'
-                    onChange={onChange}
-                    checked={values.terms === 'no'}
-                    />
-                </label>
+                            <br/>
+                <button name='submit' disabled={disabled}>Submit</button>
             </div>
             
 

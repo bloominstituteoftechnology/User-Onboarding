@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import logo from './logo.svg';
 import './App.css';
 import Form from './components/Form';
 import axios from 'axios';
 import * as yup from 'yup';
+import schema from './validation/formSchema';
 
 
 const initialFormValues = {
@@ -84,13 +84,13 @@ function App() {
       errors={formErrors}
       />
 
-    {
+    {/* {
       users.map(user => {
         return (
           <User key={user.id} details={user} />
         )
       })
-    }
+    } */}
 
     </div>
   );
