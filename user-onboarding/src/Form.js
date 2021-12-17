@@ -8,7 +8,7 @@ import React from 'react';
 
 export default function Form(props){
 
-    const { formValues, setFormValues, users, setUsers, change, submitUser} = props;
+    const {formErrors, disabled, formValues, setFormValues, users, setUsers, change, submitUser} = props;
 
     const onChange = event => {
         const {name, value, checked, type} = event.target
@@ -31,6 +31,7 @@ export default function Form(props){
             name='username'
             type='text'
           /> */}
+          <div class='form-container'>
           <form onSubmit={onSubmit}>
             <label>Name:
                 <input 
@@ -64,11 +65,17 @@ export default function Form(props){
                     onChange={onChange}
                 />
             </label>
-            <button>
+        <div className='errors'>
+          <div>{formErrors.name}</div>
+          <div>{formErrors.email}</div>
+          <div>{formErrors.password}</div>
+          <div>{formErrors.userAgreement}</div>
+        </div>
+            <button disabled={disabled}>
                 Submit Form
             </button>
-
         </form>
+        </div>
         </>
     )
 }
