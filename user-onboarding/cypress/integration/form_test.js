@@ -84,22 +84,14 @@ describe('User Onboarding', () => {
 
             passwordInput().type('1234');
             errorsDiv().contains('Password must be at least 8 characters');
-            passwordInput().clear()
+            // passwordInput().clear()
             // passwordInput().type('1{backspace}');
             // errorsDiv().contains('Password is required');
 
             termsInput().check().uncheck()
             errorsDiv().contains('Please agree to terms');
-
-
-
-
-
         })
     })
-
-
-
 })
 
 // Get the Name input and type a name in it.
