@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Form from './components/Form'
-// import axios from 'axios';
+import axios from 'axios';
 
 
-import schema from '../components/formSchema';
+import schema from './validation/FormSchema';
 import * as yup from 'yup';
 
 
@@ -29,6 +29,15 @@ function App() {
 
   const [formValues, setFormValues] = useState(initialFormValues); 
   const [errors, setError] = useState(formErrors);
+  const [user, setUsers] = useState([]);
+
+  const submitForm = () => {
+    axios.post('https://reqres.in/api/users')
+    .then(res => {
+      setUsers([ res.data, user ])
+    })
+    .catch(err => console.errors(err))
+  }
 
   const updateForm = (name, value) => {
       validate(name, value)
@@ -42,37 +51,8 @@ function App() {
       .catch(err => setError({ ...formErrors, [name]: err.errors[0] }))
     }
 
-  // const updateForm = (inputName, inputValue) => {
-  //   setFormValues({ ...formValues, [inputName]: inputValue });
-  // }
-
-  
-  // }
-
-  // const submitForm = () => {
-  //   const newMember = {
-  //     username: formValues.username.trim(),
-  //     email: formValues.email.trim(),
-  //     password: formValues.password.trim(),
-  //     terms: formValues.terms
-  //   }
-
-  //   if (!newMember.username || !newMember.email || !newMember.password) {
-  //     setError(`dang glob it, you didn't fill out the form properly!!`);
-  //   } else {
-  //     axios.post('reqres.in/api/users', newMember)
-  //       .then(res => {
-  //         const membersFromServer = res.data;
-  //         setMembers([ membersFromServer, ...members ]);
-  //         setFormValues(initialFormValues);
-  //       }).catch(err => console.error(err))
-  //       .finally(() => setError(""))
-  //   }
-  //   setMembers(newMember);
-  // }
-
-  
-
+    
+  //couldnt figure out how to display the other users, need to study more useEffect and axios stuff!!!
   // useEffect(() => {
   //   axios.get('reqres.in/api/users').then(res => setMembers(res.data))
   // }, [])
@@ -85,17 +65,19 @@ function App() {
         <Form
           values={formValues}
           change={updateForm}
-          // submit={submitForm}
+          errors={formErrors}
+          submit={submitForm}
         />
       </header>
 
-      {/* {
-        members.map(members => {
-          return (
-            <Members key={members.id} details={members} />
-          )
+      {
+        user.map(user => {
+          <div>
+            <p>{user.created}</p>
+            <p>{user.email}</p>
+          </div>
         })
-      } */}
+      }
 
     </div>
 
