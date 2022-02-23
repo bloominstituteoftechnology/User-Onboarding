@@ -32,12 +32,12 @@ const NewUserForm = (props) => {
             <div className="form-group submit" >
                 <h2>Add A New User</h2>
                 <button>Submit</button>
-                {/* <div className='errors'>
+                <div className='errors'>
                     <div>{errors.username}</div>
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
                     <div>{errors.tos}</div>
-                </div> */}
+                </div>
 
                 <div className='form-group inputs'>
                     <label>Name:

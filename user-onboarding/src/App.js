@@ -17,14 +17,37 @@ const initialValues = {
 
 // declare initial errors
 
-
+const initialErrors = {
+  username: '',
+  password: '',
+  email: '',
+  tos: '',
+}
 
 export default function App() {
 
   //declare 4 slices of state
   const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState(initialErrors);
+  const [users, setUsers] = useState([]);
   
+  const validate = (name, value) => {
+    yup.reach(schema, name)
+      .validate(value)
+      .then(() => setFormErrors ({ ...formValues, [name]: value}))
+      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
+  }
+
+  const handleSubmit = () => {
+    axios.post('https://reqres.in/api/users', formValues)
+    .then(res => {
+      setUsers([ res.data, ...users ])
+    })
+    .catch(err => console.error(err))
+  }
+
   const handleChange = (name, value) => {
+    validate(name, value);
     setFormValues({...formValues, [name]: value});
   }
   // use axios to get friends
@@ -34,7 +57,12 @@ export default function App() {
       {// append NewUserForm with key's: 
       // value, submit, change, disabled, and errors 
     }
-      <NewUserForm values={formValues} change={handleChange} />
+      <NewUserForm values={formValues} change={handleChange} errors={formErrors} submit={handleSubmit}/>
+      {/* {users.map(user => (
+        <div>
+
+        </div>
+      ))} */}
     </div>
   );
 }
