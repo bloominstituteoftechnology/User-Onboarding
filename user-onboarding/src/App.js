@@ -1,5 +1,4 @@
 import './App.css';
-import User from "./Components/User";
 import NewUserForm from "./Components/NewUserForm";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -34,7 +33,7 @@ export default function App() {
   const validate = (name, value) => {
     yup.reach(schema, name)
       .validate(value)
-      .then(() => setFormErrors ({ ...formValues, [name]: value}))
+      .then(() => setFormErrors ({ ...formErrors, [name]: ''}))
       .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
   }
 
@@ -44,6 +43,7 @@ export default function App() {
       setUsers([ res.data, ...users ])
     })
     .catch(err => console.error(err))
+    .finally(() => setFormValues(initialValues))
   }
 
   const handleChange = (name, value) => {
@@ -58,11 +58,14 @@ export default function App() {
       // value, submit, change, disabled, and errors 
     }
       <NewUserForm values={formValues} change={handleChange} errors={formErrors} submit={handleSubmit}/>
-      {/* {users.map(user => (
-        <div>
-
+      {users.map(user => (
+        <div className='user-container'>
+          <pre key={user.id}>
+            <p>{JSON.stringify(user.username)}</p>
+            <p>{JSON.stringify(user.email)}</p>
+          </pre>
         </div>
-      ))} */}
+      ))}
     </div>
   );
 }

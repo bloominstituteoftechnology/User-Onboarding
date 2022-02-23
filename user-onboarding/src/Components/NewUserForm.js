@@ -29,9 +29,8 @@ const NewUserForm = (props) => {
 
     return (
         <form className="form container" onSubmit={onSubmit}>
-            <div className="form-group submit" >
-                <h2>Add A New User</h2>
-                <button>Submit</button>
+            <h2>Add A New User</h2>
+            <div className="form-group-submit" >
                 <div className='errors'>
                     <div>{errors.username}</div>
                     <div>{errors.email}</div>
@@ -63,7 +62,7 @@ const NewUserForm = (props) => {
                             value={password}
                             onChange={onChange}
                             name='password'
-                            type='text'
+                            type='password'
                         />
                     </label>
 
@@ -75,7 +74,7 @@ const NewUserForm = (props) => {
                             type='checkbox'
                         />
                     </label>
-                    
+                    <button>Submit</button>
                 </div>
             </div>
         </form>
