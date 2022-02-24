@@ -6,14 +6,28 @@ export default function Form (props) {
 
     // create the submit, change, 
 
-    const {onChange, submit} = props;
+    const {change, submit} = props;
 
+
+// * Set up onChange
+
+const onChange = evt => {
+    const { name, value, checked, type } = evt.target;
+    const newVal = type === "checkbox" ? checked : value;
+    change(name, newVal);
+}
+
+
+const onSubmit = evt => {
+    evt.preventDefault();
+    submit();
+}
 
 
 // return statement is what will be shown on the form (all the HTML elements but written in JSX)
     return (
 
-        <form className= "form-wrapper" onSubmit={submit}>
+        <form className= "form-wrapper" onSubmit={onSubmit}>
             <h1>Amazon</h1>
 
             <section className ="user-input-wrapper">
