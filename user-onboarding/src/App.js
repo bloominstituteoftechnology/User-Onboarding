@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 
-// *step 1
+
 import Form  from "./Form";
+import * as yup from "yup";
+import formSchema from './formSchema';
 
 function App() {
 
@@ -13,7 +15,7 @@ function App() {
     terms: ""
   }
 
-  
+
 
 
   return (

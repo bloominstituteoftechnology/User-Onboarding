@@ -57,6 +57,7 @@ const onChange = () => {
                         onChange={onChange}
                         name="email"
                         value={values.password}
+                        placeholder="min of 8 characters"
                         />
                     </label>
 
