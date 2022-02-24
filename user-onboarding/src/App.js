@@ -5,7 +5,7 @@ import axios from 'axios';
 import schema from './validation/formSchema';
 import * as yup from 'yup';
 
-import Form from './components/Form';
+import Form from './component/Form';
 
 const initialFormValues = {
   username: '',
