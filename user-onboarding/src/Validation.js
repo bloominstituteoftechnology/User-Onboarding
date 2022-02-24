@@ -1,11 +1,11 @@
 import * as yup from 'yup'
 
-const Schema = yup.object().shape({
-    name: yup.string().trim().required('Name required').min(3, "Please do not use a nickname"),
-    email: yup.string().email("Must be valid email address").required("Email required"),
-    password: yup.string().min(8, "Please enter a valid password eight characters or longer"),
-    termsOfService: yup.boolean().oneOf([true], "Box must be checked to continue")
-})
 
+const Schema = yup.object().shape({
+    name: yup.string().trim().min(3,"No Nicknames, please.").max(15, "FINE. Use a nickname, if your name is THIS long!"),
+    email: yup.string().email("Valid email required"),
+    password: yup.string().min(8,"Password minimum of 8 characters"),
+    tos: yup.boolean().oneOf([true], "Terms of Service must be accepted to continue.")
+})
 
 export default Schema
