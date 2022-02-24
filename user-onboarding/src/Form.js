@@ -7,6 +7,7 @@ export default function Form (props) {
         submit,
         change,
         errors,
+        disabled
     } = props
 
 // create the submit, change, 
@@ -18,15 +19,19 @@ const onSubmit = evt => {
     submit()
 }
 
-const onChange = () => {
-    // const {name}
+const onChange = evt => {
+    const { value, type, name, checked  } = evt.target //<- we're targeting when smth happens to those specific things
+    const givenValue = type === "checkbox" ? checked : value
+    change(name, givenValue)
 }
+
+
 
 // return statement is what will be shown on the form (all the HTML elements but written in JSX)
     return (
 
 
-        <form>
+        <form className= "form-wrapper" onSubmit={onSubmit}>
             <h1>Google</h1>
             <section className ="user-input-wrapper">
                 <p>Join the Darkside</p>
@@ -75,7 +80,7 @@ const onChange = () => {
 
             </section>
 
-            <button> Confirm </button>
+            <button disabled={disabled}> Confirm </button>
              
         </form>
     )
