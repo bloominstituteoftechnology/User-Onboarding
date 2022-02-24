@@ -2,37 +2,18 @@ import React from "react";
 
 export default function Form (props) {
 
-    const {
-        values,
-        submit,
-        change,
-        errors,
-        disabled
-    } = props
+    const { username, email, password, terms } = props.values
 
-// create the submit, change, 
+    // create the submit, change, 
 
-const onSubmit = evt => {
-    // prevents the submit function from acting on default
-    // and rather, to perform, only when you click on it..?
-    evt.preventDefault()
-    submit()
-}
-
-const onChange = evt => {
-    const { value, type, name, checked  } = evt.target //<- we're targeting when smth happens to those specific things
-    const givenValue = type === "checkbox" ? checked : value
-    //  variable givenValue is = type
-    //  if type is === "checkbox" then return checked, else return value
-    change(name, givenValue)
-}
+    const {onChange, submit} = props;
 
 
 
 // return statement is what will be shown on the form (all the HTML elements but written in JSX)
     return (
 
-        <form className= "form-wrapper" onSubmit={onSubmit}>
+        <form className= "form-wrapper" onSubmit={submit}>
             <h1>Amazon</h1>
 
             <section className ="user-input-wrapper">
@@ -40,21 +21,21 @@ const onChange = evt => {
 
                 <div className="user-inputs">
 
-                    <label> Username
+                    <label> Username:
                         <input
                         type="text"
                         onChange={onChange}
                         name="username"
-                        value={values.username}
+                        value={username}
                         />
                     </label>
 
-                    <label>Email
+                    <label>Email:
                         <input
                         type="text"
                         onChange={onChange}
                         name="email"
-                        value={values.email}
+                        value={email}
                         />
                     </label>
 
@@ -62,8 +43,8 @@ const onChange = evt => {
                         <input
                         type="password"
                         onChange={onChange}
-                        name="email"
-                        value={values.password}
+                        name="password"
+                        value={password}
                         placeholder="min of 8 characters"
                         />
                     </label>
@@ -74,7 +55,7 @@ const onChange = evt => {
                         type="checkbox"
                         onChange={onChange}
                         name="terms"
-                        checked={values.terms}
+                        checked={terms}
                         />
                     </label>
 
@@ -90,6 +71,7 @@ const onChange = evt => {
                 <p> {errors.terms} </p>
             </div>
 
+            <input type="submit" value="Join the Amazon Cult!"/>
             <button disabled={disabled}> Confirm </button>
              
         </form>
