@@ -1,6 +1,6 @@
 function Form (props) {
     const {value, change, submit, errors, disabled} =props;
-
+    const {first_name, email, password, termsOfService} = props.value
 
     const onSubmit= evt => {
         evt.preventDefault()
@@ -14,18 +14,18 @@ function Form (props) {
     }
     return (
         <>
-        <div className= "form-container" onSubmit= {onSubmit}> 
-        <form>
+        <div className= "form-container" > 
+        <form onSubmit= {onSubmit}>
             <div className="error-messages">
-                <div>{errors.name}</div>
+                <div>{errors.first_name}</div>
                 <div>{errors.email}</div>
                 <div>{errors.password}</div>
                 <div>{errors.termsOfService}</div>
 
             </div>
           <label>NAME
-          <input 
-            name="name"
+          <input className="input" 
+            name="first_name"
             type="text"
             onChange={onChange}
             value= {value.name}
@@ -33,7 +33,7 @@ function Form (props) {
           </label>
 
           <label>EMAIL
-          <input 
+          <input className="input" 
             name= "email"
             type= "text"
             onChange={onChange}
@@ -42,28 +42,31 @@ function Form (props) {
           </label>
 
           <label>PASSWORD
-            <input 
+            <input className="input" 
             name= "password"
-            type= "text"
+            type= "password"
             onChange={onChange}
             value= {value.password}
             />
           </label>
 
           <label>TERMS OF SERVICE
-            <input 
+              <p className="TOS">You hereby waive all rights, priviledges, and responsibilities relating to your whereabouts from the hours of 9-5 on any given weekday, as well as your fist child...</p>
+            <input className="input" 
             type="checkbox"
             name= "termsOfService"
             checked= {value.termsOfService}
             onChange= {onChange}
             />
           </label>
+          <label>
+             {/* <input type="submit" value="Join the Team!"/> */}
+              <button disabled= {disabled}>submit</button>
+          </label>
         </form>
     </div>
     <div className="Submit">       
-          <label>
-              <button disabled= {disabled}>submit</button>
-          </label>
+          
       </div>
       </>
     )

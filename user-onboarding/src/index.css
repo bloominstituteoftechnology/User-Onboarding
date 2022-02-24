@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.error-messages{
+  color:red;
+  font-size:x-large
+}
+.container{
+  border: 1px solid black;
+  border-radius: 10%;
+}
+.form-container{
+  margin: 2%;
+  background-color:rgb(119, 180, 180);
+  display: flex;
+  justify-content:flex-start;
+  align-items:center;
+}
+.input {
+  background-color:rgb(197, 173, 121)
+}
+.input 
+label p{
+  font-size:x-small
+}

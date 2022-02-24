@@ -9,14 +9,14 @@ import * as yup from 'yup'
 
 function App() {
 const initialFormValues= {
-  name: "",
+  first_name: "",
   email: "",
   password: "",
   termsOfService: false,
 }
 
 const initialFormErrors= {
-  name: "",
+  first_name: "",
   email: "",
   password: "",
   termsOfService: ""
@@ -28,6 +28,7 @@ const [formValues, setFormValues]= useState(initialFormValues)
 const [members, setMembers] = useState ([])
 const [errors, setErrors] = useState(initialFormErrors)
 const [disabled, setDisabled] = useState(initialDisabled)
+const [users, setUsers] =useState([])
 
 const getMembers = () => {
   axios.get('https://reqres.in/api/users') 
@@ -37,13 +38,15 @@ const getMembers = () => {
     })
     .catch(err => console.error(err))
 }
-// console.log('just checking', members)
+// console.log(members[3])
 
 const postNewMember = newMember => {
   axios.post('https://reqres.in/api/users', newMember)
     .then(res =>{
-      setMembers([res.data.data, ...members])
-      setFormValues(initialFormValues)
+      console.log(res)
+      // setMembers([res.data.data, ...members])
+      // setFormValues(initialFormValues)
+      // setUsers( ...users, newMember)
     }).catch(err => console.error(err))
 }
 
@@ -61,14 +64,19 @@ const change= (name, value) => {
 }
 
 const submit= () => {
-  const newMember= {
-    name: formValues.name.trim(),
-    email: formValues.email.trim(),
-    password: formValues.password,
-    termsOfService: !formValues.termsOfService
+  axios.post ('https://reqres.in/api/users', formValues)
+    .then(res => {
+      setUsers([res.data, ...users])
+    })
+    .catch (err => console.error(err))
+  // const newMember= {
+  //   first_name: formValues.name.trim(),
+  //   email: formValues.email.trim(),
+  //   password: formValues.password,
+  //   termsOfService: !formValues.termsOfService
     
-  }
-  postNewMember(newMember)
+  // }
+  // postNewMember(newMember);
 }
 useEffect(() =>  {
   getMembers()
@@ -76,7 +84,7 @@ useEffect(() =>  {
 
 useEffect(() => {
   schema.isValid(formValues).then(valid => setDisabled( !valid))
-})
+}, [formValues])
 // console.log('hello', formValues)
 // useEffect(() => {
 //   axios.get('https://reqres.in/api/users') 
@@ -88,8 +96,7 @@ useEffect(() => {
   return (
     <div className="container">
       {
-       <AddNewMember
-        />
+        // const lastMember= members[members.length-1]
      }
      {
        <Form 
@@ -100,7 +107,16 @@ useEffect(() => {
        disabled= {disabled}
        />
      }
-      
+      {
+        users.map(user => {
+        return (
+        <div>
+          <p>{user.first_name}</p>
+          <p>{user.email}</p>
+        </div>
+          )
+        })
+      }
     </div>
   )
 }
