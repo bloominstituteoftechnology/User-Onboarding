@@ -22,6 +22,8 @@ const onSubmit = evt => {
 const onChange = evt => {
     const { value, type, name, checked  } = evt.target //<- we're targeting when smth happens to those specific things
     const givenValue = type === "checkbox" ? checked : value
+    //  variable givenValue is = type
+    //  if type is === "checkbox" then return checked, else return value
     change(name, givenValue)
 }
 
@@ -30,11 +32,11 @@ const onChange = evt => {
 // return statement is what will be shown on the form (all the HTML elements but written in JSX)
     return (
 
-
         <form className= "form-wrapper" onSubmit={onSubmit}>
             <h1>Google</h1>
+
             <section className ="user-input-wrapper">
-                <p>Join the Darkside</p>
+                <h3>Join the Darkside</h3>
 
                 <div className="user-inputs">
 
@@ -79,6 +81,14 @@ const onChange = evt => {
                 </div>
 
             </section>
+
+
+            <div className="error-display">
+                <p> {errors.username} </p>
+                <p> {errors.email} </p>
+                <p> {errors.password} </p>
+                <p> {errors.terms} </p>
+            </div>
 
             <button disabled={disabled}> Confirm </button>
              

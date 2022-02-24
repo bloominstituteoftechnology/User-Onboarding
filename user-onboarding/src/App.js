@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // ! ^^^^ DON'T FORGET TO IMPORT REACT
 // ! ^^^^ DON'T FORGET TO IMPORT USESTATE !!!!
@@ -33,7 +33,7 @@ const initialUsers = [];
 
 // * App is what is rendered to DOM (bringing in Form file)
 
-function App() {
+ function App() {
 
   // ! Declare slices of state
   const [users, setUsers] = useState(initialUsers);
@@ -43,18 +43,17 @@ function App() {
 
 // ! Set up helper functions (implementation)
  const getUsers = () => {
-   axios
-   .get("https://reqres.in/api/users")
+   axios.get("https://reqres.in/api/users")
       .then(res => {
         setUsers(res.data);
       })
-      .catch(err=> console.error(err));
+      .catch(error=> console.error(error));
  }
 
 //! When we first load the page, we want input fields to be blank! 
-  const postNewUser = () => {
+  const postNewUser = newUser => {
     axios
-      .post("https://reqres.in/api/users", newFriend)
+      .post("https://reqres.in/api/users", newUser)
       .then((res) => {
         setUsers( [res.data, ...users] ); //*when posting new user, take res.data, sift through friends and add friends to it..?
         setFormValues(initialFormValues) //* when posting a new user, set the initial values as blank (all empty strings up there ^)
@@ -91,6 +90,19 @@ function App() {
     })
   }
 
+
+  // !Set up your useEffect functions
+  useEffect( () => {
+    getUsers()
+  }, [] )
+  
+useEffect( () => {
+  formSchema.isValid(formValues)
+  .then( valid => setDisabled(!valid) )
+}, [formValues] )
+
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -115,7 +127,7 @@ function App() {
         change={inputChange}
         submit={formSubmit}
         errors={formErrors}
-        onChange={onChange}
+        onChange={inputChange}
         disabled={disabled}
       />
     </div>
