@@ -6,6 +6,14 @@ import Form  from "./Form";
 
 function App() {
 
+  const initialFormValues = {
+    username: "",
+    email: "",
+    password: "",
+    terms: ""
+  }
+
+  
 
 
   return (
@@ -24,6 +32,16 @@ function App() {
           Learn React
         </a>
       </header>
+
+    {/* Giving App.js access to Form.js and assigning it props (key value pairs) here v */}
+    <Form
+      values={formValues}
+      change={inputChange}
+      submit={formSubmit}
+      errors={formErrors}
+      onChange={onChange}
+    />
+
     </div>
   );
 }
