@@ -33,7 +33,7 @@ const onChange = evt => {
     return (
 
         <form className= "form-wrapper" onSubmit={onSubmit}>
-            <h1>Google</h1>
+            <h1>Amazon</h1>
 
             <section className ="user-input-wrapper">
                 <h3>Join the Darkside</h3>
