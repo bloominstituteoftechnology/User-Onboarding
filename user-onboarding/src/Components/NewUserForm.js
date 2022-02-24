@@ -74,7 +74,7 @@ const NewUserForm = (props) => {
                             type='checkbox'
                         />
                     </label>
-                    <button>Submit</button>
+                    <button id="submit-button">Submit</button>
                 </div>
             </div>
         </form>
