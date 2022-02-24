@@ -4,7 +4,7 @@ function NewMemberInfo (props) {
     const {details} = props
     return (
     <div className= "individual container">
-        <header>WELCOME TO Our Newest Member, {details.first_name}!</header>
+        <header>WELCOME TO Our Newest Member, {details.name}!</header>
         <h2>You will receive an email to complete your onboarding</h2>
 
         <p> Email: {details.email}</p>

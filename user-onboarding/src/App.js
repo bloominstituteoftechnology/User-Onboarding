@@ -9,14 +9,14 @@ import * as yup from 'yup'
 
 function App() {
 const initialFormValues= {
-  first_name: "",
+  name: "",
   email: "",
   password: "",
   termsOfService: false,
 }
 
 const initialFormErrors= {
-  first_name: "",
+  name: "",
   email: "",
   password: "",
   termsOfService: ""
@@ -40,15 +40,15 @@ const getMembers = () => {
 }
 // console.log(members[3])
 
-const postNewMember = newMember => {
-  axios.post('https://reqres.in/api/users', newMember)
-    .then(res =>{
-      console.log(res)
-      // setMembers([res.data.data, ...members])
-      // setFormValues(initialFormValues)
-      // setUsers( ...users, newMember)
-    }).catch(err => console.error(err))
-}
+// const postNewMember = newMember => {
+//   axios.post('https://reqres.in/api/users', newMember)
+//     .then(res =>{
+//       console.log(res)
+//       // setMembers([res.data.data, ...members])
+//       // setFormValues(initialFormValues)
+//       // setUsers( ...users, newMember)
+//     }).catch(err => console.error(err))
+// }
 
 const validate= (name,value) => {
   yup.reach(schema, name).validate(value)
@@ -63,21 +63,31 @@ const change= (name, value) => {
   })
 }
 
+
 const submit= () => {
-  axios.post ('https://reqres.in/api/users', formValues)
-    .then(res => {
-      setUsers([res.data, ...users])
-    })
-    .catch (err => console.error(err))
-  // const newMember= {
-  //   first_name: formValues.name.trim(),
-  //   email: formValues.email.trim(),
-  //   password: formValues.password,
-  //   termsOfService: !formValues.termsOfService
-    
-  // }
-  // postNewMember(newMember);
+  axios.post('https://reqres.in/api/users', formValues)
+  .then(res => {
+    console.log(res)
+  })
 }
+// const submit= () => {
+//   axios.post ('https://reqres.in/api/users', formValues)
+//     .then(res => {
+//       console.log(res)
+//       // setMembers([res.data.data, ...members])
+//       // setFormValues(initialFormValues)
+//       setUsers( ...users, res.data)
+//     })
+//     .catch (err => console.error(err))
+//   const newMember= {
+//     name: formValues.name.trim(),
+//     email: formValues.email.trim(),
+//     password: formValues.password,
+//     termsOfService: !formValues.termsOfService
+    
+//   }
+//   // postNewMember(newMember);
+// }
 useEffect(() =>  {
   getMembers()
 }, [])
@@ -111,7 +121,7 @@ useEffect(() => {
         users.map(user => {
         return (
         <div>
-          <p>{user.first_name}</p>
+          <p>{user.name}</p>
           <p>{user.email}</p>
         </div>
           )
