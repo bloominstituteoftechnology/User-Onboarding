@@ -56,7 +56,7 @@ function Form (props) {
             />
           </label>
 
-          <button disabled={disabled}>Submit</button>
+          <button disabled={disabled} id='submitBtn'>Submit</button>
 
         </form>
       </div>
