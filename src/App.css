@@ -20,3 +20,8 @@
 .errors {
   color: red;
 }
+.form-checkboxes a {
+  text-decoration: none;
+  color: gray;
+
+}

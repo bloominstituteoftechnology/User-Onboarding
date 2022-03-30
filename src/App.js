@@ -8,7 +8,8 @@ function App() {
   const initialFormValues = {
     name: '',
     email: '',
-    termsOfService: ''
+    password: '',
+    termsOfService: false
   }
   const initialUsers = [];
   // State is set below
