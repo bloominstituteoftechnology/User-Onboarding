@@ -14,8 +14,13 @@ const onChange = evt => {
 }
 
 
+const onSubmit = (evt) => {
+    evt.preventDefault();
+    submit();
+}
+
     return (
-    <form onSubmit = {submit} className = 'form-container'>
+    <form onSubmit = {onSubmit} className = 'form-container'>
         <div className = 'errors'>
             <p>{errors.name}</p>
             <p>{errors.email}</p>

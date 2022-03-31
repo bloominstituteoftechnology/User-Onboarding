@@ -37,14 +37,10 @@ function App() {
 
   const inputChange = (name, value) => {
     validate(name, value);
-    setFormValues({
-      ...formValues,
-      [name]: value
-    })
+    setFormValues({...formValues, [name]: value})
   }
 
   const onSubmit = (evt) => {
-    evt.preventDefault();
     axios.post(`https://reqres.in/api/users`, formValues)
       .then(res => {
         setUsers([res.data, ...users]);
