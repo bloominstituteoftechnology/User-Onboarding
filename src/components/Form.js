@@ -5,47 +5,64 @@ import React from 'react'
 
 export default function Form(props) {
     const {values, submit, change, errors} = props;
+
+
+const onChange = evt => {
+    const {name, value, checked, type} = evt.target;
+    const newVal = type === 'checkbox' ? checked : value;
+    change(name, newVal)
+}
+
+
     return (
-    <form className = 'form-container'>
+    <form onSubmit = {submit}className = 'form-container'>
         <div className = 'errors'>
-            <div>test error</div>
+            <p>{errors.name}</p>
+            <p>{errors.email}</p>
+            <p>{errors.password}</p>
+            <p>{errors.termsOfService}</p>
         </div>
         <div className="form-inputs">
-            <label>Name
+            <label>Name 
                 <input 
                     type='text'
                     name='name'
                     value={values.name}
+                    onChange={onChange}
                     placeholder='Type your name'
                 />
             </label>
-            <label>Email
+            <label>Email 
                 <input 
                     type='email'
                     name='email'
+                    onChange={onChange}
                     value={values.email}
                     placeholder='Type your email'
                 />
             </label>
-            <label>Password
+            <label>Password 
                 <input 
                     type='password'
                     name='password'
+                    onChange={onChange}
                     value={values.password}
                     placeholder='Type a password'
                 />     
             </label>
         </div>
         <div className = "form-checkboxes">
-            <label>I have read the <a href="https://www.youtube.com/watch?v=6NqM7FlmTCo" target='_blank' rel="noreferrer">Terms of Service</a>
+            <label>I have read the <a href="https://www.youtube.com/watch?v=6NqM7FlmTCo" target='_blank' rel="noreferrer">Terms of Service</a> 
                 <input 
                     type='checkbox'
                     name='termsOfService'
+                    onChange={onChange}
                     checked={values.termsOfService}
                 />              
             </label>
             </div>
-        <button>Submit</button>
+        <input type='submit' value='Create new user' />
     </form>
+
     );
 }

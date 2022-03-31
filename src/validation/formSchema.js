@@ -17,6 +17,9 @@ const schema = yup.object().shape({
         .trim()
         .required('Hah, what is this, 1997? You need a password.')
         .min(7, 'Hah, too easy. Make it longer.'),
+    termsOfService: yup
+        .boolean()
+        .oneOf([true], "If you don't accept the terms and conditions you shall be executed.")
 })
 
 export default schema;
