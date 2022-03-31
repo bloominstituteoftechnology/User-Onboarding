@@ -15,7 +15,7 @@ const onChange = evt => {
 
 
     return (
-    <form onSubmit = {submit}className = 'form-container'>
+    <form onSubmit = {submit} className = 'form-container'>
         <div className = 'errors'>
             <p>{errors.name}</p>
             <p>{errors.email}</p>
@@ -61,7 +61,7 @@ const onChange = evt => {
                 />              
             </label>
             </div>
-        <input type='submit' value='Create new user' />
+        <input type='submit'  value='Create new user' />
     </form>
 
     );

@@ -43,12 +43,15 @@ function App() {
     })
   }
 
-  const onSubmit = () => {
+  const onSubmit = (evt) => {
+    evt.preventDefault();
     axios.post(`https://reqres.in/api/users`, formValues)
       .then(res => {
-        console.log(res);
+        setUsers([res.data, ...users]);
+        console.log('Success!')
       })
       .catch(err => console.error(err))
+
   }
  
 
@@ -67,7 +70,8 @@ function App() {
           submit={onSubmit}
         />
         {users.map(user => (
-          <div>
+          <div key={user.id} >
+            <p>{user.createdAt}</p>
             <p>{user.name}</p>
             <p>{user.email}</p>
           </div>
