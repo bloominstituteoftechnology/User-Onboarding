@@ -62,3 +62,8 @@ The following are stretch goals that you should attempt _after_ you meet MVP for
 ## Submission Format
 
 * [ ] Submit a link to your github repository in canvas.
+
+
+## Purpose pf Application
+
+- This front-end application is meant to simulate the onboarding process of users to a team. We enter details such as their name, role and email. Then, upon form submission, the new team member's information is displayed on the screen 
