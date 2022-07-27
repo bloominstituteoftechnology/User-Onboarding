@@ -8,8 +8,8 @@ We've seen many different styles of form management by now -- simple to complex.
 
 ### Task 1: Set Up The Project
 
-- [ ] Start off by installing a blank React app by running `npx create-react-app <app-name> --use-npm`.
-- [ ] Run `cd <app-name>` to cd into the `<app-name>` directory.
+- [ ] Fork and clone the repository and `cd` into the directory.
+- [ ] Start off by installing a blank React app by running `npx create-react-app .`.
 - [ ] Using `npm`, add the following as dependencies inside your React app:
   - `yup`
   - `axios`
