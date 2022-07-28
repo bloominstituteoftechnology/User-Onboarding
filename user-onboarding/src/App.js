@@ -11,7 +11,8 @@ const initialFormValues = {
   last_name: '',
   email: '',
   password: '',
-  tos: false
+  tos: false,
+  career: ''
 }
 
 const initialFormErrors = {
@@ -19,6 +20,7 @@ const initialFormErrors = {
   last_name: '',
   email: '',
   password: '',
+  career: ''
 }
 
 const initialUsers = []
@@ -35,7 +37,8 @@ const submit = () => {
     last_name: values.last_name,
     email: values.email,
     password: values.password,
-    tos: false
+    tos: false,
+    carrer: values.career
  }
  addUsersToApi(newUser)
 }
@@ -64,13 +67,14 @@ const addUsersToApi = ( ) => {
 }
   return (
     <div className="App">
-    <h1> Welcome! </h1>
+      <div className='formContainer'>
     <Form 
     values={values} 
     submit={submit} 
     change={change}
     disabled={disabled}
     errors={errors}/>
+    </div>
 
     {
       users.map(user=> {

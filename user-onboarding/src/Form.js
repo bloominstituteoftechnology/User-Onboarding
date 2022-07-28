@@ -18,11 +18,11 @@ const onSubmit = e => {
         <>
         <h2>Form</h2>
         <form onSubmit={onSubmit}>
-            <div>{errors.first_name}</div>
-            <div>{errors.last_name}</div>
-            <div>{errors.email}</div>
-            <div>{errors.password}</div>
-            <div>{errors.tos}</div>
+            <div className='red'>{errors.first_name}</div>
+            <div className='red'>{errors.last_name}</div>
+            <div className='red'>{errors.email}</div>
+            <div className='red'>{errors.password}</div>
+            <div className='red'>{errors.tos}</div>
             <label>
                 First Name<br></br>
                 <input 
@@ -47,7 +47,7 @@ const onSubmit = e => {
             <br></br>
             <label>
                 Email<br></br>
-                <input
+                <input 
                 type='email'
                 name='email'
                 value={values.email}
@@ -77,6 +77,15 @@ const onSubmit = e => {
                 />
             </label>
             <br></br>
+            <label> Select Carrer of choice
+                <br></br>
+            <select name='career' value={values.career} onChange={onChange}>
+            <option value = ''>--Please Select a Career--</option>
+            <option value = 'Cop'>Cop</option>
+            <option value='Fireman'>Fireman</option>
+            <option value='marine'>MarineCorps</option>
+            </select>
+            </label>
             <button disabled={disabled}>Submit</button>
         </form>
         </>

@@ -24,7 +24,14 @@ const schema = yup.object().shape({
     tos: yup
     .boolean()
     .required('The terms and conditions must be accepted')
-    .oneOf([true], 'The terms and conditions must be accepted')
+    .oneOf([true], 'The terms and conditions must be accepted'),
+
+    career: yup
+    .string()
+    .required('pick a career')
+    .oneOf(['cop', 'fireman', 'marine'], ' pick a role kid')
 })
+
+   
 
 export default schema

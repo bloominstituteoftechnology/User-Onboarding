@@ -1,3 +1,16 @@
 .App{
   text-align: center;
+
+}
+
+.formContainer{
+  border: 2px solid;
+  width: 60%;
+  margin: 0 auto;
+
+}
+
+.red{
+  color: red;
+  margin: 1.5%
 }
