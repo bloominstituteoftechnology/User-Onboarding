@@ -55,7 +55,7 @@ const change = (name, value) => {
 }
 
 useEffect(() => {
-  schema.isValid(values).then( valid => {setDisabled(!valid)}, [values])})
+  schema.isValid(values).then( valid => {setDisabled(!valid)}, values )},)
 
 const addUsersToApi = ( ) => {
   axios.post('https://reqres.in/api/users', values )
@@ -80,7 +80,7 @@ const addUsersToApi = ( ) => {
       users.map(user=> {
         return(
           <User key={user.id} details={user}/>
-        )
+        ) 
       })
     }
     </div>

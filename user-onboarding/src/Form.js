@@ -80,9 +80,9 @@ const onSubmit = e => {
             <label> Select Carrer of choice
                 <br></br>
             <select name='career' value={values.career} onChange={onChange}>
-            <option value = ''>--Please Select a Career--</option>
-            <option value = 'Cop'>Cop</option>
-            <option value='Fireman'>Fireman</option>
+            <option value =''>--Please Select a Career--</option>
+            <option value ='cop'>Cop</option>
+            <option value='fireman'>Fireman</option>
             <option value='marine'>MarineCorps</option>
             </select>
             </label>
