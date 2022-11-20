@@ -59,7 +59,7 @@ const Form = (props) => {
                 <button disabled={disabled}>Submit</button>
             </form>
             {users.map((user,idx) => (
-                <div key={idx}>
+                <div key={idx} className={`user ${idx}`}>
                     <p>{user.email}</p>
                     <p>{user.createdAt}</p>
                 </div>
