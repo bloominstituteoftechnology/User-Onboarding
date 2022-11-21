@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "styled": "^1.0.0"
+  },
+  "devDependencies": {
+    "cypress": "^11.1.0"
+  }
+}

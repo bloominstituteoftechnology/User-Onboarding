@@ -48,7 +48,7 @@ function App() {
     <div className="App">
       <Form values={formValues} change={handleChange} errors={formErrors} submit={handleSubmit} />
       {users.map(user => (
-        <div key={user.id}>
+        <div key={user.name}>
           <p>{user.createdAt}</p>
           <p>{user.email}</p>
         </div>

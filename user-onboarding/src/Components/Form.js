@@ -1,4 +1,10 @@
 import React from 'react';
+import Styled from 'styled'
+
+const styledDiv = Styled.div`
+background-color: linear-gradient(90,red,green,black);
+`;
+
 
 const Form = (props) => {
     const { change, submit, errors } = props;
@@ -17,6 +23,7 @@ const Form = (props) => {
 
     return (
         <div>
+            <styledDiv> Test </styledDiv>
             <h1>My Form</h1>
             <p> {errors.username} </p>
             <p> {errors.password} </p>
