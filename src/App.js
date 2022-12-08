@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import axios from 'axios';
 
 import formSchema from './validation/formSchema';
 import * as yup from 'yup';
@@ -24,16 +25,22 @@ const initialFormErrors = {
 function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const[formErrors, setFormErrors] = useState(initialFormErrors);
+  const [users, setUsers] = useState({});
 
   const handleSubmi = () => {
-    //WIP
+    axios.post('https://regres.in/api/users', formValues)
+    .then(res => {
+      setUsers({ res.data, ...users ])
+    })
+    .catch(err => console.error(err))
+    .finally(() => setFormErrors(initialFormValues))
   }
 
   const validate = (name, value) => {
     yup.reach(schema, name)
       .validate(value)
       .then(() => setFormErrors ({...formErrors, [name]: ''}))
-      .catch(err => setFormErrors({...formErrors, [name]: err.errors[0] })
+      .catch(err => setFormErrors({...formErrors, [name]: err.errors[0] }))
   }
 
   const handleChange = (name, value) =>{
@@ -42,7 +49,18 @@ function App() {
   }
   return (
     <div className="App">
-      <Form values={formValues} change={handleChange} />
+      <Form 
+        values={formValues} 
+        change={handleChange} 
+        errors={formErrors}
+        submit={handleSubmi}
+       />
+       {users.map(user => (
+        <div key={user.id}>
+          <p>{user.createdAt}</p>
+          <p>{user.email}</p>
+        </div>
+       ))}
     </div>
   );
 }
