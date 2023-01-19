@@ -48,7 +48,7 @@ const Form = (props) => {
                         onChange={onChange}
                     />
                 </label>
-                <label>
+                <label> Terms of service
                     <input
                         type='checkbox'
                         name='tos'
@@ -56,7 +56,7 @@ const Form = (props) => {
                         onChange={onChange}
                     />
                 </label>
-                <input type='submit' value='Create a Friend!' />
+                <input type='submit' value='Create a Friend!' name='submit' />
             </form>
         </div>
     )
