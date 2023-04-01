@@ -33,7 +33,7 @@ function Form(props) {
         <p>{errors.terms}</p>
       </div>
       <WrapperDiv>
-        <form onSubmit={onSubmit}>
+        <form style={{display:'flex', flexDirection:"column", width:'200px',margin:'0 auto'}}onSubmit={onSubmit}>
           <label htmlFor="name">Name: </label>
           <input
             type="text"

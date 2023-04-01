@@ -12,16 +12,19 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.userWrapper{
+  display:flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.users{
+  border: 3px solid #334f54;
+  background-color: #81d4e4;
+  width:450px;
+  margin: 0 auto;
+  border-radius: 20px;
+  margin-top: 10px;
 }
 
 .App-link {

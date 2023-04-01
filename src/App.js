@@ -18,6 +18,11 @@ const emptyErrors = {
   terms: "",
 };
 
+const userWrapperDiv= styled.div`
+border:2px solid #ecf3fd;
+background-color:#81d4e4;
+`
+
 function App() {
   const [formValues, setFormValues] = useState(emptyFormValues);
   const [errors, setErrors] = useState(emptyErrors);
@@ -60,12 +65,14 @@ function App() {
         errors={errors}
         submit={handleSubmit}
       />
+       <h1 style={{textAlign:'center'}}> Welcome To The Team</h1>
       <div className="userWrapper">
+       
         {newUser.map((user, idx) => {
           return (
             <div key={idx} className="users">
-              <h2>{user.name}</h2>
-              <p>{user.email}</p>
+              <h2>User: {user.name}</h2>
+              <p>Email: {user.email}</p>
             </div>
           );
         })}
