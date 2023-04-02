@@ -11,8 +11,8 @@ const WrapperDiv = styled.div`
 `;
 
 function Form(props) {
-  const { change, submit, errors } = props;
-  const { name, email, password, terms } = props.values;
+  const { change, submit, errors, disabled } = props;
+  const { name, email, password, terms, level } = props.values;
 
   const onChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -31,9 +31,18 @@ function Form(props) {
         <p>{errors.password}</p>
         <p>{errors.email}</p>
         <p>{errors.terms}</p>
+        <p>{errors.level}</p>
       </div>
       <WrapperDiv>
-        <form style={{display:'flex', flexDirection:"column", width:'200px',margin:'0 auto'}}onSubmit={onSubmit}>
+        <form
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "200px",
+            margin: "0 auto",
+          }}
+          onSubmit={onSubmit}
+        >
           <label htmlFor="name">Name: </label>
           <input
             type="text"
@@ -51,6 +60,7 @@ function Form(props) {
             value={email}
             placeholder="Enter your email"
             onChange={onChange}
+            required
           />
           <label htmlFor="password"> Password: </label>
           <input
@@ -61,6 +71,19 @@ function Form(props) {
             placeholder="Enter your password"
             onChange={onChange}
           />
+          <label htmlFor="level">What is your coding level?</label>
+          <select
+            onChange={onChange}
+            required
+            id="level"
+            name="level"
+            value={level}
+          >
+            <option value="0">-Select A Level-</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Expert">Expert</option>
+          </select>
           <label>
             {" "}
             Do you accept the terms of service
@@ -71,7 +94,7 @@ function Form(props) {
               onChange={onChange}
             />
           </label>
-          <button>Submit</button>
+          <button disabled={disabled}>Submit</button>
         </form>
       </WrapperDiv>
     </div>

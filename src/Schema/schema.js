@@ -14,7 +14,11 @@ const schema = yup.object().shape({
     .string()
     .min(6, "Password must be at least six characters long")
     .required("Password is required"),
-  terms: yup.boolean().oneOf([true, false], "Must accept the terms of service"),
+  terms: yup.boolean().oneOf([true], "Must accept the terms of service"),
+  level: yup
+    .string()
+    .oneOf(["Beginner", "Intermediate", "Expert"])
+    .required("Must select level"),
 });
 
 export default schema;

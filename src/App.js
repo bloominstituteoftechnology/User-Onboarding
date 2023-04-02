@@ -10,24 +10,22 @@ const emptyFormValues = {
   email: "",
   password: "",
   terms: false,
+  level: "",
 };
 const emptyErrors = {
   name: "",
   email: "",
   password: "",
   terms: "",
+  level: "",
 };
-
-const userWrapperDiv= styled.div`
-border:2px solid #ecf3fd;
-background-color:#81d4e4;
-`
 
 function App() {
   const [formValues, setFormValues] = useState(emptyFormValues);
   const [errors, setErrors] = useState(emptyErrors);
 
   const [newUser, setNewUser] = useState([]);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const handleChange = (name, value) => {
     validate(name, value);
@@ -44,6 +42,12 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => {
+      setButtonDisabled(!valid);
+    });
+  }, [formValues]);
+
   const validate = (name, value) => {
     yup
       .reach(schema, name)
@@ -54,9 +58,6 @@ function App() {
       .catch((err) => setErrors({ ...errors, [name]: err.errors[0] }));
   };
 
-  useEffect(() => {
-    schema.isValid(formValues).then((valid) => {});
-  }, [formValues]);
   return (
     <div className="App">
       <Form
@@ -64,19 +65,30 @@ function App() {
         change={handleChange}
         errors={errors}
         submit={handleSubmit}
+        disabled={buttonDisabled}
       />
-       <h1 style={{textAlign:'center'}}> Welcome To The Team</h1>
-      <div className="userWrapper">
-       
-        {newUser.map((user, idx) => {
-          return (
-            <div key={idx} className="users">
-              <h2>User: {user.name}</h2>
-              <p>Email: {user.email}</p>
-            </div>
-          );
-        })}
-      </div>
+      <section>
+        <h1
+          style={{
+            fontFamily: "fantasy",
+            fontSize: "35px",
+            textDecoration: "underline",
+          }}
+        >
+          User Wall
+        </h1>
+        <div className="userWrapper">
+          {newUser.map((user, idx) => {
+            return (
+              <div key={idx} className="users">
+                <h2>Name: {user.name}</h2>
+                <p>Email: {user.email}</p>
+                <p>Coding Level: {user.level}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 }
