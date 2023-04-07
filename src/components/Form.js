@@ -79,7 +79,7 @@ function Form(props) {
             name="level"
             value={level}
           >
-            <option value="0">-Select A Level-</option>
+            <option value="select level">-Select A Level-</option>
             <option value="Beginner">Beginner</option>
             <option value="Intermediate">Intermediate</option>
             <option value="Expert">Expert</option>
@@ -94,7 +94,9 @@ function Form(props) {
               onChange={onChange}
             />
           </label>
-          <button disabled={disabled}>Submit</button>
+          <button disabled={disabled} id="submitBtn">
+            Submit
+          </button>
         </form>
       </WrapperDiv>
     </div>
