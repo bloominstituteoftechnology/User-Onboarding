@@ -1,0 +1,41 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.userWrapper{
+  display:flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+}
+.users{
+  border: 3px solid #334f54;
+  background-color: #81d4e4;
+  width:450px;
+  margin: 0 auto;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
