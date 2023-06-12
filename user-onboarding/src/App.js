@@ -1,49 +1,64 @@
-import logo from './logo.svg';
 import './App.css';
 import Form from "./Components/Form";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import formSchema from './validation/formSchema';
 import * as yup from "yup"
+import axios from "axios"
 
-const initialFormValues = {
+const initialForm = {
   username: "",
-  email: "",
   password: "",
-  tos: false,
-};
+  email: "",
+  tos: false
+}
 
-const initialFormErrors = {
+const initialErrorForm = {
   username: "",
-  email: "",
   password: "",
-  tos: "",
-};
+  email: "",
+  tos: ""
+}
 
 function App() {
-  const [formValues, setFormValues] = useState(initialFormValues);
-  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [form, setForm] = useState(initialForm);
+  const [errorForm, setErrorForm] = useState(initialErrorForm);
+  const [users, setUsers] = useState([]);
+  const [submitStatus, setSubmitStatus] = useState(true);
 
   const handleChange = (name, value) => {
     validate(name, value);
-    setFormValues({...formValues, [name]: value})
+    setForm({...form, [name] : value})
   }
 
-  const handleSubmit = () => {
-    //
+  const handleSubmit = (e) => {
+    axios.post("https://reqres.in/api/users", form)
+    .then(res => {
+      setUsers([res.data, ...users]);
+    }).catch(err => console.error(err));
   }
 
   const validate = (name, value) => {
     yup.reach(formSchema, name)
     .validate(value)
-    .then(() => {
-      setFormErrors({...formErrors, [name]: ""})
+    .then(setErrorForm({...errorForm, [name]: ""}))
+    .catch(err => {
+      setErrorForm({...errorForm, [name]: err.errors[0]})
     })
-    .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
   }
+
+  useEffect(() => {
+    formSchema.isValid(form).then(valid => setSubmitStatus(!valid))
+  }, [form])
 
   return (
     <div className="App">
-        <Form values={formValues} change={handleChange} errors={formErrors}></Form>
+        <Form values={form} change={handleChange} submit={handleSubmit} errors={errorForm} submitStatus={submitStatus}></Form>
+        {users.map(element => (
+          <div key={element.id}>
+            <p>{element.createdAt}</p>
+            <p>{element.email}</p>
+          </div>
+        ))}
     </div>
   );
 }

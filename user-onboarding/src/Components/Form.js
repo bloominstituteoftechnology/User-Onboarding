@@ -2,27 +2,28 @@ import { useState } from "react-dom"
 import React from "react";
 
 function Form(props) {
-    const {username, email, password, tos } = props.values;
-    const {submit, change, errors} = props;
-    
+    const {username, password, email, tos} = props.values;
+    const { change, submit, errors, submitStatus } = props;
+
     const onChange = event => {
-        const {name, type, value, checked} = event.target;
-        change(name, type === "checkbox" ? checked : value);
+        const {name, value, type, checked} = event.target;
+        change(name, type === "checkbox" ? checked : value)
     }
-    
+
     const onSubmit = event => {
         event.preventDefault();
-        submit(); 
+        submit();
     }
+
     return (
         <div>
         <h1>My awesome FORM!</h1>
         <p>{errors.username}</p>
-        <p>{errors.password}</p>
         <p>{errors.email}</p>
+        <p>{errors.password}</p>
         <p>{errors.tos}</p>
         <form onSubmit={onSubmit}>
-            <label>Name: 
+            <label>Name:
                 <input
                 type="text"
                 name="username"
@@ -30,7 +31,6 @@ function Form(props) {
                 onChange={onChange}
                 />
             </label>
-            <br/>
             <label>Email:
                 <input
                 type="email"
@@ -39,8 +39,7 @@ function Form(props) {
                 onChange={onChange}
                 />
             </label>
-            <br/>
-            <label>Password: 
+            <label>Password:
                 <input
                 type="password"
                 name="password"
@@ -49,7 +48,7 @@ function Form(props) {
                 />
             </label>
             <br/>
-            <label>Terms of Service:
+            <label>Service:
                 <input
                 type="checkbox"
                 name="tos"
@@ -57,8 +56,11 @@ function Form(props) {
                 onChange={onChange}
                 />
             </label>
-            <br/>
-            <input type="submit" value="Create a friend!"/>
+            <input
+            disabled={submitStatus}
+            type="submit"
+            value="Create a Friend!"
+            />
         </form>
         </div>
     )
