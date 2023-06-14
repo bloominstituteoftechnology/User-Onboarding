@@ -7,7 +7,8 @@ describe("User-Onboarding App", () => {
     const nameInput = () => cy.get("input[name=username]");
     const emailInput = () => cy.get("input[name=email]");
     const passwordInput = () => cy.get("input[name=password]")
-    const tosButton = () => cy.get(`checkbox[name=tos]`);
+    const tosButton = () => cy.get(`input[type=checkbox]`);
+    const submitButton = () => cy.get(`input[type=submit]`);
 
     it("Checking if the test works", () => {
         expect(1+2).to.equal(3);
@@ -26,6 +27,19 @@ describe("User-Onboarding App", () => {
         passwordInput().should("have.value", "").type("password").should("have.value", "password");
     })
     it("Checking terms of service checkbox functionality", () => {
+        tosButton().should("exist");
+        tosButton().check();
+    })
+    describe("Testing form submittion functionality", () => {
+        it("Testing submit form", () => {
+            submitButton().should("exist");
+            submitButton().should("be.disabled");
+            nameInput().type("Jomar");
+            emailInput().type("Jomar@gmail.com");
+            passwordInput().type("password123");
+            tosButton().check();
+            submitButton().click();
+        })
     })
 
 })
