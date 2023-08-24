@@ -1,65 +1,162 @@
-# Module Project: Advanced Form Management - User Onboarding
+# Sprint 7 Module 3 Project
 
-## Project Description
+## Introduction
 
-We've seen many different styles of form management by now -- simple to complex. Today we are going to unleash your inner form-wizard! 🧙
+Welcome to Module 3 Project! In this project, you will practice input validation and submitting forms in React.
+
+Your goal is to implement a form that validates input from the user and submits it to a real registration endpoint.
+
+To successfully complete this project, you will need the following technical knowledge:
+
+1. **Basic React** to manipulate props and the JSX.
+2. **State hook** to track the values entered into the form.
+3. **Effect hook** to validate form data as the user enters it.
+4. **Event handlers** to change inputs and submit the form.
+5. **Input types** like text, checkboxes, radio buttons and dropdowns.
+6. **Input validation** using the Yup library.
+7. **Postman** to study the endpoint being dealt with.
 
 ## Instructions
 
-### Task 1: Set Up The Project
+You have been given a take-home coding assessment as part of the hiring process for a Web Developer position. Your task is to implement **user registration** functionality for a site. This is done using a form that takes user input, validates it as it's entered, and submits the validated input to a registration endpoint.
 
-- [ ] Fork and clone the repository and `cd` into the directory.
-- [ ] Start off by installing a blank React app by running `npx create-react-app user-onboarding`.
-- [ ] `cd` into the newly created `user-onboarding` folder.
-- [ ] Using `npm`, add the following as dependencies inside your React app:
-  - `yup`
-  - `axios`
-- [ ] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
+From the point of view of the data, each user registration POSTed to the endpoint must contain `username`, `favLanguage`, `favFood` and `agreement` properties. The form captures these values using inputs of different types. Here is an example of a properly built payload:
 
-### Task 2: MVP
+```js
+{ "username": "Luke", "favFood": "pizza", "favLanguage": "javascript", "agreement": true }
+// ❗ Note that even if the payload passes validation, the username might be taken
+```
 
-#### Create Your Advanced Form
+👉 The registration endpoint is `[POST] https://webapis.bloomtechdev.com/registration`
 
-We want to create a form to onboard a new user to our system. We need _at least_ the following pieces of information about our new user:
+👉 Your fully-functional design mock is `https://bloominstituteoftechnology.github.io/W_S7M3_Project`
 
-- [ ] Name (first_name, last_name)
-- [ ] Email
-- [ ] Password
-- [ ] Terms of Service (checkbox)
-- [ ] A Submit button to send our form data to the server.
+**Study the endpoint using _Postman_, and study the mock site using _Chrome Dev Tools_, paying special attention to the Elements tab and the Network tab.**
 
-#### Implement Form Validation and Error Messaging
+### 💾 Setup
 
-Form validation is one of the facets of an application that makes it feel polished and controlled from a user perspective. With that in mind, implement the following:
+**Here are the steps to set up this project:**
 
-- [ ] Using Yup, set up _at least_ two different validations along with custom error messages that will display on screen when validation fails.
+1. **Clone this repository** to your computer.
 
-#### Make a POST Request
+2. Within your terminal, navigate to the project folder **and execute `npm i`**.
 
-Being able to `POST` data is a key skill of any developer, no matter your skill level.
+3. After successful installation **execute `npm run dev`**.
 
-- [ ] Craft a `POST` request using `axios` that sends your form data to the following endpoint: _`https://reqres.in/api/users`_
-- [ ] Verify using a `console.log()` that you are receiving a successful response back
+4. You will load the app in Chrome by **navigating the browser to `http://localhost:3003`**.
 
-(Note: For those that are curious, we're using [reqres.in](https://reqres.in/) for this assignment's API. It's a free API that allows us to simulate a `POST` request for any data that we send it. Pretty awesome!)
+**❗ Note:** On the event of NPM errors during setup, delete the `node_modules` folder and the `package-lock.json` file, and retry `npm i` and `npm run dev`.
 
-#### Display Returned Data to Screen
+### 🥷 Tasks
 
-When you get your data back, you will want to do something with it, right? Let's display a list of users in our app.
+**Here are guidelines for completing your tasks:**
 
-- [ ] Set up a state property called `users` that is initialized with an empty array
-- [ ] Every time you make a `POST` request, and get that new user data back, update your `users` state with the new user added to the array
-- [ ] Render `users` in your app. You can use the html pre tag and JSON.stringify() method to display your post request.
+- If you look inside the `frontend/components` folder you will find an `App.js` component. You will complete your tasks inside this file.
 
-### Task 3: Stretch Goals
+- The `App.js` component includes hints and pseudo-code in its comments to guide you.
 
-The following are stretch goals that you should attempt _after_ you meet MVP for your project:
+- As you make progress, the behavior of your app will start matching that of the [mock](https://bloominstituteoftechnology.github.io/W_S7M3_Project).
 
-- [ ] Add basic styling to your form in your app. Make it look pretty with any styling method you choose.
-- [ ] Implement a dropdown menu in your form. Add a `role` value to your state and add a dropdown with different roles for your users.
-- [ ] Create 3 new inputs inside your form of your choice along with corresponding validation and error messaging
-- [ ] Add to your existing handling so that, if a user inputs their email as `waffle@syrup.com`, they receive an error message in their form that says _"That email is already taken."_
+- Use your attention-to-detail skills to ensure that the functionality of your form matches that of the mock as closely as possible.
 
-## Submission Format
+- Have fun, and check out the Solution Video for this project if you need help!
 
-* [ ] Submit a link to your github repository in canvas.
+#### 👉 TASK 1 - Implement submitting the form without validation
+
+**Here is a suggested sequence for completing this task.**
+
+(If you don't need any hand holding at all, feel free to ignore the suggestions. For an even harder challenge, delete the contents of the App component and implement the form completely from scratch. The only real requirement is that **the functionality of your form matches that of the mock.**)
+
+1. Create a state to track the values of the form. This state could be an object with `username`, `favLanguage`, `favFood` and `agreement` keys.
+
+2. More states are needed to track validation errors, messages from the server, and whether the form is disabled or not.
+
+3. Fix the JSX to wire the change handler, the submit handler. Consume server messages and validation errors from the corresponding states using curly braces.
+
+4. Implement the change handler without any validation.
+
+5. Implement the submit handler. POST the form to the endpoint, and set the success and error messages into their proper states.
+
+6. You should have a functional form that relies on back-end validation only, without any front-end validation to help the user.
+
+#### 👉 TASK 2 - Implement front-end validation using Yup
+
+The front-end could be doing a lot more to prevent the user from POSTing data that does not meet the requirements of the API. Let's implement form validation using Yup.
+
+**Here is a suggested sequence.**
+
+1. Create a schema using Yup to validate the state of the form. Use the provided dictionary of error messages to guide you.
+
+2. In the JSX, add a `disabled` prop to the submit input that takes its value from state. State controls whether the form is submittable.
+
+3. Create an effect that fires whenever the form changes. Run validation on the whole form, and set in state whether the submit element stays disabled or not.
+
+4. Edit the change handler so that validation is run on the particular field that changed (E.G. `favFood`). Update the corresponding validation error in component state.
+
+5. The form should be fully functional now!
+
+#### 👉 TASK 3 - (OPTIONAL) Start over from scratch
+
+Delete the contents of `App.js` and challenge yourself to rebuild this form without any help. The moves practiced in this project are fundamental. Even if you don't take this challenge on right now, revisit it in the future. Consider this task a [Kata](https://en.wikipedia.org/wiki/Kata) you should master before applying for a React position.
+
+## FAQ
+
+<details>
+  <summary>I feel very stuck. What can I do?</summary>
+
+Check out the Solution Video for this project in your learning platform. In it, an industry expert will walk you through their thinking in detail while they solve the tasks. The Solution Videos are highly recommended even if you are not stuck: you will learn lots of tricks.
+
+</details>
+
+<details>
+  <summary>I am getting errors when I run npm install. What is going on?</summary>
+
+This project requires Node to be correctly installed on your computer to work. Sometimes Node can be installed but misconfigured. Try deleting `node_modules` and running `npm install`. If that fails, try deleting both `node_modules` and `package-lock.json` before reinstalling. If all fails, please request support!
+
+</details>
+
+<details>
+  <summary>Do I need to install extra libraries with NPM?</summary>
+
+No. Everything you need should be installed already, including Yup and Axios.
+
+</details>
+
+<details>
+  <summary>Can I edit the styles?</summary>
+
+Of course! Have at it.
+
+</details>
+
+<details>
+  <summary>Can I edit the HTML?</summary>
+
+That's probably not a great idea. Why do you want to do that?
+
+</details>
+
+<details>
+  <summary>My page does not work! How do I debug it?</summary>
+
+With React, it's very important that we use the React Dev Tools to monitor the state of our components as we interact with the App. If the state is not adjusting like it should, that's good to know. If the state does change but the UI does not respond, that's a different thing.
+
+If your code has a syntax problem, the app will print error messages in the console. Focus on the first message. Place console logs right before the crash site (errors usually inform of the line number where the problem originates) and see if your variables contain the data you think they do. Comment out chunks of code until you get it to compile!
+
+</details>
+
+<details>
+  <summary>How do I run tests against my code?</summary>
+
+This particular project has no tests in it. All testing must be manual!
+
+</details>
+
+<details>
+  <summary>I messed up and want to start over! How do I do that?</summary>
+
+Do NOT delete your repository from GitHub! Instead, commit frequently as you work. Make a commit whenever you achieve anything and the app isn't crashing in Chrome. This in practice creates restore points you can use should you wreak havoc with your app. If you find yourself in a mess, use git reset --hard to simply discard all changes to your code since your last commit. If you are dead-set on restarting the challenge from scratch, you can do this with Git as well. Research how to reset hard to a specific commit.
+
+</details>
+
+**Project created with [@bloomtools/react@0.1.10](https://github.com/bloominstituteoftechnology/npm-tools-react) and Node v18.17.1 on Tue, August 22, 2023 at 04:09 PM**
