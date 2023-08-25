@@ -27,9 +27,9 @@ From the point of view of the data, each user registration POSTed to the endpoin
 // ❗ Note that even if the payload passes validation, the username might be taken
 ```
 
-👉 The registration endpoint is `[POST] https://webapis.bloomtechdev.com/registration`
+👉 The registration **endpoint** is [POST] https://webapis.bloomtechdev.com/registration
 
-👉 Your fully-functional design mock is `https://bloominstituteoftechnology.github.io/W_S7M3_Project`
+👉 Your fully-functional **design mock** is https://bloominstituteoftechnology.github.io/W_S7M3_Project
 
 **Study the endpoint using _Postman_, and study the mock site using _Chrome Dev Tools_, paying special attention to the Elements tab and the Network tab.**
 
