@@ -69,13 +69,13 @@ From the point of view of the data, each user registration POSTed to the endpoin
 
 1. Create a state to track the values of the form. This state could be an object with `username`, `favLanguage`, `favFood` and `agreement` keys.
 
-2. More states are needed to track validation errors, messages from the server, and whether the form is disabled or not.
+2. Create states to store the success and failure messages from the server.
 
-3. Fix the JSX to wire the change handler, the submit handler. Consume server messages and validation errors from the corresponding states using curly braces.
+3. Fix the JSX to wire the change handlers and the submit handler. Render the success and failure messages, taking them from their corresponding states, using curly braces.
 
-4. Implement the change handler without any validation.
+4. Implement the change handler, without any validation. The same handler should work for all inputs, with minor adjustments if the type is "checkbox".
 
-5. Implement the submit handler. POST the form to the endpoint, and set the success and error messages into their proper states.
+5. Implement the submit handler: POST the form to the endpoint, and store proper success and error messages in their proper states. Clear the form in the case of success.
 
 6. You should have a functional form that relies on back-end validation only, without any front-end validation to help the user.
 
@@ -85,15 +85,17 @@ The front-end could be doing a lot more to prevent the user from POSTing data th
 
 **Here is a suggested sequence.**
 
-1. Create a schema using Yup to validate the state of the form. Use the provided dictionary of error messages to guide you.
+1. Create a state to hold validation errors for all inputs. Create another state to track whether submitting the form is disabled or not.
 
-2. In the JSX, add a `disabled` prop to the submit input that takes its value from state. State controls whether the form is submittable.
+2. Build a schema using Yup to validate the state of the form. Use the provided dictionary of error messages to guide you.
 
-3. Create an effect that fires whenever the form changes. Run validation on the whole form, and set in state whether the submit element stays disabled or not.
+3. In the JSX, wire the `disabled` prop in the submit input to the slice of state that tracks whether the form can be submitted.
 
-4. Edit the change handler so that validation is run on the particular field that changed (E.G. `favFood`). Update the corresponding validation error in component state.
+4. Create an effect that triggers if the state of the form changes: run validation on the whole form, and update in state whether the form can be submitted.
 
-5. The form should be fully functional now!
+5. Edit the change handler so that validation is run on the particular field that changed (E.G. `favFood`). Update the corresponding validation error in component state.
+
+6. The form should be fully functional now!
 
 #### 👉 TASK 3 - (OPTIONAL) Start over from scratch
 
