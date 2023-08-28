@@ -1,4 +1,4 @@
-// ❗ The ✨ TASKS found inside this component are NOT IN ORDER.
+// ❗ The ✨ TASKS inside this component are NOT IN ORDER.
 // ❗ Check the README for the appropriate sequence to follow.
 import React from 'react'
 
@@ -24,26 +24,26 @@ const e = { // This is a dictionary of validation error messages.
 export default function App() {
   // ✨ TASK: BUILD YOUR STATES HERE
   // You will need states to track (1) the form, (2) the validation errors,
-  // (3) whether submit is disabled, (4) the success message from the server
+  // (3) whether submit is disabled, (4) the success message from the server,
   // and (5) the failure message from the server.
 
   // ✨ TASK: BUILD YOUR EFFECT HERE
-  // Whenever the state of the form changes, validate it against the schema,
+  // Whenever the state of the form changes, validate it against the schema
   // and update the state that tracks whether the form is submittable.
 
   const onChange = evt => {
     // ✨ TASK: IMPLEMENT YOUR INPUT CHANGE HANDLER
     // The logic is a bit different for the checkbox, but you can check
-    // whether the type of event target is "checkbox", and act accordingly.
-    // At every change, the updated value must be validated, and the validation
-    // error must be put in the state where we track front-end validation errors.
+    // whether the type of event target is "checkbox" and act accordingly.
+    // At every change, you should validate the updated value and send the validation
+    // error to the state where we track frontend validation errors.
   }
 
   const onSubmit = evt => {
     // ✨ TASK: IMPLEMENT YOUR SUBMIT HANDLER
     // Lots to do here! Prevent default behavior, disable the form to avoid
-    // double submits, POST the form data to the endpoint. On success, reset
-    // the form. The success and failure messages from the server must be put
+    // double submits, and POST the form data to the endpoint. On success, reset
+    // the form. You must put the success and failure messages from the server
     // in the states you have reserved for them, and the form
     // should be re-enabled.
   }
